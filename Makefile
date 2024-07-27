@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= template
+NAME 		= webserver
 
 CC			= c++ -std=c++98
 FLAGS		= -Wall -Wextra -Werror
