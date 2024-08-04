@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/04 11:27:54 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/04 11:29:35 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJDIR      = .objFiles
 
 # Paths for source and header files
 SRCDIR      = src
-LIBDIR      = lib
+LIBDIR      = include
 
 # Specify source files
 FILES       = main
