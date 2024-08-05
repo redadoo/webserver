@@ -1,6 +1,5 @@
 #include <Lexer.hpp>
 
-
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
     std::string                 line;

@@ -22,3 +22,5 @@ this project is part of the common core of 42 and was done in collaboration with
 ![How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
 
 ![How nginx server names works](http://nginx.org/en/docs/http/server_names.html)
+
+![how nginx syntax works](http://nginx.org/en/docs/beginners_guide.html)
