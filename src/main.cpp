@@ -1,8 +1,13 @@
-#include <webserver.hpp>
+#include <WebServer.hpp>
 
 int main(int argc, char **argv)
 {
-    (void)argv;
-    if (argc == 1) {}
-    if (argc == 2) {}
+    WebServer *webServer;
+
+    if (argc == 1)
+        webServer = new WebServer();
+    if (argc == 2) 
+        webServer = new WebServer(argv[1]);
+
+    webServer->StartServer();
 }

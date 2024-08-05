@@ -16,3 +16,8 @@
 The aim of the project is to develop an HTTP web server from scratch that is compatible with C++98.
 
 this project is part of the common core of 42 and was done in collaboration with @[Fborroto](https://github.com/Fborroto) and @[ffursini](https://github.com/ffursini).
+
+## ressources
+
+http://nginx.org/en/docs/http/request_processing.html
+http://nginx.org/en/docs/http/server_names.html
