@@ -19,6 +19,6 @@ this project is part of the common core of 42 and was done in collaboration with
 
 ## ressources
 
+![How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
 
-How nginx processes a request : http://nginx.org/en/docs/http/request_processing.html
-how nginx Server names works :http://nginx.org/en/docs/http/server_names.html
+![How nginx server names works](http://nginx.org/en/docs/http/server_names.html)
