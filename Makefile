@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/04 18:15:19 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/05 11:11:32 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
-HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/ServerInfo.hpp
+HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/ServerInfo.hpp $(LIBDIR)/utils.hpp \
+			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp
 
 # Include the lib/ directory for header files
 INC         = -I$(LIBDIR)
