@@ -2,6 +2,6 @@
 
 bool utils::CheckFileExistence(const char *fileName)
 {
-    (void)fileName;
-    return false;
+    std::ifstream file(fileName);
+    return file.good();
 }

@@ -1,8 +1,6 @@
 #include <WebServer.hpp>
 
-void WebServer::StartServer()
-{
-}
+void WebServer::StartServer() {}
 
 WebServer::WebServer()
 {
@@ -28,10 +26,6 @@ WebServer::WebServer(const char *fileConf)
     {
         std::cerr << e.what() << '\n';
     }
-    
-    (void)fileConf;
 }
 
-WebServer::~WebServer()
-{
-}
+WebServer::~WebServer() {}

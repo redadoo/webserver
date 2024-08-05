@@ -6,7 +6,7 @@
 #include <Lexer.hpp>
 #include <Parser.hpp>
 
-#define DEFAULT_CONFIG_FILE "default.conf"
+#define DEFAULT_CONFIG_FILE "config/default.conf"
 
 class WebServer
 {
