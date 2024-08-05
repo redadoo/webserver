@@ -15,6 +15,7 @@ private:
 
 public:
     void StartServer();
+    void InitServer();
 
     WebServer();
     WebServer(const char *filePath);

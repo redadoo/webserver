@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
 #include <utils.hpp>
 
 namespace Lexer
@@ -22,7 +23,7 @@ namespace Lexer
         std::string tokenValue;
     };
 
-    std::vector<Token> GetToken(const char* fileName);
+    std::vector<Token> GetToken(std::string fileName);
 
 
     class FileNotFound : public std::exception {
