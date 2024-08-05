@@ -10,4 +10,6 @@ int main(int argc, char **argv)
         webServer = new WebServer(argv[1]);
 
     webServer->StartServer();
+
+    delete webServer;
 }

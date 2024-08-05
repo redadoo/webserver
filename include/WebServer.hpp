@@ -1,12 +1,17 @@
 #ifndef WEBSERVER_HPP
 #define WEBSERVER_HPP
 
-#include <ServerInfo.hpp>
+#include <vector>
+#include <iostream>
+#include <Lexer.hpp>
+#include <Parser.hpp>
+
+#define DEFAULT_CONFIG_FILE "default.conf"
 
 class WebServer
 {
 private:
-    ServerInfo serverInfo;
+    std::vector<ServerInfo> serverInfo;
 
 public:
     void StartServer();

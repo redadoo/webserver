@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/05 11:11:32 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/05 17:03:30 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer ServerInfo
+FILES       = main WebServer ServerInfo Parser Lexer utils
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 
@@ -67,5 +67,6 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
+	@$(RM) leaks.txt
 
 re: fclean all

@@ -3,7 +3,7 @@
 
 namespace utils 
 {
-
+    bool CheckFileExistence(const char* fileName);
 }
 
 #endif
