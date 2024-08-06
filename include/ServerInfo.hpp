@@ -9,29 +9,10 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <vector>
+#include <WebServerException.hpp>
 
 #define MAX_EVENTS 10
 #define MAX_CLIENTS 10
-
-class ErrorOnSocketCreation : public std::exception {
-	public:
-		virtual const char* what() const throw() { return "error when try to create socket";}
-};
-
-class ErrorOnBindSocket : public std::exception {
-	public:
-		virtual const char* what() const throw() { return "error when try to bind socket";}
-};
-
-class ErrorOnListenSocket : public std::exception {
-	public:
-		virtual const char* what() const throw() { return "error when try to listen socket";}
-};
-
-class ErrorOnEpollCreation : public std::exception {
-	public:
-		virtual const char* what() const throw() { return "error when try to create epoll instance";}
-};
 
 struct ServerInfo
 {

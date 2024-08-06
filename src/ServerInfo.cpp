@@ -1,5 +1,7 @@
 #include <ServerInfo.hpp>
 
+using namespace WebServerExceptions;
+
 ServerInfo::ServerInfo(
     int _port, 
     int _clientMaxBodySize, 
@@ -46,6 +48,15 @@ void ServerInfo::InitInfo()
     if (epollFd == -1) {
         close(serverFd);
         throw ErrorOnEpollCreation();
+    }
+
+        // Add server socket to epoll
+    event.events = EPOLLIN;
+    event.data.fd = serverFd;
+    if (epoll_ctl(epollFd, EPOLL_CTL_ADD, serverFd, &event) == -1) {
+        std::cerr << "Failed to add server socket to epoll instance." << std::endl;
+        close(serverFd);
+        close(epollFd);
     }
 
     close(serverFd);
