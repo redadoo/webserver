@@ -1,10 +1,14 @@
 #ifndef WEBSERVER_HPP
 #define WEBSERVER_HPP
 
-#include <vector>
-#include <iostream>
-#include <Lexer.hpp>
-#include <Parser.hpp>
+# include <vector>
+# include <iostream>
+# include <Lexer.hpp>
+# include <Parser.hpp>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <sys/select.h>
+# include <arpa/inet.h>
 
 #define DEFAULT_CONFIG_FILE "config/default.conf"
 

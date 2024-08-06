@@ -9,6 +9,7 @@ int main(int argc, char **argv)
     if (argc == 2) 
         webServer = new WebServer(argv[1]);
 
+    webServer->InitServer();
     webServer->StartServer();
 
     delete webServer;

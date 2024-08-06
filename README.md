@@ -24,3 +24,7 @@ this project is part of the common core of 42 and was done in collaboration with
 ![How nginx server names works](http://nginx.org/en/docs/http/server_names.html)
 
 ![how nginx syntax works](http://nginx.org/en/docs/beginners_guide.html)
+
+![I/O Multiplexing (select vs. poll vs. epoll/kqueue)](https://nima101.github.io/io_multiplexing)
+
+![epoll and socket](https://stackoverflow.com/questions/66916835c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)

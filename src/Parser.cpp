@@ -4,5 +4,14 @@ void Parser::TryParse(std::vector<ServerInfo> &serverInfos, const std::vector<To
 {
     (void)serverInfos;
     (void)tokens;
-    throw ErrorOnFileConfigurationSyntax();
+    serverInfos.push_back(ServerInfo
+    (
+        8002,
+        2,
+        "index.html",
+        "locahost",
+        "web-page",
+        "127.0.0.1",
+        "web-page/error-pages/404.html"
+    ));
 }

@@ -10,11 +10,6 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 
     std::ifstream file(fileName.c_str());
 
-    while (std::getline(file, line)) 
-    {
-        std::cout << line << std::endl;
-    }
-
     file.close();
 
     return tokens;

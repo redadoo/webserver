@@ -2,8 +2,13 @@
 
 void WebServer::StartServer() {}
 
-void WebServer::InitServer() {}
-
+void WebServer::InitServer() 
+{
+	for (size_t i = 0; i < serverInfo.size(); i++)
+	{
+		serverInfo[i].InitInfo();
+	}
+}
 
 WebServer::WebServer()
 {
@@ -13,8 +18,6 @@ WebServer::WebServer()
 		Parser::TryParse(serverInfo, tokens);
 		
 		tokens.clear();
-
-		InitServer();
 
 	}
 	catch(const std::exception& e)
@@ -31,8 +34,6 @@ WebServer::WebServer(const char *fileConf)
 		Parser::TryParse(serverInfo, tokens);
 				
 		tokens.clear();
-
-		InitServer();
 	}
 	catch(const std::exception& e)
 	{
