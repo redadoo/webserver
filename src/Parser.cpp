@@ -1,6 +1,6 @@
 #include "Parser.hpp"
 
-void Parser::TryParse(std::vector<ServerInfo> &serverInfos, const std::vector<Token> &tokens)
+void Parser::TryParse(std::vector<ServerInfo> &serverInfos, std::vector<Token> &tokens)
 {
     (void)serverInfos;
     (void)tokens;
@@ -14,4 +14,6 @@ void Parser::TryParse(std::vector<ServerInfo> &serverInfos, const std::vector<To
         "127.0.0.1",
         "web-page/error-pages/404.html"
     ));
+
+    tokens.clear();
 }

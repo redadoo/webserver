@@ -19,7 +19,6 @@ class WebServer
 {
 private:
     std::vector<ServerInfo> serverInfo;
-    Logger logger;
 
 public:
     /// @brief Starts the web server and begins listening for incoming connections.

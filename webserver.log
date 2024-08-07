@@ -1,2 +1,7 @@
-[2024-8-7 18:8:48] start parsing Configuration file : config/default.conf
-[2024-8-7 18:8:48] finished parsing Configuration file
+[2024-8-7 19:36:14] start parsing Configuration file : config/default.conf
+[2024-8-7 19:36:14] finished parsing Configuration file
+[2024-8-7 19:36:14] created socket successfully
+[2024-8-7 19:36:14] Bind socket to address successfully
+[2024-8-7 19:36:14] Socket Listen for incoming connections on port : 8002
+[2024-8-7 19:36:14] Create epoll instance successfully
+[2024-8-7 19:36:14] Add server socket to epoll successfully

@@ -1,15 +1,17 @@
 #ifndef SERVERINFO_HPP
 #define SERVERINFO_HPP
 
-#include <string>
-#include <iostream>
-#include <unistd.h>
-#include <sys/epoll.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <vector>
-#include <WebServerException.hpp>
+# include <string>
+# include <iostream>
+# include <unistd.h>
+# include <sys/epoll.h>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
+# include <vector>
+# include <WebServerException.hpp>
+# include <Logger.hpp>
+# include <utils.hpp>
 
 #define MAX_EVENTS 10
 #define MAX_CLIENTS 10

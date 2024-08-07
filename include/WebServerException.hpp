@@ -1,7 +1,7 @@
 #ifndef WEBSERBEREXCEPTION_HPP
 #define WEBSERBEREXCEPTION_HPP
 
-#include <exception>
+# include <exception>
 
 namespace WebServerExceptions
 {

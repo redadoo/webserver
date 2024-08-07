@@ -4,6 +4,8 @@ int main(int argc, char **argv)
 {
     WebServer *webServer;
 
+    Logger::Init();
+    
     if (argc == 1)
         webServer = new WebServer();
     if (argc == 2) 

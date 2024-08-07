@@ -1,47 +1,53 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
-#include <string>
-#include <exception>
-#include <fstream>  
-#include <ctime>
-#include <iostream>
-#include <sstream>
+# include <string>
+# include <exception>
+# include <fstream>  
+# include <ctime>
+# include <iostream>
+# include <sstream>
+# include <vector>
 
-/// @brief The Logger class provides logging functionality for applications,
+/// @brief The Logger class provides static logging functionality for applications,
 /// allowing messages, warnings, errors, and exceptions to be recorded in a log file.
 class Logger 
 {
 private:
-    std::ofstream logFile; ///< Output file stream for writing log entries.
-    std::string logFileName; ///< Name of the log file.
+    static std::ofstream logFile;
+    static std::string logFileName;
 
     /// @brief Gets the current date and time as a formatted string.
     /// @return A string representing the current date and time.
-    std::string CurrentDateTime();
+    static std::string CurrentDateTime();
 
 public:
-    Logger();
-    ~Logger();
+    /// @brief Initializes the log file. This must be called before any logging can be done.
+    static void Init(const std::string& fileName = "webserver.log");
+
+    /// @brief Closes the log file if it is open.
+    static void Shutdown();
 
     /// @brief Deletes the current log file.
-    void DeleteLog();
+    static void DeleteLog();
 
     /// @brief Logs a general message to the log file.
     /// @param message The message to log.
-    void Log(const std::string &message);
+    static void Log(const std::string &message);
+
+    void Log(const std::vector<std::string> messages);
 
     /// @brief Logs a warning message to the log file with red color formatting.
     /// @param message The warning message to log.
-    void LogWarning(const std::string &message);
+    static void LogWarning(const std::string &message);
 
     /// @brief Logs an error message to the log file with red color formatting.
     /// @param message The error message to log.
-    void LogError(const std::string &message);
+    static void LogError(const std::string &message);
 
     /// @brief Logs an exception's details to the log file as an error.
     /// @param ex The exception to log.
-    void LogException(const std::exception &ex);
+    static void LogException(const std::exception &ex);
 };
 
 #endif // LOGGER_HPP

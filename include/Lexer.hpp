@@ -1,10 +1,11 @@
 #ifndef LEXER_HPP
 #define LEXER_HPP
 
-#include <string>
-#include <vector>
-#include <fstream>
-#include <utils.hpp>
+# include <string>
+# include <vector>
+# include <fstream>
+# include <utils.hpp>
+# include <WebServerException.hpp>
 
 namespace Lexer
 {
