@@ -24,12 +24,6 @@ namespace Lexer
     };
 
     std::vector<Token> GetToken(std::string fileName);
-
-
-    class FileNotFound : public std::exception {
-        public:
-			virtual const char* what() const throw() { return "error: file not found";}
-	};
 }
 
 #endif

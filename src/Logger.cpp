@@ -1,8 +1,4 @@
 #include "Logger.hpp"
-#include <ctime>
-#include <fstream>
-#include <iostream>
-#include <sstream>
 
 Logger::Logger() : logFileName("webserver.log")
 {
@@ -10,9 +6,7 @@ Logger::Logger() : logFileName("webserver.log")
 
 	logFile.open(logFileName.c_str(), std::ios::app);
 	if (!logFile.is_open())
-	{
 		throw std::runtime_error("Unable to open log file: " + logFileName);
-	}
 }
 
 Logger::~Logger()
@@ -48,13 +42,6 @@ std::string Logger::CurrentDateTime()
 	return (ss.str());
 }
 
-std::string colorRed(const std::string &message) {
-    std::string red = "\033[31m"; 
-    std::string reset = "\033[0m"; 
-    return red + message + reset;
-}
-
-
 void Logger::Log(const std::string &message)
 {
 	if (logFile.is_open())
@@ -64,11 +51,11 @@ void Logger::Log(const std::string &message)
 }
 
 void Logger::LogWarning(const std::string &message) {
-    Log(colorRed("WARNING: " + message));
+    Log("WARNING: " + message);
 }
 
 void Logger::LogError(const std::string &message) {
-    Log(colorRed("ERROR: " + message));
+    Log("ERROR: " + message);
 }
 
 void Logger::LogException(const std::exception &ex) {
