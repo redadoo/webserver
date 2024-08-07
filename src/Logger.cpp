@@ -4,7 +4,7 @@
 #include <iostream>
 #include <sstream>
 
-Logger::Logger() : logFileName("log.txt")
+Logger::Logger() : logFileName("webserver.log")
 {
 	std::ofstream ofs(logFileName.c_str(), std::ios::out | std::ios::trunc);
 
