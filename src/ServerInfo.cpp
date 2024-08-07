@@ -56,6 +56,7 @@ void ServerInfo::InitInfo()
         close(serverFd);
         throw ErrorOnEpollCreation();
     }
+    
     Logger::Log("Create epoll instance successfully");
 
     // Add server socket to epoll

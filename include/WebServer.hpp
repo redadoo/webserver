@@ -10,6 +10,10 @@
 # include <sys/select.h>
 # include <arpa/inet.h>
 # include <Logger.hpp>
+# include <unistd.h>
+# include <sys/epoll.h>
+# include <cstring>
+# include <fcntl.h>
 
 #define DEFAULT_CONFIG_FILE "config/default.conf"
 
