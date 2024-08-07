@@ -25,7 +25,6 @@ void ServerInfo::InitInfo()
     serverFd = socket(AF_INET, SOCK_STREAM, 0);
     if (serverFd == -1) {
         throw ErrorOnSocketCreation();
-        return;
     }
 
     serverAddress.sin_family = AF_INET;
@@ -54,12 +53,11 @@ void ServerInfo::InitInfo()
     event.events = EPOLLIN;
     event.data.fd = serverFd;
     if (epoll_ctl(epollFd, EPOLL_CTL_ADD, serverFd, &event) == -1) {
-        std::cerr << "Failed to add server socket to epoll instance." << std::endl;
         close(serverFd);
         close(epollFd);
+        throw ErrorOnAddSocketToEpoll();
     }
 
-    close(serverFd);
 }
 
 ServerInfo::~ServerInfo() {}

@@ -9,6 +9,7 @@
 # include <netinet/in.h>
 # include <sys/select.h>
 # include <arpa/inet.h>
+# include <Logger.hpp>
 
 #define DEFAULT_CONFIG_FILE "config/default.conf"
 
@@ -16,6 +17,7 @@ class WebServer
 {
 private:
     std::vector<ServerInfo> serverInfo;
+    Logger logger;
 
 public:
     void StartServer();

@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/06 19:16:52 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/06 19:37:45 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,14 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer ServerInfo Parser Lexer utils
+FILES       = main WebServer ServerInfo Parser Lexer utils Logger
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
 HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/ServerInfo.hpp $(LIBDIR)/utils.hpp \
-			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp
+			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
+			  $(LIBDIR)/Logger.hpp 
 
 # Include the lib/ directory for header files
 INC         = -I$(LIBDIR)
