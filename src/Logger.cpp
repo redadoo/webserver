@@ -24,8 +24,7 @@ void Logger::DeleteLog()
 {
     Shutdown();
 
-    if (std::remove(logFileName.c_str()) != 0)
-        std::cerr << "Error deleting file: " << logFileName << std::endl;
+    std::remove(logFileName.c_str());
 }
 
 std::string Logger::CurrentDateTime()

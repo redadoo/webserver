@@ -1,4 +1,6 @@
 #include <WebServerSignal.hpp>
+#include <WebServerException.hpp>
+#include <Logger.hpp>
 #include <csignal>
 #include <cstdlib>
 #include <iostream>
@@ -28,7 +30,6 @@ void WebServerSignal::SetupSignalHandler()
     struct sigaction	sa;
 
 	signalState.signCaught = false;
-	
 	memset(&sa, 0, sizeof(sa));
 	sa.sa_handler =  WebServerSignal::HandleSigstp;
 	sigemptyset(&sa.sa_mask);
@@ -36,21 +37,16 @@ void WebServerSignal::SetupSignalHandler()
 
 	// Set up the sigaction to handle SIGINT (Ctrl + C)
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-	{
-		std::cerr << "Error: cannot handle SIGINT" << std::endl;
-		std::exit(1);
-	}
+		throw WebServerExceptions::ErrorOnCannotHandleSigint();
 
 	// Set up the sigaction to handle SIGTSTP (Ctrl + Z)
 	if (sigaction(SIGTSTP, &sa, NULL) == -1)
-	{
-		std::cerr << "Error: cannot handle SIGTSTP" << std::endl;
-		std::exit(1);
-	}
+		throw WebServerExceptions::ErrorOnCannotHandleSigquit();
+
 
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
-    if (sigaction(SIGQUIT, &sa, NULL) == -1) {
-        std::cerr << "Error: cannot handle SIGQUIT" << std::endl;
-        std::exit(EXIT_FAILURE);  // Use std::exit from <cstdlib>
-    }
+    if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		throw WebServerExceptions::ErrorOnCannotHandleSigtstp();
+
+    Logger::Log("handled the signals successfully");
 }

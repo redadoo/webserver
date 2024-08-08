@@ -20,9 +20,6 @@ ServerInfo::ServerInfo(
     defaultErrorPage(_defaultErrorPage) {}
 
 
-void ServerInfo::InitInfo() 
-{
-    
-}
+void ServerInfo::InitInfo() {}
 
 ServerInfo::~ServerInfo() {}

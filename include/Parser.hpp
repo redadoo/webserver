@@ -8,7 +8,7 @@ using namespace Lexer;
 
 namespace Parser
 {
-    void TryParse(std::vector<ServerInfo>& serverInfos, std::vector<Token>& tokens);
+    void TryParse(std::vector<ServerInfo>& serverInfos,const std::vector<Token>& tokens);
 }
 
 #endif

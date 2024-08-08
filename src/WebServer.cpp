@@ -8,14 +8,24 @@ void WebServer::StartServer()
 {
 	while (!this->needToStop) 
 	{
-		if (signalState.signCaught)
-			this->needToStop = true;
+		this->needToStop = signalState.signCaught;
 	}
 }
 
 void WebServer::InitServer()
 {
-	WebServerSignal::SetupSignalHandler();
+	try
+	{
+		WebServerSignal::SetupSignalHandler();
+
+		for (size_t i = 0; i < serverInfo.size(); i++)
+			serverInfo[i].InitInfo();		
+	}
+	catch(const std::exception& e)
+	{
+		Logger::LogException(e);
+	}
+	
 }
 
 void WebServer::ParseData(const char *fileConf)

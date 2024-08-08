@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/08 13:04:33 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/08 16:05:25 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,5 +72,6 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@$(RM) leaks.txt
+	@$(RM) webserver.log
 
 re: fclean all
