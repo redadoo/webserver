@@ -34,7 +34,7 @@ std::string Logger::CurrentDateTime()
     tm* ltm = localtime(&now);
     std::stringstream ss;
     ss << (1900 + ltm->tm_year) << "-" << (1 + ltm->tm_mon) << "-" << ltm->tm_mday 
-       << " " << (1 + ltm->tm_hour) << ":" << (1 + ltm->tm_min) << ":" << (1 + ltm->tm_sec);
+       << " " << (ltm->tm_hour) << ":" << (ltm->tm_min) << ":" << (ltm->tm_sec);
     return ss.str();
 }
 

@@ -6,6 +6,7 @@
 # include <fstream>
 # include <utils.hpp>
 # include <WebServerException.hpp>
+# include <Logger.hpp>
 
 namespace Lexer
 {

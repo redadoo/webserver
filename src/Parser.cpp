@@ -2,8 +2,6 @@
 
 void Parser::TryParse(std::vector<ServerInfo> &serverInfos, std::vector<Token> &tokens)
 {
-    (void)serverInfos;
-    (void)tokens;
     serverInfos.push_back(ServerInfo
     (
         8002,
@@ -16,4 +14,6 @@ void Parser::TryParse(std::vector<ServerInfo> &serverInfos, std::vector<Token> &
     ));
 
     tokens.clear();
+
+    Logger::Log("finished parsing Configuration file");
 }
