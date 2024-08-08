@@ -18,8 +18,12 @@ void WebServer::InitServer()
 	{
 		WebServerSignal::SetupSignalHandler();
 
+		Logger::Log("handled the signals successfully");
+
 		for (size_t i = 0; i < serverInfo.size(); i++)
-			serverInfo[i].InitInfo();		
+			serverInfo[i].InitInfo();
+		
+		Logger::Log("successfully init all servers data");
 	}
 	catch(const std::exception& e)
 	{

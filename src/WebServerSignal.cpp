@@ -1,6 +1,5 @@
 #include <WebServerSignal.hpp>
 #include <WebServerException.hpp>
-#include <Logger.hpp>
 #include <csignal>
 #include <cstdlib>
 #include <iostream>
@@ -47,6 +46,4 @@ void WebServerSignal::SetupSignalHandler()
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
     if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		throw WebServerExceptions::ErrorOnCannotHandleSigtstp();
-
-    Logger::Log("handled the signals successfully");
 }
