@@ -2,7 +2,7 @@
 
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
-    Logger::Log("start parsing Configuration file : config/default.conf");
+    Logger::Log("start parsing Configuration file");
 
     std::string                 line;
     std::vector<Lexer::Token>   tokens;
