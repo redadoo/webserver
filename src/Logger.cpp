@@ -58,6 +58,7 @@ void Logger::Log(const std::string &message)
 void Logger::ClientLog(const ServerInfo& serverInfo, const std::string &clientIp, uint16_t clientPort, const std::string &msg)
 {
 	WriteCurrentDataTime();
+	
 	if (logFile.is_open())
 	{
     	logFile << "Client " << clientIp << ":" << clientPort << " " << msg << 

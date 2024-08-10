@@ -1,7 +1,6 @@
 #ifndef SIGNAL_HHP
-#define SIGNAL_HHP
+# define SIGNAL_HHP
 
-# include <WebServerException.hpp>
 # include <csignal>
 
 namespace WebServerSignal

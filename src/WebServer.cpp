@@ -108,7 +108,7 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerI
 
 void WebServer::CloseConnection(ClientInfo client, const ServerInfo& serverInfo) 
 {
-	(void)serverInfo;
+	Logger::ClientLog(serverInfo, client.src_ip, client.src_port, "has been deleted ");
 	EpollUtils::EpollDelete(epollFd,client.client_fd);
 	close(client.client_fd);
 }

@@ -1,5 +1,6 @@
 # include <WebServerSignal.hpp>
 # include <Logger.hpp>
+# include <WebServerException.hpp>
 
 extern  WebServerSignal::SignalState signalState;
 
