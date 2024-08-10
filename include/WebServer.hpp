@@ -3,10 +3,8 @@
 
 # include <vector>
 # include <Parser.hpp>
-# include <Logger.hpp>
-# include <WebServerException.hpp>
-# include <WebServerSignal.hpp>
 # include "unistd.h"
+# include <ClientInfo.hpp>
 
 # define DEFAULT_CONFIG_FILE "config/default.conf"
 
@@ -19,7 +17,6 @@ private:
 	int					    err;
 	int					    maxevents;
 	int					    epoll_ret;
-	int					    epoll_fd;
 	int					    fd;
     struct epoll_event      events[32];
     int                     timeout;
@@ -27,11 +24,11 @@ private:
     
     std::vector<ServerInfo> serverInfos;
 
-    
+    void CleanUpAll();
     void CheckSockets();
     void HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo& serverInfo);
     void CloseConnection(ClientInfo client, const ServerInfo& serverInfo);
-    int AcceptClient(int tcp_fd, const ServerInfo& serverInfo);
+    int AcceptClient(int tcp_fd, ServerInfo &serverInfo);
 
 public:
     /// @brief Starts the web server and begins listening for incoming connections.

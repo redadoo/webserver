@@ -1,4 +1,5 @@
-#include <WebServer.hpp>
+# include <WebServer.hpp>
+# include <Logger.hpp>
 
 int main(int argc, char **argv)
 {

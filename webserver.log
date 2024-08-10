@@ -1,0 +1,32 @@
+[2024-8-11 1:50:15] finished parsing Configuration file
+[2024-8-11 1:50:15] Creates a new epoll instance
+[2024-8-11 1:50:15] handled the signals successfully
+[2024-8-11 1:50:15] Creating TCP socket...
+[2024-8-11 1:50:15] add file descriptor from epoll instance ...
+[2024-8-11 1:50:15] Listening on 127.0.0.1:8002
+[2024-8-11 1:50:15] Creating TCP socket...
+[2024-8-11 1:50:15] add file descriptor from epoll instance ...
+[2024-8-11 1:50:15] Listening on 127.0.0.1:8003
+[2024-8-11 1:50:15] successfully init all servers data
+[2024-8-11 1:50:15] Entering event loop...
+[2024-8-11 1:50:17] A client is trying to connecting to us 
+[2024-8-11 1:50:17] add file descriptor from epoll instance ...
+[2024-8-11 1:50:17] Client 127.0.0.1:54018  has been accepted! by the socket: 127.0.0.1:8002
+[2024-8-11 1:50:17] Client 127.0.0.1:54018 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+ by the socket: 127.0.0.1:8002
+[2024-8-11 1:50:20] I don't see any event within 3000 milliseconds
+[2024-8-11 1:50:23] I don't see any event within 3000 milliseconds
+[2024-8-11 1:50:24] ERROR: Something interrupted me!
+[2024-8-11 1:50:24] End WebServer
