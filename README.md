@@ -19,14 +19,14 @@ this project is part of the common core of 42 and was done in collaboration with
 
 ## ressources
 
-![How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
+[How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
 
-![How nginx server names works](http://nginx.org/en/docs/http/server_names.html)
+[How nginx server names works](http://nginx.org/en/docs/http/server_names.html)
 
-![how nginx syntax works](http://nginx.org/en/docs/beginners_guide.html)
+[how nginx syntax works](http://nginx.org/en/docs/beginners_guide.html)
 
-![I/O Multiplexing (select vs. poll vs. epoll/kqueue)](https://nima101.github.io/io_multiplexing)
+[I/O Multiplexing (select vs. poll vs. epoll/kqueue)](https://nima101.github.io/io_multiplexing)
 
-![epoll and socket](https://stackoverflow.com/questions/66916835c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
+[epoll and socket](https://stackoverflow.com/questions/66916835c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
 
-![How to handle socket file asynchronously with epoll (in this case as TCP socket server).](https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
+[How to handle socket file asynchronously with epoll (in this case as TCP socket server).](https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
