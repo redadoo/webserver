@@ -70,6 +70,7 @@
         "variant": "cpp",
         "*.ipp": "cpp",
         "signal.h": "c",
-        "csignal": "cpp"
+        "csignal": "cpp",
+        "stdbool.h": "c"
     }
 }

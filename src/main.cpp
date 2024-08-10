@@ -2,17 +2,27 @@
 
 int main(int argc, char **argv)
 {
-    WebServer *webServer;
+	WebServer *webServer;
 
-    Logger::Init();
-    
-    if (argc == 1)
-        webServer = new WebServer();
-    if (argc == 2) 
-        webServer = new WebServer(argv[1]);
+	Logger::Init();
+	
+	if (argc == 1)
+		webServer = new WebServer();
+	if (argc == 2) 
+		webServer = new WebServer(argv[1]);
 
-    webServer->InitServer();
-    webServer->StartServer();
+	try
+	{
+		webServer->InitServer();
+		webServer->StartServer();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 
-    delete webServer;
+	Logger::Log("End WebServer");
+	
+	delete webServer;
 }

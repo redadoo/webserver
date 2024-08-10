@@ -2,16 +2,16 @@
 
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
-    Logger::Log("start parsing Configuration file");
+	Logger::Log("start parsing Configuration file");
 
-    std::string                 line;
-    std::vector<Lexer::Token>   tokens;
+	std::string                 line;
+	std::vector<Lexer::Token>   tokens;
 
-    if (!utils::CheckFileExistence(fileName.c_str())) 
-        throw WebServerExceptions::FileNotFound();
+	if (!utils::CheckFileExistence(fileName.c_str())) 
+		throw WebServerException::FileNotFound();
 
-    std::ifstream file(fileName.c_str());
-    file.close();
+	std::ifstream file(fileName.c_str());
+	file.close();
 
-    return tokens;
+	return tokens;
 }

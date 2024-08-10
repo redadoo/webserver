@@ -1,0 +1,152 @@
+[2024-8-10 12:19:7] finished parsing Configuration file
+[2024-8-10 12:19:7] handled the signals successfully
+[2024-8-10 12:19:7] Initializing epoll_fd...
+[2024-8-10 12:19:7] Creating TCP socket...
+[2024-8-10 12:19:7] Listening on 127.0.0.1:8002
+[2024-8-10 12:19:7] successfully init all servers data
+[2024-8-10 12:19:7] Entering event loop...
+[2024-8-10 12:19:10] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:13] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:16] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:19] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:22] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:25] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:28] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:31] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:34] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:37] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:38] A new client is connecting to us 
+[2024-8-10 12:19:38] Client 127.0.0.1:39046 has been accepted!
+[2024-8-10 12:19:38] Client 127.0.0.1:39046 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:19:41] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:44] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:45] A new client is connecting to us 
+[2024-8-10 12:19:45] Client 127.0.0.1:48438 has been accepted!
+[2024-8-10 12:19:45] Client 127.0.0.1:48438 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:19:47] A new client is connecting to us 
+[2024-8-10 12:19:47] Client 127.0.0.1:48450 has been accepted!
+[2024-8-10 12:19:47] Client 127.0.0.1:48450 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:19:50] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:50] A new client is connecting to us 
+[2024-8-10 12:19:50] Client 127.0.0.1:48462 has been accepted!
+[2024-8-10 12:19:50] Client 127.0.0.1:48462 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:19:52] A new client is connecting to us 
+[2024-8-10 12:19:52] Client 127.0.0.1:48470 has been accepted!
+[2024-8-10 12:19:52] Client 127.0.0.1:48470 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:19:55] I don't see any event within 3000 milliseconds
+[2024-8-10 12:19:58] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:1] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:4] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:7] A new client is connecting to us 
+[2024-8-10 12:20:7] Client 127.0.0.1:45530 has been accepted!
+[2024-8-10 12:20:7] Client 127.0.0.1:39046 GET /test HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+
+[2024-8-10 12:20:10] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:13] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:18] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:21] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:24] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:27] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:30] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:33] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:36] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:39] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:42] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:45] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:48] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:51] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:54] I don't see any event within 3000 milliseconds
+[2024-8-10 12:20:57] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:0] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:3] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:6] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:9] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:12] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:15] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:18] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:21] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:24] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:27] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:30] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:33] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:36] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:39] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:42] I don't see any event within 3000 milliseconds
+[2024-8-10 12:21:45] I don't see any event within 3000 milliseconds

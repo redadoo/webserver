@@ -1,35 +1,35 @@
 #ifndef WEBSERBEREXCEPTION_HPP
-#define WEBSERBEREXCEPTION_HPP
+# define WEBSERBEREXCEPTION_HPP
 
 # include <exception>
+# include <string>
+# include <cerrno>  
+# include <cstring>
 
-namespace WebServerExceptions
+namespace WebServerException
 {
-	class ErrorOnSocketCreation : public std::exception {
+	class ExceptionsWithArguments : public std::exception {
+		protected:
+			std::string errorMessage;
+
 		public:
-			virtual const char* what() const throw() { return "Error: when try to create socket";}
+			explicit ExceptionsWithArguments(const std::string& msg) : errorMessage(msg) {}
+
+			virtual const char* what() const throw() {
+				return errorMessage.c_str();
+			}
+
+			virtual ~ExceptionsWithArguments() throw() {}
 	};
 
-	class ErrorOnBindSocket : public std::exception {
+	class ExceptionErrno : public ExceptionsWithArguments {
 		public:
-			virtual const char* what() const throw() { return "Error: when try to bind socket";}
+			ExceptionErrno(const std::string& msg, int err)
+				: ExceptionsWithArguments(msg + ": " + std::strerror(err)) {}
+
+			virtual ~ExceptionErrno() throw() {}
 	};
 
-	class ErrorOnListenSocket : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: when try to listen socket";}
-	};
-
-	class ErrorOnEpollCreation : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: when try to create epoll instance";}
-	};
-
-	class ErrorOnAddSocketToEpoll : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: when try to add server socket to epoll instance";}
-	};
-	
 	class ErrorOnFileConfigurationSyntax : public std::exception {
 		public:
 			virtual const char* what() const throw() { return "Error: when try to parse configuration file";}

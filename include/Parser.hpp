@@ -8,7 +8,7 @@ using namespace Lexer;
 
 namespace Parser
 {
-    void TryParse(std::vector<ServerInfo>& serverInfos,const std::vector<Token>& tokens);
+    void FillServerInfo(std::vector<ServerInfo>& serverInfos, const char *fileConf);
 }
 
 #endif

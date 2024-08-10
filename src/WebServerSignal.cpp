@@ -1,27 +1,13 @@
 #include <WebServerSignal.hpp>
-#include <WebServerException.hpp>
-#include <csignal>
-#include <cstdlib>
-#include <iostream>
-#include <string.h>
 
 extern  WebServerSignal::SignalState signalState;
 
 void WebServerSignal::HandleSigstp(int sig)
 {
-	switch (sig) {
-        case SIGINT:
-            signalState.signCaught = true;
-            break;
-        case SIGTSTP:
-            signalState.signCaught = true;
-            break;
-        case SIGQUIT:
-            signalState.signCaught = true;
-            break;
-        default:
-            break;
-    }
+    if (sig == SIGINT || sig == SIGTSTP || sig == SIGTSTP)
+	{
+        signalState.signCaught = true;
+	}
 }
 
 void WebServerSignal::SetupSignalHandler()
@@ -36,14 +22,13 @@ void WebServerSignal::SetupSignalHandler()
 
 	// Set up the sigaction to handle SIGINT (Ctrl + C)
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-		throw WebServerExceptions::ErrorOnCannotHandleSigint();
+		throw WebServerException::ErrorOnCannotHandleSigint();
 
 	// Set up the sigaction to handle SIGTSTP (Ctrl + Z)
 	if (sigaction(SIGTSTP, &sa, NULL) == -1)
-		throw WebServerExceptions::ErrorOnCannotHandleSigquit();
-
+		throw WebServerException::ErrorOnCannotHandleSigquit();
 
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
     if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		throw WebServerExceptions::ErrorOnCannotHandleSigtstp();
+		throw WebServerException::ErrorOnCannotHandleSigtstp();
 }
