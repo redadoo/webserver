@@ -9,6 +9,7 @@
 # include <sstream>
 # include <vector>
 # include <stdint.h>
+# include <ServerInfo.hpp>
 
 /// @brief The Logger class provides static logging functionality for applications,
 /// allowing messages, warnings, errors, and exceptions to be recorded in a log file.
@@ -21,6 +22,8 @@ private:
     /// @brief Gets the current date and time as a formatted string.
     /// @return A string representing the current date and time.
     static std::string CurrentDateTime();
+
+    static void WriteCurrentDataTime();
 
 public:
     /// @brief Initializes the log file. This must be called before any logging can be done.
@@ -37,7 +40,7 @@ public:
     static void Log(const std::string &message);
 
     /// @brief Logs a client message to the log file.
-    static void ClientLog(const std::string &clientIp, uint16_t clientPort, const std::string &msg);
+    static void ClientLog(const ServerInfo& serverInfo, const std::string &clientIp, uint16_t clientPort, const std::string &msg);
 
     /// @brief Logs a warning message to the log file with red color formatting.
     /// @param message The warning message to log.

@@ -1,4 +1,5 @@
-#include <ServerInfo.hpp>
+# include <ServerInfo.hpp>
+# include <Logger.hpp>
 
 void ServerInfo::InitSocket(int epollFd)
 {

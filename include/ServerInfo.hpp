@@ -11,7 +11,6 @@
 # include <EpollUtils.hpp>
 # include <WebServerException.hpp>
 # include <utils.hpp>
-# include <Logger.hpp>
 
 
 struct ServerConfig

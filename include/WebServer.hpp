@@ -25,11 +25,13 @@ private:
     int                     timeout;
     bool                    needToStop;
     
-    std::vector<ServerInfo> serverInfo;
+    std::vector<ServerInfo> serverInfos;
 
-    void HandleClientEvent(int client_fd, uint32_t revents);
-    void CloseConnection(ClientInfo client);
-    int AcceptClient(int tcp_fd);
+    
+    void CheckSockets();
+    void HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo& serverInfo);
+    void CloseConnection(ClientInfo client, const ServerInfo& serverInfo);
+    int AcceptClient(int tcp_fd, const ServerInfo& serverInfo);
 
 public:
     /// @brief Starts the web server and begins listening for incoming connections.

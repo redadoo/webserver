@@ -38,22 +38,35 @@ std::string Logger::CurrentDateTime()
 	return (ss.str());
 }
 
-void Logger::Log(const std::string &message)
+void Logger::WriteCurrentDataTime()
 {
 	if (logFile.is_open())
-		logFile << "[" << CurrentDateTime() << "] " << message << std::endl;
+		logFile << "[" << CurrentDateTime() << "] ";
 	else
 		std::cerr << "Log file is not open." << std::endl;
 }
 
-void Logger::ClientLog(const std::string &clientIp, uint16_t clientPort, const std::string &msg)
+void Logger::Log(const std::string &message)
 {
-    if (logFile.is_open())
-		logFile << "[" << CurrentDateTime() << "] ";
+	WriteCurrentDataTime();
+	if (logFile.is_open())
+		logFile << message << std::endl;
 	else
 		std::cerr << "Log file is not open." << std::endl;
+}
 
-    logFile << "Client " << clientIp << ":" << clientPort << " " << msg << std::endl;
+void Logger::ClientLog(const ServerInfo& serverInfo, const std::string &clientIp, uint16_t clientPort, const std::string &msg)
+{
+	WriteCurrentDataTime();
+	if (logFile.is_open())
+	{
+    	logFile << "Client " << clientIp << ":" << clientPort << " " << msg << 
+		"by the socket: " << serverInfo.serverConfig.host << ":" << serverInfo.serverConfig.serverPort << std::endl;
+	}
+	else
+		std::cerr << "Log file is not open." << std::endl;
+		
+
 }
 
 void Logger::LogWarning(const std::string &message)

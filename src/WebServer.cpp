@@ -2,7 +2,7 @@
 
 WebServerSignal::SignalState signalState;
 
-int WebServer::AcceptClient(int tcp_fd)
+int WebServer::AcceptClient(int tcp_fd, const ServerInfo& serverInfo)
 {
 	int err;
     int client_fd;
@@ -19,8 +19,7 @@ int WebServer::AcceptClient(int tcp_fd)
         if (err == EAGAIN)
             return 0;
 
-        // Error handling
-        printf("accept(): %s\n", strerror(err));
+		Logger::LogWarning("error on accept(): ");
         return -1;
     }
     
@@ -33,23 +32,44 @@ int WebServer::AcceptClient(int tcp_fd)
         return -1;
     }
 
-	if(serverInfo[0].clientsInfo.find(client_fd) != serverInfo[0].clientsInfo.end())
+	if(serverInfo.clientsInfo.find(client_fd) != serverInfo.clientsInfo.end())
 	{
 		Logger::Log("Client alredy connected");
 	}
 	else
 	{
 		ClientInfo client(true, client_fd, src_ip, src_port, 0);
-		std::pair<uint32_t, ClientInfo> client_pair(client_fd, client);
-		serverInfo[0].clientsInfo.insert(client_pair);
+		std::pair<int, ClientInfo> client_pair(client_fd, client);
+		// serverInfo.clientsInfo.insert(client_pair);
 		EpollUtils::EpollAdd(epollFd, client_fd, EPOLLIN | EPOLLPRI);
 	}
 	
-	Logger::ClientLog(src_ip, src_port, "has been accepted!");
+	Logger::ClientLog(serverInfo, src_ip, src_port, " has been accepted!");
 	return 0;
 }
 
-void WebServer::HandleClientEvent(int client_fd, uint32_t revents)
+void WebServer::CheckSockets()
+{
+	for (int i = 0; i < epoll_ret; i++)
+	{
+		fd = events[i].data.fd;
+
+		for (int y = 0; y < (int)serverInfos.size(); y++)
+		{
+			if (fd == serverInfos[y].serverFd)
+			{
+				Logger::Log("A client is trying to connecting to us ");
+				if (AcceptClient(fd, serverInfos[y]) < 0)
+					continue ;
+			}
+
+			HandleClientEvent(fd, events[i].events, serverInfos[y]);
+		}
+		
+	}
+}
+
+void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo& serverInfo)
 {
 	const uint32_t	err_mask = EPOLLERR | EPOLLHUP;
 	char			buffer[1024];
@@ -84,7 +104,7 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents)
 	Logger::ClientLog(client.src_ip, client.src_port, buffer);
 }
 
-void WebServer::CloseConnection(ClientInfo client) 
+void WebServer::CloseConnection(ClientInfo client, const ServerInfo& serverInfo) 
 {
 	EpollUtils::EpollDelete(epollFd,client.client_fd);
 	close(client.client_fd);
@@ -94,21 +114,21 @@ void WebServer::StartServer()
 {
 	Logger::Log("Entering event loop...");
 
-	while (!this->needToStop)
+	while (!needToStop)
 	{
-		this->needToStop = signalState.signCaught;
+		needToStop = signalState.signCaught;
 
-		if(this->needToStop) 
+		if(needToStop) 
 			continue;
 
 		epoll_ret = epoll_wait(epollFd, events, maxevents, timeout);
+
 		if (epoll_ret == 0)
 		{
 			Logger::Log(std::string("I don't see any event within ")
 					+ utils::ToString(timeout) + " milliseconds");
 			continue ;
 		}
-
 
 		if (epoll_ret == -1)
 		{
@@ -122,22 +142,7 @@ void WebServer::StartServer()
 				throw WebServerException::ExceptionErrno("epoll_wait(): ", err);
 		}
 
-		for (int i = 0; i < epoll_ret; i++)
-		{
-			fd = events[i].data.fd;
-			for (int y = 0; y < (int)serverInfo.size(); y++)
-			{
-
-				if (fd == serverInfo[y].serverFd)
-				{
-					Logger::Log("A client is trying to connecting to us ");
-					if (AcceptClient(fd) < 0)
-						continue ;
-				}
-			}
-			
-			HandleClientEvent(fd, events[i].events);
-		}
+		CheckSockets();
 	}
 }
 
@@ -187,6 +192,5 @@ WebServer::WebServer(const char *fileConf)
 		Logger::LogException(e);
 	}
 }
-
 
 WebServer::~WebServer() {}
