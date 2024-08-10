@@ -61,7 +61,7 @@ void Logger::ClientLog(const ServerInfo& serverInfo, const std::string &clientIp
 	if (logFile.is_open())
 	{
     	logFile << "Client " << clientIp << ":" << clientPort << " " << msg << 
-		"by the socket: " << serverInfo.serverConfig.host << ":" << serverInfo.serverConfig.serverPort << std::endl;
+		" by the socket: " << serverInfo.serverConfig.host << ":" << serverInfo.serverConfig.serverPort << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;
