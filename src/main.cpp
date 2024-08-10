@@ -11,14 +11,12 @@ int main(int argc, char **argv)
 	if (argc == 2) 
 		webServer = new WebServer(argv[1]);
 
-	try
-	{
+	try {
 		webServer->InitServer();
 		webServer->StartServer();
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
+	catch(const std::exception& e) {
+		Logger::LogException(e);
 	}
 	
 

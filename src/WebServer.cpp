@@ -45,8 +45,6 @@ int WebServer::AcceptClient(int tcp_fd)
 		EpollUtils::EpollAdd(epollFd, client_fd, EPOLLIN | EPOLLPRI);
 	}
 	
-	// Tell epoll to monitor this client file descriptor
-
 	Logger::ClientLog(src_ip, src_port, "has been accepted!");
 	return 0;
 }
@@ -94,9 +92,8 @@ void WebServer::CloseConnection(ClientInfo client)
 
 void WebServer::StartServer()
 {
-	// epoll_fd = serverInfo[0].epollFd;
-
 	Logger::Log("Entering event loop...");
+
 	while (!this->needToStop)
 	{
 		this->needToStop = signalState.signCaught;
@@ -111,6 +108,8 @@ void WebServer::StartServer()
 					+ utils::ToString(timeout) + " milliseconds");
 			continue ;
 		}
+
+
 		if (epoll_ret == -1)
 		{
 			err = errno;
@@ -120,20 +119,24 @@ void WebServer::StartServer()
 				continue ;
 			}
 			else
-			{
 				WebServerException::ExceptionErrno("epoll_wait(): ", err);
-				break ;
-			}
 		}
+
+
 		for (int i = 0; i < epoll_ret; i++)
 		{
 			fd = events[i].data.fd;
-			if (fd == serverInfo[0].serverFd)
+			
+			for (int y = 0; y < (int)serverInfo.size(); y++)
 			{
-				Logger::Log("A client is connecting to us ");
-				if (AcceptClient(fd) < 0)
-					continue ;
+				if (fd == serverInfo[y].serverFd)
+				{
+					Logger::Log("A client is trying to connecting to us ");
+					if (AcceptClient(fd) < 0)
+						continue ;
+				}
 			}
+			
 			HandleClientEvent(fd, events[i].events);
 		}
 	}
@@ -143,6 +146,7 @@ void WebServer::InitServer()
 {
 	timeout = 3000;
 	maxevents = 32;
+	needToStop = false;
 
 	epollFd = EpollUtils::EpollInit();
 	
@@ -152,6 +156,7 @@ void WebServer::InitServer()
 		
 		Logger::Log("handled the signals successfully");
 		
+		// serverInfo[0].InitInfo(epollFd);
 		for (size_t i = 0; i < serverInfo.size(); i++)
 			serverInfo[i].InitInfo(epollFd);
 
@@ -165,9 +170,7 @@ void WebServer::InitServer()
 }
 
 WebServer::WebServer()
-{
-	this->needToStop = false;
-	
+{	
 	try {
 		Parser::FillServerInfo(serverInfo, DEFAULT_CONFIG_FILE);
 	}
@@ -178,8 +181,6 @@ WebServer::WebServer()
 
 WebServer::WebServer(const char *fileConf)
 {
-	this->needToStop = false;
-
 	try {
 		Parser::FillServerInfo(serverInfo, fileConf);
 	}
