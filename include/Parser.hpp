@@ -1,5 +1,5 @@
 #ifndef PARSER_HPP
-#define PARSER_HPP
+# define PARSER_HPP
 
 # include <ServerInfo.hpp>
 # include <Lexer.hpp>

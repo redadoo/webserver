@@ -3,7 +3,6 @@
 
 # include <WebServerException.hpp>
 # include <csignal>
-# include <Logger.hpp>
 
 namespace WebServerSignal
 {

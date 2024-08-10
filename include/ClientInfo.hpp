@@ -1,8 +1,9 @@
- #include <stdint.h>
- #include <string>
 
-#ifndef CLIENTINFO_NPP
-#define CLIENTINFO_NPP
+#ifndef CLIENTINFO_HPP
+# define CLIENTINFO_HPP
+
+# include <stdint.h>
+# include <string>
 
 struct ClientInfo
 {

@@ -1,5 +1,8 @@
 # include <ServerInfo.hpp>
 # include <Logger.hpp>
+# include <EpollUtils.hpp>
+# include <WebServerException.hpp>
+# include <utils.hpp>
 
 void ServerInfo::InitSocket(int epollFd)
 {

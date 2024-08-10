@@ -1,4 +1,6 @@
-#include <WebServer.hpp>
+# include <WebServer.hpp>
+# include <utils.hpp>
+# include <EpollUtils.hpp>
 
 WebServerSignal::SignalState signalState;
 
@@ -75,37 +77,38 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerI
 	char			buffer[1024];
 	ssize_t			recv_ret;
 
-	if (serverInfo[0].clientsInfo.find(client_fd) == serverInfo[0].clientsInfo.end())
+	if (serverInfo.clientsInfo.find(client_fd) == serverInfo.clientsInfo.end())
 		return;
 
-	ClientInfo client = serverInfo[0].clientsInfo.find(client_fd)->second;
+	ClientInfo client = serverInfo.clientsInfo.find(client_fd)->second;
 
 	if (revents & err_mask)
 	{
-		Logger::ClientLog(client.src_ip, client.src_port,
+		Logger::ClientLog(serverInfo, client.src_ip, client.src_port,
 			"has closed its connection");
-		return (CloseConnection(client));
+		return (CloseConnection(client, serverInfo));
 	}
 	recv_ret = recv(client_fd, buffer, sizeof(buffer), 0);
 	if (recv_ret == 0)
-		return (CloseConnection(client));
+		return CloseConnection(client, serverInfo);
 	if (recv_ret < 0)
 	{
 		if (errno == EAGAIN)
 			return ;
 		WebServerException::ExceptionErrno("recv(): ", errno);
-		return (CloseConnection(client));
+		return (CloseConnection(client, serverInfo));
 	}
 	
 	buffer[recv_ret] = '\0';
 	if (buffer[recv_ret - 1] == '\n')
 		buffer[recv_ret - 1] = '\0';
 
-	Logger::ClientLog(client.src_ip, client.src_port, buffer);
+	Logger::ClientLog(serverInfo, client.src_ip, client.src_port, buffer);
 }
 
 void WebServer::CloseConnection(ClientInfo client, const ServerInfo& serverInfo) 
 {
+	(void)serverInfo;
 	EpollUtils::EpollDelete(epollFd,client.client_fd);
 	close(client.client_fd);
 }
@@ -160,9 +163,8 @@ void WebServer::InitServer()
 		
 		Logger::Log("handled the signals successfully");
 		
-		// serverInfo[0].InitInfo(epollFd);
-		for (size_t i = 0; i < serverInfo.size(); i++)
-			serverInfo[i].InitInfo(epollFd);
+		for (size_t i = 0; i < serverInfos.size(); i++)
+			serverInfos[i].InitInfo(epollFd);
 
 		Logger::Log("successfully init all servers data");
 	}
@@ -176,7 +178,7 @@ void WebServer::InitServer()
 WebServer::WebServer()
 {	
 	try {
-		Parser::FillServerInfo(serverInfo, DEFAULT_CONFIG_FILE);
+		Parser::FillServerInfo(serverInfos, DEFAULT_CONFIG_FILE);
 	}
 	catch (const std::exception &e) {
 		Logger::LogException(e);
@@ -186,7 +188,7 @@ WebServer::WebServer()
 WebServer::WebServer(const char *fileConf)
 {
 	try {
-		Parser::FillServerInfo(serverInfo, fileConf);
+		Parser::FillServerInfo(serverInfos, fileConf);
 	}
 	catch (const std::exception &e) {
 		Logger::LogException(e);

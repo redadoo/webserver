@@ -46,7 +46,7 @@ public:
     /// @param message The warning message to log.
     static void LogWarning(const std::string &message);
 
-    /// @brief Logs an error message to the log file with red color formatting.
+    /// @brief Logs an error message to the log file.
     /// @param message The error message to log.
     static void LogError(const std::string &message);
 

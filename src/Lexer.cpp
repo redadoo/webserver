@@ -1,4 +1,7 @@
-#include <Lexer.hpp>
+# include <Lexer.hpp>
+# include <Logger.hpp>
+# include <utils.hpp>
+# include <WebServerException.hpp>
 
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {

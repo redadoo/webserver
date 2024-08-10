@@ -23,7 +23,7 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer ServerInfo Parser Lexer utils Logger WebServerSignal ClientInfo EpollUtils
+FILES       = main WebServer ServerInfo Parser Lexer utils WebServerSignal ClientInfo EpollUtils Logger
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 

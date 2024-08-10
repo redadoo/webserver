@@ -1,4 +1,5 @@
-#include "Parser.hpp"
+# include "Parser.hpp"
+# include <Logger.hpp>
 
 void Parser::FillServerInfo(std::vector<ServerInfo> &serverInfos, const char *fileConf)
 {
