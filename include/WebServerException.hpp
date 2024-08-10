@@ -25,7 +25,7 @@ namespace WebServerException
 	class ExceptionErrno : public ExceptionsWithArguments {
 		public:
 			ExceptionErrno(const std::string& msg, int err)
-				: ExceptionsWithArguments(msg + ": " + std::strerror(err)) {}
+				: ExceptionsWithArguments(msg + " : " + std::strerror(err)) {}
 
 			virtual ~ExceptionErrno() throw() {}
 	};

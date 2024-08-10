@@ -101,7 +101,7 @@ void WebServer::StartServer()
 		if(this->needToStop) 
 			continue;
 
-		epoll_ret = epoll_wait(epoll_fd, events, maxevents, timeout);
+		epoll_ret = epoll_wait(epollFd, events, maxevents, timeout);
 		if (epoll_ret == 0)
 		{
 			Logger::Log(std::string("I don't see any event within ")
@@ -119,16 +119,15 @@ void WebServer::StartServer()
 				continue ;
 			}
 			else
-				WebServerException::ExceptionErrno("epoll_wait(): ", err);
+				throw WebServerException::ExceptionErrno("epoll_wait(): ", err);
 		}
-
 
 		for (int i = 0; i < epoll_ret; i++)
 		{
 			fd = events[i].data.fd;
-			
 			for (int y = 0; y < (int)serverInfo.size(); y++)
 			{
+
 				if (fd == serverInfo[y].serverFd)
 				{
 					Logger::Log("A client is trying to connecting to us ");
