@@ -1,8 +1,9 @@
 #include <WebServer.hpp>
+#include "unistd.h"
 
 WebServerSignal::SignalState signalState;
 
-int WebServer::AcceptNewClient(int tcp_fd)
+int WebServer::AcceptClient(int tcp_fd)
 {
 	int err;
     int client_fd;
@@ -23,20 +24,29 @@ int WebServer::AcceptNewClient(int tcp_fd)
         printf("accept(): %s\n", strerror(err));
         return -1;
     }
-
-    src_port = ntohs(addr.sin_port);
+    
+	src_port = ntohs(addr.sin_port);
     src_ip = utils::ConvertAddrNtop(&addr, src_ip_buf);
-    if (!src_ip) {
-        printf("Cannot parse source address\n");
+    if (!src_ip) 
+	{
+		Logger::LogWarning("Cannot parse source address");
         close(client_fd);
         return -1;
     }
-	ClientInfo client(true, client_fd, src_ip, src_port, 0);
-    std::pair<uint32_t, ClientInfo> client_pair(client_fd, client);
-    serverInfo[0].clientsInfo.insert(client_pair);
+
+	if(serverInfo[0].clientsInfo.find(client_fd) != serverInfo[0].clientsInfo.end())
+	{
+		Logger::Log("Client alredy connected");
+	}
+	else
+	{
+		ClientInfo client(true, client_fd, src_ip, src_port, 0);
+		std::pair<uint32_t, ClientInfo> client_pair(client_fd, client);
+		serverInfo[0].clientsInfo.insert(client_pair);
+		EpollUtils::EpollAdd(serverInfo[0].epollFd, client_fd, EPOLLIN | EPOLLPRI);
+	}
 	
 	// Tell epoll to monitor this client file descriptor
-	EpollUtils::EpollAdd(serverInfo[0].epollFd, client_fd, EPOLLIN | EPOLLPRI);
 
 	Logger::ClientLog(src_ip, src_port, "has been accepted!");
 	return 0;
@@ -99,6 +109,10 @@ void WebServer::StartServer()
 	while (!this->needToStop)
 	{
 		this->needToStop = signalState.signCaught;
+
+		if(this->needToStop) 
+			continue;
+
 		epoll_ret = epoll_wait(epoll_fd, events, maxevents, timeout);
 		if (epoll_ret == 0)
 		{
@@ -125,8 +139,8 @@ void WebServer::StartServer()
 			fd = events[i].data.fd;
 			if (fd == serverInfo[0].serverFd)
 			{
-				Logger::Log("A new client is connecting to us ");
-				if (AcceptNewClient(fd) < 0)
+				Logger::Log("A client is connecting to us ");
+				if (AcceptClient(fd) < 0)
 					continue ;
 			}
 			HandleClientEvent(fd, events[i].events);

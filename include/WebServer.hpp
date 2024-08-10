@@ -20,7 +20,7 @@ private:
 
     void HandleClientEvent(int client_fd, uint32_t revents);
     void CloseConnection(ClientInfo client);
-    int AcceptNewClient(int tcp_fd);
+    int AcceptClient(int tcp_fd);
 
 public:
     /// @brief Starts the web server and begins listening for incoming connections.
