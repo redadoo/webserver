@@ -29,4 +29,4 @@ this project is part of the common core of 42 and was done in collaboration with
 
 ![epoll and socket](https://stackoverflow.com/questions/66916835c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
 
-https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads
+![How to handle socket file asynchronously with epoll (in this case as TCP socket server).](https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
