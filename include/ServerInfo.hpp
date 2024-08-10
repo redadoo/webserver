@@ -13,7 +13,6 @@
 # include <utils.hpp>
 # include <Logger.hpp>
 
-# define MAX_EVENTS 10
 
 struct ServerConfig
 {
@@ -37,21 +36,18 @@ struct ServerConfig
 class ServerInfo
 {
 private:	
-	void InitEpoll();
-	void InitSocket();
+	void InitSocket(int epollFd);
 public:
 	int								serverFd;
-	int								epollFd;
 	struct sockaddr_in 				serverAddress;
-    struct epoll_event 				event;
-	struct epoll_event				events[MAX_EVENTS];
 	bool							stop;
 
 	ServerConfig					serverConfig;
 	std::map<int, ClientInfo>	clientsInfo;
 	ServerInfo(int _port, const std::string &_clientMaxBodySize, const std::string & _index, 
 				const std::string & _name, const std::string & _root, const std::string & _host, const std::string & _defaultErrorPage);
-	void InitInfo();
+	
+	void InitInfo(int epollFd);
 };
 
 #endif

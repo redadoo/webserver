@@ -16,5 +16,16 @@ void Parser::FillServerInfo(std::vector<ServerInfo> &serverInfos, const char *fi
         "web-page/error-pages/404.html"
     ));
 
+    serverInfos.push_back(ServerInfo
+    (
+        8003,
+        "9999",
+        "index.html",
+        "locahost",
+        "web-page",
+        "127.0.0.1",
+        "web-page/error-pages/404.html"
+    ));
+
     Logger::Log("finished parsing Configuration file");
 }

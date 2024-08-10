@@ -1,5 +1,4 @@
 #include <WebServer.hpp>
-#include "unistd.h"
 
 WebServerSignal::SignalState signalState;
 
@@ -43,7 +42,7 @@ int WebServer::AcceptClient(int tcp_fd)
 		ClientInfo client(true, client_fd, src_ip, src_port, 0);
 		std::pair<uint32_t, ClientInfo> client_pair(client_fd, client);
 		serverInfo[0].clientsInfo.insert(client_pair);
-		EpollUtils::EpollAdd(serverInfo[0].epollFd, client_fd, EPOLLIN | EPOLLPRI);
+		EpollUtils::EpollAdd(epollFd, client_fd, EPOLLIN | EPOLLPRI);
 	}
 	
 	// Tell epoll to monitor this client file descriptor
@@ -89,22 +88,14 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents)
 
 void WebServer::CloseConnection(ClientInfo client) 
 {
-	EpollUtils::EpollDelete(serverInfo[0].epollFd,client.client_fd);
+	EpollUtils::EpollDelete(epollFd,client.client_fd);
 	close(client.client_fd);
 }
 
 void WebServer::StartServer()
 {
-	int					err;
-	int					maxevents;
-	int					epoll_ret;
-	int					epoll_fd;
-	struct epoll_event	events[32];
-	int					fd;
+	// epoll_fd = serverInfo[0].epollFd;
 
-	int timeout = 3000;
-	maxevents = 32;
-	epoll_fd = serverInfo[0].epollFd;
 	Logger::Log("Entering event loop...");
 	while (!this->needToStop)
 	{
@@ -150,30 +141,37 @@ void WebServer::StartServer()
 
 void WebServer::InitServer()
 {
+	timeout = 3000;
+	maxevents = 32;
+
+	epollFd = EpollUtils::EpollInit();
+	
 	try
 	{
 		WebServerSignal::SetupSignalHandler();
+		
 		Logger::Log("handled the signals successfully");
 		
 		for (size_t i = 0; i < serverInfo.size(); i++)
-			serverInfo[i].InitInfo();
+			serverInfo[i].InitInfo(epollFd);
+
 		Logger::Log("successfully init all servers data");
 	}
 	catch (const std::exception &e)
 	{
 		Logger::LogException(e);
 	}
+
 }
 
 WebServer::WebServer()
 {
 	this->needToStop = false;
-	try
-	{
+	
+	try {
 		Parser::FillServerInfo(serverInfo, DEFAULT_CONFIG_FILE);
 	}
-	catch (const std::exception &e)
-	{
+	catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
 }
@@ -181,14 +179,14 @@ WebServer::WebServer()
 WebServer::WebServer(const char *fileConf)
 {
 	this->needToStop = false;
-	try
-	{
+
+	try {
 		Parser::FillServerInfo(serverInfo, fileConf);
 	}
-	catch (const std::exception &e)
-	{
+	catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
 }
+
 
 WebServer::~WebServer() {}
