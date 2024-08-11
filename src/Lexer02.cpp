@@ -1,7 +1,4 @@
-# include <Lexer.hpp>
-# include <Logger.hpp>
-# include <utils.hpp>
-# include <WebServerException.hpp>
+#include <Lexer.hpp>
 
     enum ParseState {
         SearchingServer,
@@ -10,9 +7,9 @@
         CollectingTokenValue,
 		CollectionLocation,
     };	
-
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
+
 	Logger::Log("start parsing Configuration file");
 	std::string line;
 	std::vector<Lexer::Token> tokens;
@@ -20,12 +17,10 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	std::string tempValue;
 	bool isLocationBlock = false;
 	Lexer::Token token;
-
-	if (!utils::CheckFileExistence(fileName.c_str())) 
-		throw WebServerException::FileNotFound();
-
+	if (!utils::CheckFileExistence(fileName.c_str()))
+		throw WebServerExceptions::FileNotFound();
 	std::ifstream file(fileName.c_str());
-	    ParseState state = SearchingServer;
+    ParseState state = SearchingServer;
 
     while (std::getline(file, line))
     {
@@ -45,7 +40,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
                         state = SearchingOpenBracket;
                         i += 5; // Skip the "server" keyword
                     } else {
-                        throw WebServerException::ErrorOnFileConfigurationSyntax();
+                        throw WebServerExceptions::ErrorOnFileConfigurationSyntax();
                     }
                     break;
 
@@ -57,7 +52,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
                     if (currentChar == '{') {
                         state = CollectingTokenName;
                     } else {
-                        throw WebServerException::ErrorOnFileConfigurationSyntax();
+                        throw WebServerExceptions::ErrorOnFileConfigurationSyntax();
                     }
                     break;
 
@@ -84,7 +79,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
                         tempName += currentChar;
                     } else {
                         
-                        throw WebServerException::ErrorOnFileConfigurationSyntax();
+                        throw WebServerExceptions::ErrorOnFileConfigurationSyntax();
                     }
                     break;
 
@@ -109,7 +104,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
                     } else if (currentChar != '}') {
                         tempValue += currentChar;
                     } else {
-                        throw WebServerException::ErrorOnFileConfigurationSyntax();
+                        throw WebServerExceptions::ErrorOnFileConfigurationSyntax();
                     }
                     break;
 				case CollectionLocation:
@@ -133,7 +128,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 						tempValue += currentChar;
 					}
 					else	
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw WebServerExceptions::ErrorOnFileConfigurationSyntax();
 					break;
 
             }
@@ -141,5 +136,4 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
     }
 	file.close();
 	return (tokens);
-
 }
