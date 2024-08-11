@@ -3,8 +3,7 @@
 
 void Parser::FillServerInfo(std::vector<ServerInfo> &serverInfos, const char *fileConf)
 {
-    // std::vector<Token> tokens = Lexer::GetToken(fileConf);
-    (void)fileConf;
+    std::vector<Token> tokens = Lexer::GetToken(fileConf);
     
     serverInfos.push_back(ServerInfo
     (

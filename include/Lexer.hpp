@@ -7,22 +7,37 @@
 
 namespace Lexer
 {
-    enum TokenType
-    {
-        startServerContext,
-        endServerContext,
-        locationContext,
-        simpleToken
-    };
+	enum ParseState 
+	{
+		SearchingServer,
+		SearchingOpenBracket,
+		CollectingTokenName,
+		CollectingTokenValue,
+		CollectionLocation,
+	};
+		
+	enum TokenType
+	{
+		startServerContext,
+		endServerContext,
+		locationContext,
+		simpleToken
+	};
 
-    struct Token
-    {
-        TokenType tokenType;
-        std::string tokenName;
-        std::string tokenValue;
-    };
+	struct Token
+	{
+		TokenType tokenType;
+		std::string tokenName;
+		std::string tokenValue;
 
-    std::vector<Token> GetToken(std::string fileName);
+		Token(std::string _tokenName) : 
+			tokenName(_tokenName) {};
+
+		Token(std::string _tokenName, std::string _tokenValue) : 
+			tokenName(_tokenName), tokenValue(_tokenValue) {};
+	};
+
+	std::vector<Token> GetToken(std::string fileName);
 }
 
 #endif
