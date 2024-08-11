@@ -23,6 +23,7 @@ private:
     /// @return A string representing the current date and time.
     static std::string CurrentDateTime();
 
+    /// @brief Write the current date and time to the log file without newline
     static void WriteCurrentDataTime();
 
 public:

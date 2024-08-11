@@ -1,4 +1,6 @@
-#include "utils.hpp"
+# include "utils.hpp"
+# include <arpa/inet.h>
+# include <WebServerException.hpp>
 
 bool utils::CheckFileExistence(const char *fileName)
 {

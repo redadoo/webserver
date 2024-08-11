@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/09 18:23:11 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/11 16:43:07 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/ServerInfo.hpp $(LIBDIR)/utils.hpp \
 			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
 			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/ClientInfo.hpp \
-			  $(LIBDIR)/EpollUtils.hpp
+			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp
 
 # Include the lib/ directory for header files
 INC         = -I$(LIBDIR)

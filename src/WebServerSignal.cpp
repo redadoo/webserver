@@ -7,9 +7,7 @@ extern  WebServerSignal::SignalState signalState;
 void WebServerSignal::HandleSigstp(int sig)
 {
     if (sig == SIGINT || sig == SIGTSTP || sig == SIGTSTP)
-	{
         signalState.signCaught = true;
-	}
 }
 
 void WebServerSignal::SetupSignalHandler()

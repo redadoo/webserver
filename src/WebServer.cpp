@@ -3,66 +3,80 @@
 # include <WebServer.hpp>
 # include <WebServerSignal.hpp>
 # include <utils.hpp>
+# include <WebServerException.hpp>
 
 WebServerSignal::SignalState signalState;
 
-int WebServer::AcceptClient(int tcp_fd, ServerInfo &serverInfo)
-{
-	int					err;
-	int					client_fd;
-	struct sockaddr_in	addr;
-	socklen_t			addr_len;
-	uint16_t			src_port;
-	const char			*src_ip;
-	char				src_ip_buf[sizeof("xxx.xxx.xxx.xxx")];
-
-	addr_len = sizeof(addr);
-	memset(&addr, 0, sizeof(addr));
-	client_fd = accept(tcp_fd, (struct sockaddr *)&addr, &addr_len);
-	if (client_fd < 0)
-	{
-		err = errno;
-		if (err == EAGAIN)
-			return (0);
-		Logger::LogWarning("error on accept(): ");
-		return (-1);
+WebServer::WebServer() {
+	try {
+		Parser::FillServerInfo(serverInfos, DEFAULT_CONFIG_FILE);
+	} catch (const std::exception &e) {
+		Logger::LogException(e);
 	}
-	
-	src_port = ntohs(addr.sin_port);
-	src_ip = utils::ConvertAddrNtop(&addr, src_ip_buf);
-	if (!src_ip)
-	{
-		Logger::LogWarning("Cannot parse source address");
-		close(client_fd);
-		return (-1);
-	}
-
-	if (serverInfo.clientsInfo.find(client_fd) != serverInfo.clientsInfo.end())
-	{
-		Logger::Log("Client alredy connected");
-	}
-	else
-	{
-		ClientInfo client(true,client_fd,src_ip,src_port);
-		std::pair<int, ClientInfo> client_pair(client_fd, client);
-		serverInfo.clientsInfo.insert(client_pair);
-		EpollUtils::EpollAdd(epollFd, client_fd, EPOLLIN | EPOLLPRI);
-	}
-	Logger::ClientLog(serverInfo, src_ip, src_port, " has been accepted!");
-	return (0);
 }
 
-void WebServer::CleanUpAll()
-{
-	for (size_t i = 0; i < serverInfos.size(); i++)
-	{
-		for (size_t y = 0; y < serverInfos[i].clientsInfo.size(); y++)
-			close(serverInfos[i].clientsInfo[y].client_fd);
-
-		close(serverInfos[i].serverFd);
+WebServer::WebServer(const char *filePath) {
+	try {
+		Parser::FillServerInfo(serverInfos, filePath);
+	} catch (const std::exception &e) {
+		Logger::LogException(e);
 	}
+}
 
-	close(epollFd);
+WebServer::~WebServer() {
+	CleanUpAll();
+}
+
+void WebServer::InitServer()
+{
+	needToStop = false;
+	epollFd = EpollUtils::EpollInit();
+	try
+	{
+		WebServerSignal::SetupSignalHandler();
+		Logger::Log("handled the signals successfully");
+		for (size_t i = 0; i < serverInfos.size(); i++)
+			serverInfos[i].InitInfo(epollFd);
+		Logger::Log("successfully init all servers data");
+	}
+	catch (const std::exception &e)
+	{
+		Logger::LogException(e);
+	}
+}
+
+void WebServer::StartServer()
+{
+	Logger::Log("Entering event loop...");
+	while (!needToStop)
+	{
+
+		needToStop = signalState.signCaught;
+		if (needToStop)
+			continue ;
+
+		epoll_ret = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
+		
+		if (epoll_ret == 0)
+		{
+			Logger::Log(std::string("I don't see any event within ")
+					+ utils::ToString(TIMEOUT) + " milliseconds");
+			continue ;
+		}
+
+		if (epoll_ret == -1)
+		{
+			if (errno == EINTR)
+			{
+				Logger::LogError("Something interrupted me!");
+				continue ;
+			}
+			else
+				throw WebServerException::ExceptionErrno("epoll_wait(): ", errno);
+		}
+
+		CheckSockets();
+	}
 }
 
 void WebServer::CheckSockets()
@@ -83,6 +97,49 @@ void WebServer::CheckSockets()
 			HandleClientEvent(fd, events[i].events, serverInfos[y]);
 		}
 	}
+}
+
+int WebServer::AcceptClient(int tcp_fd, ServerInfo &serverInfo)
+{
+	int					client_fd;
+	struct sockaddr_in	addr;
+	socklen_t			addr_len;
+	uint16_t			src_port;
+	const char			*src_ip;
+	char				src_ip_buf[sizeof("xxx.xxx.xxx.xxx")];
+
+	addr_len = sizeof(addr);
+	memset(&addr, 0, sizeof(addr));
+	client_fd = accept(tcp_fd, (struct sockaddr *)&addr, &addr_len);
+	if (client_fd < 0)
+	{
+		if (errno == EAGAIN)
+			return (0);
+		Logger::LogWarning("error on accept(): ");
+		return (-1);
+	}
+	
+	src_port = ntohs(addr.sin_port);
+	src_ip = utils::ConvertAddrNtop(&addr, src_ip_buf);
+	if (!src_ip)
+	{
+		Logger::LogWarning("Cannot parse source address");
+		close(client_fd);
+		return (-1);
+	}
+
+	if (serverInfo.clientsInfo.find(client_fd) != serverInfo.clientsInfo.end())
+		Logger::Log("Client alredy connected");
+	else
+	{
+		ClientInfo client(client_fd,src_ip,src_port);
+		std::pair<int, ClientInfo> client_pair(client_fd, client);
+		serverInfo.clientsInfo.insert(client_pair);
+		EpollUtils::EpollAdd(epollFd, client_fd, EPOLLIN | EPOLLPRI);
+	}
+
+	Logger::ClientLog(serverInfo, src_ip, src_port, " has been accepted!");
+	return (0);
 }
 
 void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo &serverInfo)
@@ -122,7 +179,7 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerI
 	Logger::ClientLog(serverInfo, client.src_ip, client.src_port, buffer);
 }
 
-void WebServer::CloseConnection(ClientInfo client, const ServerInfo &serverInfo)
+void WebServer::CloseConnection(ClientInfo &client, const ServerInfo &serverInfo)
 {
 	Logger::ClientLog(serverInfo, client.src_ip, client.src_port,
 		"has been deleted ");
@@ -130,81 +187,17 @@ void WebServer::CloseConnection(ClientInfo client, const ServerInfo &serverInfo)
 	close(client.client_fd);
 }
 
-void WebServer::StartServer()
+void WebServer::CleanUpAll() 
 {
-	Logger::Log("Entering event loop...");
-	while (!needToStop)
+    for (size_t i = 0; i < serverInfos.size(); ++i) 
 	{
-		needToStop = signalState.signCaught;
-		if (needToStop)
-			continue ;
-		epoll_ret = epoll_wait(epollFd, events, maxevents, timeout);
-		if (epoll_ret == 0)
+        for (std::map<int, ClientInfo>::iterator it = serverInfos[i].clientsInfo.begin(); it != serverInfos[i].clientsInfo.end(); ++it) 
 		{
-			Logger::Log(std::string("I don't see any event within ")
-					+ utils::ToString(timeout) + " milliseconds");
-			continue ;
-		}
-		if (epoll_ret == -1)
-		{
-			err = errno;
-			if (err == EINTR)
-			{
-				Logger::LogError("Something interrupted me!");
-				continue ;
-			}
-			else
-				throw WebServerException::ExceptionErrno("epoll_wait(): ", err);
-		}
-		CheckSockets();
-	}
-}
+            close(it->second.client_fd);
+        }
 
-void WebServer::InitServer()
-{
-	timeout = 3000;
-	maxevents = 32;
-	needToStop = false;
-	epollFd = EpollUtils::EpollInit();
-	try
-	{
-		WebServerSignal::SetupSignalHandler();
-		Logger::Log("handled the signals successfully");
-		for (size_t i = 0; i < serverInfos.size(); i++)
-			serverInfos[i].InitInfo(epollFd);
-		Logger::Log("successfully init all servers data");
-	}
-	catch (const std::exception &e)
-	{
-		Logger::LogException(e);
-	}
-}
+        close(serverInfos[i].serverFd);
+    }
 
-WebServer::WebServer()
-{
-	try
-	{
-		Parser::FillServerInfo(serverInfos, DEFAULT_CONFIG_FILE);
-	}
-	catch (const std::exception &e)
-	{
-		Logger::LogException(e);
-	}
-}
-
-WebServer::WebServer(const char *fileConf)
-{
-	try
-	{
-		Parser::FillServerInfo(serverInfos, fileConf);
-	}
-	catch (const std::exception &e)
-	{
-		Logger::LogException(e);
-	}
-}
-
-WebServer::~WebServer()
-{
-	CleanUpAll();
+    close(epollFd);
 }
