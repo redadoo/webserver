@@ -20,7 +20,7 @@ public:
 	struct sockaddr_in 				serverAddress;
 	bool							stop;
 	ServerConfig					serverConfig;
-	std::map<int, ClientInfo>	    clientsInfo;
+	std::map<int, ClientInfo>		clientsInfo;
 
 	/// @brief Constructor to initialize server information and configuration.
 	/// @param _port Server port number.

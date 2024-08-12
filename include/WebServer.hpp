@@ -15,7 +15,7 @@
 class WebServer
 {
 private:
-	int                     epollFd;
+	int						epollFd;
 	int					    epoll_ret;
 	int					    fd;
 	struct epoll_event      events[32];

@@ -31,12 +31,15 @@ void WebServer::InitServer()
 {
 	needToStop = false;
 	epollFd = EpollUtils::EpollInit();
+	
 	try
 	{
 		WebServerSignal::SetupSignalHandler();
 		Logger::Log("handled the signals successfully");
+
 		for (size_t i = 0; i < serverInfos.size(); i++)
 			serverInfos[i].InitInfo(epollFd);
+		
 		Logger::Log("successfully init all servers data");
 	}
 	catch (const std::exception &e)
@@ -48,6 +51,7 @@ void WebServer::InitServer()
 void WebServer::StartServer()
 {
 	Logger::Log("Entering event loop...");
+
 	while (!needToStop)
 	{
 
@@ -145,7 +149,7 @@ int WebServer::AcceptClient(int tcp_fd, ServerInfo &serverInfo)
 void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo &serverInfo)
 {
 	const uint32_t	err_mask  = EPOLLERR | EPOLLHUP;
-	char			buffer[1024];
+	char			buffer[2048];
 	ssize_t			recv_ret;
 
 	if (serverInfo.clientsInfo.find(client_fd) == serverInfo.clientsInfo.end())
