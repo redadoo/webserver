@@ -25,7 +25,9 @@ Server::Server (
 			_clientMaxBodySize, 
 			_defaultErrorPage, 
 			_host) 
-			{}
+			{
+				serverFd = -1;
+			}
 
 
 void Server::InitSocket(int epollFd)
@@ -45,9 +47,13 @@ void Server::InitSocket(int epollFd)
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(this->serverConfig.serverPort);
 	addr.sin_addr.s_addr = inet_addr(this->serverConfig.socketIp.c_str());
+
 	ret = bind(this->serverFd, (struct sockaddr *)&addr, addr_len);
 	if (ret < 0)
+	{
+		close(this->serverFd);
 		throw WebServerException::ExceptionErrno("bind() failed ", errno);
+	}
 	
 	ret = listen(this->serverFd, 10);
 	if (ret < 0)
@@ -105,7 +111,9 @@ int Server::AcceptClient(int fd, int epollFd)
 	}
 
 	if (IsMyClient(clientFd))
+	{
 		Logger::Log("Client alredy connected");
+	}
 	else
 	{
 		AddClient(clientFd, srcIp, srcPort);
@@ -125,31 +133,14 @@ void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
 
 void Server::ReadClientResponse(Client &client)
 {
-	(void)client;
-	int ret_data;
-    std::string remainder = "";
+	char buf[MAX_RESPONSE_SIZE];
 
-    while (1) {
-        char buf[MAX_RESPONSE_SIZE];
-        ret_data = recv(serverFd, buf, MAX_RESPONSE_SIZE, 0);
+	int ret_data = recv(client.clientFd, buf, MAX_RESPONSE_SIZE, 0);
 
-        if (ret_data > 0) 
-		{
-			Logger::Log(buf);
-            // std::string msg(buf, buf+ret_data);
-            // msg = remainder + msg;
-            // std::vector<std::string> parts = split(msg, "<EOM>");
-            // remainder = msg;
+	std::string msg(buf, buf + ret_data);
+	msg =  "" + msg;
 
-            // for (int i = 0; i < parts.size(); i++) {
-            //     std::cout << parts[i] << std::endl;
-            // }
-        }
-        else 
-		{
-            remainder = "";
-        }
-    }
+	Logger::EmptyLog(msg);
 }
 
 void Server::ParseClientResponse(Client &client)

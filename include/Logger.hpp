@@ -43,6 +43,8 @@ public:
     /// @brief Logs a client message to the log file.
     static void ClientLog(const Server& Server, const Client& client, const std::string &msg);
 
+    static void EmptyLog(const std::string &msg);
+    
     /// @brief
     static void ServerLog(const Server& Server, const std::string &msg);
 

@@ -68,13 +68,21 @@ void Logger::ClientLog(const Server& server, const Client &client, const std::st
 		std::cerr << "Log file is not open." << std::endl;
 }
 
+void Logger::EmptyLog(const std::string &msg)
+{
+	if (logFile.is_open())
+    	logFile << msg << std::endl;
+	else
+		std::cerr << "Log file is not open." << std::endl;
+}
+
 void Logger::ServerLog(const Server &server, const std::string &msg)
 {
 	WriteCurrentDataTime();
 	
 	if (logFile.is_open())
 	{
-    	logFile << msg << " Server " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
+    	logFile << msg << " Socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;

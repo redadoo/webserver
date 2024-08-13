@@ -29,23 +29,17 @@ WebServer::~WebServer() {
 
 void WebServer::InitServer()
 {
+	this->epollFd = -1;
 	needToStop = false;
 	epollFd = EpollUtils::EpollInit();
 	
-	try
-	{
-		WebServerSignal::SetupSignalHandler();
-		Logger::Log("handled the signals successfully");
+	WebServerSignal::SetupSignalHandler();
+	Logger::Log("handled the signals successfully");
 
-		for (size_t i = 0; i < servers.size(); i++)
-			servers[i].Init(epollFd);
+	for (size_t i = 0; i < servers.size(); i++)
+		servers[i].Init(epollFd);
 		
-		Logger::Log("successfully init all servers data");
-	}
-	catch (const std::exception &e)
-	{
-		Logger::LogException(e);
-	}
+	Logger::Log("successfully init all servers data");
 }
 
 void WebServer::StartServer()
@@ -93,7 +87,8 @@ void WebServer::CheckSockets(int epollRet)
 	{
 		for (int i = 0; i < epollRet; i++)
 		{
-			fd = events[i].data.fd; 
+			fd = events[i].data.fd;
+
 			if (fd == servers[y].serverFd)
 			{
 				if (servers[y].AcceptClient(fd, epollFd) < 0)
@@ -126,11 +121,12 @@ void WebServer::CleanUpAll()
 	{
         for (std::map<int, Client>::iterator it = servers[i].clients.begin(); it != servers[i].clients.end(); ++it) 
 		{
-            close(it->second.clientFd);
+			if (it->second.clientFd != -1)
+            	close(it->second.clientFd);
         }
-
-        close(servers[i].serverFd);
+		if (servers[i].serverFd != -1)
+        	close(servers[i].serverFd);
     }
-
-    close(epollFd);
+	if (epollFd != -1)
+    	close(epollFd);
 }
