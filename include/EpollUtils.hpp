@@ -19,6 +19,9 @@ namespace EpollUtils
     /// @param fd The file descriptor to remove from the epoll instance.
     void EpollDelete(int epoll_fd, int fd);
 
+    /// @brief Check if passed events have error
+    bool EpollCheckEventError(uint32_t events);
+
     /// @brief Creates a new epoll instance and returns its file descriptor.
     /// @return The file descriptor of the created epoll instance.
     int EpollInit();

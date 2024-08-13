@@ -9,7 +9,7 @@
 # include <sstream>
 # include <vector>
 # include <stdint.h>
-# include <ServerInfo.hpp>
+# include <Server.hpp>
 
 /// @brief The Logger class provides static logging functionality for applications,
 /// allowing messages, warnings, errors, and exceptions to be recorded in a log file.
@@ -41,7 +41,10 @@ public:
     static void Log(const std::string &message);
 
     /// @brief Logs a client message to the log file.
-    static void ClientLog(const ServerInfo& serverInfo, const std::string &clientIp, uint16_t clientPort, const std::string &msg);
+    static void ClientLog(const Server& Server, const Client& client, const std::string &msg);
+
+    /// @brief
+    static void ServerLog(const Server& Server, const std::string &msg);
 
     /// @brief Logs a warning message to the log file with red color formatting.
     /// @param message The warning message to log.

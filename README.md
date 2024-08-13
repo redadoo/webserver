@@ -28,3 +28,5 @@ this project is part of the common core of 42 and was done in collaboration with
 [I/O Multiplexing (select vs. poll vs. epoll/kqueue)](https://nima101.github.io/io_multiplexing)
 
 [How to handle socket file asynchronously with epoll (in this case as TCP socket server).](https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads)
+
+[Building a multi-client chat server with select and epoll](https://mecha-mind.medium.com/a-non-threaded-chat-server-in-c-53dadab8e8f3)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
+#    By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/11 16:43:07 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/13 15:48:24 by evocatur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,14 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer ServerInfo Parser Lexer utils WebServerSignal ClientInfo EpollUtils Logger
+FILES       = main WebServer Server Parser Lexer utils WebServerSignal Client EpollUtils Logger
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
-HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/ServerInfo.hpp $(LIBDIR)/utils.hpp \
+HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/Server.hpp $(LIBDIR)/utils.hpp \
 			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
-			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/ClientInfo.hpp \
+			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/Client.hpp \
 			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp
 
 # Include the lib/ directory for header files

@@ -4,7 +4,7 @@
 # include <vector>
 # include <Parser.hpp>
 # include "unistd.h"
-# include <ClientInfo.hpp>
+# include <Client.hpp>
 
 # define DEFAULT_CONFIG_FILE "config/default.conf"
 # define MAX_EVENTS 32
@@ -16,32 +16,33 @@ class WebServer
 {
 private:
 	int						epollFd;
-	int					    epoll_ret;
-	int					    fd;
 	struct epoll_event      events[32];
 	bool                    needToStop;
 	
-	std::vector<ServerInfo> serverInfos;
+	std::vector<Server>		servers;
 
 	/// @brief Handles events for a specific client file descriptor.
 	/// @param client_fd File descriptor of the client.
 	/// @param revents The events associated with the client fd.
-	/// @param serverInfo Configuration and state of the server handling this client.
-	void HandleClientEvent(int client_fd, uint32_t revents, const ServerInfo& serverInfo);
+	/// @param Server Configuration and state of the server handling this client.
+	void HandleClientEvent(Client &client, uint32_t revents, Server& Server);
 
 	/// @brief Closes the connection with a client and removes the client file descriptor from epoll.
 	/// @param client Reference to the client info structure.
-	/// @param serverInfo Configuration and state of the server handling this client.
-	void CloseConnection(ClientInfo &client, const ServerInfo& serverInfo);
+	/// @param Server Configuration and state of the server handling this client.
+	void CloseConnection(Client &client, Server& Server);
 
 	/// @brief Accepts a new client connection on the specified socket.
 	/// @param tcp_fd File descriptor of the listening socket.
-	/// @param serverInfo Configuration and state of the server handling this client.
+	/// @param Server Configuration and state of the server handling this client.
 	/// @return Returns 0 on success, -1 on failure.
-	int AcceptClient(int tcp_fd, ServerInfo &serverInfo);
+	int AcceptClient(int tcp_fd, Server &Server);
 
     /// @brief Processes all active sockets and handles their events.
-	void CheckSockets();
+	void CheckSockets(int epollRet);
+
+	/// @brief 
+	void ReadResponse(Client& client, Server &server);
 
 	/// @brief Closes all open file descriptors and cleans up resources.
 	void CleanUpAll();

@@ -1,11 +1,11 @@
 # include "Parser.hpp"
 # include <Logger.hpp>
 
-void Parser::FillServerInfo(std::vector<ServerInfo> &serverInfos, const char *fileConf)
+void Parser::FillServer(std::vector<Server> &Servers, const char *fileConf)
 {
 	std::vector<Token> tokens = Lexer::GetToken(fileConf);
 	
-	serverInfos.push_back(ServerInfo
+	Servers.push_back(Server
 	(
 		8002,
 		"9999",
@@ -16,7 +16,7 @@ void Parser::FillServerInfo(std::vector<ServerInfo> &serverInfos, const char *fi
 		"web-page/error-pages/404.html"
 	));
 
-	serverInfos.push_back(ServerInfo
+	Servers.push_back(Server
 	(
 		8003,
 		"9999",

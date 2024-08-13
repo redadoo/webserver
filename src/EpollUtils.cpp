@@ -28,6 +28,16 @@ void EpollUtils::EpollDelete(int epoll_fd, int fd)
 	Logger::Log("Delete file descriptor from epoll instance ...");
 }
 
+bool EpollUtils::EpollCheckEventError(uint32_t events)
+{
+	const uint32_t	err_mask  = EPOLLERR | EPOLLHUP;
+
+	if (events & err_mask)
+		return true;
+
+	return false;
+}
+
 int EpollUtils::EpollInit()
 {
 	int epollFd;
