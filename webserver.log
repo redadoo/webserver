@@ -1,0 +1,197 @@
+[2024-8-12 17:36:32] start parsing Configuration file ...
+[2024-8-12 17:36:32] finished parsing Configuration file
+[2024-8-12 17:36:32] Creates a new epoll instance
+[2024-8-12 17:36:32] handled the signals successfully
+[2024-8-12 17:36:32] Creating TCP socket...
+[2024-8-12 17:36:32] add file descriptor from epoll instance ...
+[2024-8-12 17:36:32] Listening on 127.0.0.1:8002
+[2024-8-12 17:36:32] Creating TCP socket...
+[2024-8-12 17:36:32] add file descriptor from epoll instance ...
+[2024-8-12 17:36:32] Listening on 127.0.0.1:8003
+[2024-8-12 17:36:32] successfully init all servers data
+[2024-8-12 17:36:32] Entering event loop...
+[2024-8-12 17:36:35] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:37] A client is trying to connecting to us 
+[2024-8-12 17:36:37] add file descriptor from epoll instance ...
+[2024-8-12 17:36:37] Client 127.0.0.1:49946  has been accepted! by the socket: 127.0.0.1:8002
+[2024-8-12 17:36:37] Client 127.0.0.1:49946 GET / HTTP/1.1
+Host: localhost:8002
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+ by the socket: 127.0.0.1:8002
+[2024-8-12 17:36:40] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:40] Client 127.0.0.1:49946 has been deleted  by the socket: 127.0.0.1:8002
+[2024-8-12 17:36:40] Delete file descriptor from epoll instance ...
+[2024-8-12 17:36:41] A client is trying to connecting to us 
+[2024-8-12 17:36:41] Client alredy connected
+[2024-8-12 17:36:41] Client 127.0.0.1:41086  has been accepted! by the socket: 127.0.0.1:8002
+[2024-8-12 17:36:44] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:47] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:50] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:51] A client is trying to connecting to us 
+[2024-8-12 17:36:51] add file descriptor from epoll instance ...
+[2024-8-12 17:36:51] Client 127.0.0.1:60214  has been accepted! by the socket: 127.0.0.1:8003
+[2024-8-12 17:36:51] Client 127.0.0.1:60214 GET /cacca HTTP/1.1
+Host: localhost:8003
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Accept-Language: it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Priority: u=0, i
+ by the socket: 127.0.0.1:8003
+[2024-8-12 17:36:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:36:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:48] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:51] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:37:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:48] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:51] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:38:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:48] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:51] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:39:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:48] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:51] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:40:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:48] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:51] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:54] I don't see any event within 3000 milliseconds
+[2024-8-12 17:41:57] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:0] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:3] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:6] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:9] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:12] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:15] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:18] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:21] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:24] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:27] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:30] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:33] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:36] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:39] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:42] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:45] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:47] Client 127.0.0.1:60214 has been deleted  by the socket: 127.0.0.1:8003
+[2024-8-12 17:42:47] Delete file descriptor from epoll instance ...
+[2024-8-12 17:42:50] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:53] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:56] I don't see any event within 3000 milliseconds
+[2024-8-12 17:42:59] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:2] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:5] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:8] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:11] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:14] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:17] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:20] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:23] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:26] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:29] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:32] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:35] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:38] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:41] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:44] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:47] I don't see any event within 3000 milliseconds
+[2024-8-12 17:43:50] I don't see any event within 3000 milliseconds

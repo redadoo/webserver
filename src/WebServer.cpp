@@ -159,7 +159,7 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerI
 
 	if (revents & err_mask)
 	{
-		Logger::ClientLog(serverInfo, client.src_ip, client.src_port,
+		Logger::ClientLog(serverInfo, client.srcIp, client.srcPort,
 			"has closed its connection");
 		return (CloseConnection(client, serverInfo));
 	}
@@ -180,15 +180,21 @@ void WebServer::HandleClientEvent(int client_fd, uint32_t revents, const ServerI
 	if (buffer[recv_ret - 1] == '\n')
 		buffer[recv_ret - 1] = '\0';
 
-	Logger::ClientLog(serverInfo, client.src_ip, client.src_port, buffer);
+	Logger::ClientLog(serverInfo, client.srcIp, client.srcPort, buffer);
+
+	if (serverInfo.clientsInfo.find(client_fd) != serverInfo.clientsInfo.end())
+	{
+		ClientInfo client = serverInfo.clientsInfo.find(client_fd)->second;
+		client.ParseResponse(buffer);	
+	}
 }
 
 void WebServer::CloseConnection(ClientInfo &client, const ServerInfo &serverInfo)
 {
-	Logger::ClientLog(serverInfo, client.src_ip, client.src_port,
+	Logger::ClientLog(serverInfo, client.srcIp, client.srcPort,
 		"has been deleted ");
-	EpollUtils::EpollDelete(epollFd, client.client_fd);
-	close(client.client_fd);
+	EpollUtils::EpollDelete(epollFd, client.clientFd);
+	close(client.clientFd);
 }
 
 void WebServer::CleanUpAll() 
@@ -197,7 +203,7 @@ void WebServer::CleanUpAll()
 	{
         for (std::map<int, ClientInfo>::iterator it = serverInfos[i].clientsInfo.begin(); it != serverInfos[i].clientsInfo.end(); ++it) 
 		{
-            close(it->second.client_fd);
+            close(it->second.clientFd);
         }
 
         close(serverInfos[i].serverFd);

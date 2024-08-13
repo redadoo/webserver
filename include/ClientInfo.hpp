@@ -5,20 +5,28 @@
 # include <stdint.h>
 # include <string>
 
+// enum ResponseType
+// {
+
+// }
+
+
 /// @brief Structure to store information about a client
 struct ClientInfo
 {
-	int 				client_fd;
-	std::string			src_ip;
-	uint16_t			src_port;
+	int 				clientFd;
+	std::string			srcIp;
+	uint16_t			srcPort;
 
-    ClientInfo()
-        : client_fd(-1), src_ip(""), src_port(0) {}
+	ClientInfo()
+		: clientFd(-1), srcIp(""), srcPort(0) {}
 
 	ClientInfo(int fd, const std::string& ip, uint16_t port)
-			: 	client_fd(fd),           
-				src_ip(ip),              
-				src_port(port) {}
+			: 	clientFd(fd),
+				srcIp(ip),
+				srcPort(port) {}
+
+	void ParseResponse(const char* response);
 };
 
 
