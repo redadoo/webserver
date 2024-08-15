@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
 	try {
 		webServer->InitServer();
-		webServer->StartServer(); 
+		webServer->StartServer();
 	}
 	catch(const std::exception& e) {
 		Logger::LogException(e);

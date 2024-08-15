@@ -17,32 +17,15 @@ class WebServer
 private:
 	int						epollFd;
 	struct epoll_event      events[32];
-	bool                    needToStop;
+	bool					needToStop;
 	
 	std::vector<Server>		servers;
 
-	/// @brief Handles events for a specific client file descriptor.
-	/// @param client_fd File descriptor of the client.
-	/// @param revents The events associated with the client fd.
-	/// @param Server Configuration and state of the server handling this client.
+	/// @brief Handles events for a specific client.
 	void HandleClientEvent(Client &client, uint32_t revents, Server& Server);
-
-	/// @brief Closes the connection with a client and removes the client file descriptor from epoll.
-	/// @param client Reference to the client info structure.
-	/// @param Server Configuration and state of the server handling this client.
-	void CloseConnection(Client &client, Server& Server);
-
-	/// @brief Accepts a new client connection on the specified socket.
-	/// @param tcp_fd File descriptor of the listening socket.
-	/// @param Server Configuration and state of the server handling this client.
-	/// @return Returns 0 on success, -1 on failure.
-	int AcceptClient(int tcp_fd, Server &Server);
 
     /// @brief Processes all active sockets and handles their events.
 	void CheckSockets(int epollRet);
-
-	/// @brief 
-	void ReadResponse(Client& client, Server &server);
 
 	/// @brief Closes all open file descriptors and cleans up resources.
 	void CleanUpAll();

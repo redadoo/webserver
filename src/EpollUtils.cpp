@@ -13,7 +13,7 @@ void EpollUtils::EpollAdd(int epollFd, int fd, uint32_t events)
 	event.events  = events;
 	event.data.fd = fd;
 
-	if (epoll_ctl(epollFd, EPOLL_CTL_ADD, fd, &event) < 0) 
+	if (epoll_ctl(epollFd, EPOLL_CTL_ADD, fd, &event) < 0)
 		throw WebServerException::ExceptionErrno("epoll_ctl(EPOLL_CTL_ADD): ", errno);
 
 	Logger::Log("add file descriptor from epoll instance ...");

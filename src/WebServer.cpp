@@ -50,13 +50,12 @@ void WebServer::StartServer()
 
 	while (!needToStop)
 	{
-
 		needToStop = signalState.signCaught;
 		if (needToStop)
 			continue ;
 
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
-		
+
 		if (epollRet == 0)
 		{
 			Logger::Log(std::string("I don't see any event within ")
@@ -95,9 +94,14 @@ void WebServer::CheckSockets(int epollRet)
 					continue ;
 			}
 			else if (EpollUtils::EpollCheckEventError(events[i].events))
-				close(fd);
+			{
+				servers[y].CloseClientConnection(servers[y].GetClient(fd),epollFd);
+				break;
+			}
 			else if (servers[y].IsMyClient(fd))
+			{
 				HandleClientEvent(servers[y].GetClient(fd), events[i].events, servers[y]);
+			}
 		}
 	}
 }
@@ -111,8 +115,8 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		return;
 	}
 	
-	server.ReadClientResponse(client);
-	server.ParseClientResponse(client);
+	server.ReadClientResponse(client, epollFd);
+	server.ParseClientResponse(client, epollFd);
 }
 
 void WebServer::CleanUpAll() 
@@ -122,10 +126,17 @@ void WebServer::CleanUpAll()
         for (std::map<int, Client>::iterator it = servers[i].clients.begin(); it != servers[i].clients.end(); ++it) 
 		{
 			if (it->second.clientFd != -1)
+			{
             	close(it->second.clientFd);
+				EpollUtils::EpollDelete(epollFd, it->second.clientFd);
+			}
+
         }
 		if (servers[i].serverFd != -1)
+		{
+			EpollUtils::EpollDelete(epollFd, servers[i].serverFd);
         	close(servers[i].serverFd);
+		}
     }
 	if (epollFd != -1)
     	close(epollFd);

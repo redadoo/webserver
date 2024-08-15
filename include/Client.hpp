@@ -4,13 +4,15 @@
 
 # include <stdint.h>
 # include <string>
+# include <vector>
 
 /// @brief Structure to store information about a client
 struct Client
 {
-	int 				clientFd;
-	std::string			srcIp;
-	uint16_t			srcPort;
+	int 						clientFd;
+	std::string					srcIp;
+	uint16_t					srcPort;
+	std::vector<std::string>	lastResponse;
 
 	Client()
 		: 

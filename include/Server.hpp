@@ -49,8 +49,8 @@ public:
 	Client &GetClient(int clientFd);
 
 	int  AcceptClient(int fd, int epollFd);
-	void ReadClientResponse(Client &client);
-	void ParseClientResponse(Client &client);
+	void ReadClientResponse(Client &client, int epollFd);
+	void ParseClientResponse(Client &client, int epollFd);
 	void CloseClientConnection(Client &client, int epollFd);
 };
 

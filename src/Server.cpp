@@ -131,29 +131,56 @@ void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
 	clients.insert(client_pair);
 }
 
-void Server::ReadClientResponse(Client &client)
+void Server::ReadClientResponse(Client &client, int epollFd)
 {
-	char buf[MAX_RESPONSE_SIZE];
+	ssize_t			recv_ret = 1;
 
-	int ret_data = recv(client.clientFd, buf, MAX_RESPONSE_SIZE, 0);
+	client.lastResponse.clear();
 
-	std::string msg(buf, buf + ret_data);
-	msg =  "" + msg;
+	while (recv_ret > 0)
+	{
+		char			buffer[1024];
+		
+		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 
-	Logger::EmptyLog(msg);
+			// TODO: capire se bisogna chiudere la connesione o solo fermare il ciclo
+		if (recv_ret == 0)
+			return CloseClientConnection(client, epollFd);
+		
+		if (recv_ret < 0)
+		{
+			if (errno == EAGAIN)
+				break;
+
+			WebServerException::ExceptionErrno("recv(): ", errno);
+			return CloseClientConnection(client, epollFd);
+		}
+
+		Logger::StartResponseLog(*this, client);
+
+		buffer[recv_ret] = '\0';
+		if (buffer[recv_ret - 1] == '\n')
+			buffer[recv_ret - 1] = '\0';
+
+		client.lastResponse.push_back(buffer);
+		Logger::ResponseLog(buffer);
+	}
+	// Logger::Log(utils::ToString((int)client.lastResponse.size()));
+	// Logger::ResponseLog(*this,client, client.lastResponse);
 }
 
-void Server::ParseClientResponse(Client &client)
+void Server::ParseClientResponse(Client &client, int epollFd)
 {
 	(void)client;
+	(void)epollFd;
 }
 
 void Server::CloseClientConnection(Client &client, int epollFd)
 {
-	Logger::ClientLog(*this, client, "has been deleted ");
 	EpollUtils::EpollDelete(epollFd, client.clientFd);
 	close(client.clientFd);
 	clients.erase(client.clientFd);
+	Logger::ClientLog(*this, client, "has been disconnected ");
 }
 
 void Server::Init(int epollFd)
