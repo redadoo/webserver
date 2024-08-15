@@ -123,20 +123,17 @@ void WebServer::CleanUpAll()
 {
     for (size_t i = 0; i < servers.size(); ++i) 
 	{
-        for (std::map<int, Client>::iterator it = servers[i].clients.begin(); it != servers[i].clients.end(); ++it) 
+		for (size_t y = 0; y < servers[i].clients.size(); y++)
 		{
-			if (it->second.clientFd != -1)
-			{
-            	close(it->second.clientFd);
-				EpollUtils::EpollDelete(epollFd, it->second.clientFd);
-			}
 
-        }
-		if (servers[i].serverFd != -1)
-		{
-			EpollUtils::EpollDelete(epollFd, servers[i].serverFd);
-        	close(servers[i].serverFd);
+			servers[i].CloseClientConnection(servers[i].clients[y], epollFd);
+			
 		}
+		close(servers[i].serverFd);
+    }
+	for (size_t i = 0; i < servers.size(); ++i) 
+	{
+		close(servers[i].serverFd);
     }
 	if (epollFd != -1)
     	close(epollFd);

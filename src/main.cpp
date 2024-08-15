@@ -19,9 +19,18 @@ int main(int argc, char **argv)
 	catch(const std::exception& e) {
 		Logger::LogException(e);
 	}
-	
 
-	Logger::Log("End WebServer");
+	Logger::Log("Closing WebServer ...");
 	
-	delete webServer;
+	try
+	{
+		delete webServer;
+	}
+	catch(const std::exception& e)
+	{
+		Logger::LogException(e);
+	}
+	
+	Logger::Log("WebServer closed ");
+	
 }

@@ -35,6 +35,7 @@ void Server::InitSocket(int epollFd)
 	int					ret;
 	struct sockaddr_in	addr;
 	socklen_t			addr_len;
+	const int 			enable = 1;
 
 	Logger::Log("Creating TCP socket...");
 
@@ -42,6 +43,10 @@ void Server::InitSocket(int epollFd)
 	if (this->serverFd < 0)
 		throw WebServerException::ExceptionErrno("socket() failed ", errno);
 	
+	ret = setsockopt(this->serverFd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int));
+	if (ret < 0)
+		throw WebServerException::ExceptionErrno("setsockopt() failed ", errno);
+
 	addr_len = sizeof(addr);
 	memset(&addr, 0, sizeof(addr));
 	addr.sin_family = AF_INET;
@@ -116,9 +121,9 @@ int Server::AcceptClient(int fd, int epollFd)
 	}
 	else
 	{
-		AddClient(clientFd, srcIp, srcPort);
-		EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLPRI);
+		this->AddClient(clientFd, srcIp, srcPort);
 		Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
+		EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLPRI);
 	}
 
 	return (0);
@@ -143,7 +148,7 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 		
 		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 
-			// TODO: capire se bisogna chiudere la connesione o solo fermare il ciclo
+		// TODO: capire se bisogna chiudere la connesione o solo fermare il ciclo
 		if (recv_ret == 0)
 			return CloseClientConnection(client, epollFd);
 		
@@ -165,8 +170,6 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 		client.lastResponse.push_back(buffer);
 		Logger::ResponseLog(buffer);
 	}
-	// Logger::Log(utils::ToString((int)client.lastResponse.size()));
-	// Logger::ResponseLog(*this,client, client.lastResponse);
 }
 
 void Server::ParseClientResponse(Client &client, int epollFd)

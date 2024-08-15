@@ -80,12 +80,11 @@ void Logger::StartResponseLog(const Server &server, const Client &client)
 		std::cerr << "Log file is not open." << std::endl;
 }
 
-
 void Logger::ResponseLog(const std::string &respone)
 {
 	if (logFile.is_open())
 	{
-		logFile << "[ StartResponse ] " << std::endl << respone << "[ EndResponse ]" << std::endl;
+		logFile << "[ StartResponseBlock ] " << std::endl << respone << "[ EndResponseBlock ]" << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;
