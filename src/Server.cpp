@@ -182,8 +182,8 @@ void Server::CloseClientConnection(Client &client, int epollFd)
 {
 	EpollUtils::EpollDelete(epollFd, client.clientFd);
 	close(client.clientFd);
-	clients.erase(client.clientFd);
 	Logger::ClientLog(*this, client, "has been disconnected ");
+	clients.erase(client.clientFd);
 }
 
 void Server::Init(int epollFd)

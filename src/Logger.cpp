@@ -55,7 +55,7 @@ void Logger::Log(const std::string &message)
 		std::cerr << "Log file is not open." << std::endl;
 }
 
-void Logger::ClientLog(const Server& server, const Client &client, const std::string &msg)
+void Logger::ClientLog(const Server& server, const Client &client, const char *msg)
 {
 	WriteCurrentDataTime();
 	
@@ -67,6 +67,7 @@ void Logger::ClientLog(const Server& server, const Client &client, const std::st
 	else
 		std::cerr << "Log file is not open." << std::endl;
 }
+
 
 void Logger::StartResponseLog(const Server &server, const Client &client)
 {
