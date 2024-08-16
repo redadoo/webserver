@@ -5,29 +5,21 @@
 # include <stdint.h>
 # include <string>
 # include <vector>
+# include <ClientConfig.hpp>
 
 /// @brief Structure to store information about a client
-struct Client
+class Client
 {
+public:
+
 	int 						clientFd;
-	std::string					srcIp;
-	uint16_t					srcPort;
 	std::vector<std::string>	lastResponse;
+	ClientConfig				clientConfig;
 
-	Client()
-		: 
-		clientFd(-1), 
-		srcIp(""), 
-		srcPort(0) {}
+	Client();
+	Client(int fd, const std::string& ip, uint16_t port);
 
-
-	Client(int fd, const std::string& ip, uint16_t port)
-			: 	
-			clientFd(fd),
-			srcIp(ip),
-			srcPort(port) {}
-
-	void ParseResponse(const char* response);
+	void InitClientValue(const char* response);
 };
 
 

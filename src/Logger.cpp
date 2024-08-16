@@ -61,7 +61,7 @@ void Logger::ClientLog(const Server& server, const Client &client, const char *m
 	
 	if (logFile.is_open())
 	{
-    	logFile << "Client " << client.srcIp << ":" << client.srcPort << " " << msg << 
+    	logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << " " << msg << 
 		" by the socket: " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
 	}
 	else
@@ -75,7 +75,7 @@ void Logger::StartResponseLog(const Server &server, const Client &client)
 
 	if (logFile.is_open())
 	{
-		logFile << "Client " << client.srcIp << ":" << client.srcPort << " send bytes to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
+		logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << " send bytes to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;

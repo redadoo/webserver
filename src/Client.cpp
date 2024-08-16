@@ -1,6 +1,14 @@
 #include <Client.hpp>
 
-void Client::ParseResponse(const char *response)
+Client::Client() : clientFd(-1) {}
+
+Client::Client(int fd, const std::string& ip, uint16_t port)  : clientFd(fd)
 {
-    (void)response;
+    this->clientConfig.srcIp = ip;
+    this->clientConfig.srcPort = port;
+}
+
+void Client::InitClientValue(const char *response)
+{
+	(void)response;
 }

@@ -29,8 +29,6 @@ WebServer::~WebServer() {
 
 void WebServer::InitServer()
 {
-	this->epollFd = -1;
-	needToStop = false;
 	epollFd = EpollUtils::EpollInit();
 	
 	WebServerSignal::SetupSignalHandler();
@@ -47,6 +45,8 @@ void WebServer::StartServer()
 	int epollRet;
 
 	Logger::Log("Entering event loop...");
+	
+	needToStop = false;
 
 	while (!needToStop)
 	{
@@ -125,16 +125,12 @@ void WebServer::CleanUpAll()
 	{
 		for (size_t y = 0; y < servers[i].clients.size(); y++)
 		{
-
 			servers[i].CloseClientConnection(servers[i].clients[y], epollFd);
-			
 		}
+
 		close(servers[i].serverFd);
     }
-	for (size_t i = 0; i < servers.size(); ++i) 
-	{
-		close(servers[i].serverFd);
-    }
+
 	if (epollFd != -1)
     	close(epollFd);
 }

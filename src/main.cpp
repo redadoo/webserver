@@ -22,14 +22,7 @@ int main(int argc, char **argv)
 
 	Logger::Log("Closing WebServer ...");
 	
-	try
-	{
-		delete webServer;
-	}
-	catch(const std::exception& e)
-	{
-		Logger::LogException(e);
-	}
+	delete webServer;
 	
 	Logger::Log("WebServer closed ");
 	
