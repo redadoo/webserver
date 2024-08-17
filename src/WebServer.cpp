@@ -117,6 +117,7 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	
 	server.ReadClientResponse(client, epollFd);
 	server.ParseClientResponse(client, epollFd);
+	server.SendResponse(client);
 }
 
 void WebServer::CleanUpAll() 

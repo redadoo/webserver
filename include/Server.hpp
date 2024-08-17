@@ -19,6 +19,10 @@ private:
 	/// @param epollFd File descriptor for the epoll instance to which the server socket is added.
 	void InitSocket(int epollFd);
 
+    /// @brief Adds a new client to the server's client list.
+    /// @param clientFd File descriptor for the client's socket.
+    /// @param srcIp Source IP address of the client.
+    /// @param srcPort Source port of the client.
 	void AddClient(int clientFd,std::string srcIp, uint16_t srcPort);
 
 public:
@@ -40,18 +44,42 @@ public:
 	Server(uint16_t _port, const std::string &_clientMaxBodySize, const std::string & _index, 
 				const std::string & _name, const std::string & _root, const std::string & _host, const std::string & _defaultErrorPage);
 	
-	/// @brief Initializes server information and sets up the socket.
-	/// @param epollFd File descriptor for the epoll instance.
-	void Init(int epollFd);
+    /// @brief Initializes server information and sets up the socket.
+    /// @param epollFd File descriptor for the epoll instance.
+    void Init(int epollFd);
 
-	bool IsMyClient(int clientFd);
+    /// @brief Checks if a client with the given file descriptor is connected to the server.
+    /// @param clientFd File descriptor of the client to check.
+    /// @return True if the client is connected, false otherwise.
+    bool IsMyClient(int clientFd);
 
-	Client &GetClient(int clientFd);
+    /// @brief Retrieves the client object associated with the given file descriptor.
+    /// @param clientFd File descriptor of the client.
+    /// @return Reference to the Client object.
+    Client &GetClient(int clientFd);
 
-	int  AcceptClient(int fd, int epollFd);
-	void ReadClientResponse(Client &client, int epollFd);
-	void ParseClientResponse(Client &client, int epollFd);
-	void CloseClientConnection(Client &client, int epollFd);
+    /// @brief Accepts a new client connection and adds it to the server's client list.
+    /// @param fd File descriptor of the server's listening socket.
+    /// @param epollFd File descriptor for the epoll instance.
+    /// @return 0 on success, -1 on failure.
+    int AcceptClient(int fd, int epollFd);
+
+    /// @brief Reads the client's response and stores it in the client's lastResponse.
+    /// @param client Reference to the Client object.
+    /// @param epollFd File descriptor for the epoll instance.
+    void ReadClientResponse(Client &client, int epollFd);
+
+    /// @brief Parses the client's response.
+    /// @param client Reference to the Client object.
+    /// @param epollFd File descriptor for the epoll instance.
+    void ParseClientResponse(Client &client, int epollFd);
+
+	void SendResponse(Client &client);
+
+    /// @brief Closes the connection to a client and removes it from the server's client list.
+    /// @param client Reference to the Client object.
+    /// @param epollFd File descriptor for the epoll instance.
+    void CloseClientConnection(Client &client, int epollFd);
 };
 
 #endif
