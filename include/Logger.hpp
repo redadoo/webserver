@@ -47,6 +47,10 @@ public:
 
     static void ResponseLog(const std::string& respone);
 
+    static void StartRequestLog(const Server &server, const Client &client);
+
+    static void RequestLog(const std::string& respone);
+
     static void EmptyLog(const std::string &msg);
     
     /// @brief

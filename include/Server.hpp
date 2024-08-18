@@ -26,10 +26,14 @@ private:
 	void AddClient(int clientFd,std::string srcIp, uint16_t srcPort);
 
 public:
+	bool							stop;
 	int								serverFd;
 	struct sockaddr_in 				serverAddress;
-	bool							stop;
-	ServerConfig					serverConfig;
+	
+    ServerConfig					serverConfig;
+
+    std::string                     response;
+
 	std::map<int, Client>			clients;
 	std::vector<std::string>		lastResponse;
 
@@ -72,8 +76,10 @@ public:
     /// @param client Reference to the Client object.
     void ParseClientResponse(Client &client);
 
-	void SendResponse(Client &client);
+	void SendResponse(const Client &client);
 
+    void BuildResponse();
+    
     /// @brief Closes the connection to a client and removes it from the server's client list.
     /// @param client Reference to the Client object.
     void CloseClientConnection(const Client &client);
