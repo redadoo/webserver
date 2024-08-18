@@ -14,7 +14,7 @@ Server::Server (
 	const std::string & _host,
 	const std::string & _defaultErrorPage
 	)
-    : 	
+	: 	
 	stop(false), 
 	serverConfig(
 			_port, 
@@ -177,17 +177,20 @@ void Server::ParseClientResponse(Client &client)
 
 void Server::SendResponse(Client &client)
 {
-	(void)client;
-    // ssize_t send_ret;
+	ssize_t send_ret;
 
-    // send_ret = send(client.clientFd, response.c_str(), response.size(), 0);
-    // if (send_ret < 0)
-    // {
-    //     Logger::LogError("Failed to send response: " + std::string(strerror(errno)));
-    //     throw WebServerException::ExceptionErrno("send() failed", errno);
-    // }
+  	std::ifstream ifs("web-page/index.html");
+  	std::string response( (std::istreambuf_iterator<char>(ifs) ),
+                       (std::istreambuf_iterator<char>()    ) );
 
-    // Logger::ClientLog(*this, client, "Response sent to client");
+	send_ret = send(client.clientFd, response.c_str(), response.size(), 0);
+	if (send_ret < 0)
+	{
+		Logger::LogError("Failed to send response: " + std::string(strerror(errno)));
+		throw WebServerException::ExceptionErrno("send() failed", errno);
+	}
+
+	Logger::ClientLog(*this, client, "Response sent to client");
 }
 
 void Server::CloseClientConnection(const Client &client)

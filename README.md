@@ -34,3 +34,5 @@ this project is part of the common core of 42 and was done in collaboration with
 [What is the meaning of SO_REUSEADDR](https://stackoverflow.com/questions/3229860/what-is-the-meaning-of-so-reuseaddr-setsockopt-option-linux)
 
 [Epoll: does it silently remove fds](https://stackoverflow.com/questions/46987302/epoll-does-it-silently-remove-fds)
+
+[HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)

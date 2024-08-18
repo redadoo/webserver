@@ -7,7 +7,6 @@ void EpollUtils::EpollAdd(int epollFd, int fd, uint32_t events)
 {
 	struct epoll_event event;
 
-	/* Shut the valgrind up! */
 	memset(&event, 0, sizeof(struct epoll_event));
 
 	event.events  = events;
