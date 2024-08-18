@@ -15,6 +15,12 @@ public:
 	int 						clientFd;
 	std::vector<std::string>	lastResponse;
 	ClientConfig				clientConfig;
+	std::string					httpMethod;
+	std::string					httpVersion;
+	std::string					path;
+	std::string					contentType;
+	int							contentLenght;
+	
 
 	Client();
 	Client(int fd, const std::string& ip, uint16_t port);

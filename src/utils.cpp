@@ -17,9 +17,18 @@ std::string utils::ToString(int n)
 
 std::string utils::ToString(uint16_t n)
 {
-	std::stringstream ss;      
+	std::stringstream ss;
 	ss << n;                 
 	return ss.str();
+}
+
+int utils::StrintToInteger(const std::string& str)
+{
+	int number;
+	std::stringstream ss(str);
+
+	ss >> number;
+	return number;
 }
 
 const char *utils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)

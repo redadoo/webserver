@@ -139,7 +139,63 @@ void Server::ReadClientResponse(Client &client)
 
 void Server::ParseClientResponse(Client &client)
 {
-	(void)client;
+		(void)client;
+
+	for (size_t i = 0; i < client.lastResponse.size(); i++)
+	{
+		std::cout << client.lastResponse[i] << std::endl; 
+	}
+	std::string line;
+	std::istringstream responseStream(client.lastResponse[0]);
+
+	std::getline(responseStream, line);
+
+	std::istringstream lineStream(line);
+	lineStream>>client.httpMethod>>client.path>>client.httpVersion;
+
+
+	
+	if(client.httpMethod != "GET" && client.httpMethod != "POST" && client.httpMethod != "DELETE")
+	throw WebServerException::BadResponse();
+	
+	if(client.path.length() > 1024)
+	throw WebServerException::BadResponse();
+
+	if(client.path.find("../") != std::string::npos || client.path == ".." )
+	throw WebServerException::BadResponse();
+
+	if(client.httpVersion != "HTTP/1.1")
+		throw WebServerException::BadResponse();
+
+	if (client.httpMethod == "GET" || client.httpMethod == "DELETE")
+		return;
+
+	while (std::getline(responseStream, line) && !line.empty()) {
+    	if (line.find("Content-Type") != std::string::npos && client.contentType.empty())
+		{
+			int i;
+			std::string	tmp;
+			while(line[i] != ' ')
+				i++;
+			while(line[i])
+			{
+				tmp += line[i];
+			}
+			client.contentType = tmp;
+		}
+		if (line.find("Content-Lenght") != std::string::npos && client.contentLenght != -1)
+		{
+			std::string	numberString;
+			for (size_t i = 0; i < line.length(); i++)
+			{
+				if(isdigit(line[i]))
+					numberString += line[i];
+			}
+			client.contentLenght = utils::StrintToInteger(numberString);
+		}
+    }
+
+
 }
 
 void Server::SendResponse(const Client &client)
