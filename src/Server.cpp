@@ -179,10 +179,6 @@ void Server::SendResponse(Client &client)
 {
 	ssize_t send_ret;
 
-  	std::ifstream ifs("web-page/index.html");
-  	std::string response( (std::istreambuf_iterator<char>(ifs) ),
-                       (std::istreambuf_iterator<char>()    ) );
-
 	send_ret = send(client.clientFd, response.c_str(), response.size(), 0);
 	if (send_ret < 0)
 	{
