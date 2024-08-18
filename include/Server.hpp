@@ -66,20 +66,21 @@ public:
 
     /// @brief Reads the client's response and stores it in the client's lastResponse.
     /// @param client Reference to the Client object.
-    /// @param epollFd File descriptor for the epoll instance.
-    void ReadClientResponse(Client &client, int epollFd);
+    void ReadClientResponse(Client &client);
 
     /// @brief Parses the client's response.
     /// @param client Reference to the Client object.
-    /// @param epollFd File descriptor for the epoll instance.
-    void ParseClientResponse(Client &client, int epollFd);
+    void ParseClientResponse(Client &client);
 
 	void SendResponse(Client &client);
 
     /// @brief Closes the connection to a client and removes it from the server's client list.
     /// @param client Reference to the Client object.
-    /// @param epollFd File descriptor for the epoll instance.
-    void CloseClientConnection(Client &client, int epollFd);
+    void CloseClientConnection(const Client &client);
+
+    /// @brief Closes the connection to a client and removes it from the server's client list.
+    /// @param clientFd Reference to the Client filedesctiptor.
+    void CloseClientConnection(int clientFd);
 };
 
 #endif

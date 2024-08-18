@@ -95,7 +95,8 @@ void WebServer::CheckSockets(int epollRet)
 			}
 			else if (EpollUtils::EpollCheckEventError(events[i].events))
 			{
-				servers[y].CloseClientConnection(servers[y].GetClient(fd),epollFd);
+				Logger::Log("test");
+				servers[y].CloseClientConnection(fd);
 				break;
 			}
 			else if (servers[y].IsMyClient(fd))
@@ -111,12 +112,12 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	if (EpollUtils::EpollCheckEventError(events))
 	{
 		Logger::ClientLog(server, client, "has closed its connection");
-		server.CloseClientConnection(client, epollFd);
+		server.CloseClientConnection(client);
 		return;
 	}
 	
-	server.ReadClientResponse(client, epollFd);
-	server.ParseClientResponse(client, epollFd);
+	server.ReadClientResponse(client);
+	server.ParseClientResponse(client);
 	server.SendResponse(client);
 }
 
@@ -126,7 +127,7 @@ void WebServer::CleanUpAll()
 	{
 		for (size_t y = 0; y < servers[i].clients.size(); y++)
 		{
-			servers[i].CloseClientConnection(servers[i].clients[y], epollFd);
+			servers[i].CloseClientConnection(servers[i].clients[y]);
 		}
 
 		close(servers[i].serverFd);

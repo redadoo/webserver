@@ -133,7 +133,7 @@ void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
 	clients.insert(client_pair);
 }
 
-void Server::ReadClientResponse(Client &client, int epollFd)
+void Server::ReadClientResponse(Client &client)
 {
 	ssize_t			recv_ret = 1;
 
@@ -146,7 +146,9 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 
 		if (recv_ret == 0)
-			return CloseClientConnection(client, epollFd);
+		{
+			return CloseClientConnection(client);
+		}
 		
 		if (recv_ret < 0)
 		{
@@ -154,7 +156,7 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 				break;
 
 			WebServerException::ExceptionErrno("recv(): ", errno);
-			return CloseClientConnection(client, epollFd);
+			return CloseClientConnection(client);
 		}
 
 		Logger::StartResponseLog(*this, client);
@@ -168,10 +170,9 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 	}
 }
 
-void Server::ParseClientResponse(Client &client, int epollFd)
+void Server::ParseClientResponse(Client &client)
 {
 	(void)client;
-	(void)epollFd;
 }
 
 void Server::SendResponse(Client &client)
@@ -188,12 +189,24 @@ void Server::SendResponse(Client &client)
 
     // Logger::ClientLog(*this, client, "Response sent to client");
 }
-void Server::CloseClientConnection(Client &client, int epollFd)
+
+void Server::CloseClientConnection(const Client &client)
 {
-	EpollUtils::EpollDelete(epollFd, client.clientFd);
 	close(client.clientFd);
 	Logger::ClientLog(*this, client, "has been disconnected ");
 	clients.erase(client.clientFd);
+}
+
+void Server::CloseClientConnection(int clientFd)
+{
+	if (IsMyClient(clientFd))
+	{
+		Client client = clients.find(clientFd)->second;
+
+		close(client.clientFd);
+		Logger::ClientLog(*this, client, "has been disconnected ");
+		clients.erase(client.clientFd);
+	}
 }
 
 void Server::Init(int epollFd)
