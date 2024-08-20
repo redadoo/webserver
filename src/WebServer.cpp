@@ -9,7 +9,7 @@ WebServerSignal::SignalState signalState;
 
 WebServer::WebServer() {
 	try {
-		Parser::FillServer(servers, DEFAULT_CONFIG_FILE);
+		ConfFileParser(servers, DEFAULT_CONFIG_FILE);
 	} catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
@@ -17,7 +17,7 @@ WebServer::WebServer() {
 
 WebServer::WebServer(const char *filePath) {
 	try {
-		Parser::FillServer(servers, filePath);
+		ConfFileParser(servers, filePath);
 	} catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
@@ -30,13 +30,13 @@ WebServer::~WebServer() {
 void WebServer::InitServer()
 {
 	epollFd = EpollUtils::EpollInit();
-	
+
 	WebServerSignal::SetupSignalHandler();
 	Logger::Log("handled the signals successfully");
 
 	for (size_t i = 0; i < servers.size(); i++)
 		servers[i].Init(epollFd);
-		
+
 	Logger::Log("successfully init all servers data");
 }
 
@@ -45,7 +45,7 @@ void WebServer::StartServer()
 	int epollRet;
 
 	Logger::Log("Entering event loop...");
-	
+
 	needToStop = false;
 
 	while (!needToStop)
@@ -114,14 +114,14 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		server.CloseClientConnection(client, epollFd);
 		return;
 	}
-	
+
 	server.ReadClientResponse(client, epollFd);
 	server.ParseClientResponse(client, epollFd);
 }
 
-void WebServer::CleanUpAll() 
+void WebServer::CleanUpAll()
 {
-    for (size_t i = 0; i < servers.size(); ++i) 
+    for (size_t i = 0; i < servers.size(); ++i)
 	{
 		for (size_t y = 0; y < servers[i].clients.size(); y++)
 		{

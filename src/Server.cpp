@@ -5,30 +5,7 @@
 # include <utils.hpp>
 # include <unistd.h>
 
-Server::Server (
-	uint16_t _port, 
-	const std::string & _clientMaxBodySize, 
-	const std::string & _index,
-	const std::string & _name, 
-	const std::string & _root, 
-	const std::string & _host,
-	const std::string & _defaultErrorPage
-	)
-    : 	
-	stop(false), 
-	serverConfig(
-			_port, 
-			_host, 
-			_name, 
-			_root, 
-			_index,
-			_clientMaxBodySize, 
-			_defaultErrorPage, 
-			_host) 
-			{
-				serverFd = -1;
-			}
-
+Server::Server () : stop(false), serverFd(-1) {}
 
 void Server::InitSocket(int epollFd)
 {
@@ -42,7 +19,7 @@ void Server::InitSocket(int epollFd)
 	this->serverFd = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK, IPPROTO_TCP);
 	if (this->serverFd < 0)
 		throw WebServerException::ExceptionErrno("socket() failed ", errno);
-	
+
 	ret = setsockopt(this->serverFd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int));
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("setsockopt() failed ", errno);
@@ -56,22 +33,22 @@ void Server::InitSocket(int epollFd)
 	ret = bind(this->serverFd, (struct sockaddr *)&addr, addr_len);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("bind() failed ", errno);
-	
+
 	ret = listen(this->serverFd, 10);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("listen() failed ", errno);
 
 	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLPRI);
-	
+
 	Logger::Log(std::string("Listening on ") + this->serverConfig.socketIp + ":"
 		+ utils::ToString(this->serverConfig.serverPort));
 }
 
 bool Server::IsMyClient(int clientFd)
 {
-	if (this->clients.find(clientFd) == clients.end()) 
+	if (this->clients.find(clientFd) == clients.end())
 		return false;
-	
+
 	return true;
 }
 
@@ -102,7 +79,7 @@ int Server::AcceptClient(int fd, int epollFd)
 		Logger::LogWarning("error on accept(): ");
 		return (-1);
 	}
-	
+
 	srcPort = ntohs(addr.sin_port);
 	srcIp = utils::ConvertAddrNtop(&addr, srcIpBuffer);
 	if (!srcIp)
@@ -142,12 +119,12 @@ void Server::ReadClientResponse(Client &client, int epollFd)
 	while (recv_ret > 0)
 	{
 		char			buffer[1024];
-		
+
 		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 
 		if (recv_ret == 0)
 			return CloseClientConnection(client, epollFd);
-		
+
 		if (recv_ret < 0)
 		{
 			if (errno == EAGAIN)

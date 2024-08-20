@@ -37,9 +37,9 @@ public:
 	/// @param _root Server root directory.
 	/// @param _host Hostname or IP address.
 	/// @param _defaultErrorPage Path to the default error page.
-	Server(uint16_t _port, const std::string &_clientMaxBodySize, const std::string & _index, 
+	Server(uint16_t _port, const std::string &_clientMaxBodySize, const std::string & _index,
 				const std::string & _name, const std::string & _root, const std::string & _host, const std::string & _defaultErrorPage);
-	
+
 	/// @brief Initializes server information and sets up the socket.
 	/// @param epollFd File descriptor for the epoll instance.
 	void Init(int epollFd);

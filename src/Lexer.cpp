@@ -14,7 +14,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	bool 						isLocationBlock = false;
 
 
-	if (!utils::CheckFileExistence(fileName.c_str())) 
+	if (!utils::CheckFileExistence(fileName.c_str()))
 		throw WebServerException::FileNotFound();
 
 	std::ifstream file(fileName.c_str());
@@ -28,7 +28,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 
 			if (currentChar == '#')
 				break;
-			
+
 			switch (state)
 			{
 				case SearchingServer:
@@ -36,13 +36,13 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (isspace((currentChar)))
 						continue; // Skip whitespace
 
-					if (line.find("server") == i) 
+					if (line.find("server") == i)
 					{
 						state = SearchingOpenBracket;
 						i += 5; // Skip the "server" keyword
 						tokens.push_back(Token("Server"));
-					} 
-					else 
+					}
+					else
 						throw WebServerException::ErrorOnFileConfigurationSyntax();
 					break;
 
@@ -51,9 +51,9 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (isspace((currentChar)))
 						continue; // Skip whitespace
 
-					if (currentChar == '{') 
+					if (currentChar == '{')
 						state = CollectingTokenName;
-					else 
+					else
 						throw WebServerException::ErrorOnFileConfigurationSyntax();
 					break;
 
@@ -61,14 +61,20 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (currentChar == '}')
 					{
 						if(!isLocationBlock)
+						{
+							tokens.push_back(Token("ServerEnd"));
 							state = SearchingServer;
+						}
 						else
+						{
+							tokens.push_back(Token("LocationEnd"));
 							isLocationBlock =  false;
+						}
 						break;
 					}
-					if (isspace(static_cast<unsigned char>(currentChar))) 
+					if (isspace(static_cast<unsigned char>(currentChar)))
 					{
-						if (!tempName.empty()) 
+						if (!tempName.empty())
 						{
 							if (tempName == "location")
 								state = CollectionLocation;
@@ -80,13 +86,13 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 
 					if (isalpha(currentChar) || currentChar == '_' || currentChar == '/')
 						tempName += currentChar;
-					else 
+					else
 						throw WebServerException::ErrorOnFileConfigurationSyntax();
 					break;
 
 				case CollectingTokenValue:
 
-					if (currentChar == ';') 
+					if (currentChar == ';')
 					{
 						// End of token value, store the token
 						tokens.push_back(Token(tempName, tempValue));
@@ -94,15 +100,15 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 						tempName.clear();
 						tempValue.clear();
 						state = CollectingTokenName;
-					} 
-					else if (isspace(static_cast<unsigned char>(currentChar))) 
+					}
+					else if (isspace(static_cast<unsigned char>(currentChar)))
 					{
-						if (!tempValue.empty() && tempValue[tempValue.size() - 1] != ' ') 
+						if (!tempValue.empty() && tempValue[tempValue.size() - 1] != ' ')
 							tempValue += ' ';  // Separate multiple values with a space
-					} 
-					else if (currentChar != '}') 
+					}
+					else if (currentChar != '}')
 						tempValue += currentChar;
-					else 
+					else
 						throw WebServerException::ErrorOnFileConfigurationSyntax();
 					break;
 				case CollectionLocation:
@@ -117,10 +123,10 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 						tempName.clear();
 						tempValue.clear();
 						state = CollectingTokenName;
-					} 
+					}
 					else if (isalnum(currentChar) || currentChar == '/' || currentChar == '=')
 						tempValue += currentChar;
-					else	
+					else
 						throw WebServerException::ErrorOnFileConfigurationSyntax();
 					break;
 
