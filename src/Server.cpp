@@ -1,14 +1,11 @@
-#include <EpollUtils.hpp>
-#include <Logger.hpp>
-#include <Server.hpp>
-#include <WebServerException.hpp>
-#include <unistd.h>
-#include <utils.hpp>
+# include <EpollUtils.hpp>
+# include <Logger.hpp>
+# include <Server.hpp>
+# include <WebServerException.hpp>
+# include <unistd.h>
+# include <Utils.hpp>
 
-Server::Server() 
-{
-
-}
+Server::Server() {}
 
 void Server::InitSocket(int epollFd)
 {
@@ -41,7 +38,7 @@ void Server::InitSocket(int epollFd)
 	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLPRI);
 
 	Logger::Log(std::string("Listening on ") + this->serverConfig.socketIp + ":"
-		+ utils::ToString(this->serverConfig.serverPort));
+		+ StringUtils::ToString(this->serverConfig.serverPort));
 }
 
 bool Server::IsMyClient(int clientFd)
@@ -78,7 +75,7 @@ int Server::AcceptClient(int fd, int epollFd)
 	}
 
 	srcPort = ntohs(addr.sin_port);
-	srcIp = utils::ConvertAddrNtop(&addr, srcIpBuffer);
+	srcIp = NetworkUtils::ConvertAddrNtop(&addr, srcIpBuffer);
 	if (!srcIp)
 	{
 		Logger::LogWarning("Cannot parse source address");
@@ -191,7 +188,7 @@ void Server::ParseClientResponse(Client &client)
 				if(isdigit(line[i]))
 					numberString += line[i];
 			}
-			client.contentLenght = utils::StrintToInteger(numberString);
+			client.contentLenght = StringUtils::StrintToInt(numberString);
 		}
     }
 

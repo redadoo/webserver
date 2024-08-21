@@ -1,7 +1,9 @@
 # include <Lexer.hpp>
 # include <Logger.hpp>
-# include <utils.hpp>
+# include <Utils.hpp>
 # include <WebServerException.hpp>
+
+using namespace FIleUtils;
 
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
@@ -14,7 +16,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	bool 						isLocationBlock = false;
 
 
-	if (!utils::CheckFileExistence(fileName.c_str()))
+	if (!CheckFileExistence(fileName.c_str()))
 		throw WebServerException::FileNotFound();
 
 	std::ifstream file(fileName.c_str());

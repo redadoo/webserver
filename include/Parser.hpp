@@ -9,28 +9,8 @@
 class Parser
 {
 	private:
-		// std::vector<Token> tokens;
-		// int serverStart;
-		// int serverEnd;
-		// int locationStart;
-		// int locationEnd;
-
-		// int port;
-		// std::string host;
-		// std::vector<std::string> serverNames;
-		// std::vector<CodePath> errorPages;
-		// ClientBodySize clientBodySize;
-		// std::string rootPath;
-		// bool autoIndex;
-		// std::vector<std::string> index;
-
-		// std::vector<Location> locations;
-
-		// int stringToInt(std::string str);
-		// std::vector<std::string> split(std::string str, char delim);
 
 		bool isDomain(std::string str);
-		bool isIp(std::string str);
 		void resetValues();
 		void getServerStartEnd();
 		void getLocationStartEnd();

@@ -2,7 +2,7 @@
 # include <Logger.hpp>
 # include <WebServer.hpp>
 # include <WebServerSignal.hpp>
-# include <utils.hpp>
+# include <Utils.hpp>
 # include <WebServerException.hpp>
 
 WebServerSignal::SignalState signalState;
@@ -59,7 +59,7 @@ void WebServer::StartServer()
 		if (epollRet == 0)
 		{
 			Logger::Log(std::string("I don't see any event within ")
-					+ utils::ToString(TIMEOUT) + " milliseconds");
+					+ StringUtils::ToString(TIMEOUT) + " milliseconds");
 			continue ;
 		}
 

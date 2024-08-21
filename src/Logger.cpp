@@ -1,5 +1,5 @@
 # include "Logger.hpp"
-# include <utils.hpp>
+# include <Utils.hpp>
 
 std::ofstream Logger::logFile;
 std::string Logger::logFileName;
