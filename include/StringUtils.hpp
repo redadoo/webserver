@@ -25,6 +25,7 @@ namespace StringUtils
 
     std::vector<std::string> Split(const std::string& str, char delim);
 
+    bool IsAllDigit(const std::string& str);
 } // namespace StringUtils
 
 #endif

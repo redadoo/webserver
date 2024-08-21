@@ -1,7 +1,7 @@
 #ifndef FILEUTILS_HPP
 # define FILEUTILS_HPP
 
-namespace FIleUtils
+namespace FileUtils
 {
     /// @brief Checks if a file exists at the given path.
     /// @param fileName The path to the file to check.

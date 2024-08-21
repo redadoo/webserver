@@ -5,43 +5,38 @@
 # include <Location.hpp>
 # include <CodePath.hpp>
 # include <ClientBodySize.hpp>
+# include <Lexer.hpp>
 
-class Parser
+using namespace Lexer;
+
+namespace Parser
 {
-	private:
+	void ParseConfigFile(std::vector<Server> &servers, const char *fileConf);
 
-		void resetValues();
-		void getServerStartEnd();
-		void getLocationStartEnd();
+	void GetServerStartEnd();
+	void GetLocationStartEnd();
 
-		void getPort();
-		void checkPort(const std::string &port);
-		void getHost();
-		void checkHost(const std::string &host);
-		void getServerName();
-		void checkServerName(const std::string &name);
-		void getErrorPage();
-		void checkErrorPage(const std::vector<std::string> &errorPage);
-		void getClientsBodySize();
-		void getLocationPath();
-		void getMethods();
-		void checkMethod(const std::string &method);
-		void getRedirect();
-		void checkRedirect(const std::vector<std::string> &redirect);
-		void getRootPath(const std::string &mode);
-		void getAutoIndex(const std::string &mode);
-		void getIndex(const std::string &mode);
-		void getCgiExtension();
-		void getCgiPath();
-		void getUploadPath();
-		void getUploadEnable();
-		void setupServerConfig();
+	void GetPort(const Token& token, Server& server);
+	void GetHost(const Token& token, Server& server);
+	void GetServerName(const Token& token, Server& server);
+	void GetErrorPage(const Token& token, Server& server);
+	void CheckErrorPage(const std::vector<std::string> &errorPage, Server& server);
+	void GetClientsBodySize(const Token& token, Server& server);
+	void GetLocationPath(const Token& token, Server& server);
+	void GetMethods(const Token& token, Server& server);
+	void CheckMethod(const std::string &method);
+	void GetRedirect(const Token& token, Server& server);
+	void CheckRedirect(const std::vector<std::string> &redirect);
+	void GetRootPath(bool isServer, const Token& token, Server& server);
+	void GetAutoIndex(bool isServer, const Token& token, Server& server);
+	void GetIndex(bool isServer, const Token& token, Server& server);
+	void GetCgiExtension(const Token& token, Server& server);
+	void GetCgiPath(const Token& token, Server& server);
+	void GetUploadPath(const Token& token, Server& server);
+	void GetUploadEnable(const Token& token, Server& server);
+	void SetupServerConfig(const Token& token, Server& server);
 
-
-	public:
-		static void ParseConfigFile(std::vector<Server> &servers, const char *fileConf);
-
-	class EmptyFile : public std::exception
+class EmptyFile : public std::exception
 	{
 		public:
 			virtual const char *what() const throw()
@@ -310,6 +305,7 @@ class Parser
 				return "Invalid upload enable";
 			}
 	};
-};
 
+}
+	
 #endif

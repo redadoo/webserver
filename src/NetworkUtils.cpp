@@ -14,7 +14,7 @@ const char *NetworkUtils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)
 }
 
 
-bool NetworkUtils::validateIpAddress(const std::string &ipAddress)
+bool NetworkUtils::IsValidateIp(const std::string &ipAddress)
 {
     struct sockaddr_in sa;
     int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));

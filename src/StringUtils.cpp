@@ -1,5 +1,6 @@
-#include <StringUtils.hpp>
-#include <sstream>     
+# include <StringUtils.hpp>
+# include <sstream>     
+# include <cstring>
 
 std::string StringUtils::ToString(int n)
 {
@@ -41,4 +42,15 @@ std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 		tokens.push_back(token);
 	}
 	return tokens;
+}
+
+bool StringUtils::IsAllDigit(const std::string &str)
+{
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if(!isdigit(str[i])) 
+			return false;
+	}
+	
+    return true;
 }

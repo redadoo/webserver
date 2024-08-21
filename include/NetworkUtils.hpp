@@ -7,7 +7,7 @@
 
 namespace NetworkUtils
 {
-    bool validateIpAddress(const std::string &ipAddress);
+    bool IsValidateIp(const std::string &ipAddress);
 
     /// @brief Converts an IPv4 address from binary to text form.
     /// @param addr A pointer to the sockaddr_in structure containing the IPv4 address.

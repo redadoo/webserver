@@ -32,13 +32,11 @@ private:
 
 public:
 	int								serverFd;
-	struct sockaddr_in 				serverAddress;
-
-    ServerConfig					serverConfig;
-
     std::string                     response;
 	std::map<int, Client>			clients;
 	std::vector<std::string>		lastRequest;
+
+    ServerConfig					serverConfig;
 
 	Server();
 

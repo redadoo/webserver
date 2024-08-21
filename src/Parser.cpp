@@ -1,18 +1,16 @@
 # include "Parser.hpp"
 # include <Logger.hpp>
-# include <Lexer.hpp>
 # include <StringUtils.hpp>
+# include <NetworkUtils.hpp>
 
 using namespace StringUtils;
 
 void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 {
-	(void)servers;
 	std::vector<Lexer::Token> tokens = Lexer::GetToken(fileConf);
 
 	Logger::Log("start parsing token...");
 
-	// int index = 0;
 	int tokenSize = tokens.size();
 	
 	if (tokenSize == 0)
@@ -20,66 +18,47 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 
 	for (size_t i = 0; i < tokens.size(); i++)
 	{
-		
+		Server server;
+
+		if (tokens[i].tokenType == startLocationContext)
+		{
+			while (tokens[i].tokenType == endLocationContext)
+			{
+				GetLocationPath(tokens[i], server);
+				GetMethods(tokens[i], server);
+				GetRedirect(tokens[i], server);
+				GetRootPath(false, tokens[i], server);
+				GetAutoIndex(false, tokens[i], server);
+				GetIndex(false, tokens[i], server);
+				GetCgiExtension(tokens[i], server);
+				GetCgiPath(tokens[i], server);
+				GetUploadPath(tokens[i], server);
+				GetUploadEnable(tokens[i], server);
+				// GetLocationStartEnd(tokens[i], server);
+
+				i++;
+			}
+		}
+
+		GetPort(tokens[i], server);
+		GetHost(tokens[i], server);
+		GetServerName(tokens[i], server);
+		GetErrorPage(tokens[i], server);
+		GetClientsBodySize(tokens[i], server);
+		GetRootPath(true, tokens[i], server);
+		GetAutoIndex(true, tokens[i], server);
+
+		servers.push_back(server);
 	}
-	
-	// while (serverStart != -1 && serverEnd != -1)
-	// {
-	// 	getLocationStartEnd();
-	// 	try
-	// 	{
-	// 		while (locationStart != -1 || locationEnd != -1)
-	// 		{
-	// 			if (locationStart == -1 || locationEnd == -1)
-	// 				break;
-	// 			getLocationPath();
-	// 			getMethods();
-	// 			getRedirect();
-	// 			getRootPath("location");
-	// 			getAutoIndex("location");
-	// 			getIndex("location");
-	// 			getCgiExtension();
-	// 			getCgiPath();
-	// 			getUploadPath();
-	// 			getUploadEnable();
-	// 			getLocationStartEnd();
-	// 		}
-	// 		getPort();
-	// 		getHost();
-	// 		getServerName();
-	// 		getErrorPage();
-	// 		getClientsBodySize();
-	// 		getRootPath("server");
-	// 		getAutoIndex("server");
-	// 		resetValues();
-	// 		getServerStartEnd();
-	// 	}
-	// 	catch (const std::exception &e)
-	// 	{
-	// 		Logger::LogException(e);
-	// 		break;
-	// 	}
-	// }
-	// setupServer();
 	
 	Logger::Log("parsing finished");
 }
 
-void Parser::resetValues()
-{
-	// port = 0;
-	// host = "";
-	// locationStart = 0;
-	// locationEnd = -1;
-	// serverNames.clear();
-	// errorPages.clear();
-}
-
-void Parser::getServerStartEnd()
+void Parser::GetServerStartEnd()
 {
 }
 
-void Parser::getLocationStartEnd()
+void Parser::GetLocationStartEnd()
 {
 	// if (locationStart == -1 && locationEnd == -1)
 	// 	return ;
@@ -124,206 +103,130 @@ void Parser::getLocationStartEnd()
 	// locationEnd = -1;
 }
 
-void Parser::getPort()
+void Parser::GetPort(const Token& token, Server& server)
 {
-	// bool portFound = false;
-	// for (int i = serverStart; i < serverEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "listen")
-	// 	{
-	// 		if (portFound)
-	// 			throw TooManyPorts();
-	// 		checkPort(tokens[i].tokenValue);
-	// 		portFound = true;
-	// 	}
-	// }
+	int port;
 
-	// if (!portFound)
-	// 	throw PortNotFound();
+	if (token.tokenName == "listen")
+	{
+		if (server.serverConfig.serverPort == 0)
+		{
+			port = StrintToInt(token.tokenValue);
+
+			if (port < 1 || port > 65535)
+				throw InvalidPort();
+				
+			server.serverConfig.serverPort = port;
+		}
+		else
+			throw TooManyPorts();
+	}
 }
 
-void Parser::checkPort(const std::string &portToCheck)
+void Parser::GetHost(const Token& token, Server& server)
 {
-	(void)portToCheck;
-	// for (size_t i = 0; i < portToCheck.size(); i++)
-	// {
-	// 	if (!isdigit(portToCheck[i]) || portToCheck.size() > 5)
-	// 		throw InvalidPort();
-	// }
-	// port = StrintToInt(portToCheck);
-
-	// if (port < 1 || port > 65535)
-	// 	throw InvalidPort();
+	if (token.tokenName == "host")
+	{
+		if (!server.serverConfig.host.empty())
+			throw TooManyHosts();
+		
+		if (NetworkUtils::IsDomain(token.tokenValue) || NetworkUtils::IsValidateIp(token.tokenValue))
+			server.serverConfig.host = token.tokenValue;
+		else
+			throw InvalidHost();
+	}
 }
 
-void Parser::getHost()
+void Parser::GetServerName(const Token& token, Server& server)
 {
-	// bool hostFound = false;
-	// for (int i = serverStart; i < serverEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "host")
-	// 	{
-	// 		if (hostFound)
-	// 			throw TooManyHosts();
-	// 		checkHost(tokens[i].tokenValue);
-	// 		hostFound = true;
-	// 	}
-	// }
+	std::vector<std::string> names;
 
-	// if (!hostFound)
-	// 	throw HostNotFound();
+	if (token.tokenName == "server_name")
+	{
+		names = StringUtils::Split(token.tokenValue, ' ');
+
+		for (size_t j = 0; j < names.size(); j++)
+		{
+			if (NetworkUtils::IsDomain(names[j]) || NetworkUtils::IsValidateIp(names[j]))
+				server.serverConfig.serverNames.push_back(names[j]);
+			else
+				throw InvalidServerName();
+		}
+	}
 }
 
-void Parser::checkHost(const std::string &host)
+void Parser::GetErrorPage(const Token& token, Server& server)
 {
-	(void)host;
-	// if (isDomain(host))
-	// {
-	// 	this->host = host;
-	// 	return ;
-	// }
-	// if (isIp(host))
-	// {
-	// 	this->host = host;
-	// 	return ;
-	// }
-	// throw InvalidHost();
+	if (token.tokenName == "error_page")
+	{
+		std::vector<std::string> errorPage;
+		errorPage = StringUtils::Split(token.tokenValue, ' ');
+
+		CheckErrorPage(errorPage, server);
+	}
 }
 
-void Parser::getServerName()
+void Parser::CheckErrorPage(const std::vector<std::string> &errorPage,  Server& server)
 {
-	// std::vector<std::string> names;
+	if (errorPage.size() != 2 || errorPage[0].size() != 3)
+		throw InvalidErrorPage();
 
-	// for (int i = serverStart; i < serverEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "server_name")
-	// 	{
-	// 		names = split(tokens[i].tokenValue, ' ');
-	// 		for (size_t j = 0; j < names.size(); j++)
-	// 		{
-	// 			checkServerName(names[j]);
-	// 		}
-	// 	}
-	// }
+	if (!StringUtils::IsAllDigit(errorPage[0]))
+		throw InvalidErrorPage();
+
+	server.serverConfig.errorPage.push_back(CodePath(StrintToInt(errorPage[0]), errorPage[1]));
 }
 
-void Parser::checkServerName(const std::string &name)
+void Parser::GetClientsBodySize(const Token& token, Server& server)
 {
-	(void)name;
-	// if (isDomain(name))
-	// {
-	// 	this->serverNames.push_back(name);
-	// 	return ;
-	// }
-	// if (isIp(name))
-	// {
-	// 	this->serverNames.push_back(name);
-	// 	return ;
-	// }
-	// throw InvalidServerName();
+	if (token.tokenName == "client_max_body_size")
+	{
+		char lastChar = token.tokenValue[token.tokenValue.size() - 1];
+
+		if (!(lastChar == 'K' || lastChar == 'M' || lastChar == 'G'))
+		{
+			if(!StringUtils::IsAllDigit(token.tokenValue))
+					throw InvalidClientBodySize();
+
+			server.serverConfig.clientMaxBody.size = token.tokenValue;
+			server.serverConfig.clientMaxBody.unit =  BYTE;
+		}
+		else
+		{
+			std::string size = token.tokenValue.substr(0, token.tokenValue.size() - 1);
+			
+			if (size.size() == 0)
+				throw InvalidClientBodySize();
+			
+			if(!StringUtils::IsAllDigit(size))
+				throw InvalidClientBodySize();
+			
+			server.serverConfig.clientMaxBody.size = size;
+			
+			if (lastChar == 'K')
+				server.serverConfig.clientMaxBody.unit = KILOBYTE;
+			else if (lastChar == 'M')
+				server.serverConfig.clientMaxBody.unit = MEGABYTE;
+			else if (lastChar == 'G')
+				server.serverConfig.clientMaxBody.unit = GIGABYTE;
+		}
+	}
 }
 
-void Parser::getErrorPage()
+void Parser::GetLocationPath(const Token& token, Server& server)
 {
-	// std::vector<std::string> errorPage;
-	// bool errorPageFound = false;
-
-	// for (int i = serverStart; i < serverEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "error_page")
-	// 	{
-	// 		errorPageFound = true;
-	// 		errorPage = split(tokens[i].tokenValue, ' ');
-	// 		checkErrorPage(errorPage);
-	// 	}
-	// }
-
-	// if (!errorPageFound)
-	// 	throw ErrorPageNotFound();
-}
-
-void Parser::checkErrorPage(const std::vector<std::string> &errorPage)
-{
-	(void)errorPage;
-	// if (errorPage.size() != 2)
-	// 	throw InvalidErrorPage();
-	// if (errorPage[0].size() != 3)
-	// 	throw InvalidErrorPage();
-	// for (size_t i = 0; i < errorPage[0].size(); i++)
-	// {
-	// 	if (!isdigit(errorPage[0][i]))
-	// 		throw InvalidErrorPage();
-	// }
-
-	// for (size_t i = 0; i < errorPages.size(); i++)
-	// {
-	// 	if (errorPages[i].code == StrintToInt(errorPage[0]))
-	// 		throw DuplicateErrorPage();
-	// }
-	// this->errorPages.push_back(CodePath(StrintToInt(errorPage[0]), errorPage[1]));
-}
-
-void Parser::getClientsBodySize()
-{
-	// bool clientBodySizeFound = false;
-	// for (int i = serverStart; i < serverEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "client_max_body_size")
-	// 	{
-	// 		if (clientBodySizeFound)
-	// 			throw TooManyClientBodySize();
-	// 		clientBodySizeFound = true;
-	// 		bool lastCharIsType = false;
-	// 		char lastChar = tokens[i].tokenValue[tokens[i].tokenValue.size() - 1];
-
-	// 		if (lastChar == 'K' || lastChar == 'M' || lastChar == 'G')
-	// 			lastCharIsType = true;
-
-	// 		if (!lastCharIsType)
-	// 		{
-	// 			for (size_t j = 0; j < tokens[i].tokenValue.size(); j++)
-	// 			{
-	// 				if (!isdigit(tokens[i].tokenValue[j]))
-	// 					throw InvalidClientBodySize();
-	// 			}
-	// 			this->clientBodySize.size = tokens[i].tokenValue;
-	// 			this->clientBodySize.unit = BYTE;
-	// 		}
-	// 		else
-	// 		{
-	// 			std::string size = tokens[i].tokenValue.substr(0, tokens[i].tokenValue.size() - 1);
-	// 			if (size.size() == 0)
-	// 				throw InvalidClientBodySize();
-	// 			for (size_t j = 0; j < size.size(); j++)
-	// 			{
-	// 				if (!isdigit(size[j]))
-	// 					throw InvalidClientBodySize();
-	// 			}
-	// 			this->clientBodySize.size = size;
-	// 			if (lastChar == 'K')
-	// 				this->clientBodySize.unit = KILOBYTE;
-	// 			else if (lastChar == 'M')
-	// 				this->clientBodySize.unit = MEGABYTE;
-	// 			else if (lastChar == 'G')
-	// 				this->clientBodySize.unit = GIGABYTE;
-	// 		}
-	// 	}
-	// }
-
-	// if (!clientBodySizeFound)
-	// 	throw ClientBodySizeNotFound();
-}
-
-void Parser::getLocationPath()
-{
+	(void)token;
+	(void)server;
 	// if (tokens[locationStart].tokenName != "location" || tokens[locationStart].tokenValue.size() == 0 || tokens[locationStart].tokenValue[0] != '/')
 	// 	throw InvalidLocation();
 	// locations.push_back(Location());
 	// locations[locations.size() - 1].path = tokens[locationStart].tokenValue;
 }
 
-void Parser::getMethods()
+void Parser::GetMethods(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// std::vector<std::string> methods;
 	// for (int i = locationStart; i < locationEnd; i++)
 	// {
@@ -339,7 +242,7 @@ void Parser::getMethods()
 	// }
 }
 
-void Parser::checkMethod(const std::string &method)
+void Parser::CheckMethod(const std::string &method)
 {
 	(void)method;
 	// if (method != "GET" && method != "POST" && method != "DELETE")
@@ -347,8 +250,10 @@ void Parser::checkMethod(const std::string &method)
 
 }
 
-void Parser::getRedirect()
+void Parser::GetRedirect(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// std::vector<std::string> redirect;
 	// bool redirectFound = false;
 
@@ -365,7 +270,7 @@ void Parser::getRedirect()
 	// }
 }
 
-void Parser::checkRedirect(const std::vector<std::string> &redirect)
+void Parser::CheckRedirect(const std::vector<std::string> &redirect)
 {
 	(void)redirect;
 	// if (redirect.size() == 2)
@@ -388,38 +293,38 @@ void Parser::checkRedirect(const std::vector<std::string> &redirect)
 	// 	throw InvalidRedirect();
 }
 
-void Parser::getRootPath(const std::string &mode)
+void Parser::GetRootPath(bool isServer,const Token& token, Server& server)
 {
-	(void)mode;
-	// if (mode == "server")
-	// {
-	// 	for (int i = serverStart; i < serverEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "root")
-	// 		{
-	// 			if (rootPath.size() != 0)
-	// 				throw TooManyRoots();
-	// 			rootPath = tokens[i].tokenValue;
-	// 		}
-	// 	}
-	// }
-	// else if (mode == "location")
-	// {
-	// 	for (int i = locationStart; i < locationEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "root")
-	// 		{
-	// 			if (locations[locations.size() - 1].rootPath.size() != 0)
-	// 				throw TooManyRoots();
-	// 			locations[locations.size() - 1].rootPath = tokens[i].tokenValue;
-	// 		}
-	// 	}
-	// }
+	if (isServer)
+	{
+		if (token.tokenName == "root")
+		{
+			if(server.serverConfig.serverRoot != "")
+				throw TooManyRoots();
+
+			server.serverConfig.serverRoot = token.tokenValue;
+		}
+	}
+	else
+	{
+		if (token.tokenName == "root")
+		{
+			for (size_t i = 0; i < server.serverConfig.locations.size(); i++)
+			{
+				if (server.serverConfig.locations[i].rootPath.size() != 0)
+					throw TooManyRoots();
+
+				server.serverConfig.locations[i].rootPath = token.tokenValue;
+			}
+		}
+	}
 }
 
-void Parser::getAutoIndex(const std::string &mode)
+void Parser::GetAutoIndex(bool isServer, const Token& token, Server& server)
 {
-	(void)mode;
+	(void)isServer;
+	(void)token;
+	(void)server;
 	// bool foundAutoIndex = false;
 	// if (mode == "server")
 	// {
@@ -459,9 +364,11 @@ void Parser::getAutoIndex(const std::string &mode)
 	// }
 }
 
-void Parser::getIndex(const std::string &mode)
+void Parser::GetIndex(bool isServer, const Token& token, Server& server)
 {
-	(void)mode;
+	(void)isServer;
+	(void)token;
+	(void)server;
 	// std::vector<std::string> index;
 	// if (mode == "server")
 	// {
@@ -497,8 +404,10 @@ void Parser::getIndex(const std::string &mode)
 	// }
 }
 
-void Parser::getCgiExtension()
+void Parser::GetCgiExtension(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// bool cgiExtensionFound = false;
 
 	// for (int i = locationStart; i < locationEnd; i++)
@@ -515,8 +424,10 @@ void Parser::getCgiExtension()
 	// }
 }
 
-void Parser::getCgiPath()
+void Parser::GetCgiPath(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// bool cgiPathFound = false;
 
 	// for (int i = locationStart; i < locationEnd; i++)
@@ -531,8 +442,10 @@ void Parser::getCgiPath()
 	// }
 }
 
-void Parser::getUploadPath()
+void Parser::GetUploadPath(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// bool uploadPathFound = false;
 
 	// for (int i = locationStart; i < locationEnd; i++)
@@ -547,8 +460,10 @@ void Parser::getUploadPath()
 	// }
 }
 
-void Parser::getUploadEnable()
+void Parser::GetUploadEnable(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// bool uploadEnableFound = false;
 
 	// for (int i = locationStart; i < locationEnd; i++)
@@ -568,8 +483,10 @@ void Parser::getUploadEnable()
 	// }
 }
 
-void Parser::setupServerConfig()
+void Parser::SetupServerConfig(const Token& token, Server& server)
 {
+	(void)token;
+	(void)server;
 	// servers.push_back(Server());
 	// servers[servers.size() - 1].serverConfig(port, host, serverNames, rootPath, index, clientBodySize, errorPages, autoIndex, locations);
 }

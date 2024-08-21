@@ -2,8 +2,8 @@
 # include <Logger.hpp>
 # include <FIleUtils.hpp>
 
-using namespace FIleUtils;
-
+using namespace FileUtils;
+  
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
 	Logger::Log("start tokenization Configuration file ...");
@@ -13,7 +13,6 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	std::string 				tempName;
 	std::string 				tempValue;
 	bool 						isLocationBlock = false;
-
 
 	if (!CheckFileExistence(fileName.c_str()))
 		throw FileNotFound();
@@ -41,7 +40,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					{
 						state = SearchingOpenBracket;
 						i += 5; // Skip the "server" keyword
-						tokens.push_back(Token("Server"));
+						tokens.push_back(Token("Server", startServerContext ));
 					}
 					else
 						throw ErrorOnFileConfigurationSyntax();
@@ -63,12 +62,12 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					{
 						if(!isLocationBlock)
 						{
-							tokens.push_back(Token("ServerEnd"));
+							tokens.push_back(Token("ServerEnd", endServerContext));
 							state = SearchingServer;
 						}
 						else
 						{
-							tokens.push_back(Token("LocationEnd"));
+							tokens.push_back(Token("LocationEnd", endLocationContext));
 							isLocationBlock =  false;
 						}
 						break;
@@ -96,7 +95,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (currentChar == ';')
 					{
 						// End of token value, store the token
-						tokens.push_back(Token(tempName, tempValue));
+						tokens.push_back( Token(tempName, tempValue, simpleToken));
 						// Clear temp variables and return to collecting token names
 						tempName.clear();
 						tempValue.clear();
@@ -120,7 +119,11 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (currentChar == '{')
 					{
 						isLocationBlock = true;
-						tokens.push_back( Token(tempName, tempValue));
+						if (tempName != "location")
+							tokens.push_back( Token(tempName, tempValue, simpleToken));
+						else
+							tokens.push_back( Token(tempName, tempValue, startLocationContext));
+
 						tempName.clear();
 						tempValue.clear();
 						state = CollectingTokenName;
