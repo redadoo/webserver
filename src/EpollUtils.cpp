@@ -1,7 +1,6 @@
 # include <EpollUtils.hpp>
 # include <Logger.hpp>
 # include <WebServerException.hpp>
-# include <Utils.hpp>
 
 void EpollUtils::EpollAdd(int epollFd, int fd, uint32_t events)
 {

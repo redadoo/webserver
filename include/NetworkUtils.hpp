@@ -1,6 +1,10 @@
 #ifndef NETWORKUTILS_HPP
 # define NETWORKUTILS_HPP
 
+# include <string>
+# include <arpa/inet.h>
+# include <netinet/in.h>
+
 namespace NetworkUtils
 {
     bool validateIpAddress(const std::string &ipAddress);

@@ -23,12 +23,12 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer Server Parser Lexer StringUtils NetworkUtils FileUtils WebServerSignal Client EpollUtils Logger
+FILES       = main WebServer Server Parser Lexer StringUtils NetworkUtils FIleUtils WebServerSignal Client EpollUtils Logger
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
-HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/Server.hpp  $(LIBDIR)/FileUtils.hpp \
+HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/Server.hpp  $(LIBDIR)/FIleUtils.hpp \
 			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
 			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/Client.hpp \
 			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp $(LIBDIR)/ClientBodySize.hpp \

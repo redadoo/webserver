@@ -1,4 +1,5 @@
 #include <StringUtils.hpp>
+#include <sstream>     
 
 std::string StringUtils::ToString(int n)
 {

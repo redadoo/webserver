@@ -14,7 +14,6 @@ class Parser
 		void resetValues();
 		void getServerStartEnd();
 		void getLocationStartEnd();
-		void setupServer();
 
 		void getPort();
 		void checkPort(const std::string &port);

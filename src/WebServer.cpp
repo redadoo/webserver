@@ -2,8 +2,8 @@
 # include <Logger.hpp>
 # include <WebServer.hpp>
 # include <WebServerSignal.hpp>
-# include <Utils.hpp>
 # include <WebServerException.hpp>
+# include <StringUtils.hpp>
 
 WebServerSignal::SignalState signalState;
 

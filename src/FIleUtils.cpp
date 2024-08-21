@@ -1,4 +1,5 @@
-#include <FIleUtils.hpp>
+# include <FIleUtils.hpp>
+# include <fstream>
 
 bool FIleUtils::CheckFileExistence(const char *fileName)
 {

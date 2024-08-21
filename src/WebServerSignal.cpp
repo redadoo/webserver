@@ -1,6 +1,6 @@
 # include <WebServerSignal.hpp>
 # include <Logger.hpp>
-# include <WebServerException.hpp>
+# include <cstring>
 
 extern  WebServerSignal::SignalState signalState;
 
@@ -22,13 +22,13 @@ void WebServerSignal::SetupSignalHandler()
 
 	// Set up the sigaction to handle SIGINT (Ctrl + C)
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-		throw WebServerException::ErrorOnCannotHandleSigint();
+		throw ErrorOnCannotHandleSigint();
 
 	// Set up the sigaction to handle SIGTSTP (Ctrl + Z)
 	if (sigaction(SIGTSTP, &sa, NULL) == -1)
-		throw WebServerException::ErrorOnCannotHandleSigquit();
+		throw ErrorOnCannotHandleSigquit();
 
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
     if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		throw WebServerException::ErrorOnCannotHandleSigtstp();
+		throw ErrorOnCannotHandleSigtstp();
 }

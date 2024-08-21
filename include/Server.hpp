@@ -25,6 +25,11 @@ private:
     /// @param srcPort Source port of the client.
 	void AddClient(int clientFd,std::string srcIp, uint16_t srcPort);
 
+    class BadResponse : public std::exception {
+		public:
+			virtual const char* what() const throw() { return "Error: unexpected response";}
+	};
+
 public:
 	int								serverFd;
 	struct sockaddr_in 				serverAddress;

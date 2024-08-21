@@ -1,5 +1,5 @@
 # include <NetworkUtils.hpp>
-# include <arpa/inet.h>
+# include <WebServerException.hpp>
 
 const char *NetworkUtils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)
 {

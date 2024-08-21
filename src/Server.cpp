@@ -1,9 +1,9 @@
 # include <EpollUtils.hpp>
 # include <Logger.hpp>
 # include <Server.hpp>
-# include <WebServerException.hpp>
 # include <unistd.h>
-# include <Utils.hpp>
+# include <StringUtils.hpp>
+# include <NetworkUtils.hpp>
 
 Server::Server() {}
 
@@ -153,16 +153,16 @@ void Server::ParseClientResponse(Client &client)
 
 
 	if(client.httpMethod != "GET" && client.httpMethod != "POST" && client.httpMethod != "DELETE")
-	throw WebServerException::BadResponse();
+	throw BadResponse();
 
 	if(client.path.length() > 1024)
-	throw WebServerException::BadResponse();
+	throw BadResponse();
 
 	if(client.path.find("../") != std::string::npos || client.path == ".." )
-	throw WebServerException::BadResponse();
+	throw BadResponse();
 
 	if(client.httpVersion != "HTTP/1.1")
-		throw WebServerException::BadResponse();
+		throw BadResponse();
 
 	if (client.httpMethod == "GET" || client.httpMethod == "DELETE")
 		return;

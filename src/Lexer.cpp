@@ -1,7 +1,6 @@
 # include <Lexer.hpp>
 # include <Logger.hpp>
-# include <Utils.hpp>
-# include <WebServerException.hpp>
+# include <FIleUtils.hpp>
 
 using namespace FIleUtils;
 
@@ -17,7 +16,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 
 
 	if (!CheckFileExistence(fileName.c_str()))
-		throw WebServerException::FileNotFound();
+		throw FileNotFound();
 
 	std::ifstream file(fileName.c_str());
 	ParseState state = SearchingServer;
@@ -45,7 +44,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 						tokens.push_back(Token("Server"));
 					}
 					else
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw ErrorOnFileConfigurationSyntax();
 					break;
 
 				case SearchingOpenBracket:
@@ -56,7 +55,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (currentChar == '{')
 						state = CollectingTokenName;
 					else
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw ErrorOnFileConfigurationSyntax();
 					break;
 
 				case CollectingTokenName:
@@ -89,7 +88,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (isalpha(currentChar) || currentChar == '_' || currentChar == '/')
 						tempName += currentChar;
 					else
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw ErrorOnFileConfigurationSyntax();
 					break;
 
 				case CollectingTokenValue:
@@ -111,7 +110,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					else if (currentChar != '}')
 						tempValue += currentChar;
 					else
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw ErrorOnFileConfigurationSyntax();
 					break;
 				case CollectionLocation:
 
@@ -129,7 +128,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					else if (isalnum(currentChar) || currentChar == '/' || currentChar == '=')
 						tempValue += currentChar;
 					else
-						throw WebServerException::ErrorOnFileConfigurationSyntax();
+						throw ErrorOnFileConfigurationSyntax();
 					break;
 
 			}
