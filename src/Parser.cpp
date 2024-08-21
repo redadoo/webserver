@@ -20,87 +20,45 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 	{
 		Server server;
 
-		if (tokens[i].tokenType == startLocationContext)
+		if (tokens[i].tokenType == startServerContext)
 		{
-			while (tokens[i].tokenType == endLocationContext)
+			while (tokens[i].tokenType != endServerContext)
 			{
-				GetLocationPath(tokens[i], server);
-				GetMethods(tokens[i], server);
-				GetRedirect(tokens[i], server);
-				GetRootPath(false, tokens[i], server);
-				GetAutoIndex(false, tokens[i], server);
-				GetIndex(false, tokens[i], server);
-				GetCgiExtension(tokens[i], server);
-				GetCgiPath(tokens[i], server);
-				GetUploadPath(tokens[i], server);
-				GetUploadEnable(tokens[i], server);
-				// GetLocationStartEnd(tokens[i], server);
+				if (tokens[i].tokenType == startLocationContext)
+				{
+					while (tokens[i].tokenType == endLocationContext)
+					{
+						GetLocationPath(tokens[i], server);
+						GetMethods(tokens[i], server);
+						GetRedirect(tokens[i], server);
+						GetRootPath(false, tokens[i], server);
+						GetAutoIndex(false, tokens[i], server);
+						GetIndex(false, tokens[i], server);
+						GetCgiExtension(tokens[i], server);
+						GetCgiPath(tokens[i], server);
+						GetUploadPath(tokens[i], server);
+						GetUploadEnable(tokens[i], server);
 
+						i++;
+					}
+				}
+
+				GetPort(tokens[i], server);
+				GetHost(tokens[i], server);
+				GetServerName(tokens[i], server);
+				GetErrorPage(tokens[i], server);
+				GetClientsBodySize(tokens[i], server);
+				GetRootPath(true, tokens[i], server);
+				GetAutoIndex(true, tokens[i], server);
 				i++;
 			}
+
+			servers.push_back(server);
 		}
 
-		GetPort(tokens[i], server);
-		GetHost(tokens[i], server);
-		GetServerName(tokens[i], server);
-		GetErrorPage(tokens[i], server);
-		GetClientsBodySize(tokens[i], server);
-		GetRootPath(true, tokens[i], server);
-		GetAutoIndex(true, tokens[i], server);
-
-		servers.push_back(server);
 	}
 	
 	Logger::Log("parsing finished");
-}
-
-void Parser::GetServerStartEnd()
-{
-}
-
-void Parser::GetLocationStartEnd()
-{
-	// if (locationStart == -1 && locationEnd == -1)
-	// 	return ;
-
-	// if (locationEnd == -1)
-	// {
-	// 	for (int i = serverStart; i < serverEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "location")
-	// 		{
-	// 			locationStart = i;
-	// 			for (int j = locationStart; j < serverEnd; j++)
-	// 			{
-	// 				if (tokens[j].tokenName == "LocationEnd")
-	// 				{
-	// 					locationEnd = j;
-	// 					return ;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// else
-	// {
-	// 	for (int i = locationEnd + 1; i < serverEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "location")
-	// 		{
-	// 			locationStart = i;
-	// 			for (int j = locationStart; j < serverEnd; j++)
-	// 			{
-	// 				if (tokens[j].tokenName == "LocationEnd")
-	// 				{
-	// 					locationEnd = j;
-	// 					return ;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// locationStart = -1;
-	// locationEnd = -1;
 }
 
 void Parser::GetPort(const Token& token, Server& server)
@@ -215,82 +173,61 @@ void Parser::GetClientsBodySize(const Token& token, Server& server)
 
 void Parser::GetLocationPath(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// if (tokens[locationStart].tokenName != "location" || tokens[locationStart].tokenValue.size() == 0 || tokens[locationStart].tokenValue[0] != '/')
-	// 	throw InvalidLocation();
-	// locations.push_back(Location());
-	// locations[locations.size() - 1].path = tokens[locationStart].tokenValue;
+	if (token.tokenName != "location" || token.tokenValue.size() == 0 || token.tokenValue[0] != '/')
+		throw InvalidLocation();
+	
+	Location location;
+	
+	location.path = token.tokenValue;
+	server.serverConfig.locations.push_back(location);
 }
 
 void Parser::GetMethods(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// std::vector<std::string> methods;
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "allow_methods")
-	// 	{
-	// 		methods = split(tokens[i].tokenValue, ' ');
-	// 		for (size_t j = 0; j < methods.size(); j++)
-	// 		{
-	// 			checkMethod(methods[j]);
-	// 			locations[locations.size() - 1].methods.push_back(methods[j]);
-	// 		}
-	// 	}
-	// }
-}
 
-void Parser::CheckMethod(const std::string &method)
-{
-	(void)method;
-	// if (method != "GET" && method != "POST" && method != "DELETE")
-	// 	throw InvalidMethod();
+	if (token.tokenName == "allow_methods")
+	{
+		std::vector<std::string> methods;
+		
+		methods = StringUtils::Split(token.tokenValue, ' ');
 
+		for (size_t i = 0; i < methods.size(); i++)
+		{
+			if (methods[i] != "GET" && methods[i] != "POST" && methods[i] != "DELETE")
+				throw InvalidMethod();
+
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].methods.push_back(methods[i]);
+		}
+	}
 }
 
 void Parser::GetRedirect(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// std::vector<std::string> redirect;
-	// bool redirectFound = false;
+	if (token.tokenName == "return")
+	{
+		std::vector<std::string> redirect;
 
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "return")
-	// 	{
-	// 		if (redirectFound)
-	// 			throw TooManyRedirects();
-	// 		redirectFound = true;
-	// 		redirect = split(tokens[i].tokenValue, ' ');
-	// 		checkRedirect(redirect);
-	// 	}
-	// }
-}
+		if (server.serverConfig.locations[server.serverConfig.locations.size() - 1].redirect.code != 0)
+			throw TooManyRedirects();
 
-void Parser::CheckRedirect(const std::vector<std::string> &redirect)
-{
-	(void)redirect;
-	// if (redirect.size() == 2)
-	// {
-	// 	for (size_t i = 0; i < redirect[0].size(); i++)
-	// 	{
-	// 		if (!isdigit(redirect[0][i]))
-	// 			throw InvalidRedirect();
-	// 	}
+		redirect = StringUtils::Split(token.tokenValue, ' ');
 
-	// 	locations[locations.size() - 1].redirect.code = StrintToInt(redirect[0]);
-	// 	locations[locations.size() - 1].redirect.path = redirect[1];
-	// }
-	// else if (redirect.size() == 1)
-	// {
-	// 	locations[locations.size() - 1].redirect.code = 302;
-	// 	locations[locations.size() - 1].redirect.path = redirect[0];
-	// }
-	// else
-	// 	throw InvalidRedirect();
+		if (redirect.size() == 2)
+		{
+			if (!StringUtils::IsAllDigit(redirect[0]))
+					throw InvalidRedirect();
+
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].redirect.code = StrintToInt(redirect[0]);
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].redirect.path = redirect[1];
+		}
+		else if (redirect.size() == 1)
+		{
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].redirect.code = 302;
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].redirect.path = redirect[0];
+		}
+		else
+			throw InvalidRedirect();
+		}
 }
 
 void Parser::GetRootPath(bool isServer,const Token& token, Server& server)
@@ -322,172 +259,118 @@ void Parser::GetRootPath(bool isServer,const Token& token, Server& server)
 
 void Parser::GetAutoIndex(bool isServer, const Token& token, Server& server)
 {
-	(void)isServer;
-	(void)token;
-	(void)server;
-	// bool foundAutoIndex = false;
-	// if (mode == "server")
-	// {
-	// 	for (int i = serverStart; i < serverEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "auto_index")
-	// 		{
-	// 			if (foundAutoIndex)
-	// 				throw TooManyAutoIndexes();
-	// 			foundAutoIndex = true;
-	// 			if (tokens[i].tokenValue == "on")
-	// 				autoIndex = true;
-	// 			else if (tokens[i].tokenValue == "off")
-	// 				autoIndex = false;
-	// 			else
-	// 				throw InvalidAutoIndex();
-	// 		}
-	// 	}
-	// }
-	// else if (mode == "location")
-	// {
-	// 	for (int i = locationStart; i < locationEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "auto_index")
-	// 		{
-	// 			if (foundAutoIndex)
-	// 				throw TooManyAutoIndexes();
-	// 			foundAutoIndex = true;
-	// 			if (tokens[i].tokenValue == "on")
-	// 				locations[locations.size() - 1].autoIndex = true;
-	// 			else if (tokens[i].tokenValue == "off")
-	// 				locations[locations.size() - 1].autoIndex = false;
-	// 			else
-	// 				throw InvalidAutoIndex();
-	// 		}
-	// 	}
-	// }
+	if (isServer)
+	{
+		if (token.tokenName == "auto_index")
+		{
+			if (server.serverConfig.isInitAutoindex)
+				throw TooManyAutoIndexes();
+
+			server.serverConfig.isInitAutoindex = true;
+			if (token.tokenValue == "on")
+				server.serverConfig.autoIndex = true;
+			else if (token.tokenValue == "off")
+				server.serverConfig.autoIndex = false;
+			else
+				throw InvalidAutoIndex();
+		}
+	}
+	else
+	{
+		if (token.tokenName == "auto_index")
+		{
+			if (server.serverConfig.isInitAutoindex)
+				throw TooManyAutoIndexes();
+
+			server.serverConfig.isInitAutoindex = true;
+			if (token.tokenValue == "on")
+				server.serverConfig.locations[server.serverConfig.locations.size() - 1].autoIndex = true;
+			else if (token.tokenValue == "off")
+				server.serverConfig.locations[server.serverConfig.locations.size() - 1].autoIndex = false;
+			else
+				throw InvalidAutoIndex();
+		}
+	}
 }
 
 void Parser::GetIndex(bool isServer, const Token& token, Server& server)
 {
-	(void)isServer;
-	(void)token;
-	(void)server;
-	// std::vector<std::string> index;
-	// if (mode == "server")
-	// {
-	// 	for (int i = serverStart; i < serverEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "index")
-	// 		{
-	// 			index = split(tokens[i].tokenValue, ' ');
-	// 			for (size_t j = 0; j < index.size(); j++)
-	// 			{
-	// 				if (index[j].size() == 0)
-	// 					throw InvalidIndex();
-	// 				this->index.push_back(index[j]);
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// else if (mode == "location")
-	// {
-	// 	for (int i = locationStart; i < locationEnd; i++)
-	// 	{
-	// 		if (tokens[i].tokenName == "index")
-	// 		{
-	// 			index = split(tokens[i].tokenValue, ' ');
-	// 			for (size_t j = 0; j < index.size(); j++)
-	// 			{
-	// 				if (index[j].size() == 0)
-	// 					throw InvalidIndex();
-	// 				locations[locations.size() - 1].index.push_back(index[j]);
-	// 			}
-	// 		}
-	// 	}
-	// }
+	std::vector<std::string> index;
+	if (isServer)
+	{
+		if (token.tokenName == "index")
+		{
+			index = StringUtils::Split(token.tokenValue, ' ');
+			for (size_t j = 0; j < index.size(); j++)
+			{
+				if (index[j].size() == 0)
+					throw InvalidIndex();
+				server.serverConfig.indexPages.push_back(index[j]);
+			}
+		}
+	}
+	else
+	{
+		if (token.tokenName == "index")
+		{
+			index = StringUtils::Split(token.tokenValue, ' ');
+			for (size_t j = 0; j < index.size(); j++)
+			{
+				if (index[j].size() == 0)
+					throw InvalidIndex();
+				server.serverConfig.locations[server.serverConfig.locations.size() - 1].index.push_back(index[j]);
+			}
+		}
+	}
 }
 
 void Parser::GetCgiExtension(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// bool cgiExtensionFound = false;
+	if (token.tokenName == "cgi_extension")
+	{
+		if(!server.serverConfig.locations[server.serverConfig.locations.size() - 1].cgiExtension.empty())
+			throw TooManyCgiExtensions();
+		
+		if (token.tokenValue.size() == 0 || token.tokenValue[0] != '.')
+			throw InvalidCgiExtension();
 
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "cgi_extension")
-	// 	{
-	// 		if (cgiExtensionFound)
-	// 			throw TooManyCgiExtensions();
-	// 		if (tokens[i].tokenValue.size() == 0 || tokens[i].tokenValue[0] != '.')
-	// 			throw InvalidCgiExtension();
-	// 		cgiExtensionFound = true;
-	// 		locations[locations.size() - 1].cgiExtension = tokens[i].tokenValue;
-	// 	}
-	// }
+		server.serverConfig.locations[server.serverConfig.locations.size() - 1].cgiExtension = token.tokenValue;
+	}
 }
 
 void Parser::GetCgiPath(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// bool cgiPathFound = false;
-
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "cgi_path")
-	// 	{
-	// 		if (cgiPathFound)
-	// 			throw TooManyCgiPaths();
-	// 		cgiPathFound = true;
-	// 		locations[locations.size() - 1].cgiPath = tokens[i].tokenValue;
-	// 	}
-	// }
+	if (token.tokenName == "cgi_path")
+	{
+		if(!server.serverConfig.locations[server.serverConfig.locations.size() - 1].cgiPath.empty())
+			throw TooManyCgiPaths();
+		server.serverConfig.locations[server.serverConfig.locations.size() - 1].cgiPath = token.tokenValue;
+	}
 }
 
 void Parser::GetUploadPath(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// bool uploadPathFound = false;
-
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "upload_path")
-	// 	{
-	// 		if (uploadPathFound)
-	// 			throw TooManyUploadPaths();
-	// 		uploadPathFound = true;
-	// 		locations[locations.size() - 1].uploadPath = tokens[i].tokenValue;
-	// 	}
-	// }
+	if (token.tokenName == "upload_path")
+	{
+		if(!server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadPath.empty())
+			throw TooManyCgiPaths();
+		server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadPath = token.tokenValue;
+	}
 }
 
 void Parser::GetUploadEnable(const Token& token, Server& server)
 {
-	(void)token;
-	(void)server;
-	// bool uploadEnableFound = false;
+	if (token.tokenName == "upload_enable")
+	{
+		if(!server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadEnableFind == false)
+			throw TooManyUploadEnables();
 
-	// for (int i = locationStart; i < locationEnd; i++)
-	// {
-	// 	if (tokens[i].tokenName == "upload_enable")
-	// 	{
-	// 		if (uploadEnableFound)
-	// 			throw TooManyUploadEnables();
-	// 		uploadEnableFound = true;
-	// 		if (tokens[i].tokenValue == "on")
-	// 			locations[locations.size() - 1].uploadEnable = true;
-	// 		else if (tokens[i].tokenValue == "off")
-	// 			locations[locations.size() - 1].uploadEnable = false;
-	// 		else
-	// 			throw InvalidUploadEnable();
-	// 	}
-	// }
+		server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadEnableFind = true;
+		if (token.tokenValue == "on")
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadEnable = true;
+		else if (token.tokenValue == "off")
+			server.serverConfig.locations[server.serverConfig.locations.size() - 1].uploadEnable = false;
+		else
+			throw InvalidUploadEnable();
+	}
 }
-
-void Parser::SetupServerConfig(const Token& token, Server& server)
-{
-	(void)token;
-	(void)server;
-	// servers.push_back(Server());
-	// servers[servers.size() - 1].serverConfig(port, host, serverNames, rootPath, index, clientBodySize, errorPages, autoIndex, locations);
-}
-

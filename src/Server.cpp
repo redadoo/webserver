@@ -6,7 +6,10 @@
 # include <NetworkUtils.hpp>
 # include <WebServerException.hpp>
 
-Server::Server() {}
+Server::Server() : serverConfig() 
+{
+	
+}
 
 void Server::InitSocket(int epollFd)
 {

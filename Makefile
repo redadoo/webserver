@@ -6,7 +6,7 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/21 02:12:46 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/21 22:01:23 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCDIR      = src
 LIBDIR      = include
 
 # Specify source files
-FILES       = main WebServer Server Parser Lexer StringUtils NetworkUtils FIleUtils WebServerSignal Client EpollUtils Logger
+FILES       = main WebServer Server Parser Lexer StringUtils NetworkUtils FIleUtils WebServerSignal Client EpollUtils Logger ServerConfig
 SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 

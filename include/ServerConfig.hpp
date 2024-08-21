@@ -18,8 +18,11 @@ struct ServerConfig
 	std::vector<CodePath>					errorPage;
 	std::vector<Location>					locations;
 	bool									autoIndex;
+	bool									isInitAutoindex;
 	uint16_t								serverPort;
 	std::string								socketIp;
+
+	ServerConfig();
 };
 
 

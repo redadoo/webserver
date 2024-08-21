@@ -17,6 +17,7 @@ struct Location
 	std::string uploadPath;
 	bool autoIndex;
 	bool uploadEnable;
+	bool uploadEnableFind;
 };
 
 #endif
