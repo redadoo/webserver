@@ -69,13 +69,25 @@ void Logger::ClientLog(const Server& server, const Client &client, const char *m
 }
 
 
+void Logger::StartRequestLog(const Server &server, const Client &client)
+{
+	WriteCurrentDataTime();
+
+	if (logFile.is_open())
+	{
+		logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << " send a request to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
+	}
+	else
+		std::cerr << "Log file is not open." << std::endl;
+}
+
 void Logger::StartResponseLog(const Server &server, const Client &client)
 {
 	WriteCurrentDataTime();
 
 	if (logFile.is_open())
 	{
-		logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << " send bytes to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort << std::endl;
+		logFile << "Server " << server.serverConfig.socketIp << ":" << server.serverConfig.serverPort << " send a response to client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;
@@ -86,6 +98,16 @@ void Logger::ResponseLog(const std::string &respone)
 	if (logFile.is_open())
 	{
 		logFile << "[ StartResponseBlock ] " << std::endl << respone << "[ EndResponseBlock ]" << std::endl;
+	}
+	else
+		std::cerr << "Log file is not open." << std::endl;
+}
+
+void Logger::RequestLog(const std::string &respone)
+{
+	if (logFile.is_open())
+	{
+		logFile << "[ StartRequestBlock ] " << std::endl << respone << "[ EndRequestBlock ]" << std::endl;
 	}
 	else
 		std::cerr << "Log file is not open." << std::endl;

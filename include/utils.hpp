@@ -24,6 +24,8 @@ namespace utils
     /// @return A string representation of the number.
     std::string ToString(int n);
 
+    int StrintToInteger(const std::string& str);
+
     /// @brief Converts an IPv4 address from binary to text form.
     /// @param addr A pointer to the sockaddr_in structure containing the IPv4 address.
     /// @param src_ip_buf A buffer to store the converted IP address.
