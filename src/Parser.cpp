@@ -46,6 +46,7 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 				GetPort(tokens[i], server);
 				GetHost(tokens[i], server);
 				GetServerName(tokens[i], server);
+				GetIndex(true, tokens[i], server);
 				GetErrorPage(tokens[i], server);
 				GetClientsBodySize(tokens[i], server);
 				GetRootPath(true, tokens[i], server);
