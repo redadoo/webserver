@@ -6,7 +6,7 @@ using namespace FIleUtils;
 
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
-	Logger::Log("start parsing Configuration file ...");
+	Logger::Log("start tokenization Configuration file ...");
 
 	std::string 				line;
 	std::vector<Lexer::Token> 	tokens;
@@ -134,6 +134,9 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 			}
 		}
 	}
+
+	Logger::Log("tokenization finished");
+
 	file.close();
 	return (tokens);
 

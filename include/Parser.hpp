@@ -10,7 +10,6 @@ class Parser
 {
 	private:
 
-		bool isDomain(std::string str);
 		void resetValues();
 		void getServerStartEnd();
 		void getLocationStartEnd();

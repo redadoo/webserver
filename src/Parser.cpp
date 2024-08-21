@@ -7,35 +7,22 @@ using namespace StringUtils;
 
 void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 {
-	(void)fileConf;
 	(void)servers;
+	std::vector<Lexer::Token> tokens = Lexer::GetToken(fileConf);
 
-	// int serverStart = 0;
-	// int serverEnd = -1;
-	// int locationStart = 0;
-	// int locationEnd = -1;
+	Logger::Log("start parsing token...");
 
-	// std::vector<Lexer::Token> tokens = Lexer::GetToken(fileConf);
+	// int index = 0;
+	int tokenSize = tokens.size();
+	
+	if (tokenSize == 0)
+		return;
 
-	// int tokenSize = tokens.size();
-
-	// if (serverEnd == tokenSize - 1)
-	// {
-	// 	serverStart = -1;
-	// 	serverEnd = -1;
-	// 	return ;
-	// }
-	// serverStart = serverEnd + 1;
-
-	// for (size_t i = serverStart; i < tokens.size(); i++)
-	// {
-	// 	if (tokens[i].tokenName == "ServerEnd")
-	// 	{
-	// 		serverEnd = i;
-	// 		return;
-	// 	}
-	// }
-
+	for (size_t i = 0; i < tokens.size(); i++)
+	{
+		
+	}
+	
 	// while (serverStart != -1 && serverEnd != -1)
 	// {
 	// 	getLocationStartEnd();
@@ -73,8 +60,9 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 	// 		break;
 	// 	}
 	// }
-
 	// setupServer();
+	
+	Logger::Log("parsing finished");
 }
 
 void Parser::resetValues()

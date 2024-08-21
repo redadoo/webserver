@@ -4,6 +4,7 @@
 # include <unistd.h>
 # include <StringUtils.hpp>
 # include <NetworkUtils.hpp>
+# include <WebServerException.hpp>
 
 Server::Server() {}
 

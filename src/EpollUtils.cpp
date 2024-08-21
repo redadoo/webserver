@@ -38,13 +38,15 @@ bool EpollUtils::EpollCheckEventError(uint32_t events)
 
 int EpollUtils::EpollInit()
 {
+	Logger::Log("start create a new epoll instance");
+
 	int epollFd;
 
 	epollFd = epoll_create1(0);
 	if (epollFd < 0)
 		throw WebServerException::ExceptionErrno("epoll_create() failed ", errno);
 	
-	Logger::Log("Creates a new epoll instance");
-	
+	Logger::Log("init epoll instance successfully");
+
 	return epollFd;
 }

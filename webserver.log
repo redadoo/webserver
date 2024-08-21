@@ -1,0 +1,11 @@
+[2024-8-21 14:10:11] start tokenization Configuration file ...
+[2024-8-21 14:10:11] tokenization finished
+[2024-8-21 14:10:11] start parsing token...
+[2024-8-21 14:10:11] parsing finished
+[2024-8-21 14:10:11] signal handling started
+[2024-8-21 14:10:11] handled the signals successfully
+[2024-8-21 14:10:11] start create a new epoll instance
+[2024-8-21 14:10:11] init epoll instance successfully
+[2024-8-21 14:10:11] successfully init all servers data
+[2024-8-21 14:10:11] Closing WebServer ...
+[2024-8-21 14:10:11] all resources released and Web Server closed successfully

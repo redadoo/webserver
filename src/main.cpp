@@ -4,17 +4,14 @@
 int main(int argc, char **argv)
 {
 	WebServer *webServer;
-
-	Logger::Init();
+	const char *configFile = (argc == 2) ? argv[1] : "config/default.conf";
 	
-	if (argc == 1)
-		webServer = new WebServer();
-	if (argc == 2) 
-		webServer = new WebServer(argv[1]);
+	Logger::Init();
 
+	webServer = new WebServer();
 	try {
-		webServer->InitServer();
-		webServer->StartServer();
+		webServer->InitServer(configFile);
+		// webServer->StartServer();
 	}
 	catch(const std::exception& e) {
 		Logger::LogException(e);
@@ -24,6 +21,6 @@ int main(int argc, char **argv)
 	
 	delete webServer;
 	
-	Logger::Log("WebServer closed ");
+	Logger::Log("all resources released and Web Server closed successfully");
 	
 }

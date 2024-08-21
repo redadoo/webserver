@@ -6,7 +6,6 @@
 # include "unistd.h"
 # include <Client.hpp>
 
-# define DEFAULT_CONFIG_FILE "config/default.conf"
 # define MAX_EVENTS 32
 # define TIMEOUT 3000
 
@@ -35,11 +34,7 @@ public:
 	void StartServer();
 
 	/// @brief Initializes the server based on parsed configuration data.
-	void InitServer();
-
-	/// @brief Constructor that allows specifying a custom configuration file.
-	/// @param filePath Path to the custom configuration file.
-	WebServer(const char *filePath);
+	void InitServer(const char *configFIle);
 
 	WebServer();
 	~WebServer();

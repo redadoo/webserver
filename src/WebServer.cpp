@@ -7,32 +7,19 @@
 
 WebServerSignal::SignalState signalState;
 
-WebServer::WebServer() {
-	try {
-		Parser::ParseConfigFile(servers, DEFAULT_CONFIG_FILE);
-	} catch (const std::exception &e) {
-		Logger::LogException(e);
-	}
-}
-
-WebServer::WebServer(const char *filePath) {
-	try {
-		Parser::ParseConfigFile(servers, filePath);
-	} catch (const std::exception &e) {
-		Logger::LogException(e);
-	}
-}
+WebServer::WebServer() {}
 
 WebServer::~WebServer() {
 	CleanUpAll();
 }
 
-void WebServer::InitServer()
+void WebServer::InitServer(const char *configFIle)
 {
-	epollFd = EpollUtils::EpollInit();
+	Parser::ParseConfigFile(servers, configFIle);
 
 	WebServerSignal::SetupSignalHandler();
-	Logger::Log("handled the signals successfully");
+
+	epollFd = EpollUtils::EpollInit();
 
 	for (size_t i = 0; i < servers.size(); i++)
 		servers[i].Init(epollFd);

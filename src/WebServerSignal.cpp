@@ -12,6 +12,8 @@ void WebServerSignal::HandleSigstp(int sig)
 
 void WebServerSignal::SetupSignalHandler()
 {
+	Logger::Log("signal handling started");
+
     struct sigaction	sa;
 
 	signalState.signCaught = false;
@@ -31,4 +33,7 @@ void WebServerSignal::SetupSignalHandler()
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
     if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		throw ErrorOnCannotHandleSigtstp();
+
+	Logger::Log("handled the signals successfully");
+
 }
