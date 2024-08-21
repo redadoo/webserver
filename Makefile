@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+         #
+#    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/13 15:48:24 by evocatur         ###   ########.fr        #
+#    Updated: 2024/08/21 02:12:46 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
 HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/Server.hpp $(LIBDIR)/utils.hpp \
 			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
 			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/Client.hpp \
-			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp
+			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp $(LIBDIR)/ClientBodySize.hpp \
+			  $(LIBDIR)/CodePath.hpp $(LIBDIR)/Location.hpp
 
 # Include the lib/ directory for header files
 INC         = -I$(LIBDIR)

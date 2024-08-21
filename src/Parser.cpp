@@ -1,50 +1,80 @@
 # include "Parser.hpp"
 # include <Logger.hpp>
+# include <Lexer.hpp>
 
-// void Parser::FillServer(std::vector<Server> &Servers, const char *fileConf)
-// {
-// 	std::vector<Token> tokens = Lexer::GetToken(fileConf);
-
-// 	ConfFileParser::setupServer(tokens);
-
-
-// 	Servers.push_back(Server
-// 	(
-// 		8002,
-// 		"9999",
-// 		"index.html",
-// 		"locahost",
-// 		"web-page",
-// 		"127.0.0.1",
-// 		"web-page/error-pages/404.html"
-// 	));
-
-// 	Servers.push_back(Server
-// 	(
-// 		8003,
-// 		"9999",
-// 		"index.html",
-// 		"locahost",
-// 		"web-page",
-// 		"127.0.0.1",
-// 		"web-page/error-pages/404.html"
-// 	));
-
-// 	Logger::Log("finished parsing Configuration file");
-// }
-
-ConfFileParser::ConfFileParser(std::vector<Server> &Servers, const char *fileConf)
+void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 {
-	this->servers = Servers;
-	serverStart = 0;
-	serverEnd = -1;
-	locationStart = 0;
-	locationEnd = -1;
-	tokens = Lexer::GetToken(fileConf);
-	setupServer();
+	(void)fileConf;
+	(void)servers;
+
+	int serverStart = 0;
+	int serverEnd = -1;
+	int locationStart = 0;
+	int locationEnd = -1;
+
+	std::vector<Lexer::Token> tokens = Lexer::GetToken(fileConf);
+
+	int tokenSize = tokens.size();
+
+	if (serverEnd == tokenSize - 1)
+	{
+		serverStart = -1;
+		serverEnd = -1;
+		return ;
+	}
+	serverStart = serverEnd + 1;
+
+	for (size_t i = serverStart; i < tokens.size(); i++)
+	{
+		if (tokens[i].tokenName == "ServerEnd")
+		{
+			serverEnd = i;
+			return;
+		}
+	}
+
+	while (serverStart != -1 && serverEnd != -1)
+	{
+		getLocationStartEnd();
+		try
+		{
+			while (locationStart != -1 || locationEnd != -1)
+			{
+				if (locationStart == -1 || locationEnd == -1)
+					break;
+				getLocationPath();
+				getMethods();
+				getRedirect();
+				getRootPath("location");
+				getAutoIndex("location");
+				getIndex("location");
+				getCgiExtension();
+				getCgiPath();
+				getUploadPath();
+				getUploadEnable();
+				getLocationStartEnd();
+			}
+			getPort();
+			getHost();
+			getServerName();
+			getErrorPage();
+			getClientsBodySize();
+			getRootPath("server");
+			getAutoIndex("server");
+			resetValues();
+			getServerStartEnd();
+		}
+		catch (const std::exception &e)
+		{
+			Logger::LogException(e);
+			break;
+		}
+	}
+
+	// setupServer();
 }
 
-int ConfFileParser::stringToInt(std::string str)
+int Parser::stringToInt(std::string str)
 {
 	int num = 0;
 	for (size_t i = 0; i < str.size(); i++)
@@ -56,7 +86,7 @@ int ConfFileParser::stringToInt(std::string str)
 	return num;
 }
 
-std::vector<std::string> ConfFileParser::split(std::string str, char delim)
+std::vector<std::string> Parser::split(std::string str, char delim)
 {
 	std::vector<std::string> tokens;
 	std::string token;
@@ -68,7 +98,7 @@ std::vector<std::string> ConfFileParser::split(std::string str, char delim)
 	return tokens;
 }
 
-bool ConfFileParser::isDomain(std::string str)
+bool Parser::isDomain(std::string str)
 {
 	int numDots = 0;
 	std::string label;
@@ -102,7 +132,7 @@ bool ConfFileParser::isDomain(std::string str)
 	return true;
 }
 
-bool ConfFileParser::isIp(std::string str)
+bool Parser::isIp(std::string str)
 {
 	std::string octet;
 	int numDots = 0;
@@ -132,7 +162,7 @@ bool ConfFileParser::isIp(std::string str)
 	return true;
 }
 
-void ConfFileParser::resetValues()
+void Parser::resetValues()
 {
 	port = 0;
 	host = "";
@@ -142,28 +172,12 @@ void ConfFileParser::resetValues()
 	errorPages.clear();
 }
 
-void ConfFileParser::getServerStartEnd()
+void Parser::getServerStartEnd(int tokenSize)
 {
-	int tokenSize = tokens.size();
-	if (serverEnd == tokenSize - 1)
-	{
-		serverStart = -1;
-		serverEnd = -1;
-		return ;
-	}
-	serverStart = serverEnd + 1;
 
-	for (size_t i = serverStart; i < tokens.size(); i++)
-	{
-		if (tokens[i].tokenName == "ServerEnd")
-		{
-			serverEnd = i;
-			return;
-		}
-	}
 }
 
-void ConfFileParser::getLocationStartEnd()
+void Parser::getLocationStartEnd()
 {
 	if (locationStart == -1 && locationEnd == -1)
 		return ;
@@ -208,50 +222,7 @@ void ConfFileParser::getLocationStartEnd()
 	locationEnd = -1;
 }
 
-void ConfFileParser::setupServer()
-{
-	getServerStartEnd();
-
-	while (serverStart != -1 && serverEnd != -1)
-	{
-		getLocationStartEnd();
-		try
-		{
-			while (locationStart != -1 || locationEnd != -1)
-			{
-				if (locationStart == -1 || locationEnd == -1)
-					break;
-				getLocationPath();
-				getMethods();
-				getRedirect();
-				getRootPath("location");
-				getAutoIndex("location");
-				getIndex("location");
-				getCgiExtension();
-				getCgiPath();
-				getUploadPath();
-				getUploadEnable();
-				getLocationStartEnd();
-			}
-			getPort();
-			getHost();
-			getServerName();
-			getErrorPage();
-			getClientsBodySize();
-			getRootPath("server");
-			getAutoIndex("server");
-			resetValues();
-			getServerStartEnd();
-		}
-		catch (const std::exception &e)
-		{
-			Logger::LogException(e);
-			break;
-		}
-	}
-}
-
-void ConfFileParser::getPort()
+void Parser::getPort()
 {
 	bool portFound = false;
 	for (int i = serverStart; i < serverEnd; i++)
@@ -269,7 +240,7 @@ void ConfFileParser::getPort()
 		throw PortNotFound();
 }
 
-void ConfFileParser::checkPort(const std::string &portToCheck)
+void Parser::checkPort(const std::string &portToCheck)
 {
 	for (size_t i = 0; i < portToCheck.size(); i++)
 	{
@@ -282,7 +253,7 @@ void ConfFileParser::checkPort(const std::string &portToCheck)
 		throw InvalidPort();
 }
 
-void ConfFileParser::getHost()
+void Parser::getHost()
 {
 	bool hostFound = false;
 	for (int i = serverStart; i < serverEnd; i++)
@@ -300,7 +271,7 @@ void ConfFileParser::getHost()
 		throw HostNotFound();
 }
 
-void ConfFileParser::checkHost(const std::string &host)
+void Parser::checkHost(const std::string &host)
 {
 
 	if (isDomain(host))
@@ -316,7 +287,7 @@ void ConfFileParser::checkHost(const std::string &host)
 	throw InvalidHost();
 }
 
-void ConfFileParser::getServerName()
+void Parser::getServerName()
 {
 	std::vector<std::string> names;
 
@@ -333,7 +304,7 @@ void ConfFileParser::getServerName()
 	}
 }
 
-void ConfFileParser::checkServerName(const std::string &name)
+void Parser::checkServerName(const std::string &name)
 {
 	if (isDomain(name))
 	{
@@ -348,7 +319,7 @@ void ConfFileParser::checkServerName(const std::string &name)
 	throw InvalidServerName();
 }
 
-void ConfFileParser::getErrorPage()
+void Parser::getErrorPage()
 {
 	std::vector<std::string> errorPage;
 	bool errorPageFound = false;
@@ -367,7 +338,7 @@ void ConfFileParser::getErrorPage()
 		throw ErrorPageNotFound();
 }
 
-void ConfFileParser::checkErrorPage(const std::vector<std::string> &errorPage)
+void Parser::checkErrorPage(const std::vector<std::string> &errorPage)
 {
 	if (errorPage.size() != 2)
 		throw InvalidErrorPage();
@@ -387,7 +358,7 @@ void ConfFileParser::checkErrorPage(const std::vector<std::string> &errorPage)
 	this->errorPages.push_back(CodePath(stringToInt(errorPage[0]), errorPage[1]));
 }
 
-void ConfFileParser::getClientsBodySize()
+void Parser::getClientsBodySize()
 {
 	bool clientBodySizeFound = false;
 	for (int i = serverStart; i < serverEnd; i++)
@@ -438,7 +409,7 @@ void ConfFileParser::getClientsBodySize()
 		throw ClientBodySizeNotFound();
 }
 
-void ConfFileParser::getLocationPath()
+void Parser::getLocationPath()
 {
 	if (tokens[locationStart].tokenName != "location" || tokens[locationStart].tokenValue.size() == 0 || tokens[locationStart].tokenValue[0] != '/')
 		throw InvalidLocation();
@@ -446,7 +417,7 @@ void ConfFileParser::getLocationPath()
 	locations[locations.size() - 1].path = tokens[locationStart].tokenValue;
 }
 
-void ConfFileParser::getMethods()
+void Parser::getMethods()
 {
 	std::vector<std::string> methods;
 	for (int i = locationStart; i < locationEnd; i++)
@@ -463,14 +434,14 @@ void ConfFileParser::getMethods()
 	}
 }
 
-void ConfFileParser::checkMethod(const std::string &method)
+void Parser::checkMethod(const std::string &method)
 {
 	if (method != "GET" && method != "POST" && method != "DELETE")
 		throw InvalidMethod();
 
 }
 
-void ConfFileParser::getRedirect()
+void Parser::getRedirect()
 {
 	std::vector<std::string> redirect;
 	bool redirectFound = false;
@@ -488,7 +459,7 @@ void ConfFileParser::getRedirect()
 	}
 }
 
-void ConfFileParser::checkRedirect(const std::vector<std::string> &redirect)
+void Parser::checkRedirect(const std::vector<std::string> &redirect)
 {
 	if (redirect.size() == 2)
 	{
@@ -510,7 +481,7 @@ void ConfFileParser::checkRedirect(const std::vector<std::string> &redirect)
 		throw InvalidRedirect();
 }
 
-void ConfFileParser::getRootPath(const std::string &mode)
+void Parser::getRootPath(const std::string &mode)
 {
 	if (mode == "server")
 	{
@@ -538,7 +509,7 @@ void ConfFileParser::getRootPath(const std::string &mode)
 	}
 }
 
-void ConfFileParser::getAutoIndex(const std::string &mode)
+void Parser::getAutoIndex(const std::string &mode)
 {
 	bool foundAutoIndex = false;
 	if (mode == "server")
@@ -579,7 +550,7 @@ void ConfFileParser::getAutoIndex(const std::string &mode)
 	}
 }
 
-void ConfFileParser::getIndex(const std::string &mode)
+void Parser::getIndex(const std::string &mode)
 {
 	std::vector<std::string> index;
 	if (mode == "server")
@@ -616,7 +587,7 @@ void ConfFileParser::getIndex(const std::string &mode)
 	}
 }
 
-void ConfFileParser::getCgiExtension()
+void Parser::getCgiExtension()
 {
 	bool cgiExtensionFound = false;
 
@@ -634,7 +605,7 @@ void ConfFileParser::getCgiExtension()
 	}
 }
 
-void ConfFileParser::getCgiPath()
+void Parser::getCgiPath()
 {
 	bool cgiPathFound = false;
 
@@ -650,7 +621,7 @@ void ConfFileParser::getCgiPath()
 	}
 }
 
-void ConfFileParser::getUploadPath()
+void Parser::getUploadPath()
 {
 	bool uploadPathFound = false;
 
@@ -666,7 +637,7 @@ void ConfFileParser::getUploadPath()
 	}
 }
 
-void ConfFileParser::getUploadEnable()
+void Parser::getUploadEnable()
 {
 	bool uploadEnableFound = false;
 
@@ -687,9 +658,9 @@ void ConfFileParser::getUploadEnable()
 	}
 }
 
-void ConfFileParser::setupServerConfig()
+void Parser::setupServerConfig()
 {
-	servers.push_back(Server())
-	servers[servers.size() - 1].serverConfig(port, host, serverNames, rootPath, index, clientBodySize, errorPages, autoIndex, locations);
+	// servers.push_back(Server());
+	// servers[servers.size() - 1].serverConfig(port, host, serverNames, rootPath, index, clientBodySize, errorPages, autoIndex, locations);
 }
 

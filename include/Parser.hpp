@@ -2,71 +2,32 @@
 # define PARSER_HPP
 
 # include <Server.hpp>
-# include <Lexer.hpp>
+# include <Location.hpp>
+# include <CodePath.hpp>
+# include <ClientBodySize.hpp>
 
-using namespace Lexer;
-
-		enum Unit
-		{
-			BYTE,
-			KILOBYTE,
-			MEGABYTE,
-			GIGABYTE
-		};
-
-		struct CodePath
-		{
-			int code;
-			std::string path;
-
-			CodePath() : code(0), path("") {};
-			CodePath(int _code, std::string _path) : code(_code), path(_path) {};
-		};
-
-		struct ClientBodySize
-		{
-			std::string size;
-			Unit unit;
-		};
-
-
-		struct Location
-		{
-			std::string path;
-			std::vector<std::string> methods;
-			CodePath redirect;
-			std::string rootPath;
-			bool autoIndex;
-			std::vector<std::string> index;
-			std::string cgiExtension;
-			std::string cgiPath;
-			std::string uploadPath;
-			bool uploadEnable;
-		};
-
-class ConfFileParser
+class Parser
 {
 	private:
-		std::vector<Token> tokens;
-		std::vector<Server> &servers;
-		int serverStart;
-		int serverEnd;
-		int locationStart;
-		int locationEnd;
+		// std::vector<Token> tokens;
+		// int serverStart;
+		// int serverEnd;
+		// int locationStart;
+		// int locationEnd;
 
-		int port;
-		std::string host;
-		std::vector<std::string> serverNames;
-		std::vector<CodePath> errorPages;
-		ClientBodySize clientBodySize;
-		std::string rootPath;
-		bool autoIndex;
-		std::vector<std::string> index;
+		// int port;
+		// std::string host;
+		// std::vector<std::string> serverNames;
+		// std::vector<CodePath> errorPages;
+		// ClientBodySize clientBodySize;
+		// std::string rootPath;
+		// bool autoIndex;
+		// std::vector<std::string> index;
 
-		std::vector<Location> locations;
+		// std::vector<Location> locations;
 
-		int stringToInt(std::string str);
-		std::vector<std::string> split(std::string str, char delim);
+		// int stringToInt(std::string str);
+		// std::vector<std::string> split(std::string str, char delim);
 
 		bool isDomain(std::string str);
 		bool isIp(std::string str);
@@ -100,7 +61,7 @@ class ConfFileParser
 
 
 	public:
-		ConfFileParser(std::vector<Server> &Servers, const char *fileConf);
+		static void ParseConfigFile(std::vector<Server> &servers, const char *fileConf);
 
 	class EmptyFile : public std::exception
 	{
@@ -372,10 +333,5 @@ class ConfFileParser
 			}
 	};
 };
-
-namespace Parser
-{
-    void FillServer(std::vector<Server>& Servers, const char *fileConf);
-}
 
 #endif

@@ -13,7 +13,7 @@ class Client
 public:
 
 	int 						clientFd;
-	std::vector<std::string>	lastResponse;
+	std::vector<std::string>	lastRequest;
 	ClientConfig				clientConfig;
 	std::string					httpMethod;
 	std::string					httpVersion;

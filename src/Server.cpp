@@ -5,7 +5,10 @@
 #include <unistd.h>
 #include <utils.hpp>
 
-Server::Server () : stop(false), serverFd(-1) {}
+Server::Server() 
+{
+
+}
 
 void Server::InitSocket(int epollFd)
 {
@@ -20,10 +23,9 @@ void Server::InitSocket(int epollFd)
 		throw WebServerException::ExceptionErrno("socket() failed ", errno);
 
 	ret = setsockopt(this->serverFd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int));
-	ret = setsockopt(this->serverFd, SOL_SOCKET, SO_REUSEADDR, &enable,
-			sizeof(int));
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("setsockopt() failed ", errno);
+
 	addr_len = sizeof(addr);
 	memset(&addr, 0, sizeof(addr));
 	addr.sin_family = AF_INET;
@@ -46,11 +48,7 @@ bool Server::IsMyClient(int clientFd)
 {
 	if (this->clients.find(clientFd) == clients.end())
 		return false;
-
 	return true;
-	if (this->clients.find(clientFd) == clients.end())
-		return (false);
-	return (true);
 }
 
 Client &Server::GetClient(int clientFd)
@@ -110,21 +108,17 @@ void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
 void Server::ReadClientResponse(Client &client)
 {
 	ssize_t	recv_ret;
-	char buffer[1024];
 
 	recv_ret = 1;
-	client.lastResponse.clear();
+	client.lastRequest.clear();
 	while (recv_ret > 0)
 	{
 		char			buffer[1024];
 
 		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 		if (recv_ret == 0)
-			return CloseClientConnection(client, epollFd);
+			return CloseClientConnection(client);
 
-		{
-			return (CloseClientConnection(client));
-		}
 		if (recv_ret < 0)
 		{
 			if (errno == EAGAIN)
@@ -137,7 +131,7 @@ void Server::ReadClientResponse(Client &client)
 		buffer[recv_ret] = '\0';
 		if (buffer[recv_ret - 1] == '\n')
 			buffer[recv_ret - 1] = '\0';
-		client.lastResponse.push_back(buffer);
+		client.lastRequest.push_back(buffer);
 
 		Logger::RequestLog(buffer);
 	}
@@ -147,12 +141,12 @@ void Server::ParseClientResponse(Client &client)
 {
 		(void)client;
 
-	for (size_t i = 0; i < client.lastResponse.size(); i++)
+	for (size_t i = 0; i < client.lastRequest.size(); i++)
 	{
-		std::cout << client.lastResponse[i] << std::endl;
+		std::cout << client.lastRequest[i] << std::endl;
 	}
 	std::string line;
-	std::istringstream responseStream(client.lastResponse[0]);
+	std::istringstream responseStream(client.lastRequest[0]);
 
 	std::getline(responseStream, line);
 

@@ -9,7 +9,7 @@ WebServerSignal::SignalState signalState;
 
 WebServer::WebServer() {
 	try {
-		ConfFileParser(servers, DEFAULT_CONFIG_FILE);
+		Parser::ParseConfigFile(servers, DEFAULT_CONFIG_FILE);
 	} catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
@@ -17,7 +17,7 @@ WebServer::WebServer() {
 
 WebServer::WebServer(const char *filePath) {
 	try {
-		ConfFileParser(servers, filePath);
+		Parser::ParseConfigFile(servers, filePath);
 	} catch (const std::exception &e) {
 		Logger::LogException(e);
 	}
@@ -115,9 +115,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		server.CloseClientConnection(client);
 		return;
 	}
-
-	server.ReadClientResponse(client, epollFd);
-	server.ParseClientResponse(client, epollFd);
 
 	server.ReadClientResponse(client);
 	server.ParseClientResponse(client);
