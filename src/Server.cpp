@@ -140,7 +140,6 @@ void Server::ReadClientResponse(Client &client)
 
 void Server::ParseClientResponse(Client &client)
 {
-		(void)client;
 
 	for (size_t i = 0; i < client.lastRequest.size(); i++)
 	{
@@ -204,6 +203,7 @@ void Server::SendResponse(const Client &client)
 	Logger::StartResponseLog(*this,client);
 
 	BuildResponse();
+	
 	if (send(client.clientFd, response.c_str(), response.size(), 0) < 0)
 	{
 		Logger::LogError("Failed to send response: "

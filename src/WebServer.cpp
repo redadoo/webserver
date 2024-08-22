@@ -42,7 +42,7 @@ void WebServer::StartServer()
 			continue ;
 
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
-
+		
 		if (epollRet == 0)
 		{
 			Logger::Log(std::string("I don't see any event within ")
