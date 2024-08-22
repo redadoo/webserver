@@ -35,6 +35,8 @@ namespace Parser
 	void GetUploadPath(const Token& token, Server& server);
 	void GetUploadEnable(const Token& token, Server& server);
 	void SetupServerConfig(const Token& token, Server& server);
+	void CheckServerConfig(const Server& server);
+	void CheckMultiplePorts(const std::vector<Server> &servers);
 
 class EmptyFile : public std::exception
 	{
@@ -307,5 +309,5 @@ class EmptyFile : public std::exception
 	};
 
 }
-	
+
 #endif

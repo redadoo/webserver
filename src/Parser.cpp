@@ -12,7 +12,7 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 	Logger::Log("start parsing token...");
 
 	int tokenSize = tokens.size();
-	
+
 	if (tokenSize == 0)
 		return;
 
@@ -26,7 +26,7 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 			{
 				if (tokens[i].tokenType == startLocationContext)
 				{
-					while (tokens[i].tokenType == endLocationContext)
+					while (tokens[i].tokenType != endLocationContext)
 					{
 						GetLocationPath(tokens[i], server);
 						GetMethods(tokens[i], server);
@@ -51,14 +51,16 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 				GetClientsBodySize(tokens[i], server);
 				GetRootPath(true, tokens[i], server);
 				GetAutoIndex(true, tokens[i], server);
+
 				i++;
 			}
-
+			CheckServerConfig(server);
 			servers.push_back(server);
 		}
 
 	}
-	
+	CheckMultiplePorts(servers);
+
 	Logger::Log("parsing finished");
 }
 
@@ -74,7 +76,7 @@ void Parser::GetPort(const Token& token, Server& server)
 
 			if (port < 1 || port > 65535)
 				throw InvalidPort();
-				
+
 			server.serverConfig.serverPort = port;
 		}
 		else
@@ -88,7 +90,7 @@ void Parser::GetHost(const Token& token, Server& server)
 	{
 		if (!server.serverConfig.host.empty())
 			throw TooManyHosts();
-		
+
 		if (NetworkUtils::IsDomain(token.tokenValue) || NetworkUtils::IsValidateIp(token.tokenValue))
 			server.serverConfig.host = token.tokenValue;
 		else
@@ -140,6 +142,9 @@ void Parser::GetClientsBodySize(const Token& token, Server& server)
 {
 	if (token.tokenName == "client_max_body_size")
 	{
+		if (server.serverConfig.clientMaxBody.size.size() != 0)
+			throw TooManyClientBodySize();
+
 		char lastChar = token.tokenValue[token.tokenValue.size() - 1];
 
 		if (!(lastChar == 'K' || lastChar == 'M' || lastChar == 'G'))
@@ -153,15 +158,15 @@ void Parser::GetClientsBodySize(const Token& token, Server& server)
 		else
 		{
 			std::string size = token.tokenValue.substr(0, token.tokenValue.size() - 1);
-			
+
 			if (size.size() == 0)
 				throw InvalidClientBodySize();
-			
+
 			if(!StringUtils::IsAllDigit(size))
 				throw InvalidClientBodySize();
-			
+
 			server.serverConfig.clientMaxBody.size = size;
-			
+
 			if (lastChar == 'K')
 				server.serverConfig.clientMaxBody.unit = KILOBYTE;
 			else if (lastChar == 'M')
@@ -174,13 +179,16 @@ void Parser::GetClientsBodySize(const Token& token, Server& server)
 
 void Parser::GetLocationPath(const Token& token, Server& server)
 {
-	if (token.tokenName != "location" || token.tokenValue.size() == 0 || token.tokenValue[0] != '/')
-		throw InvalidLocation();
-	
-	Location location;
-	
-	location.path = token.tokenValue;
-	server.serverConfig.locations.push_back(location);
+	if (token.tokenName == "location")
+	{
+		if (token.tokenValue.size() == 0 || token.tokenValue[0] != '/')
+			throw InvalidLocation();
+
+		Location location;
+
+		location.path = token.tokenValue;
+		server.serverConfig.locations.push_back(location);
+	}
 }
 
 void Parser::GetMethods(const Token& token, Server& server)
@@ -189,7 +197,7 @@ void Parser::GetMethods(const Token& token, Server& server)
 	if (token.tokenName == "allow_methods")
 	{
 		std::vector<std::string> methods;
-		
+
 		methods = StringUtils::Split(token.tokenValue, ' ');
 
 		for (size_t i = 0; i < methods.size(); i++)
@@ -331,7 +339,7 @@ void Parser::GetCgiExtension(const Token& token, Server& server)
 	{
 		if(!server.serverConfig.locations[server.serverConfig.locations.size() - 1].cgiExtension.empty())
 			throw TooManyCgiExtensions();
-		
+
 		if (token.tokenValue.size() == 0 || token.tokenValue[0] != '.')
 			throw InvalidCgiExtension();
 
@@ -374,4 +382,40 @@ void Parser::GetUploadEnable(const Token& token, Server& server)
 		else
 			throw InvalidUploadEnable();
 	}
+}
+
+void Parser::CheckServerConfig(const Server& server)
+{
+	if (server.serverConfig.serverPort == 0)
+		throw PortNotFound();
+
+	if (server.serverConfig.host.empty())
+		throw HostNotFound();
+
+	if (server.serverConfig.clientMaxBody.size.empty())
+		throw ClientBodySizeNotFound();
+
+	if (server.serverConfig.errorPage.size() == 0)
+		throw ErrorPageNotFound();
+
+}
+
+void Parser::CheckMultiplePorts(const std::vector<Server> &servers)
+{
+	std::vector<int> ports;
+
+	for (size_t i = 0; i < servers.size(); i++)
+	{
+		ports.push_back(servers[i].serverConfig.serverPort);
+	}
+
+	for (size_t i = 0; i < ports.size(); i++)
+	{
+		for (size_t j = i + 1; j < ports.size(); j++)
+		{
+			if (ports[i] == ports[j])
+				throw TooManyPorts();
+		}
+	}
+
 }
