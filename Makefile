@@ -6,43 +6,55 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/21 22:01:23 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/23 20:00:41 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = webserver
+NAME        		= webserver
 
-CC          = c++ -std=c++98
-FLAGS       = -Wall -Wextra -Werror
-RM          = rm -rf
+CC          		= c++ -std=c++98
+FLAGS       		= -Wall -Wextra -Werror
+RM          		= rm -rf
 
-OBJDIR      = .objFiles
+OBJDIR      		= .objFiles
 
 # Paths for source and header files
-SRCDIR      = src
-LIBDIR      = include
+SRCDIR      		= src
+LIBDIR      		= include
+LIBSERVER 			= include/Server
+LIBCLIENT 			= include/Client
+LIBLOGGER 			= include/Logger
+LIBSIGNAL 			= include/Signal
+LIBCONFIGANALYSIS 	= include/ConfigAnalysis
+LIBEXCEPTION 		= include/Exception
+LIBUTILS 			= include/Utils
 
 # Specify source files
-FILES       = main WebServer Server Parser Lexer StringUtils NetworkUtils FIleUtils WebServerSignal Client EpollUtils Logger ServerConfig
-SRC         = $(addprefix $(SRCDIR)/, $(FILES:=.cpp))
-OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
+FILES       		= 	main WebServer Server/Server ConfigAnalysis/Parser ConfigAnalysis/Lexer \
+						Utils/StringUtils Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
+						Client/Client Utils/EpollUtils Logger/Logger Server/ServerConfig Server/Port \
+						Server/ClientBodySize Server/Location Server/CodePath
+				
+SRC         		= 	$(addprefix $(SRCDIR)/, $(FILES:=.cpp))
+OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
-HEADER      = $(LIBDIR)/WebServer.hpp $(LIBDIR)/Server.hpp  $(LIBDIR)/FIleUtils.hpp \
-			  $(LIBDIR)/Parser.hpp $(LIBDIR)/Lexer.hpp $(LIBDIR)/WebServerException.hpp \
-			  $(LIBDIR)/Logger.hpp $(LIBDIR)/WebServerSignal.hpp $(LIBDIR)/Client.hpp \
-			  $(LIBDIR)/EpollUtils.hpp $(LIBDIR)/ServerConfig.hpp $(LIBDIR)/ClientBodySize.hpp \
-			  $(LIBDIR)/CodePath.hpp $(LIBDIR)/Location.hpp $(LIBDIR)/NetworkUtils.hpp \
-			  $(LIBDIR)/StringUtils.hpp
+HEADER      		= 	$(LIBDIR)/WebServer.hpp $(LIBSERVER)/Server.hpp  $(LIBUTILS)/FIleUtils.hpp \
+						$(LIBCONFIGANALYSIS)/Parser.hpp $(LIBCONFIGANALYSIS)/Lexer.hpp  \
+						$(LIBEXCEPTION)/ErrnoException.hpp $(LIBLOGGER)/Logger.hpp $(LIBSIGNAL)/HandleSignal.hpp \
+						$(LIBCLIENT)/Client.hpp $(LIBUTILS)/EpollUtils.hpp $(LIBSERVER)/ServerConfig.hpp \
+						$(LIBSERVER)/ClientBodySize.hpp $(LIBSERVER)/CodePath.hpp $(LIBSERVER)/Location.hpp \
+						$(LIBUTILS)/NetworkUtils.hpp $(LIBUTILS)/StringUtils.hpp $(LIBSERVER)/Port.hpp \
+						$(LIBCLIENT)/ClientConfig.hpp $(LIBSERVER)/HttpStatusCode.hpp
 
 # Include the lib/ directory for header files
-INC         = -I$(LIBDIR)
+INC         		= -I$(LIBDIR) -I$(LIBSERVER) -I$(LIBCLIENT) -I$(LIBLOGGER) -I$(LIBSIGNAL) -I$(LIBCONFIGANALYSIS) -I$(LIBEXCEPTION) -I$(LIBUTILS)
 
-NONE        = "\033[0m"
-GREEN       = "\033[32m"
-GRAY        = "\033[2;37m"
-CURSIVE     = "\033[3m"
-YELLOW      = "\033[1;33"
+NONE        		= "\033[0m"
+GREEN       		= "\033[32m"
+GRAY        		= "\033[2;37m"
+CURSIVE     		= "\033[3m"
+YELLOW      		= "\033[1;33m"
 
 .PHONY: all clean fclean re leaks
 
@@ -65,7 +77,6 @@ run: re
 leaks: re
 	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME)
 
-	
 leaks_with_args: re
 	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME) 
 

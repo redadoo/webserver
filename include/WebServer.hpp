@@ -29,6 +29,8 @@ private:
 	/// @brief Closes all open file descriptors and cleans up resources.
 	void CleanUpAll();
 
+	void CheckServerPort();
+	
 public:
 	/// @brief Starts the web server, entering the main event loop to handle incoming connections.
 	void StartServer();
@@ -36,7 +38,7 @@ public:
 	/// @brief Initializes the server based on parsed configuration data.
 	void InitServer(const char *configFIle);
 
-	WebServer();
+	WebServer() {};
 	~WebServer();
 };
 
