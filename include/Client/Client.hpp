@@ -6,6 +6,7 @@
 # include <string>
 # include <vector>
 # include <ClientConfig.hpp>
+# include <HttpMessage.hpp>
 
 /// @brief Structure to store information about a client
 class Client
@@ -13,7 +14,7 @@ class Client
 public:
 
 	int 						clientFd;
-	std::vector<std::string>	lastRequest;
+	HttpMessage					request;
 	ClientConfig				clientConfig;
 	std::string					httpMethod;
 	std::string					httpVersion;

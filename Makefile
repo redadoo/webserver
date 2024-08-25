@@ -6,34 +6,35 @@
 #    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/23 20:00:41 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/24 20:32:02 by edoardo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        		= webserver
+NAME        		= 	webserver
 
-CC          		= c++ -std=c++98
-FLAGS       		= -Wall -Wextra -Werror
-RM          		= rm -rf
+CC          		= 	c++ -std=c++98
+FLAGS       		= 	-Wall -Wextra -Werror
+RM          		= 	rm -rf
 
-OBJDIR      		= .objFiles
+OBJDIR      		= 	.objFiles
 
 # Paths for source and header files
-SRCDIR      		= src
-LIBDIR      		= include
-LIBSERVER 			= include/Server
-LIBCLIENT 			= include/Client
-LIBLOGGER 			= include/Logger
-LIBSIGNAL 			= include/Signal
-LIBCONFIGANALYSIS 	= include/ConfigAnalysis
-LIBEXCEPTION 		= include/Exception
-LIBUTILS 			= include/Utils
+SRCDIR      		= 	src
+LIBDIR      		= 	include
+LIBSERVER 			= 	include/ServerConfig
+LIBCLIENT 			= 	include/Client
+LIBLOGGER 			= 	include/Logger
+LIBSIGNAL 			= 	include/Signal
+LIBCONFIGANALYSIS 	= 	include/Parsing
+LIBEXCEPTION 		= 	include/Exception
+LIBUTILS 			= 	include/Utils
+LIBHTTP 			= 	include/Http
 
 # Specify source files
-FILES       		= 	main WebServer Server/Server ConfigAnalysis/Parser ConfigAnalysis/Lexer \
+FILES       		= 	main WebServer ServerConfig/Server Parsing/Parser Parsing/Lexer \
 						Utils/StringUtils Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
-						Client/Client Utils/EpollUtils Logger/Logger Server/ServerConfig Server/Port \
-						Server/ClientBodySize Server/Location Server/CodePath
+						Client/Client Utils/EpollUtils Logger/Logger ServerConfig/ServerConfig ServerConfig/Port \
+						ServerConfig/ClientBodySize ServerConfig/Location ServerConfig/CodePath Http/HttpMessage Http/HttpResponse
 				
 SRC         		= 	$(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
@@ -45,10 +46,11 @@ HEADER      		= 	$(LIBDIR)/WebServer.hpp $(LIBSERVER)/Server.hpp  $(LIBUTILS)/FI
 						$(LIBCLIENT)/Client.hpp $(LIBUTILS)/EpollUtils.hpp $(LIBSERVER)/ServerConfig.hpp \
 						$(LIBSERVER)/ClientBodySize.hpp $(LIBSERVER)/CodePath.hpp $(LIBSERVER)/Location.hpp \
 						$(LIBUTILS)/NetworkUtils.hpp $(LIBUTILS)/StringUtils.hpp $(LIBSERVER)/Port.hpp \
-						$(LIBCLIENT)/ClientConfig.hpp $(LIBSERVER)/HttpStatusCode.hpp
+						$(LIBCLIENT)/ClientConfig.hpp $(LIBHTTP)/HttpStatusCode.hpp $(LIBHTTP)/HttpMessage.hpp \
+						$(LIBHTTP)/HttpResponse.hpp
 
 # Include the lib/ directory for header files
-INC         		= -I$(LIBDIR) -I$(LIBSERVER) -I$(LIBCLIENT) -I$(LIBLOGGER) -I$(LIBSIGNAL) -I$(LIBCONFIGANALYSIS) -I$(LIBEXCEPTION) -I$(LIBUTILS)
+INC         		= 	-I$(LIBDIR) -I$(LIBSERVER) -I$(LIBCLIENT) -I$(LIBLOGGER) -I$(LIBSIGNAL) -I$(LIBCONFIGANALYSIS) -I$(LIBEXCEPTION) -I$(LIBUTILS) -I$(LIBHTTP)
 
 NONE        		= "\033[0m"
 GREEN       		= "\033[32m"

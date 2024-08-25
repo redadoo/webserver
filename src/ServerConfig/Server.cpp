@@ -30,6 +30,7 @@ void Server::InitSocket(int epollFd)
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(this->serverConfig.serverPort.port);
 	addr.sin_addr.s_addr = inet_addr(this->serverConfig.socketIp.c_str());
+	
 	ret = bind(this->serverFd, (struct sockaddr *)&addr, addr_len);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("bind() failed ", errno);
@@ -109,7 +110,8 @@ void Server::ReadClientResponse(Client &client)
 	ssize_t	recv_ret;
 
 	recv_ret = 1;
-	client.lastRequest.clear();
+	// client.request.clear();
+
 	while (recv_ret > 0)
 	{
 		char			buffer[1024];
@@ -125,12 +127,14 @@ void Server::ReadClientResponse(Client &client)
 			WebServerException::ExceptionErrno("recv(): ", errno);
 			return (CloseClientConnection(client));
 		}
+
 		Logger::StartRequestLog(*this, client);
 
 		buffer[recv_ret] = '\0';
 		if (buffer[recv_ret - 1] == '\n')
 			buffer[recv_ret - 1] = '\0';
-		client.lastRequest.push_back(buffer);
+
+		// client.request.push_back(buffer);
 
 		Logger::RequestLog(buffer);
 	}
@@ -139,14 +143,14 @@ void Server::ReadClientResponse(Client &client)
 void Server::ParseClientResponse(Client &client)
 {
 
-	for (size_t i = 0; i < client.lastRequest.size(); i++)
+	for (size_t i = 0; i < client.request.size(); i++)
 	{
-		std::cout << client.lastRequest[i] << std::endl;
+		// std::cout << client.request[i] << std::endl;
 	}
 	std::string line;
-	std::istringstream responseStream(client.lastRequest[0]);
+	// std::istringstream responseStream(client.request[0]);
 
-	std::getline(responseStream, line);
+	// std::getline(responseStream, line);
 
 	std::istringstream lineStream(line);
 	lineStream>>client.httpMethod>>client.path>>client.httpVersion;
@@ -154,44 +158,44 @@ void Server::ParseClientResponse(Client &client)
 
 
 	if(client.httpMethod != "GET" && client.httpMethod != "POST" && client.httpMethod != "DELETE")
-	throw BadResponse();
+		throw std::invalid_argument("Error: unexpected response");
 
 	if(client.path.length() > 1024)
-	throw BadResponse();
+		throw std::invalid_argument("Error: unexpected response");
 
 	if(client.path.find("../") != std::string::npos || client.path == ".." )
-	throw BadResponse();
+		throw std::invalid_argument("Error: unexpected response");
 
 	if(client.httpVersion != "HTTP/1.1")
-		throw BadResponse();
+		throw std::invalid_argument("Error: unexpected response");
 
 	if (client.httpMethod == "GET" || client.httpMethod == "DELETE")
 		return;
 
-	while (std::getline(responseStream, line) && !line.empty()) {
-    	if (line.find("Content-Type") != std::string::npos && client.contentType.empty())
-		{
-			int i;
-			std::string	tmp;
-			while(line[i] != ' ')
-				i++;
-			while(line[i])
-			{
-				tmp += line[i];
-			}
-			client.contentType = tmp;
-		}
-		if (line.find("Content-Lenght") != std::string::npos && client.contentLenght != -1)
-		{
-			std::string	numberString;
-			for (size_t i = 0; i < line.length(); i++)
-			{
-				if(isdigit(line[i]))
-					numberString += line[i];
-			}
-			client.contentLenght = StringUtils::StrintToInt(numberString);
-		}
-    }
+	// while (std::getline(responseStream, line) && !line.empty()) {
+    // 	if (line.find("Content-Type") != std::string::npos && client.contentType.empty())
+	// 	{
+	// 		int i;
+	// 		std::string	tmp;
+	// 		while(line[i] != ' ')
+	// 			i++;
+	// 		while(line[i])
+	// 		{
+	// 			tmp += line[i];
+	// 		}
+	// 		client.contentType = tmp;
+	// 	}
+	// 	if (line.find("Content-Lenght") != std::string::npos && client.contentLenght != -1)
+	// 	{
+	// 		std::string	numberString;
+	// 		for (size_t i = 0; i < line.length(); i++)
+	// 		{
+	// 			if(isdigit(line[i]))
+	// 				numberString += line[i];
+	// 		}
+	// 		client.contentLenght = StringUtils::StrintToInt(numberString);
+	// 	}
+    // }
 
 
 }
@@ -209,20 +213,20 @@ void Server::SendResponse(const Client &client)
 		throw WebServerException::ExceptionErrno("send() failed", errno);
 	}
 
-	Logger::ResponseLog(response);
+	// Logger::ResponseLog(response);
 }
 
 void Server::BuildResponse()
 {
-	response.append("HTTP/1.1 200 OK\n");
-	response.append("Content-Length: 702\n");
-	response.append("Content-Type: text/html\n\n");
+	// response.append("HTTP/1.1 200 OK\n");
+	// response.append("Content-Length: 702\n");
+	// response.append("Content-Type: text/html\n\n");
 
-  	std::ifstream ifs("web-page/index.html");
-  	std::string content( (std::istreambuf_iterator<char>(ifs) ),
-					   (std::istreambuf_iterator<char>()    ) );
+  	// std::ifstream ifs("web-page/index.html");
+  	// std::string content( (std::istreambuf_iterator<char>(ifs) ),
+	// 				   (std::istreambuf_iterator<char>()    ) );
 
-	response.append(content);
+	// response.append(content);
 }
 
 void Server::CloseClientConnection(const Client &client)

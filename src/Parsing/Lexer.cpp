@@ -15,7 +15,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	bool 						isLocationBlock = false;
 
 	if (!CheckFileExistence(fileName.c_str()))
-		throw FileNotFound();
+		throw std::invalid_argument("file not found");
 
 	std::ifstream file(fileName.c_str());
 	ParseState state = SearchingServer;
@@ -43,7 +43,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 						tokens.push_back(Token("Server", startServerContext ));
 					}
 					else
-						throw ErrorOnFileConfigurationSyntax();
+						std::invalid_argument("Error: when try to parse configuration file");
 					break;
 
 				case SearchingOpenBracket:
@@ -54,7 +54,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (currentChar == '{')
 						state = CollectingTokenName;
 					else
-						throw ErrorOnFileConfigurationSyntax();
+						std::invalid_argument("Error: when try to parse configuration file");
 					break;
 
 				case CollectingTokenName:
@@ -87,7 +87,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					if (isalpha(currentChar) || currentChar == '_' || currentChar == '/')
 						tempName += currentChar;
 					else
-						throw ErrorOnFileConfigurationSyntax();
+						std::invalid_argument("Error: when try to parse configuration file");
 					break;
 
 				case CollectingTokenValue:
@@ -109,7 +109,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					else if (currentChar != '}')
 						tempValue += currentChar;
 					else
-						throw ErrorOnFileConfigurationSyntax();
+						std::invalid_argument("Error: when try to parse configuration file");
 					break;
 				case CollectionLocation:
 
@@ -131,7 +131,7 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 					else if (isalnum(currentChar) || currentChar == '/' || currentChar == '=')
 						tempValue += currentChar;
 					else
-						throw ErrorOnFileConfigurationSyntax();
+						std::invalid_argument("Error: when try to parse configuration file");
 					break;
 
 			}

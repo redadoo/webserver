@@ -46,10 +46,6 @@ namespace Lexer
 			virtual const char* what() const throw() { return "Error: file not found";}
 	};
 
-	class ErrorOnFileConfigurationSyntax : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: when try to parse configuration file";}
-	};
 }
 
 #endif
