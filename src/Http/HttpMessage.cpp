@@ -1,6 +1,7 @@
 #include <HttpMessage.hpp>
 #include <Logger.hpp>
 #include <WebServerException.hpp>
+#include <StringUtils.hpp>
 
 // CaseInsensitiveCompare
 
@@ -39,39 +40,35 @@ void HttpMessage::ParseStartLine(const std::string &str)
 	if (startLine.httpMethod == "GET" || startLine.httpMethod == "DELETE")
 		return;
 
-	this->startLine.isInit = true;
 }
 
 // public function
 
 void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
-	std::string messageLine;
-	std::istringstream messageChunkStream(messageChunk.c_str());
+	std::istringstream messageChunkStream(messageChunk);
+	std::vector<std::string> messageLines = StringUtils::Split(messageChunk,"\r\n");
 
-	while (std::getline(messageChunkStream, messageLine))
+	for (size_t i = 0; i < messageLines.size(); i++)
 	{
-		messageLine.erase(0, messageLine.find_first_not_of(" \t"));
-		messageLine.erase(messageLine.find_last_not_of(" \t") + 1);
-
-		if (!this->startLine.isInit)
+		if (i == 0)
 		{
-			ParseStartLine(messageLine);
+			ParseStartLine(messageLines[i]);
 			continue;
 		}
-
-		if (messageLine.empty())
+		
+		if (messageLines[i].empty())
 			break;
 
-		size_t pos = messageLine.find(": ");
+		size_t pos = messageLines[i].find(": ");
 		if (pos != std::string::npos)
 		{
-			std::string key = messageLine.substr(0, pos);
-			std::string value = messageLine.substr(pos + 2);
+			std::string key = messageLines[i].substr(0, pos);
+			std::string value = messageLines[i].substr(pos + 2);
 			header.insert(std::make_pair(key, value));
 		}
 	}
-
+	
 	std::string bodyLine;
 	while (std::getline(messageChunkStream, bodyLine))
 		body += bodyLine + "\n";
@@ -82,7 +79,7 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 
 const char *HttpMessage::c_str() const
 {
-	std::string msg;
+	std::string msg = "";
 
 	msg.append(startLine.ToString());
 
@@ -91,6 +88,7 @@ const char *HttpMessage::c_str() const
 		msg.append(it->first);
 		msg.append(it->second);
 	}
+
 	msg.append(body);
 	
 	return msg.c_str();

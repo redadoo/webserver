@@ -140,8 +140,6 @@ void Server::ReadClientResponse(Client &client)
 		}
 
 		buffer[recvRet] = '\0';
-		if (buffer[recvRet - 1] == '\n')
-			buffer[recvRet - 1] = '\0';
 
 		client.request.ParseMessage(buffer);
 
@@ -156,14 +154,18 @@ void Server::SendResponse(const Client &client)
 	else
 		BuildResponse();
 
-	if (send(client.clientFd, response.c_str(), response.size(), 0) < 0)
+	const char * str = response.c_str();
+
+	std::cout << str;
+	
+	if (send(client.clientFd, str, response.size(), 0) < 0)
 	{
 		Logger::LogError("Failed to send response: "
 			+ std::string(strerror(errno)));
 		throw WebServerException::ExceptionErrno("send() failed", errno);
 	}
 
-	Logger::ResponseLog(*this,client, response);
+	Logger::ResponseLog(*this,client, str);
 }
 
 void Server::CloseClientConnection(const Client &client)

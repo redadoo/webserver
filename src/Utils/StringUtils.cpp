@@ -38,10 +38,26 @@ std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 	std::istringstream tokenStream(str);
 	
 	while (std::getline(tokenStream, token, delim))
-	{
 		tokens.push_back(token);
-	}
 	return tokens;
+}
+
+std::vector<std::string> StringUtils::Split(const std::string &str, const std::string &delim)
+{
+	std::vector<std::string> tokens;
+    size_t start = 0;
+    size_t end = str.find(delim);
+
+    while (end != std::string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+        start = end + delim.length();
+        end = str.find(delim, start);
+    }
+
+    // Add the last token
+    tokens.push_back(str.substr(start));
+
+    return tokens;
 }
 
 bool StringUtils::IsAllDigit(const std::string &str)

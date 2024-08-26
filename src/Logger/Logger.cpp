@@ -88,7 +88,7 @@ void Logger::RequestLog(const Server &server, const Client &client, const std::s
 		std::cerr << "Log file is not open." << std::endl;
 }
 
-void Logger::ResponseLog(const Server &server, const Client &client, const HttpResponse& httpResponse)
+void Logger::ResponseLog(const Server &server, const Client &client, const char* httpResponse)
 {
 	if (logFile.is_open())
 	{

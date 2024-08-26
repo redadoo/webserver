@@ -44,7 +44,7 @@ public:
 	/// @param server The server sending the response.
 	/// @param client The client receiving the response.
 	/// @param response The HTTP response to log.
-	static void ResponseLog(const Server &server, const Client &client, const HttpResponse& respone);
+	static void ResponseLog(const Server &server, const Client &client, const char* respone);
 
 	/// @brief Logs the details of an HTTP request to the log file.
 	/// @param server The server receiving the request.
