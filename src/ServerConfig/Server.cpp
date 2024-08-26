@@ -5,6 +5,7 @@
 #include <StringUtils.hpp>
 #include <NetworkUtils.hpp>
 #include <WebServerException.hpp>
+#include <stdexcept>
 
 //constructor
 
@@ -132,12 +133,7 @@ void Server::ReadClientResponse(Client &client)
 			return CloseClientConnection(client);
 
 		if (recvRet < 0)
-		{
-			if (errno == EAGAIN)
-				break ;
-			WebServerException::ExceptionErrno("recv(): ", errno);
-			return (CloseClientConnection(client));
-		}
+			return CloseClientConnection(client);
 
 		buffer[recvRet] = '\0';
 
@@ -159,9 +155,8 @@ void Server::SendResponse(const Client &client)
 
 	if (send(client.clientFd, str, response.size(), 0) < 0)
 	{
-		Logger::LogError("Failed to send response: "
-			+ std::string(strerror(errno)));
-		throw WebServerException::ExceptionErrno("send() failed", errno);
+		Logger::LogError("Failed to send response:");
+		throw std::invalid_argument("send() failed");
 	}
 
 	Logger::ResponseLog(*this,client, str);
