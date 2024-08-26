@@ -25,6 +25,7 @@ private:
     /// @brief Processes all active sockets and handles their events.
 	void CheckSockets(int epollRet);
 
+	/// @brief Check if all server haves different port
 	void CheckServerPort();
 
 	/// @brief Closes all open file descriptors and cleans up resources.
