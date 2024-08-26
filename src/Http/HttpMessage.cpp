@@ -82,7 +82,18 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 
 const char *HttpMessage::c_str() const
 {
-	return NULL;
+    std::string msg;
+
+    msg.append(startLine.ToString());
+
+    for (Header::const_iterator it = header.begin(); it != header.end(); ++it) 
+    {
+        msg.append(it->first);
+        msg.append(it->second);
+    }
+    msg.append(body);
+    
+	return msg.c_str();
 }
 
 size_t HttpMessage::size() const
