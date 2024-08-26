@@ -1,25 +1,26 @@
-[2024-8-26 21:42:37] start tokenization Configuration file ...
-[2024-8-26 21:42:37] tokenization finished
-[2024-8-26 21:42:37] start parsing token...
-[2024-8-26 21:42:37] parsing finished
-[2024-8-26 21:42:37] signal handling started
-[2024-8-26 21:42:37] handled the signals successfully
-[2024-8-26 21:42:37] start create a new epoll instance
-[2024-8-26 21:42:37] init epoll instance successfully
-[2024-8-26 21:42:37] Creating TCP socket...
-[2024-8-26 21:42:37] add file descriptor to epoll instance ...
-[2024-8-26 21:42:37] Listening on 127.0.0.1:8080
-[2024-8-26 21:42:37] Creating TCP socket...
-[2024-8-26 21:42:37] add file descriptor to epoll instance ...
-[2024-8-26 21:42:37] Listening on 127.0.0.1:8081
-[2024-8-26 21:42:37] successfully init all servers data
-[2024-8-26 21:42:37] Entering event loop...
-[2024-8-26 21:42:40] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-8-26 21:42:40] Client 127.0.0.1:38700  has been accepted! by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:40] add file descriptor to epoll instance ...
-Client 127.0.0.1:38700 send a request to socket 127.0.0.1:8080
+[2024-8-26 22:0:0] start tokenization Configuration file ...
+[2024-8-26 22:0:0] tokenization finished
+[2024-8-26 22:0:0] start parsing token...
+[2024-8-26 22:0:0] parsing finished
+[2024-8-26 22:0:0] signal handling started
+[2024-8-26 22:0:0] handled the signals successfully
+[2024-8-26 22:0:0] start create a new epoll instance
+[2024-8-26 22:0:0] init epoll instance successfully
+[2024-8-26 22:0:0] Creating TCP socket...
+[2024-8-26 22:0:0] add file descriptor to epoll instance ...
+[2024-8-26 22:0:0] Listening on 127.0.0.1:8080
+[2024-8-26 22:0:0] Creating TCP socket...
+[2024-8-26 22:0:0] add file descriptor to epoll instance ...
+[2024-8-26 22:0:0] Listening on 127.0.0.1:8081
+[2024-8-26 22:0:0] successfully init all servers data
+[2024-8-26 22:0:0] Entering event loop...
+[2024-8-26 22:0:3] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:4] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-26 22:0:4] Client 127.0.0.1:59646  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:4] add file descriptor to epoll instance ...
+Client 127.0.0.1:59646 send a request to socket 127.0.0.1:8080
 [ StartRequestBlock ] 
-GET / HTTP/1.1
+GET /sadasdsadasd HTTP/1.1
 Host: 127.0.0.1:8080
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
@@ -34,17 +35,22 @@ Sec-Fetch-User: ?1
 Priority: u=0, i
 
 [ EndRequestBlock ]
-Server 127.0.0.1:8080 send a response to client 127.0.0.1:38700
+Server 127.0.0.1:8080 send a response to client 127.0.0.1:59646
 [ StartResponseBlock ] 
-@Ð]L[ EndResponseBlock ]
-[2024-8-26 21:42:41] ERROR: Something interrupted me!
-[2024-8-26 21:42:41] Closing WebServer ...
-[2024-8-26 21:42:41] Client :6672 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client :5424 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] Client 127.0.0.1:38700 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-26 21:42:41] all resources released and Web Server closed successfully
+@à‡<“[ EndResponseBlock ]
+[2024-8-26 22:0:7] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:10] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:13] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:16] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:19] I don't see any event within 3000 milliseconds
+[2024-8-26 22:0:21] ERROR: Something interrupted me!
+[2024-8-26 22:0:21] Closing WebServer ...
+[2024-8-26 22:0:21] Client :26976 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client :1328 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] Client 127.0.0.1:59646 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-26 22:0:21] all resources released and Web Server closed successfully

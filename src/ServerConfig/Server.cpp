@@ -145,6 +145,7 @@ void Server::ReadClientResponse(Client &client)
 
 		Logger::RequestLog(*this, client, buffer);
 	}
+
 }
 
 void Server::SendResponse(const Client &client)
