@@ -23,6 +23,8 @@ namespace WebServerException
        public:
         HttpStatusCode::Code code;
         HttpStatusCodeException(HttpStatusCode::Code _code) : code(_code){};
+        HttpStatusCodeException(int _code) : code(static_cast<HttpStatusCode::Code>(_code)){};
+
         ~HttpStatusCodeException() throw() {}
 
         virtual const char* what() const throw() {
