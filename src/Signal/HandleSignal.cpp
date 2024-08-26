@@ -1,6 +1,6 @@
-# include <HandleSignal.hpp>
-# include <Logger.hpp>
-# include <cstring>
+#include <HandleSignal.hpp>
+#include <Logger.hpp>
+#include <cstring>
 
 extern  HandleSignal::SignalState signalState;
 

@@ -1,10 +1,10 @@
 #ifndef LOCATION_HPP
 #define LOCATION_HPP
 
-# include <vector>
-# include <string>
-# include <iostream>
-# include <CodePath.hpp>
+#include <vector>
+#include <string>
+#include <iostream>
+#include <CodePath.hpp>
 
 struct Location
 {

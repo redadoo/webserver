@@ -1,8 +1,8 @@
 #ifndef CLIENTCONFIG_HPP
 # define CLIENTCONFIG_HPP
 
-# include <stdint.h>
-# include <string>
+#include <stdint.h>
+#include <string>
 
 struct ClientConfig
 {

@@ -42,14 +42,14 @@ OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
 # Specify header files
 HEADER      		= 	$(LIBDIR)/WebServer.hpp $(LIBSERVER)/Server.hpp  $(LIBUTILS)/FIleUtils.hpp \
 						$(LIBCONFIGANALYSIS)/Parser.hpp $(LIBCONFIGANALYSIS)/Lexer.hpp  \
-						$(LIBEXCEPTION)/ErrnoException.hpp $(LIBLOGGER)/Logger.hpp $(LIBSIGNAL)/HandleSignal.hpp \
+						$(LIBEXCEPTION)/WebServerException.hpp $(LIBLOGGER)/Logger.hpp $(LIBSIGNAL)/HandleSignal.hpp \
 						$(LIBCLIENT)/Client.hpp $(LIBUTILS)/EpollUtils.hpp $(LIBSERVER)/ServerConfig.hpp \
 						$(LIBSERVER)/ClientBodySize.hpp $(LIBSERVER)/CodePath.hpp $(LIBSERVER)/Location.hpp \
 						$(LIBUTILS)/NetworkUtils.hpp $(LIBUTILS)/StringUtils.hpp $(LIBSERVER)/Port.hpp \
 						$(LIBCLIENT)/ClientConfig.hpp $(LIBHTTP)/HttpStatusCode.hpp $(LIBHTTP)/HttpMessage.hpp \
 						$(LIBHTTP)/HttpResponse.hpp
 
-# Include the lib/ directory for header files
+#include the lib/ directory for header files
 INC         		= 	-I$(LIBDIR) -I$(LIBSERVER) -I$(LIBCLIENT) -I$(LIBLOGGER) -I$(LIBSIGNAL) -I$(LIBCONFIGANALYSIS) -I$(LIBEXCEPTION) -I$(LIBUTILS) -I$(LIBHTTP)
 
 NONE        		= "\033[0m"

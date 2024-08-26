@@ -1,8 +1,8 @@
 #ifndef SIGNAL_HHP
 # define SIGNAL_HHP
 
-# include <csignal>
-# include <exception>
+#include <csignal>
+#include <exception>
 
 namespace HandleSignal
 {

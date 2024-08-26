@@ -1,8 +1,8 @@
 #ifndef PORT_HPP
 #define PORT_HPP
 
-# include <stdint.h>
-# include <string>
+#include <stdint.h>
+#include <string>
 
 class Port
 {

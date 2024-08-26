@@ -1,9 +1,9 @@
 #ifndef NETWORKUTILS_HPP
 # define NETWORKUTILS_HPP
 
-# include <string>
-# include <arpa/inet.h>
-# include <netinet/in.h>
+#include <string>
+#include <arpa/inet.h>
+#include <netinet/in.h>
 
 namespace NetworkUtils
 {

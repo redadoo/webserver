@@ -1,12 +1,11 @@
-# include <Lexer.hpp>
-# include <Logger.hpp>
-# include <FIleUtils.hpp>
+#include <Lexer.hpp>
+#include <Logger.hpp>
+#include <FIleUtils.hpp>
 
 using namespace FileUtils;
   
 std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 {
-	Logger::Log("start tokenization Configuration file ...");
 
 	std::string 				line;
 	std::vector<Lexer::Token> 	tokens;
@@ -17,6 +16,8 @@ std::vector<Lexer::Token> Lexer::GetToken(std::string fileName)
 	if (!CheckFileExistence(fileName.c_str()))
 		throw std::invalid_argument("file not found");
 
+	Logger::Log("start tokenization Configuration file ...");
+	
 	std::ifstream file(fileName.c_str());
 	ParseState state = SearchingServer;
 

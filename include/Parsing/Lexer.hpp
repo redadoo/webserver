@@ -1,9 +1,9 @@
 #ifndef LEXER_HPP
 # define LEXER_HPP
 
-# include <string>
-# include <vector>
-# include <fstream>
+#include <string>
+#include <vector>
+#include <fstream>
 
 namespace Lexer
 {
@@ -41,10 +41,7 @@ namespace Lexer
 
 	std::vector<Token> GetToken(std::string fileName);
 
-	class FileNotFound : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: file not found";}
-	};
+
 
 }
 

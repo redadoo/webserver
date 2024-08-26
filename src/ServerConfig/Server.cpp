@@ -1,13 +1,34 @@
-# include <EpollUtils.hpp>
-# include <Logger.hpp>
-# include <Server.hpp>
-# include <unistd.h>
-# include <StringUtils.hpp>
-# include <NetworkUtils.hpp>
-# include <ErrnoException.hpp>
+#include <EpollUtils.hpp>
+#include <Logger.hpp>
+#include <Server.hpp>
+#include <unistd.h>
+#include <StringUtils.hpp>
+#include <NetworkUtils.hpp>
+#include <WebServerException.hpp>
 
+//constructor
 
 Server::Server() : serverConfig() {}
+
+
+//private function
+
+void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
+{
+	Client client(clientFd, srcIp, srcPort);
+	std::pair<int, Client> client_pair(clientFd, client);
+	clients.insert(client_pair);
+}
+
+void Server::BuildResponse()
+{
+}
+
+void Server::BuildErrorResponse()
+{
+}
+
+//public function
 
 void Server::InitSocket(int epollFd)
 {
@@ -98,29 +119,19 @@ int Server::AcceptClient(int fd, int epollFd)
 	return (0);
 }
 
-void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
-{
-	Client client(clientFd, srcIp, srcPort);
-	std::pair<int, Client> client_pair(clientFd, client);
-	clients.insert(client_pair);
-}
-
 void Server::ReadClientResponse(Client &client)
 {
-	ssize_t	recv_ret;
+	ssize_t	recvRet = 1;
 
-	recv_ret = 1;
-	// client.request.clear();
-
-	while (recv_ret > 0)
+	while (recvRet > 0)
 	{
 		char			buffer[1024];
 
-		recv_ret = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
-		if (recv_ret == 0)
+		recvRet = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
+		if (recvRet == 0)
 			return CloseClientConnection(client);
 
-		if (recv_ret < 0)
+		if (recvRet < 0)
 		{
 			if (errno == EAGAIN)
 				break ;
@@ -128,84 +139,23 @@ void Server::ReadClientResponse(Client &client)
 			return (CloseClientConnection(client));
 		}
 
-		Logger::StartRequestLog(*this, client);
+		buffer[recvRet] = '\0';
+		if (buffer[recvRet - 1] == '\n')
+			buffer[recvRet - 1] = '\0';
 
-		buffer[recv_ret] = '\0';
-		if (buffer[recv_ret - 1] == '\n')
-			buffer[recv_ret - 1] = '\0';
+		client.request.ParseMessage(buffer);
 
-		// client.request.push_back(buffer);
-
-		Logger::RequestLog(buffer);
+		Logger::RequestLog(*this, client, buffer);
 	}
-}
-
-void Server::ParseClientResponse(Client &client)
-{
-
-	for (size_t i = 0; i < client.request.size(); i++)
-	{
-		// std::cout << client.request[i] << std::endl;
-	}
-	std::string line;
-	// std::istringstream responseStream(client.request[0]);
-
-	// std::getline(responseStream, line);
-
-	std::istringstream lineStream(line);
-	lineStream>>client.httpMethod>>client.path>>client.httpVersion;
-
-
-
-	if(client.httpMethod != "GET" && client.httpMethod != "POST" && client.httpMethod != "DELETE")
-		throw std::invalid_argument("Error: unexpected response");
-
-	if(client.path.length() > 1024)
-		throw std::invalid_argument("Error: unexpected response");
-
-	if(client.path.find("../") != std::string::npos || client.path == ".." )
-		throw std::invalid_argument("Error: unexpected response");
-
-	if(client.httpVersion != "HTTP/1.1")
-		throw std::invalid_argument("Error: unexpected response");
-
-	if (client.httpMethod == "GET" || client.httpMethod == "DELETE")
-		return;
-
-	// while (std::getline(responseStream, line) && !line.empty()) {
-    // 	if (line.find("Content-Type") != std::string::npos && client.contentType.empty())
-	// 	{
-	// 		int i;
-	// 		std::string	tmp;
-	// 		while(line[i] != ' ')
-	// 			i++;
-	// 		while(line[i])
-	// 		{
-	// 			tmp += line[i];
-	// 		}
-	// 		client.contentType = tmp;
-	// 	}
-	// 	if (line.find("Content-Lenght") != std::string::npos && client.contentLenght != -1)
-	// 	{
-	// 		std::string	numberString;
-	// 		for (size_t i = 0; i < line.length(); i++)
-	// 		{
-	// 			if(isdigit(line[i]))
-	// 				numberString += line[i];
-	// 		}
-	// 		client.contentLenght = StringUtils::StrintToInt(numberString);
-	// 	}
-    // }
-
-
 }
 
 void Server::SendResponse(const Client &client)
 {
-	Logger::StartResponseLog(*this,client);
+	if (HttpStatusCode::isError(response.code))
+		BuildErrorResponse();
+	else
+		BuildResponse();
 
-	BuildResponse();
-	
 	if (send(client.clientFd, response.c_str(), response.size(), 0) < 0)
 	{
 		Logger::LogError("Failed to send response: "
@@ -213,20 +163,7 @@ void Server::SendResponse(const Client &client)
 		throw WebServerException::ExceptionErrno("send() failed", errno);
 	}
 
-	// Logger::ResponseLog(response);
-}
-
-void Server::BuildResponse()
-{
-	// response.append("HTTP/1.1 200 OK\n");
-	// response.append("Content-Length: 702\n");
-	// response.append("Content-Type: text/html\n\n");
-
-  	// std::ifstream ifs("web-page/index.html");
-  	// std::string content( (std::istreambuf_iterator<char>(ifs) ),
-	// 				   (std::istreambuf_iterator<char>()    ) );
-
-	// response.append(content);
+	Logger::ResponseLog(*this,client, response);
 }
 
 void Server::CloseClientConnection(const Client &client)
@@ -247,11 +184,6 @@ void Server::CloseClientConnection(int clientFd)
 		Logger::ClientLog(*this, client, "has been disconnected ");
 		clients.erase(client.clientFd);
 	}
-}
-
-void Server::Init(int epollFd)
-{
-	InitSocket(epollFd);
 }
 
 std::ostream &operator<<(std::ostream &os, const Server &sr)

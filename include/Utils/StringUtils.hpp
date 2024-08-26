@@ -1,9 +1,9 @@
 #ifndef STRINGUTILS_HPP
 # define STRINGUTILS_HPP
 
-# include <string>
-# include <vector>
-# include <stdint.h>
+#include <string>
+#include <vector>
+#include <stdint.h>
 
 namespace StringUtils 
 {

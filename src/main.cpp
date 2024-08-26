@@ -1,14 +1,14 @@
-# include <WebServer.hpp>
-# include <Logger.hpp>
+#include <WebServer.hpp>
+#include <Logger.hpp>
 
 int main(int argc, char **argv)
 {
-	WebServer *webServer;
 	const char *configFile = (argc == 2) ? argv[1] : "config/default.conf";
 	
 	Logger::Init();
 
-	webServer = new WebServer();
+	WebServer *webServer = new WebServer();
+
 	try {
 		webServer->InitServer(configFile);
 		webServer->StartServer();

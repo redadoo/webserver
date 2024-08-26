@@ -80,7 +80,7 @@ namespace HttpStatusCode
 	inline bool isError(int code)         { return (code >= 400); }
 
 
-	inline std::string reasonPhrase(int code)
+	inline const std::string reasonPhrase(int code)
 	{
 		switch (code)
 		{
