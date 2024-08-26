@@ -14,16 +14,16 @@ Location &ServerConfig::GetLastLocation()
 void ServerConfig::CheckServerConfig()
 {
 	if (this->serverPort.port == 0)
-		throw PortNotFound();
+		throw std::invalid_argument("Port not found");
 
 	if (this->host.empty())
-		throw HostNotFound();
+		throw std::invalid_argument("Host not found");
 
 	if (this->clientMaxBody.size.empty())
-		throw ClientBodySizeNotFound();
+		throw std::invalid_argument("Client body size not found");
 
 	if (this->errorPage.size() == 0)
-		throw ErrorPageNotFound();
+		throw std::invalid_argument("Error page not found");
 }
 
 std::ostream &operator<<(std::ostream &os, const ServerConfig &sr)
@@ -45,7 +45,6 @@ std::ostream &operator<<(std::ostream &os, const ServerConfig &sr)
 			os << ", ";
 	}
 	os << "\nClient Max Body Size: " << sr.clientMaxBody << "\n";
-		// Assuming ClientBodySize has its own overloaded <<
 	os << "Error Pages: ";
 	for (size_t i = 0; i < sr.errorPage.size(); ++i)
 	{
@@ -57,7 +56,6 @@ std::ostream &operator<<(std::ostream &os, const ServerConfig &sr)
 	for (size_t i = 0; i < sr.locations.size(); ++i)
 	{
 		os << sr.locations[i] << "\n";
-			// Assuming Location has its own overloaded <<
 	}
 	os << "Auto Index: " << (sr.autoIndex ? "Enabled" : "Disabled") << "\n";
 	os << "Is Init Autoindex: " << (sr.isInitAutoindex ? "Enabled" : "Disabled") << "\n";

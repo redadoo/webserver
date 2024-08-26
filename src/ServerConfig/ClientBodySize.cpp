@@ -24,7 +24,7 @@ void ClientBodySize::InitClientBodySize(const std::string& str)
 	if (!(lastChar == 'K' || lastChar == 'M' || lastChar == 'G'))
 	{
 		if(!StringUtils::IsAllDigit(str))
-				throw InvalidClientBodySize();
+			throw std::invalid_argument("Invalid client body size");
 
 		this->size = str;
 		this->unit =  BYTE;
@@ -34,10 +34,10 @@ void ClientBodySize::InitClientBodySize(const std::string& str)
 		std::string size = str.substr(0, str.size() - 1);
 
 		if (size.size() == 0)
-			throw InvalidClientBodySize();
+			throw std::invalid_argument("Invalid client body size");
 
 		if(!StringUtils::IsAllDigit(size))
-			throw InvalidClientBodySize();
+			throw std::invalid_argument("Invalid client body size");
 
 		this->size = size;
 

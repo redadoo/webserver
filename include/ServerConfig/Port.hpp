@@ -11,19 +11,20 @@ public:
 
 	Port() : port(0) {};
 
+ 	/// @brief Initializes the port with an integer value.
+    /// @param _port The port number to set.
+    /// @throws std::invalid_argument If the port number is out of the valid range (1-65535).
 	void InitPort(int _port);
+
+	/// @brief Initializes the port with a string value.
+    /// @param _port The port number as a string to set.
+    /// @throws std::invalid_argument If the port number is invalid or out of the valid range (1-65535).
 	void InitPort(std::string _port);
 
+    /// @brief Compares two Port objects for equality.
+    /// @param p The Port object to compare with.
+    /// @return True if the ports are equal, false otherwise.
 	bool operator == (const Port &p);
-	 
-	class InvalidPort : public std::exception
-	{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Invalid port";
-			}
-	};
 };
 
 #endif

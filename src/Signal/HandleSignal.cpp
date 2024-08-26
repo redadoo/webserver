@@ -24,15 +24,15 @@ void HandleSignal::SetupSignalHandler()
 
 	// Set up the sigaction to handle SIGINT (Ctrl + C)
 	if (sigaction(SIGINT, &sa, NULL) == -1)
-		throw ErrorOnCannotHandleSigint();
+		throw std::invalid_argument("Error: cannot handle SIGINT");
 
 	// Set up the sigaction to handle SIGTSTP (Ctrl + Z)
 	if (sigaction(SIGTSTP, &sa, NULL) == -1)
-		throw ErrorOnCannotHandleSigquit();
+		throw std::invalid_argument("Error: cannot handle SIGTSTP");
 
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
     if (sigaction(SIGQUIT, &sa, NULL) == -1)
-		throw ErrorOnCannotHandleSigtstp();
+		throw std::invalid_argument("Error: cannot handle SIGQUIT");
 
 	Logger::Log("handled the signals successfully");
 

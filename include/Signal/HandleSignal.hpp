@@ -19,21 +19,6 @@ namespace HandleSignal
     /// This function is called when the specified signals are caught, and it sets the `signCaught` flag to true.
     /// @param sig The signal number.
 	void HandleSigstp(int sig);
-
-    class ErrorOnCannotHandleSigint : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: cannot handle SIGINT";}
-	};
-
-	class ErrorOnCannotHandleSigquit : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: cannot handle SIGTSTP";}
-	};
-
-	class ErrorOnCannotHandleSigtstp : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "Error: cannot handle SIGQUIT";}
-	};
 	
 } // namespace Signal
 

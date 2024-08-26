@@ -2,6 +2,8 @@
 #include <Logger.hpp>
 #include <WebServerException.hpp>
 
+// CaseInsensitiveCompare
+
 bool CaseInsensitiveCompare::char_compare(char ac, char bc)
 {
 	return (std::tolower(static_cast<unsigned char>(ac)) < std::tolower(static_cast<unsigned char>(bc)));
@@ -14,6 +16,8 @@ bool CaseInsensitiveCompare::operator()(const std::string &a, const std::string 
 		b.begin(), b.end(),
 		CaseInsensitiveCompare::char_compare));
 }
+
+// private function
 
 void HttpMessage::ParseStartLine(const std::string &str)
 {
@@ -38,7 +42,9 @@ void HttpMessage::ParseStartLine(const std::string &str)
 	this->startLine.isInit = true;
 }
 
-void HttpMessage::ParseMessage(const std::string messageChunk)
+// public function
+
+void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
     std::string messageLine;
     std::istringstream messageChunkStream(messageChunk.c_str());

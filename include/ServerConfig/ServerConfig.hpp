@@ -28,48 +28,16 @@ struct ServerConfig
 	// Default constructor
 	ServerConfig();
 
+   	/// @brief Retrieves the last location in the locations list.
+    /// @return Reference to the last Location object in the locations list.
 	Location &GetLastLocation();
 
+ 	/// @brief Checks the validity of the server configuration.
+    /// @throws std::invalid_argument If any required configuration value is missing or invalid.
 	void CheckServerConfig();
 
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const ServerConfig& sr);
-
-	class ErrorPageNotFound : public std::exception
-	{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Error page not found";
-			}
-	};
-
-	class ClientBodySizeNotFound : public std::exception
-	{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Client body size not found";
-			}
-	};
-
-	class HostNotFound : public std::exception
-	{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Host not found";
-			}
-	};
-
-	class PortNotFound : public std::exception
-	{
-		public:
-			virtual const char *what() const throw()
-			{
-				return "Port not found";
-			}
-	};
 };
 
 #endif // SERVERCONFIG_HPP

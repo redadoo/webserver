@@ -7,7 +7,7 @@
 
 namespace Lexer
 {
-
+    /// @brief Enumeration for different parsing states during tokenization.
 	enum ParseState 
 	{
 		SearchingServer,
@@ -16,7 +16,8 @@ namespace Lexer
 		CollectingTokenValue,
 		CollectionLocation,
 	};
-		
+
+    /// @brief Enumeration for different token types.
 	enum TokenType
 	{
 		startServerContext,
@@ -26,6 +27,7 @@ namespace Lexer
 		simpleToken
 	};
 
+    /// @brief Structure representing a token with a name, value, and type.
 	struct Token
 	{
 		std::string tokenName;
@@ -39,6 +41,9 @@ namespace Lexer
 			tokenName(_tokenName), tokenValue(_tokenValue), tokenType(_tokenType) {};
 	};
 
+    /// @brief Tokenizes the input file into a vector of tokens.
+    /// @param fileName The name of the file to tokenize.
+    /// @return A vector of tokens parsed from the file.
 	std::vector<Token> GetToken(std::string fileName);
 
 

@@ -23,8 +23,15 @@ namespace StringUtils
     /// @return A int representation of the string.
     int StrintToInt(const std::string& str);
 
+    /// @brief Splits a string into substrings based on a delimiter.
+    /// @param str The string to split.
+    /// @param delim The delimiter character.
+    /// @return A vector of substrings.
     std::vector<std::string> Split(const std::string& str, char delim);
 
+    /// @brief Checks if a string contains only digit characters.
+    /// @param str The string to check.
+    /// @return True if all characters in the string are digits, false otherwise.
     bool IsAllDigit(const std::string& str);
 } // namespace StringUtils
 
