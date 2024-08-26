@@ -82,7 +82,7 @@ const char *HttpMessage::c_str() const
 	std::string msg = "";
 
 	msg.append(startLine.ToString());
-
+	
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it) 
 	{
 		msg.append(it->first);
@@ -103,4 +103,17 @@ std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 {
 	os << "response message :\n" << msg.c_str();
 	return (os);
+}
+
+std::string StartLine::ToString() const
+{
+	std::string startLine;
+
+	startLine.append(this->httpMethod);
+	startLine.append(" ");
+	startLine.append(this->httpVersion);
+	startLine.append(" ");
+	startLine.append(this->path);
+
+    return startLine;
 }

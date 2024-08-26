@@ -156,8 +156,6 @@ void Server::SendResponse(const Client &client)
 
 	const char * str = response.c_str();
 
-	std::cout << str;
-	
 	if (send(client.clientFd, str, response.size(), 0) < 0)
 	{
 		Logger::LogError("Failed to send response: "

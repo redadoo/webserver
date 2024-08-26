@@ -15,7 +15,7 @@ struct StartLine
 	bool 						isInit;
 
 	size_t size() const {return httpMethod.size() + httpVersion.size() + path.size();}
-    std::string ToString() const { return httpMethod + " " + path + " " + httpVersion + "\r\n"; }
+    std::string ToString() const;
 };
 
 /// @brief Functor for case-insensitive comparison of strings
