@@ -73,7 +73,7 @@ public:
 	/// @param clientFd File descriptor of the client.
 	void CloseClientConnection(int clientFd);
 
-	/// @brief Overloads the << operator to output server configuration details.
+    /// @brief Overloads the << operator to output server configuration details.
 	/// @param os Output stream object.
 	/// @param sr Reference to the Server object.
 	/// @return Reference to the output stream object.

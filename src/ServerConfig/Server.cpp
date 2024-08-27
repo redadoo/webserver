@@ -145,27 +145,27 @@ void Server::ReadClientResponse(Client &client)
 
 void Server::SendResponse(const Client &client)
 {
-	if (HttpStatusCode::isError(response.code))
-		BuildErrorResponse();
-	else
-		BuildResponse();
+	(void)client;
+	// if (HttpStatusCode::isError(response.code))
+	// 	BuildErrorResponse();
+	// else
+	// 	BuildResponse();
 
-	const char * str = response.c_str();
+	// const char * str = response.c_str();
 
-	if (send(client.clientFd, str, response.size(), 0) < 0)
-	{
-		Logger::LogError("Failed to send response:");
-		throw std::invalid_argument("send() failed");
-	}
+	// if (send(client.clientFd, str, response.size(), 0) < 0)
+	// {
+	// 	Logger::LogError("Failed to send response:");
+	// 	throw std::invalid_argument("send() failed");
+	// }
 
-	Logger::ResponseLog(*this,client, str);
+	// Logger::ResponseLog(*this,client, " ");
 }
 
 void Server::CloseClientConnection(const Client &client)
 {
 	close(client.clientFd);
 	Logger::ClientLog(*this, client, "has been disconnected ");
-	clients.erase(client.clientFd);
 }
 
 void Server::CloseClientConnection(int clientFd)
@@ -177,7 +177,6 @@ void Server::CloseClientConnection(int clientFd)
 		client = clients.find(clientFd)->second;
 		close(client.clientFd);
 		Logger::ClientLog(*this, client, "has been disconnected ");
-		clients.erase(client.clientFd);
 	}
 }
 

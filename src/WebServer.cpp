@@ -89,12 +89,9 @@ void WebServer::CleanUpAll()
 {
 	for (size_t i = 0; i < servers.size(); ++i)
 	{
-		for (size_t y = 0; y < servers[i].clients.size(); y++)
-		{
-			servers[i].CloseClientConnection(servers[i].clients[y]);
-		}
 		close(servers[i].serverFd);
 	}
+
 	if (epollFd != -1)
 		close(epollFd);
 }
