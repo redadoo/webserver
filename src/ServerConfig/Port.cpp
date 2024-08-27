@@ -1,7 +1,8 @@
 #include <Port.hpp>
 #include <StringUtils.hpp>
 #include <stdexcept>
-	
+#include <iostream>
+
 void Port::InitPort(int _port)
 {
 	if (_port < 1 || _port > 65535)
@@ -23,4 +24,10 @@ void Port::InitPort(std::string portString)
 bool Port::operator==(const Port &p)
 {
 	return (p.port == this->port);
+}
+
+std::ostream &operator<<(std::ostream &os, const Port &pr)
+{
+	os << ":" << pr.port;
+	return (os);
 }

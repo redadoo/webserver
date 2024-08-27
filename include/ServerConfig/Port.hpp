@@ -25,6 +25,13 @@ public:
     /// @param p The Port object to compare with.
     /// @return True if the ports are equal, false otherwise.
 	bool operator == (const Port &p);
+
+    /// @brief Overloads the << operator to output server configuration details.
+	/// @param os Output stream object.
+	/// @param pr Reference to the Port object.
+	/// @return Reference to the output stream object.
+	friend std::ostream& operator<<(std::ostream& os, const Port& pr);
+
 };
 
 #endif

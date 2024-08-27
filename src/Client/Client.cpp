@@ -4,9 +4,9 @@
 
 Client::Client() : clientFd(-1) {}
 
-Client::Client(int fd, const std::string& ip, uint16_t port)  : clientFd(fd)
+Client::Client(int fd, const std::string& _ip, uint16_t _port)  : clientFd(fd)
 {
-    this->clientConfig.srcIp = ip;
-    this->clientConfig.srcPort = port;
+    this->clientConfig.ip = _ip;
+    this->clientConfig.port.port = _port;
     this->contentLenght = -1;
 }

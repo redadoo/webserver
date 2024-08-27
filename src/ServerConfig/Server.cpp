@@ -14,9 +14,9 @@ Server::Server() : serverConfig() {}
 
 //private function
 
-void Server::AddClient(int clientFd, std::string srcIp, uint16_t srcPort)
+void Server::AddClient(int clientFd, std::string ip, uint16_t port)
 {
-	Client client(clientFd, srcIp, srcPort);
+	Client client(clientFd, ip, port);
 	std::pair<int, Client> client_pair(clientFd, client);
 	clients.insert(client_pair);
 }
@@ -83,9 +83,9 @@ int Server::AcceptClient(int fd, int epollFd)
 	int					clientFd;
 	struct sockaddr_in	addr;
 	socklen_t			addrLen;
-	uint16_t			srcPort;
-	const char			*srcIp;
-	char				srcIpBuffer[sizeof("xxx.xxx.xxx.xxx")];
+	uint16_t			port;
+	const char			*ip;
+	char				ipBuffer[sizeof("xxx.xxx.xxx.xxx")];
 
 	Logger::ServerLog(*this, "A client is trying to connecting to ");
 	addrLen = sizeof(addr);
@@ -99,9 +99,9 @@ int Server::AcceptClient(int fd, int epollFd)
 		return (-1);
 	}
 
-	srcPort = ntohs(addr.sin_port);
-	srcIp = NetworkUtils::ConvertAddrNtop(&addr, srcIpBuffer);
-	if (!srcIp)
+	port = ntohs(addr.sin_port);
+	ip = NetworkUtils::ConvertAddrNtop(&addr, ipBuffer);
+	if (!ip)
 	{
 		Logger::LogWarning("Cannot parse source address");
 		close(clientFd);
@@ -113,7 +113,7 @@ int Server::AcceptClient(int fd, int epollFd)
 	}
 	else
 	{
-		this->AddClient(clientFd, srcIp, srcPort);
+		this->AddClient(clientFd, ip, port);
 		Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
 		EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLPRI);
 	}
@@ -122,26 +122,25 @@ int Server::AcceptClient(int fd, int epollFd)
 
 void Server::ReadClientResponse(Client &client)
 {
-	ssize_t	recvRet = 1;
+	ssize_t	recvRet;
 
-	while (recvRet > 0)
-	{
-		char			buffer[1024];
+	char			buffer[MAX_RESPONSE_SIZE];
 
-		recvRet = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
-		if (recvRet == 0)
-			return CloseClientConnection(client);
+	recvRet = recv(client.clientFd, buffer, sizeof(buffer), MSG_DONTWAIT);
 
-		if (recvRet < 0)
-			return CloseClientConnection(client);
+	if (recvRet == 0)
+		return;
 
-		buffer[recvRet] = '\0';
+	if (recvRet < 0)
+		return CloseClientConnection(client);
 
-		client.request.ParseMessage(buffer);
+	buffer[recvRet] = '\0';
+	if (buffer[recvRet - 1] == '\n')
+		buffer[recvRet - 1] = '\0';
 
-		Logger::RequestLog(*this, client, buffer);
-	}
+	client.request.ParseMessage(buffer);
 
+	Logger::RequestLog(*this, client, buffer);
 }
 
 void Server::SendResponse(const Client &client)

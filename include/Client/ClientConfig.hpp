@@ -3,11 +3,12 @@
 
 #include <stdint.h>
 #include <string>
+#include <Port.hpp>
 
 struct ClientConfig
 {
-    std::string					srcIp;
-	uint16_t					srcPort;
+    std::string ip;
+    Port        port;
 };
 
 #endif

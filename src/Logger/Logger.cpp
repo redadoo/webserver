@@ -54,7 +54,7 @@ void Logger::ClientLog(const Server& server, const Client &client, const char *m
 	
 	if (logFile.is_open())
 	{
-    	logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << " " << msg << 
+    	logFile << "Client " << client.clientConfig.ip << ":" << client.clientConfig.port << " " << msg << 
 		" by the socket: " << server.serverConfig.host << ":" << server.serverConfig.serverPort.port << std::endl;
 	}
 	else
@@ -67,8 +67,8 @@ void Logger::RequestLog(const Server &server, const Client &client, const HttpMe
 
 	if (logFile.is_open())
 	{
-		logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << 
-		" send a request to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort.port << std::endl;
+		logFile << "Client " << client.clientConfig.ip << client.clientConfig.port << 
+		" send a request to socket " << server.serverConfig.host << server.serverConfig.serverPort.port << std::endl;
 
 		logFile << "[ StartRequestBlock ] " << std::endl << request << "[ EndRequestBlock ]" << std::endl;
 	}
@@ -78,9 +78,11 @@ void Logger::RequestLog(const Server &server, const Client &client, const HttpMe
 
 void Logger::RequestLog(const Server &server, const Client &client, const std::string &request)
 {
+	WriteCurrentDataTime();
+
 	if (logFile.is_open())
 	{
-		logFile << "Client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << 
+		logFile << "Client " << client.clientConfig.ip << ":" << client.clientConfig.port << 
 			" send a request to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort.port << std::endl;
 		logFile << "[ StartRequestBlock ] " << std::endl << request << "[ EndRequestBlock ]" << std::endl;
 	}
@@ -93,7 +95,7 @@ void Logger::ResponseLog(const Server &server, const Client &client, const char*
 	if (logFile.is_open())
 	{
 		logFile << "Server " << server.serverConfig.socketIp << ":" << server.serverConfig.serverPort.port << 
-			" send a response to client " << client.clientConfig.srcIp << ":" << client.clientConfig.srcPort << std::endl;
+			" send a response to client " << client.clientConfig.ip << ":" << client.clientConfig.port << std::endl;
 		logFile << "[ StartResponseBlock ] " << std::endl << httpResponse << "[ EndResponseBlock ]" << std::endl;
 	}
 	else

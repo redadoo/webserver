@@ -19,9 +19,9 @@ private:
 
 	/// @brief Adds a new client to the server's client list.
 	/// @param clientFd File descriptor for the client's socket.
-	/// @param srcIp Source IP address of the client.
-	/// @param srcPort Source port of the client.
-	void AddClient(int clientFd, std::string srcIp, uint16_t srcPort);
+	/// @param ip Source IP address of the client.
+	/// @param port Source port of the client.
+	void AddClient(int clientFd, std::string ip, uint16_t port);
 
 	/// @brief Builds the response to be sent to the client.
 	void BuildResponse();
