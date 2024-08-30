@@ -18,7 +18,7 @@ private:
 	struct epoll_event      events[32];
 	int						epollFd;
 	bool					needToStop;
-	
+
 	/// @brief Handles events for a specific client.
 	void HandleClientEvent(Client &client, uint32_t revents, Server& Server);
 
@@ -30,7 +30,7 @@ private:
 
 	/// @brief Closes all open file descriptors and cleans up resources.
 	void CleanUpAll();
-	
+
 public:
 	/// @brief Initializes the server based on parsed configuration data.
 	void InitServer(const char *configFIle);

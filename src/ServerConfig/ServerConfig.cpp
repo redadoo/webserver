@@ -19,7 +19,7 @@ void ServerConfig::CheckServerConfig()
 	if (this->host.empty())
 		throw std::invalid_argument("Host not found");
 
-	if (this->clientMaxBody.size.empty())
+	if (this->clientMaxBody.size == 0)
 		throw std::invalid_argument("Client body size not found");
 
 	if (this->errorPage.size() == 0)

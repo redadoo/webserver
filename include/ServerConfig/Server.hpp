@@ -61,9 +61,24 @@ public:
 	/// @param client Reference to the Client object.
 	void ReadClientResponse(Client& client);
 
+	/// @brief Processes the client's request and generates a response.
+	/// @param client Reference to the Client object.
+	void ProcessRequest(Client& client);
+
+	std::string GetFullPath(const std::string& path);
+	void HandleNotFound();
+	void HandleDirectoryRequest(const std::string& path);
+	void HandleFileRequest(const std::string& path);
+	void LogResponseHeaders();
+
+
+
 	/// @brief Sends a response to the client.
 	/// @param client Reference to the Client object.
 	void SendResponse(const Client& client);
+
+	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
+
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.
 	/// @param client Reference to the Client object.

@@ -1,5 +1,8 @@
 #include "ClientBodySize.hpp"
 #include <StringUtils.hpp>
+#include <stdexcept>
+#include <limits>
+#include <sstream>
 
 std::ostream &operator<<(std::ostream &os, const ClientBodySize &cl)
 {
@@ -26,7 +29,7 @@ void ClientBodySize::InitClientBodySize(const std::string& str)
 		if(!StringUtils::IsAllDigit(str))
 			throw std::invalid_argument("Invalid client body size");
 
-		this->size = str;
+		this->size = StringUtils::StringToUnsignedLongLong(str);
 		this->unit =  BYTE;
 	}
 	else
@@ -39,7 +42,7 @@ void ClientBodySize::InitClientBodySize(const std::string& str)
 		if(!StringUtils::IsAllDigit(size))
 			throw std::invalid_argument("Invalid client body size");
 
-		this->size = size;
+		this->size = StringUtils::StringToUnsignedLongLong(size);
 
 		if (lastChar == 'K')
 			this->unit = KILOBYTE;
@@ -47,5 +50,28 @@ void ClientBodySize::InitClientBodySize(const std::string& str)
 			this->unit = MEGABYTE;
 		else if (lastChar == 'G')
 			this->unit = GIGABYTE;
+	}
+}
+
+unsigned long long ClientBodySize::ConvertToBytes() const
+{
+	switch (unit)
+	{
+		case BYTE:
+			return size;
+		case KILOBYTE:
+			if (size > std::numeric_limits<unsigned long long>::max() / 1024)
+				throw std::invalid_argument("Client body size is too large");
+			return size * 1024;
+		case MEGABYTE:
+			if (size > std::numeric_limits<unsigned long long>::max() / 1024 / 1024)
+				throw std::invalid_argument("Client body size is too large");
+			return size * 1024 * 1024;
+		case GIGABYTE:
+			if (size > std::numeric_limits<unsigned long long>::max() / 1024 / 1024 / 1024)
+				throw std::invalid_argument("Client body size is too large");
+			return size * 1024 * 1024 * 1024;
+		default:
+			throw std::invalid_argument("Invalid client body size unit");
 	}
 }

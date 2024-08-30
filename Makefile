@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edoardo <edoardo@student.42.fr>            +#+  +:+       +#+         #
+#    By: fursini <fursini@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/23 15:54:22 by edoardo           #+#    #+#              #
-#    Updated: 2024/08/24 20:32:02 by edoardo          ###   ########.fr        #
+#    Updated: 2024/08/28 00:18:44 by fursini          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ FILES       		= 	main WebServer ServerConfig/Server Parsing/Parser Parsing/Lexer
 						Utils/StringUtils Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
 						Client/Client Utils/EpollUtils Logger/Logger ServerConfig/ServerConfig ServerConfig/Port \
 						ServerConfig/ClientBodySize ServerConfig/Location ServerConfig/CodePath Http/HttpMessage Http/HttpResponse
-				
+
 SRC         		= 	$(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
 
@@ -75,12 +75,12 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(HEADER)
 
 run: re
 	./$(NAME)
-	
+
 leaks: re
 	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME)
 
 leaks_with_args: re
-	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME) 
+	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME)
 
 clean:
 	@$(RM) $(OBJDIR)

@@ -129,7 +129,7 @@ void Parser::GetClientsBodySize(const Token& token, Server& server)
 {
 	if (token.tokenName == "client_max_body_size")
 	{
-		if (server.serverConfig.clientMaxBody.size.size() != 0)
+		if (server.serverConfig.clientMaxBody.size != 0)
 			throw std::invalid_argument("Too many clientBodySize");
 
 		server.serverConfig.clientMaxBody.InitClientBodySize(token.tokenValue);
@@ -142,7 +142,7 @@ void Parser::GetLocationPath(const Token& token, Server& server)
 	{
 		if (token.tokenValue.size() == 0 || token.tokenValue[0] != '/')
 			throw std::invalid_argument("invalid location");
-			
+
 		server.serverConfig.locations.push_back(Location(token.tokenValue));
 	}
 }

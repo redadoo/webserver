@@ -28,18 +28,28 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		server.CloseClientConnection(client);
 		return ;
 	}
-	
-	try	
+
+	try
 	{
 		server.ReadClientResponse(client);
+		server.ProcessRequest(client);
+		server.SendResponse(client);
+		// server.CloseClientConnection(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e)
 	{
-		Logger::LogException(e);
-		server.response.code = e.code;
+		Logger::LogError("HTTP error occurred: " + StringUtils::ToString(e.code));
+		server.SendErrorResponse(client, e.code);
+	}
+	catch (const std::exception &e)
+	{
+		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+		server.CloseClientConnection(client);
+		return ;
 	}
 
-	server.SendResponse(client);
+
+	// server.SendResponse(client);
 }
 
 void WebServer::CheckSockets(int epollRet)
@@ -76,7 +86,7 @@ void WebServer::CheckServerPort()
 	{
 		for (size_t j = 0; j < servers.size(); j++)
 		{
-			if (i == j) 
+			if (i == j)
 				continue;
 
 			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
@@ -103,9 +113,9 @@ void WebServer::InitServer(const char *configFIle)
 	Parser::ParseConfigFile(servers, configFIle);
 
 	HandleSignal::SetupSignalHandler();
-	
+
 	epollFd = EpollUtils::EpollInit();
-	
+
 	for (size_t i = 0; i < servers.size(); i++)
 		servers[i].InitSocket(epollFd);
 
