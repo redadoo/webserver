@@ -145,14 +145,6 @@ void Server::ReadClientResponse(Client &client)
 
 	client.request.ParseMessage(buffer);
 
-	Header::const_iterator it = client.request.header.find("Content-Length");
-	if (it != client.request.header.end())
-	{
-		// unsigned long long contentLength = StringUtils::StringToUnsignedLongLong(it->second);
-		// if (client.request.body.length() >= contentLength)
-		// 	break;
-	}
-
 	Logger::RequestLog(*this, client, client.request);
 }
 

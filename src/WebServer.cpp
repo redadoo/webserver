@@ -29,42 +29,43 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		return ;
 	}
 
-	if (events & EPOLLIN)
-	{
-		std::cout << "1 run\n";
-	}
-	if (events & EPOLLPRI)
-	{
-		std::cout << "2 run\n";
-	}
-	if (events & EPOLLOUT)
-	{
-		std::cout << "3 run\n";
-	}
-	if (events & EPOLLRDNORM)
-	{
-		std::cout << "4 run\n";
-	}
-	if (events & EPOLLRDBAND)
-	{
-		std::cout << "5 run\n";
-	}
-	if (events & EPOLLWRNORM)
-	{
-		std::cout << "6 run\n";
-	}
-	if (events & EPOLLWRBAND)
-	{
-		std::cout << "7 run\n";
-	}
-	if (events & EPOLLMSG)
-	{
-		std::cout << "8 run\n";
-	}
-	if (events & EPOLLERR)
-	{
-		std::cout << "9 run\n";
-	}
+	// if (events & EPOLLIN)
+	// {
+	// 	std::cout << "1 run\n";
+	// }
+	// if (events & EPOLLPRI)
+	// {
+	// 	std::cout << "2 run\n";
+	// }
+	// if (events & EPOLLOUT)
+	// {
+	// 	std::cout << "3 run\n";
+	// }
+	// if (events & EPOLLRDNORM)
+	// {
+	// 	std::cout << "4 run\n";
+	// }
+	// if (events & EPOLLRDBAND)
+	// {
+	// 	std::cout << "5 run\n";
+	// }
+	// if (events & EPOLLWRNORM)
+	// {
+	// 	std::cout << "6 run\n";
+	// }
+	// if (events & EPOLLWRBAND)
+	// {
+	// 	std::cout << "7 run\n";
+	// }
+	// if (events & EPOLLMSG)
+	// {
+	// 	std::cout << "8 run\n";
+	// }
+	// if (events & EPOLLERR)
+	// {
+	// 	std::cout << "9 run\n";
+	// }
+	
 	try
 	{
 		server.ReadClientResponse(client);

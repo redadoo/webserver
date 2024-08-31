@@ -76,9 +76,10 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 				body.erase(body.size() - 1);
 		}
 	}
+
 }
 
-const char *HttpMessage::c_str() const
+std::string HttpMessage::ToString() const
 {
 	std::string msg = "";
 
@@ -94,7 +95,7 @@ const char *HttpMessage::c_str() const
 
 	msg.append(body);
 	
-	return msg.c_str();
+	return msg;
 }
 
 size_t HttpMessage::size() const
@@ -104,7 +105,7 @@ size_t HttpMessage::size() const
 
 std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 {
-	os << msg.c_str();
+	os << msg.ToString();
 	return (os);
 }
 

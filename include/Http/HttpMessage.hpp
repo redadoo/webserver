@@ -45,7 +45,7 @@ public:
 
     /// @brief Provides a C-style string representation of the HTTP message.
     /// @return A C-style string of the HTTP message.
-    const char* c_str() const;
+    std::string ToString() const;
 	
     /// @brief Provides a string representation of the HTTP message.
     /// @param os Output stream to write the message to.
