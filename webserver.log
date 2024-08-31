@@ -1,0 +1,216 @@
+[2024-8-31 14:35:35] start tokenization Configuration file ...
+[2024-8-31 14:35:35] tokenization finished
+[2024-8-31 14:35:35] start parsing token...
+[2024-8-31 14:35:35] parsing finished
+[2024-8-31 14:35:35] signal handling started
+[2024-8-31 14:35:35] handled the signals successfully
+[2024-8-31 14:35:35] start create a new epoll instance
+[2024-8-31 14:35:35] init epoll instance successfully
+[2024-8-31 14:35:35] Creating TCP socket...
+[2024-8-31 14:35:35] add file descriptor to epoll instance ...
+[2024-8-31 14:35:35] Listening on 127.0.0.1:8080
+[2024-8-31 14:35:35] Creating TCP socket...
+[2024-8-31 14:35:35] add file descriptor to epoll instance ...
+[2024-8-31 14:35:35] Listening on 127.0.0.1:8081
+[2024-8-31 14:35:35] successfully init all servers data
+[2024-8-31 14:35:35] Entering event loop...
+[2024-8-31 14:35:38] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:38] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-31 14:35:38] Client 127.0.0.1::34798  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:38] add file descriptor to epoll instance ...
+[2024-8-31 14:35:38] Client 127.0.0.1:34798 send a request to socket 127.0.0.18080
+[ StartRequestBlock ] 
+response message :
+GET HTTP/1.1 /Accepttext/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7Accept-Encodinggzip, deflate, br, zstdAccept-Languageen-US,en;q=0.9Hostlocalhost:8080priorityu=0, iProxy-ConnectionKeep-AliveRefererhttps://cautious-orbit-wvvxjr49gwqc569w.github.dev/sec-ch-ua"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"sec-ch-ua-mobile?0sec-ch-ua-platform"Linux"sec-fetch-destdocumentsec-fetch-modenavigatesec-fetch-sitesame-sitesec-fetch-user?1User-AgentMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36X-Forwarded-For10.240.4.3X-Forwarded-Hostcautious-orbit-wvvxjr49gwqc569w-8080.app.github.devX-Forwarded-Port443X-Forwarded-ProtohttpsX-Forwarded-SchemehttpsX-Original-ProtohttpsX-Original-URI/X-Real-IP10.240.4.3X-Request-ID7a4f6cd834d4ab4d595d4a77772261bcX-SchemehttpsGET / HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Referer: https://cautious-orbit-wvvxjr49gwqc569w.github.dev/
+X-Request-ID: 7a4f6cd834d4ab4d595d4a77772261bc
+X-Real-IP: 10.240.4.3
+X-Forwarded-Port: 443
+X-Forwarded-Scheme: https
+X-Original-URI: /
+X-Scheme: https
+sec-ch-ua: "Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Linux"
+sec-fetch-site: same-site
+sec-fetch-mode: navigate
+sec-fetch-user: ?1
+sec-fetch-dest: document
+priority: u=0, i
+X-Original-Proto: https
+X-Forwarded-Proto: https
+X-Forwarded-Host: cautious-orbit-wvvxjr49gwqc569w-8080.app.github.dev
+X-Forwarded-For: 10.240.4.3
+Proxy-Connection: Keep-Alive
+[ EndRequestBlock ]
+[2024-8-31 14:35:38] Processing request for path: /
+[2024-8-31 14:35:38] Full requested path: web-page/
+[2024-8-31 14:35:38] Requested path is a directory, looking for index file
+[2024-8-31 14:35:38] File found: web-page//index.html
+[2024-8-31 14:35:38] File content length: 841 bytes
+[2024-8-31 14:35:38] Response headers:
+[2024-8-31 14:35:38]   Content-Length: 841
+[2024-8-31 14:35:38]   Content-Type: text/html
+[2024-8-31 14:35:38] Sent 1747 bytes to client
+[2024-8-31 14:35:38] Processing request for path: /
+[2024-8-31 14:35:38] Full requested path: web-page/
+[2024-8-31 14:35:38] Requested path is a directory, looking for index file
+[2024-8-31 14:35:38] File found: web-page//index.html
+[2024-8-31 14:35:38] File content length: 841 bytes
+[2024-8-31 14:35:38] Response headers:
+[2024-8-31 14:35:38]   Content-Length: 841
+[2024-8-31 14:35:38]   Content-Type: text/html
+[2024-8-31 14:35:38] Sent 1747 bytes to client
+[2024-8-31 14:35:38] Client 127.0.0.1::34798 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:41] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:44] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:46] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-31 14:35:46] Client 127.0.0.1::60482  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:46] add file descriptor to epoll instance ...
+[2024-8-31 14:35:46] Client 127.0.0.1:60482 send a request to socket 127.0.0.18080
+[ StartRequestBlock ] 
+response message :
+GET HTTP/1.1 /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasAccepttext/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7Accept-Encodinggzip, deflate, br, zstdAccept-Languageen-US,en;q=0.9Hostlocalhost:8080priorityu=0, iProxy-ConnectionKeep-Alivesec-ch-ua"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"sec-ch-ua-mobile?0sec-ch-ua-platform"Linux"sec-fetch-destdocumentsec-fetch-modenavigatesec-fetch-sitenonesec-fetch-user?1User-AgentMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36X-Forwarded-For10.240.4.3X-Forwarded-Hostcautious-orbit-wvvxjr49gwqc569w-8080.app.github.devX-Forwarded-Port443X-Forwarded-ProtohttpsX-Forwarded-SchemehttpsX-Original-ProtohttpsX-Original-URI/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasX-Real-IP10.240.4.3X-Request-IDa76b5b134965e7f8ef42aa906aa16d02X-SchemehttpsGET /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+X-Request-ID: a76b5b134965e7f8ef42aa906aa16d02
+X-Real-IP: 10.240.4.3
+X-Forwarded-Port: 443
+X-Forwarded-Scheme: https
+X-Original-URI: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+X-Scheme: https
+sec-ch-ua: "Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Linux"
+sec-fetch-site: none
+sec-fetch-mode: navigate
+sec-fetch-user: ?1
+sec-fetch-dest: document
+priority: u=0, i
+X-Original-Proto: https
+X-Forwarded-Proto: https
+X-Forwarded-Host: cautious-orbit-wvvxjr49gwqc569w-8080.app.github.dev
+X-Forwarded-For: 10.240.4.3
+Proxy-Connection: Keep-Alive
+[ EndRequestBlock ]
+[2024-8-31 14:35:46] Processing request for path: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:46] Full requested path: web-page/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:46] ERROR: HTTP error occurred: 404
+[2024-8-31 14:35:46] Using custom error page: web-page/error-pages/404.html
+[2024-8-31 14:35:46] Sent 784 bytes to client
+[2024-8-31 14:35:46] Processing request for path: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:46] Full requested path: web-page/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:46] ERROR: HTTP error occurred: 404
+[2024-8-31 14:35:46] Using custom error page: web-page/error-pages/404.html
+[2024-8-31 14:35:46] Sent 784 bytes to client
+[2024-8-31 14:35:46] Client 127.0.0.1::60482 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:49] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:51] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-31 14:35:51] Client 127.0.0.1::48202  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:51] add file descriptor to epoll instance ...
+[2024-8-31 14:35:51] Client 127.0.0.1:48202 send a request to socket 127.0.0.18080
+[ StartRequestBlock ] 
+response message :
+GET HTTP/1.1 /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasAccepttext/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7Accept-Encodinggzip, deflate, br, zstdAccept-Languageen-US,en;q=0.9Hostlocalhost:8080User-AgentMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36X-Forwarded-Port443X-Forwarded-SchemehttpsX-Original-URI/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasX-Real-IP10.240.4.3X-Request-ID1244eea6b9635bebf894be9631fddb14GET /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+X-Request-ID: 1244eea6b9635bebf894be9631fddb14
+X-Real-IP: 10.240.4.3
+X-Forwarded-Port: 443
+X-Forwarded-Scheme: https
+X-Original-URI: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas[ EndRequestBlock ]
+[2024-8-31 14:35:51] Processing request for path: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:51] Full requested path: web-page/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:51] ERROR: HTTP error occurred: 404
+[2024-8-31 14:35:51] Using custom error page: web-page/error-pages/404.html
+[2024-8-31 14:35:51] Sent 784 bytes to client
+[2024-8-31 14:35:51] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:51] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:51] Sent 308 bytes to client
+[2024-8-31 14:35:51] Processing request for path: /asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:51] Full requested path: web-page/asdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdasasdasdas
+[2024-8-31 14:35:51] ERROR: HTTP error occurred: 404
+[2024-8-31 14:35:51] Using custom error page: web-page/error-pages/404.html
+[2024-8-31 14:35:51] Sent 784 bytes to client
+[2024-8-31 14:35:51] Client 127.0.0.1::48202 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:54] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:57] I don't see any event within 3000 milliseconds
+[2024-8-31 14:35:57] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-31 14:35:57] Client 127.0.0.1::48206  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-31 14:35:57] add file descriptor to epoll instance ...
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 414
+[2024-8-31 14:35:57] Using default error page for code 414 URI Too Long
+[2024-8-31 14:35:57] Sent 299 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] ERROR: HTTP error occurred: 501
+[2024-8-31 14:35:57] Using default error page for code 501 Not Implemented
+[2024-8-31 14:35:57] Sent 308 bytes to client
+[2024-8-31 14:35:57] Client 127.0.0.1::48206 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-31 14:36:0] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:3] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:6] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:9] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:12] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:15] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:18] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:21] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:24] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:27] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:30] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:33] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:36] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:39] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:42] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:45] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:48] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:51] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:54] I don't see any event within 3000 milliseconds
+[2024-8-31 14:36:57] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:0] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:3] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:6] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:9] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:12] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:15] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:18] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:21] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:24] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:27] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:30] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:33] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:36] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:39] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:42] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:45] I don't see any event within 3000 milliseconds
+[2024-8-31 14:37:48] I don't see any event within 3000 milliseconds

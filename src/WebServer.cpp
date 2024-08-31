@@ -34,7 +34,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		server.ReadClientResponse(client);
 		server.ProcessRequest(client);
 		server.SendResponse(client);
-		// server.CloseClientConnection(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e)
 	{
@@ -45,11 +44,8 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	{
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 		server.CloseClientConnection(client);
-		return ;
+		// return ;
 	}
-
-
-	// server.SendResponse(client);
 }
 
 void WebServer::CheckSockets(int epollRet)
@@ -151,8 +147,7 @@ void WebServer::StartServer()
 				continue ;
 			}
 			else
-				throw WebServerException::ExceptionErrno("epoll_wait(): ",
-					errno);
+				throw WebServerException::ExceptionErrno("epoll_wait(): ", errno);
 		}
 
 		CheckSockets(epollRet);

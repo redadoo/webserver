@@ -26,16 +26,16 @@ void HttpMessage::ParseStartLine(const std::string &str)
 	lineStream >> startLine.httpMethod >> startLine.path >> startLine.httpVersion;
 
 	if(startLine.httpMethod != "GET" && startLine.httpMethod != "POST" && startLine.httpMethod != "DELETE")
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotImplemented);
 
 	if(startLine.path.length() > 1024)
-		throw std::invalid_argument("Error: unexpected response");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::URITooLong);
 
 	if(startLine.path.find("../") != std::string::npos || startLine.path == ".." )
-		throw std::invalid_argument("Error: unexpected response");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::BadRequest);
 
 	if(startLine.httpVersion != "HTTP/1.1")
-		throw std::invalid_argument("Error: unexpected response");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotImplemented);
 
 	if (startLine.httpMethod == "GET" || startLine.httpMethod == "DELETE")
 		return;
