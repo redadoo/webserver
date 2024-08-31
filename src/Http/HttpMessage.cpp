@@ -46,34 +46,36 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
-	std::cout << messageChunk << std::endl;
-
-	std::istringstream messageChunkStream(messageChunk);
-	std::vector<std::string> messageLines = StringUtils::Split(messageChunk,"\r\n");
-
+	
+	std::istringstream 			messageChunkStream(messageChunk);
+	std::vector<std::string> 	messageLines = StringUtils::Split(messageChunk,"\r\n");
+	bool 						isBody = false;
 
 	ParseStartLine(messageLines[0]);
 
 	for (size_t i = 1; i < messageLines.size(); i++)
 	{
 		if (messageLines[i].empty())
-			break;
+			isBody = true;
 
-		size_t pos = messageLines[i].find(": ");
-		if (pos != std::string::npos)
+		if (!isBody)
 		{
-			std::string key = messageLines[i].substr(0, pos + 1);
-			std::string value = messageLines[i].substr(pos + 2);
-			header.insert(std::make_pair(key, value));
+			size_t pos = messageLines[i].find(": ");
+			if (pos != std::string::npos)
+			{
+				std::string key = messageLines[i].substr(0, pos + 1);
+				std::string value = messageLines[i].substr(pos + 2);
+				header.insert(std::make_pair(key, value));
+			}
+		}
+		else
+		{
+			body += messageLines[i] + "\n";
+
+			if (!body.empty() && body[body.size() - 1] == '\n')
+				body.erase(body.size() - 1);
 		}
 	}
-	
-	std::string bodyLine;
-	while (std::getline(messageChunkStream, bodyLine))
-		body += bodyLine + "\n";
-
-	if (!body.empty() && body[body.size() - 1] == '\n')
-		body.erase(body.size() - 1);
 }
 
 const char *HttpMessage::c_str() const
@@ -102,7 +104,7 @@ size_t HttpMessage::size() const
 
 std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 {
-	os << "response message :\n" << msg.c_str();
+	os << msg.c_str();
 	return (os);
 }
 

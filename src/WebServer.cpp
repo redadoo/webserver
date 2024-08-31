@@ -29,6 +29,8 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		return ;
 	}
 
+	// std::cout << server.serverFd << "\n";
+
 	try
 	{
 		server.ReadClientResponse(client);
@@ -54,6 +56,7 @@ void WebServer::CheckSockets(int epollRet)
 
 	for (int y = 0; y < (int)servers.size(); y++)
 	{
+
 		for (int i = 0; i < epollRet; i++)
 		{
 			fd = events[i].data.fd;
@@ -62,15 +65,15 @@ void WebServer::CheckSockets(int epollRet)
 				if (servers[y].AcceptClient(fd, epollFd) < 0)
 					continue ;
 			}
-			else if (EpollUtils::EpollCheckEventError(events[i].events))
+			else if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP) ||  (!(events[i].events & EPOLLIN)))
 			{
 				servers[y].CloseClientConnection(fd);
 				break ;
 			}
 			else if (servers[y].IsMyClient(fd))
 			{
-				HandleClientEvent(servers[y].GetClient(fd), events[i].events,
-					servers[y]);
+				std::cout << "sadasdasdasdassda\n";
+				HandleClientEvent(servers[y].GetClient(fd), events[i].events, servers[y]);
 			}
 		}
 	}

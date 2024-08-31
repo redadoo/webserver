@@ -65,7 +65,8 @@ void Server::InitSocket(int epollFd)
 	ret = listen(this->serverFd, 10);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("listen() failed ", errno);
-	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLPRI);
+
+	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLET);
 
 	Logger::Log(std::string("Listening on ") + this->serverConfig.socketIp + ":"
 		+ StringUtils::ToString(this->serverConfig.serverPort.port));
@@ -112,16 +113,9 @@ int Server::AcceptClient(int fd, int epollFd)
 		close(clientFd);
 		return (-1);
 	}
-	// if (IsMyClient(clientFd))
-	// {
-	// 	Logger::Log("Client alredy connected");
-	// }
-	// else
-	// {
-		this->AddClient(clientFd, ip, port);
-		Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
-		EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLPRI);
-	// }
+	this->AddClient(clientFd, ip, port);
+	Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
+	EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLET);
 	return (0);
 }
 
