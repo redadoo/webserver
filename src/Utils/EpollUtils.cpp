@@ -29,12 +29,7 @@ void EpollUtils::EpollDelete(int epoll_fd, int fd)
 
 bool EpollUtils::EpollCheckEventError(uint32_t events)
 {
-	const uint32_t	err_mask  = EPOLLERR | EPOLLHUP;
-
-	if (events & err_mask)
-		return true;
-
-	return false;
+	return (events & EPOLLERR) || (events & EPOLLHUP) ||  (!(events & EPOLLIN ));
 }
 
 int EpollUtils::EpollInit()

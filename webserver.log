@@ -1,23 +1,23 @@
-[2024-8-31 17:0:29] start tokenization Configuration file ...
-[2024-8-31 17:0:29] tokenization finished
-[2024-8-31 17:0:29] start parsing token...
-[2024-8-31 17:0:29] parsing finished
-[2024-8-31 17:0:29] signal handling started
-[2024-8-31 17:0:29] handled the signals successfully
-[2024-8-31 17:0:29] start create a new epoll instance
-[2024-8-31 17:0:29] init epoll instance successfully
-[2024-8-31 17:0:29] Creating TCP socket...
-[2024-8-31 17:0:29] add file descriptor to epoll instance ...
-[2024-8-31 17:0:29] Listening on 127.0.0.1:8080
-[2024-8-31 17:0:29] Creating TCP socket...
-[2024-8-31 17:0:29] add file descriptor to epoll instance ...
-[2024-8-31 17:0:29] Listening on 127.0.0.1:8081
-[2024-8-31 17:0:29] successfully init all servers data
-[2024-8-31 17:0:29] Entering event loop...
-[2024-8-31 17:0:32] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-8-31 17:0:32] Client 127.0.0.1::51542  has been accepted! by the socket: 127.0.0.1:8080
-[2024-8-31 17:0:32] add file descriptor to epoll instance ...
-[2024-8-31 17:0:32] Client 127.0.0.1:51542 send a request to socket 127.0.0.18080
+[2024-8-31 17:21:54] start tokenization Configuration file ...
+[2024-8-31 17:21:54] tokenization finished
+[2024-8-31 17:21:54] start parsing token...
+[2024-8-31 17:21:54] parsing finished
+[2024-8-31 17:21:54] signal handling started
+[2024-8-31 17:21:54] handled the signals successfully
+[2024-8-31 17:21:54] start create a new epoll instance
+[2024-8-31 17:21:54] init epoll instance successfully
+[2024-8-31 17:21:54] Creating TCP socket...
+[2024-8-31 17:21:54] add file descriptor to epoll instance ...
+[2024-8-31 17:21:54] Listening on 127.0.0.1:8080
+[2024-8-31 17:21:54] Creating TCP socket...
+[2024-8-31 17:21:54] add file descriptor to epoll instance ...
+[2024-8-31 17:21:54] Listening on 127.0.0.1:8081
+[2024-8-31 17:21:54] successfully init all servers data
+[2024-8-31 17:21:54] Entering event loop...
+[2024-8-31 17:21:56] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-8-31 17:21:56] Client 127.0.0.1::48162  has been accepted! by the socket: 127.0.0.1:8080
+[2024-8-31 17:21:56] add file descriptor to epoll instance ...
+[2024-8-31 17:21:56] Client 127.0.0.1:48162 send a request to socket 127.0.0.18080
 [ StartRequestBlock ] 
 GET / HTTP/1.1
 Accept-Encoding: gzip, deflate, br, zstd
@@ -35,36 +35,38 @@ sec-fetch-mode: navigate
 sec-fetch-site: same-site
 sec-fetch-user: ?1
 User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36
-X-Forwarded-For: 10.240.0.10
+X-Forwarded-For: 10.240.2.131
 X-Forwarded-Host: cautious-orbit-wvvxjr49gwqc569w-8080.app.github.dev
 X-Forwarded-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Scheme: https
 X-Original-Proto: https
 X-Original-URI: /
-X-Real-IP: 10.240.0.10
-X-Request-ID: f3027af0aae927a2cd363e1bac363085
+X-Real-IP: 10.240.2.131
+X-Request-ID: eed9709d8ae3cf7b64580a8ee134c540
 X-Scheme: https
 [ EndRequestBlock ]
-[2024-8-31 17:0:32] Processing request for path: /
-[2024-8-31 17:0:32] Full requested path: web-page/
-[2024-8-31 17:0:32] Requested path is a directory, looking for index file
-[2024-8-31 17:0:32] File found: web-page//index.html
-[2024-8-31 17:0:32] File content length: 841 bytes
-[2024-8-31 17:0:32] Response headers:
-[2024-8-31 17:0:32]   Content-Length: 841
-[2024-8-31 17:0:32]   Content-Type: text/html
-[2024-8-31 17:0:32] Sent 1747 bytes to client
-[2024-8-31 17:0:32] Processing request for path: /
-[2024-8-31 17:0:32] Full requested path: web-page/
-[2024-8-31 17:0:32] Requested path is a directory, looking for index file
-[2024-8-31 17:0:32] File found: web-page//index.html
-[2024-8-31 17:0:32] File content length: 841 bytes
-[2024-8-31 17:0:32] Response headers:
-[2024-8-31 17:0:32]   Content-Length: 841
-[2024-8-31 17:0:32]   Content-Type: text/html
-[2024-8-31 17:0:32] Sent 1747 bytes to client
-[2024-8-31 17:0:32] Client 127.0.0.1::51542 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-8-31 17:0:35] ERROR: Something interrupted me!
-[2024-8-31 17:0:35] Closing WebServer ...
-[2024-8-31 17:0:35] all resources released and Web Server closed successfully
+[2024-8-31 17:21:56] Processing request for path: /
+[2024-8-31 17:21:56] Full requested path: web-page/
+[2024-8-31 17:21:56] Requested path is a directory, looking for index file
+[2024-8-31 17:21:56] File found: web-page//index.html
+[2024-8-31 17:21:56] File content length: 841 bytes
+[2024-8-31 17:21:56] Response headers:
+[2024-8-31 17:21:56]   Content-Length: 841
+[2024-8-31 17:21:56]   Content-Type: text/html
+[2024-8-31 17:21:56] Sent 1747 bytes to client
+[2024-8-31 17:21:56] Processing request for path: /
+[2024-8-31 17:21:56] Full requested path: web-page/
+[2024-8-31 17:21:56] Requested path is a directory, looking for index file
+[2024-8-31 17:21:56] File found: web-page//index.html
+[2024-8-31 17:21:56] File content length: 841 bytes
+[2024-8-31 17:21:56] Response headers:
+[2024-8-31 17:21:56]   Content-Length: 841
+[2024-8-31 17:21:56]   Content-Type: text/html
+[2024-8-31 17:21:56] Sent 1747 bytes to client
+[2024-8-31 17:21:56] Client 127.0.0.1::48162 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-8-31 17:21:59] I don't see any event within 3000 milliseconds
+[2024-8-31 17:22:2] I don't see any event within 3000 milliseconds
+[2024-8-31 17:22:3] ERROR: Something interrupted me!
+[2024-8-31 17:22:3] Closing WebServer ...
+[2024-8-31 17:22:3] all resources released and Web Server closed successfully

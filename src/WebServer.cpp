@@ -29,8 +29,42 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		return ;
 	}
 
-	// std::cout << server.serverFd << "\n";
-
+	if (events & EPOLLIN)
+	{
+		std::cout << "1 run\n";
+	}
+	if (events & EPOLLPRI)
+	{
+		std::cout << "2 run\n";
+	}
+	if (events & EPOLLOUT)
+	{
+		std::cout << "3 run\n";
+	}
+	if (events & EPOLLRDNORM)
+	{
+		std::cout << "4 run\n";
+	}
+	if (events & EPOLLRDBAND)
+	{
+		std::cout << "5 run\n";
+	}
+	if (events & EPOLLWRNORM)
+	{
+		std::cout << "6 run\n";
+	}
+	if (events & EPOLLWRBAND)
+	{
+		std::cout << "7 run\n";
+	}
+	if (events & EPOLLMSG)
+	{
+		std::cout << "8 run\n";
+	}
+	if (events & EPOLLERR)
+	{
+		std::cout << "9 run\n";
+	}
 	try
 	{
 		server.ReadClientResponse(client);
@@ -46,7 +80,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	{
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 		server.CloseClientConnection(client);
-		// return ;
 	}
 }
 
@@ -65,14 +98,13 @@ void WebServer::CheckSockets(int epollRet)
 				if (servers[y].AcceptClient(fd, epollFd) < 0)
 					continue ;
 			}
-			else if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP) ||  (!(events[i].events & EPOLLIN)))
+			else if (EpollUtils::EpollCheckEventError(events[i].events))
 			{
 				servers[y].CloseClientConnection(fd);
 				break ;
 			}
 			else if (servers[y].IsMyClient(fd))
 			{
-				std::cout << "sadasdasdasdassda\n";
 				HandleClientEvent(servers[y].GetClient(fd), events[i].events, servers[y]);
 			}
 		}
