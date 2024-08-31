@@ -46,24 +46,23 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
+	std::cout << messageChunk << std::endl;
+
 	std::istringstream messageChunkStream(messageChunk);
 	std::vector<std::string> messageLines = StringUtils::Split(messageChunk,"\r\n");
 
-	for (size_t i = 0; i < messageLines.size(); i++)
+
+	ParseStartLine(messageLines[0]);
+
+	for (size_t i = 1; i < messageLines.size(); i++)
 	{
-		if (i == 0)
-		{
-			ParseStartLine(messageLines[i]);
-			continue;
-		}
-		
 		if (messageLines[i].empty())
 			break;
 
 		size_t pos = messageLines[i].find(": ");
 		if (pos != std::string::npos)
 		{
-			std::string key = messageLines[i].substr(0, pos);
+			std::string key = messageLines[i].substr(0, pos + 1);
 			std::string value = messageLines[i].substr(pos + 2);
 			header.insert(std::make_pair(key, value));
 		}
@@ -86,7 +85,9 @@ const char *HttpMessage::c_str() const
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it) 
 	{
 		msg.append(it->first);
+		msg.append(" ");
 		msg.append(it->second);
+		msg.append("\n");
 	}
 
 	msg.append(body);
@@ -111,9 +112,10 @@ std::string StartLine::ToString() const
 
 	startLine.append(this->httpMethod);
 	startLine.append(" ");
-	startLine.append(this->httpVersion);
-	startLine.append(" ");
 	startLine.append(this->path);
+	startLine.append(" ");
+	startLine.append(this->httpVersion);
+	startLine.append("\n");
 
     return startLine;
 }

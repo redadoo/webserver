@@ -132,36 +132,31 @@ void Server::ReadClientResponse(Client &client)
 	ssize_t recvRet;
 	char buffer[MAX_RESPONSE_SIZE];
 
-	while (true)
+	recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+
+	if (recvRet == 0)
+		return;
+
+	if (recvRet < 0)
+		return CloseClientConnection(client);
+
+	buffer[recvRet] = '\0';
+	totalBytesRead += recvRet;
+
+	if (totalBytesRead > maxBodySize)
 	{
-		recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+		Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
+	}
 
-		if (recvRet == 0)
-			return;
+	client.request.ParseMessage(buffer);
 
-		if (recvRet < 0)
-			return CloseClientConnection(client);
-
-		buffer[recvRet] = '\0';
-		totalBytesRead += recvRet;
-
-		if (totalBytesRead > maxBodySize)
-		{
-			Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
-		}
-
-		client.request.ParseMessage(buffer);
-
-		Header::const_iterator it = client.request.header.find("Content-Length");
-		if (it != client.request.header.end())
-		{
-			unsigned long long contentLength = StringUtils::StringToUnsignedLongLong(it->second);
-			if (client.request.body.length() >= contentLength)
-				break;
-		}
-		else
-			break;
+	Header::const_iterator it = client.request.header.find("Content-Length");
+	if (it != client.request.header.end())
+	{
+		// unsigned long long contentLength = StringUtils::StringToUnsignedLongLong(it->second);
+		// if (client.request.body.length() >= contentLength)
+		// 	break;
 	}
 
 	Logger::RequestLog(*this, client, client.request);
