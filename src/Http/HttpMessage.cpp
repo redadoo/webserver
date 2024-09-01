@@ -94,6 +94,7 @@ std::string HttpMessage::ToString() const
 	}
 
 	msg.append(body);
+	msg.append("\n");
 	
 	return msg;
 }

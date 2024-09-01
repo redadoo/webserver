@@ -1,0 +1,209 @@
+[2024-9-1 23:57:32] start tokenization Configuration file ...
+[2024-9-1 23:57:32] tokenization finished
+[2024-9-1 23:57:32] start parsing token...
+[2024-9-1 23:57:32] parsing finished
+[2024-9-1 23:57:32] signal handling started
+[2024-9-1 23:57:32] handled the signals successfully
+[2024-9-1 23:57:32] start create a new epoll instance
+[2024-9-1 23:57:32] init epoll instance successfully
+[2024-9-1 23:57:32] Creating TCP socket...
+[2024-9-1 23:57:32] add file descriptor to epoll instance ...
+[2024-9-1 23:57:32] Listening on 127.0.0.1:8080
+[2024-9-1 23:57:32] Creating TCP socket...
+[2024-9-1 23:57:32] add file descriptor to epoll instance ...
+[2024-9-1 23:57:32] Listening on 127.0.0.1:8081
+[2024-9-1 23:57:32] successfully init all servers data
+[2024-9-1 23:57:32] Entering event loop...
+[2024-9-1 23:57:35] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:38] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-1 23:57:38] Client 127.0.0.1::53432  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-1 23:57:38] add file descriptor to epoll instance ...
+[2024-9-1 23:57:38] Client 127.0.0.1:53432 send a request to socket 127.0.0.18080
+[ StartRequestBlock ] 
+POST /gotomacaco HTTP/1.1
+Accept: */*
+Content-Length: 36
+Content-Type: application/x-www-form-urlencoded
+Host: 127.0.0.1:8080
+User-Agent: curl/7.81.0
+post1=value1&post2=value2&etc=valetc
+[ EndRequestBlock ]
+[2024-9-1 23:57:38] Finding matching location for path: /gotomacaco
+[2024-9-1 23:57:38] Found matching location: /gotomacaco
+[2024-9-1 23:57:38] ERROR: HTTP error occurred: 405
+[2024-9-1 23:57:38] Using default error page for code 405 Method Not Allowed
+[2024-9-1 23:57:38] Sent 317 bytes to client
+[2024-9-1 23:57:38] Finding matching location for path: /gotomacaco
+[2024-9-1 23:57:38] Found matching location: /gotomacaco
+[2024-9-1 23:57:38] ERROR: HTTP error occurred: 405
+[2024-9-1 23:57:38] Using default error page for code 405 Method Not Allowed
+[2024-9-1 23:57:38] Sent 317 bytes to client
+[2024-9-1 23:57:38] Client 127.0.0.1::53432 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-9-1 23:57:41] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:44] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:47] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:50] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:53] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:56] I don't see any event within 3000 milliseconds
+[2024-9-1 23:57:59] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:2] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:5] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:8] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:11] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:14] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:17] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:20] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:23] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:26] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:29] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:32] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:35] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:38] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:41] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:44] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:47] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:50] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:53] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:56] I don't see any event within 3000 milliseconds
+[2024-9-1 23:58:59] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:2] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:5] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:8] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:11] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:14] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:17] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:20] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:23] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:26] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:29] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:32] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:35] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:38] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:41] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:44] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:47] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:50] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:53] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:56] I don't see any event within 3000 milliseconds
+[2024-9-1 23:59:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:0:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:1:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:2:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:3:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:4:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:2] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:5] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:8] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:11] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:14] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:17] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:20] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:23] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:26] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:29] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:32] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:35] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:38] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:41] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:44] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:47] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:50] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:53] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:56] I don't see any event within 3000 milliseconds
+[2024-9-2 0:5:59] I don't see any event within 3000 milliseconds
+[2024-9-2 0:6:2] I don't see any event within 3000 milliseconds

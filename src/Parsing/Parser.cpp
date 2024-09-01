@@ -242,8 +242,6 @@ void Parser::GetAutoIndex(bool isServer, const Token& token, Server& server)
 				server.serverConfig.GetLastLocation().autoIndex = true;
 			else if (token.tokenValue == "off")
 				server.serverConfig.GetLastLocation().autoIndex = false;
-			else
-				throw std::invalid_argument("too many autoindex");
 		}
 	}
 }
