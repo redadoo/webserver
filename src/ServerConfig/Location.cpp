@@ -1,5 +1,31 @@
 #include "Location.hpp"
 
+bool Location::MatchesPath(const std::string &requestPath) const
+{
+	return requestPath.length() >= path.length() &&
+			requestPath.compare(0, path.length(), path) == 0 &&
+			(requestPath.length() == path.length() || requestPath[path.length()] == '/');
+}
+
+bool Location::IsMethodAllowed(const std::string &method) const
+{
+	if (methods.empty())
+		return true;
+
+	for (size_t i = 0; i < methods.size(); ++i)
+	{
+		if (methods[i] == method)
+			return true;
+	}
+
+	return false;
+}
+
+bool Location::ShouldRedirect() const
+{
+	return redirect.isSet();
+}
+
 std::ostream &operator<<(std::ostream &os, const Location &loc)
 {
     os << "Path: " << loc.path << "\n";

@@ -134,11 +134,11 @@ void Server::ReadClientResponse(Client &client)
 		return CloseClientConnection(client);
 
 	buffer[recvRet] = '\0';
-	
+
 	client.request.ParseMessage(buffer);
 
 	Logger::RequestLog(*this, client, client.request);
-	
+
 	if (client.request.body.size() > maxBodySize)
 	{
 		Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
@@ -148,6 +148,19 @@ void Server::ReadClientResponse(Client &client)
 
 void Server::ProcessRequest(Client& client)
 {
+	const Location* location = FindMatchingLocation(client.request.startLine.path);
+
+	if (location)
+	{
+		if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+		if (location->ShouldRedirect())
+		{
+			SendRedirectResponse(client, location->redirect);
+			return;
+		}
+	}
 
     const HttpMessage& request = client.request;
     Logger::Log("Processing request for path: " + request.startLine.path);
@@ -164,6 +177,35 @@ void Server::ProcessRequest(Client& client)
 
 	response.SetContentLength();
 	LogResponseHeaders();
+}
+
+const Location* Server::FindMatchingLocation(const std::string& requestPath) const
+{
+	const Location* bestMatch = NULL;
+	size_t bestMatchLength = 0;
+	Logger::Log("Finding matching location for path: " + requestPath);
+
+	if (serverConfig.locations.empty())
+	{
+		Logger::Log("No locations defined, using default location");
+		return NULL;
+	}
+
+	for (std::vector<Location>::const_iterator it = serverConfig.locations.begin(); it != serverConfig.locations.end(); ++it)
+	{
+		if (it->MatchesPath(requestPath) && it->path.length() > bestMatchLength)
+		{
+			bestMatch = &(*it);
+			bestMatchLength = it->path.length();
+		}
+	}
+
+	if (bestMatch)
+		Logger::Log("Found matching location: " + bestMatch->path);
+	else
+		Logger::Log("No matching location found");
+
+	return bestMatch;
 }
 
 std::string Server::GetFullPath(const std::string& path)
@@ -271,6 +313,14 @@ void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 	response.SetStatusCode(code);
 	response.SetErrorBody(serverConfig);
 	SendResponse(client);
+}
+
+void Server::SendRedirectResponse(const Client& client, const CodePath& redirect)
+{
+	response.SetStatusCode(redirect.code);
+	response.header["Location"] = redirect.path;
+	(void)client;
+	// SendResponse(client);
 }
 
 

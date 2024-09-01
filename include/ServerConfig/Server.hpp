@@ -71,6 +71,9 @@ public:
 	void HandleFileRequest(const std::string& path);
 	void LogResponseHeaders();
 
+	const Location* FindMatchingLocation(const std::string& requestPath) const;
+
+
 
 
 	/// @brief Sends a response to the client.
@@ -78,6 +81,7 @@ public:
 	void SendResponse(const Client& client);
 
 	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
+	void SendRedirectResponse(const Client& client, const CodePath& redirect);
 
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.

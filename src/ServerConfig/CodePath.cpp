@@ -17,3 +17,8 @@ CodePath::CodePath(int _code, const std::string &_path)
     this->code = static_cast<Code>(_code);
     this->path = _path;
 }
+
+bool CodePath::isSet() const
+{
+	return !path.empty();
+}

@@ -17,6 +17,7 @@ struct CodePath
 	CodePath(Code _code, const std::string& _path);
 	CodePath(int _code, const std::string &_path);
 
+	bool isSet() const;
 
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const CodePath& cp);

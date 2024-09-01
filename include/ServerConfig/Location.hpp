@@ -22,7 +22,11 @@ struct Location
 	bool 						uploadEnableFind;
 
 	Location(const std::string& _path) : path(_path) {}
-	
+
+	bool MatchesPath(const std::string& requestPath) const;
+	bool IsMethodAllowed(const std::string& method) const;
+	bool ShouldRedirect() const;
+
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const Location& loc);
 };
