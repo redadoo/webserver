@@ -143,7 +143,7 @@ void WebServer::CleanUpAll()
 void WebServer::InitServer(const char *configFIle)
 {
 	Parser::ParseConfigFile(servers, configFIle);
-
+	
 	HandleSignal::SetupSignalHandler();
 
 	epollFd = EpollUtils::EpollInit();

@@ -122,9 +122,8 @@ int Server::AcceptClient(int fd, int epollFd)
 void Server::ReadClientResponse(Client &client)
 {
 	const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	unsigned long long totalBytesRead = 0;
 	ssize_t recvRet;
-	char buffer[MAX_RESPONSE_SIZE];
+	char	buffer[MAX_RESPONSE_SIZE];
 
 	recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
 
@@ -135,17 +134,16 @@ void Server::ReadClientResponse(Client &client)
 		return CloseClientConnection(client);
 
 	buffer[recvRet] = '\0';
-	totalBytesRead += recvRet;
+	
+	client.request.ParseMessage(buffer);
 
-	if (totalBytesRead > maxBodySize)
+	Logger::RequestLog(*this, client, client.request);
+	
+	if (client.request.body.size() > maxBodySize)
 	{
 		Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 	}
-
-	client.request.ParseMessage(buffer);
-
-	Logger::RequestLog(*this, client, client.request);
 }
 
 void Server::ProcessRequest(Client& client)
