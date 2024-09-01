@@ -63,7 +63,7 @@ public:
 
 	/// @brief Processes the client's request and generates a response.
 	/// @param client Reference to the Client object.
-	void ProcessRequest(Client& client);
+	void ProcessRequest(Client& client, int redirectCount);
 
 	std::string GetFullPath(const std::string& path);
 	void HandleNotFound();
@@ -81,7 +81,7 @@ public:
 	void SendResponse(const Client& client);
 
 	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
-	void SendRedirectResponse(const Client& client, const CodePath& redirect);
+	void SendRedirectResponse(Client& client, const CodePath& redirect);
 
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.

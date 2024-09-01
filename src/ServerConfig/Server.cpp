@@ -146,20 +146,28 @@ void Server::ReadClientResponse(Client &client)
 	}
 }
 
-void Server::ProcessRequest(Client& client)
+void Server::ProcessRequest(Client& client, int redirectCount = 0)
 {
+	if (redirectCount > 5)
+	{
+		Logger::LogError("Too many redirects, aborting request");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+	}
+
 	const Location* location = FindMatchingLocation(client.request.startLine.path);
 
 	if (location)
 	{
-		if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-
 		if (location->ShouldRedirect())
 		{
 			SendRedirectResponse(client, location->redirect);
 			return;
 		}
+
+		if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+
 	}
 
     const HttpMessage& request = client.request;
@@ -177,6 +185,7 @@ void Server::ProcessRequest(Client& client)
 
 	response.SetContentLength();
 	LogResponseHeaders();
+	SendResponse(client);
 }
 
 const Location* Server::FindMatchingLocation(const std::string& requestPath) const
@@ -315,12 +324,12 @@ void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 	SendResponse(client);
 }
 
-void Server::SendRedirectResponse(const Client& client, const CodePath& redirect)
+void Server::SendRedirectResponse(Client& client, const CodePath& redirect)
 {
 	response.SetStatusCode(redirect.code);
 	response.header["Location"] = redirect.path;
-	(void)client;
-	// SendResponse(client);
+	client.request.startLine.path = redirect.path;
+	ProcessRequest(client);
 }
 
 

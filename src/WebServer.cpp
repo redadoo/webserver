@@ -65,12 +65,12 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	// {
 	// 	std::cout << "9 run\n";
 	// }
-	
+
 	try
 	{
 		server.ReadClientResponse(client);
-		server.ProcessRequest(client);
-		server.SendResponse(client);
+		server.ProcessRequest(client, 0);
+			// server.SendResponse(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e)
 	{
@@ -143,7 +143,7 @@ void WebServer::CleanUpAll()
 void WebServer::InitServer(const char *configFIle)
 {
 	Parser::ParseConfigFile(servers, configFIle);
-	
+
 	HandleSignal::SetupSignalHandler();
 
 	epollFd = EpollUtils::EpollInit();
