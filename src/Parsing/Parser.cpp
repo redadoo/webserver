@@ -200,20 +200,17 @@ void Parser::GetRootPath(bool isServer,const Token& token, Server& server)
 	{
 		if (isServer)
 		{
-			if(server.serverConfig.serverRoot != "")
+			if(server.serverConfig.serverRoot.size() != 0)
 				throw std::invalid_argument("too many roots");
 
 			server.serverConfig.serverRoot = token.tokenValue;
 		}
 		else
 		{
-			for (size_t i = 0; i < server.serverConfig.locations.size(); i++)
-			{
-				if (server.serverConfig.locations[i].rootPath.size() != 0)
-					throw std::invalid_argument("too many roots");
-
-				server.serverConfig.locations[i].rootPath = token.tokenValue;
-			}
+			if (server.serverConfig.GetLastLocation().rootPath.size() != 0)
+				throw std::invalid_argument("too many roots");
+				
+			server.serverConfig.GetLastLocation().rootPath = token.tokenValue;
 		}
 	}
 }
