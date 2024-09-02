@@ -11,6 +11,7 @@
 #include <HttpResponse.hpp>
 
 #define MAX_RESPONSE_SIZE 2048
+#define MAX_REDIRECT 5
 
 /// @brief Class representing server information and its operations.
 class Server
@@ -81,7 +82,7 @@ public:
 	void SendResponse(const Client& client);
 
 	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
-	void SendRedirectResponse(Client& client, const CodePath& redirect);
+	void SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount);
 
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.

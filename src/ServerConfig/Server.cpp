@@ -148,32 +148,34 @@ void Server::ReadClientResponse(Client &client)
 
 void Server::ProcessRequest(Client& client, int redirectCount = 0)
 {
-	if (redirectCount > 5)
+	if (redirectCount > MAX_REDIRECT)
 	{
 		Logger::LogError("Too many redirects, aborting request");
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
 	}
 
 	const Location* location = FindMatchingLocation(client.request.startLine.path);
+	std::string requestedPath;
 
 	if (location)
 	{
 		if (location->ShouldRedirect())
 		{
-			SendRedirectResponse(client, location->redirect);
+			SendRedirectResponse(client, location->redirect, redirectCount);
 			return;
 		}
 
 		if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
 			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
-
+		requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
+		Logger::Log("Full requested path: " + requestedPath);
 	}
 
     const HttpMessage& request = client.request;
     Logger::Log("Processing request for path: " + request.startLine.path);
 
-    std::string requestedPath = GetFullPath(request.startLine.path);
+	requestedPath = GetFullPath(request.startLine.path);
     Logger::Log("Full requested path: " + requestedPath);
 
     if (FileUtils::IsDirectory(requestedPath.c_str()))
@@ -324,12 +326,12 @@ void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 	SendResponse(client);
 }
 
-void Server::SendRedirectResponse(Client& client, const CodePath& redirect)
+void Server::SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount)
 {
 	response.SetStatusCode(redirect.code);
 	response.header["Location"] = redirect.path;
 	client.request.startLine.path = redirect.path;
-	ProcessRequest(client);
+	ProcessRequest(client, redirectCount + 1);
 }
 
 

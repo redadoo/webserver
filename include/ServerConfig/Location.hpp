@@ -27,6 +27,8 @@ struct Location
 	bool IsMethodAllowed(const std::string& method) const;
 	bool ShouldRedirect() const;
 
+	std::string GetFilePath(const std::string& requestPath, const std::string& serverRoot) const;
+
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const Location& loc);
 };

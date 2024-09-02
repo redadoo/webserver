@@ -26,6 +26,35 @@ bool Location::ShouldRedirect() const
 	return redirect.isSet();
 }
 
+std::string Location::GetFilePath(const std::string &requestPath, const std::string &serverRoot) const
+{
+	std::string filePath;
+
+
+	// std::cout << "requestPath: " << requestPath << std::endl;
+	// std::cout << "serverRoot: " << serverRoot << std::endl;
+	std::cout << "this->rootPath: " << this->rootPath << std::endl;
+
+	if (!this->rootPath.empty())
+		filePath = this->rootPath;
+	else
+		filePath = serverRoot;
+
+	if (!filePath.empty() && filePath[filePath.length() - 1] != '/')
+		filePath += "/";
+
+	std::string relativePath = requestPath.substr(path.length());
+
+	if (!relativePath.empty() && relativePath[0] == '/')
+		relativePath = relativePath.substr(1);
+
+	filePath += relativePath;
+
+	// std::cout << "filePath: " << filePath << std::endl;
+
+	return filePath;
+}
+
 std::ostream &operator<<(std::ostream &os, const Location &loc)
 {
     os << "Path: " << loc.path << "\n";

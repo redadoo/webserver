@@ -34,7 +34,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	{
 		server.ReadClientResponse(client);
 		server.ProcessRequest(client, 0);
-			// server.SendResponse(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e)
 	{
