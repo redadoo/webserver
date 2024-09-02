@@ -66,9 +66,6 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 				std::string key = messageLines[i].substr(0, pos + 1);
 				std::string value = messageLines[i].substr(pos + 2);
 				header.insert(std::make_pair(key, value));
-
-				if (key == "Referer:")
-					referer = value;
 			}
 		}
 		else

@@ -172,7 +172,12 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
 		requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
-		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+
+		if (requestedPath[requestedPath.length() - 1] == '/')
+			requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+		else
+			requestedFile = requestedPath;
+
 
 		if (!FileUtils::IsDirectory(requestedPath.c_str()) && !FileUtils::CheckFileExistence(requestedFile.c_str()))
 		{
@@ -183,7 +188,10 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 	else
 	{
 		requestedPath = GetFullPath(client.request.startLine.path);
-		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+		if (FileUtils::IsDirectory(requestedPath.c_str()))
+			requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+		else
+			requestedFile = requestedPath;
 	}
 
 	Logger::Log("Processing request for path: " + client.request.startLine.path);
@@ -200,16 +208,6 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
 	else
 		HandleFileRequest(requestedFile);
-
-    // const HttpMessage& request = client.request;
-
-
-    // if (FileUtils::IsDirectory(requestedPath.c_str()))
-	// 	HandleDirectoryRequest(requestedPath);
-	// else if (!FileUtils::CheckFileExistence(requestedPath.c_str()))
-	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
-	// else
-	// 	HandleFileRequest(requestedPath);
 
 	response.SetContentLength();
 	LogResponseHeaders();
@@ -269,25 +267,13 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 	DIR* dir;
 	struct dirent* entry;
 
-
 	std::string displayPath = path;
 
 	if (displayPath.substr(0, serverConfig.serverRoot.length()) == serverConfig.serverRoot)
 		displayPath = displayPath.substr(serverConfig.serverRoot.length());
 
-	std::string referer = client.request.referer;
-	std::string pathStart = displayPath.substr(0, displayPath.find("/", 1));
-	// while (referer.find(pathStart) == std::string::npos)
-	// {
-	// 	displayPath = displayPath.substr(displayPath.find("/", 1));
-	// 	pathStart = displayPath.substr(0, displayPath.find("/", 1));
-	// }
-
-
-
 	if (displayPath.empty())
 		displayPath = "/" + displayPath;
-
 
 	std::string directoryContent = "<html><head><title>Index of " + displayPath + "</title></head><body>";
 	directoryContent += "<h1>Index of " + displayPath + "</h1><hr><pre>";
@@ -304,8 +290,9 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 		std::string name = entry->d_name;
 		if (name != "." && name != "..")
 		{
-			std::string fullPath;
-			fullPath = "<a href=\"" + client.request.referer + displayPath + "\">" + name + "</a>";
+			std::string host = client.request.header["Host:"];
+			std::string nameWithSlash = name + (FileUtils::IsDirectory((path + name).c_str()) ? "/" : "");
+			std::string fullPath = "<a href=\"http://" + host + "/" + displayPath + nameWithSlash + "\">" + nameWithSlash + "</a>";
 
 
 			std::string rootPath = path + name;
@@ -317,7 +304,7 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 			std::string lastModified = StringUtils::FormatTime(fileStat.st_mtime);
 
 			directoryContent += fullPath;
-    		directoryContent += " (" + fileSize + ") " + lastModified + "</li>";
+    		directoryContent += " (" + fileSize + ") " + lastModified + "\n";
 		}
 	}
 
@@ -418,41 +405,6 @@ void Server::SendRedirectResponse(Client& client, const CodePath& redirect, int 
 	client.request.startLine.path = redirect.path;
 	ProcessRequest(client, redirectCount + 1);
 }
-
-
-// void Server::SendResponse(const Client& client)
-// {
-//     std::string responseStr = St
-//     ssize_t bytesSent = send(client.clientFd, responseStr.c_str(), responseStr.length(), 0);
-//     if (bytesSent < 0)
-//     {
-//         Logger::LogError("Failed to send response: " + std::string(strerror(errno)));
-//     }
-//     else
-//     {
-//         Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(bytesSent)) + " bytes to client");
-//     }
-// }
-
-
-// void Server::SendResponse(const Client &client)
-// {
-// 	(void)client;
-// 	// if (HttpStatusCode::isError(response.code))
-// 	// 	BuildErrorResponse();
-// 	// else
-// 	// 	BuildResponse();
-
-// 	// const char * str = response.c_str();
-
-// 	// if (send(client.clientFd, str, response.size(), 0) < 0)
-// 	// {
-// 	// 	Logger::LogError("Failed to send response:");
-// 	// 	throw std::invalid_argument("send() failed");
-// 	// }
-
-// 	// Logger::ResponseLog(*this,client, " ");
-// }
 
 void Server::CloseClientConnection(const Client &client)
 {

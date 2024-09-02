@@ -34,7 +34,6 @@ public:
 	StartLine 	startLine;
 	Header      header;
 	std::string body;
-	std::string referer;
 
 	/// @brief Parses the HTTP message from a string chunk.
     /// @param messageChunk The chunk of the HTTP message to parse.

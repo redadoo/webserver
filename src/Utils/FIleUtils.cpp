@@ -3,11 +3,12 @@
 #include <sstream>
 #include <sys/stat.h>
 #include <algorithm>
+#include <iostream>
 
 bool FileUtils::CheckFileExistence(const char *fileName)
 {
-	std::ifstream file(fileName);
-	return file.good();
+	struct stat statbuf;
+	return stat(fileName, &statbuf) == 0;
 }
 
 bool FileUtils::IsDirectory(const char *path)
