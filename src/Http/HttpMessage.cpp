@@ -13,7 +13,7 @@ bool CaseInsensitiveCompare::char_compare(char ac, char bc)
 bool CaseInsensitiveCompare::operator()(const std::string &a, const std::string &b) const
 {
 	return (std::lexicographical_compare(
-		a.begin(), a.end(), 
+		a.begin(), a.end(),
 		b.begin(), b.end(),
 		CaseInsensitiveCompare::char_compare));
 }
@@ -46,7 +46,7 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
-	
+
 	std::istringstream 			messageChunkStream(messageChunk);
 	std::vector<std::string> 	messageLines = StringUtils::Split(messageChunk,"\r\n");
 	bool 						isBody = false;
@@ -66,6 +66,9 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 				std::string key = messageLines[i].substr(0, pos + 1);
 				std::string value = messageLines[i].substr(pos + 2);
 				header.insert(std::make_pair(key, value));
+
+				if (key == "Referer:")
+					referer = value;
 			}
 		}
 		else
@@ -84,8 +87,8 @@ std::string HttpMessage::ToString() const
 	std::string msg = "";
 
 	msg.append(startLine.ToString());
-	
-	for (Header::const_iterator it = header.begin(); it != header.end(); ++it) 
+
+	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
 	{
 		msg.append(it->first);
 		msg.append(" ");
@@ -95,7 +98,7 @@ std::string HttpMessage::ToString() const
 
 	msg.append(body);
 	msg.append("\n");
-	
+
 	return msg;
 }
 

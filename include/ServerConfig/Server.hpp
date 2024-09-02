@@ -68,6 +68,7 @@ public:
 
 	std::string GetFullPath(const std::string& path);
 	void HandleNotFound();
+	void HandleDirectoryListing(const std::string& path, Client& client);
 	void HandleDirectoryRequest(const std::string& path);
 	void HandleFileRequest(const std::string& path);
 	void LogResponseHeaders();

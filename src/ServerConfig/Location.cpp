@@ -26,33 +26,30 @@ bool Location::ShouldRedirect() const
 	return redirect.isSet();
 }
 
-std::string Location::GetFilePath(const std::string &requestPath, const std::string &serverRoot) const
+std::string Location::GetFilePath(const std::string& requestPath, const std::string& serverRoot) const
 {
-	std::string filePath;
+	std::string basePath = this->rootPath.empty() ? serverRoot : this->rootPath;
 
+	while (!basePath.empty() && basePath[basePath.length() - 1] == '/')
+		basePath.erase(basePath.length() - 1);
 
-	// std::cout << "requestPath: " << requestPath << std::endl;
-	// std::cout << "serverRoot: " << serverRoot << std::endl;
-	std::cout << "this->rootPath: " << this->rootPath << std::endl;
+	if (this->path != "/" && basePath[basePath.length() - 1] != '/')
+		basePath += this->path;
 
-	if (!this->rootPath.empty())
-		filePath = this->rootPath;
-	else
-		filePath = serverRoot;
-
-	if (!filePath.empty() && filePath[filePath.length() - 1] != '/')
-		filePath += "/";
-
-	std::string relativePath = requestPath.substr(path.length());
-
-	if (!relativePath.empty() && relativePath[0] == '/')
+	std::string relativePath = requestPath.substr(this->path.length());
+	while(!relativePath.empty() && relativePath[0] == '/')
 		relativePath = relativePath.substr(1);
 
-	filePath += relativePath;
+	std::string fullPath = basePath + "/" + relativePath;
 
-	// std::cout << "filePath: " << filePath << std::endl;
+	size_t pos;
+	while (pos = fullPath.find("//"), pos != std::string::npos)
+		fullPath.erase(pos, 1);
 
-	return filePath;
+	if (fullPath[fullPath.length() - 1] != '/')
+		fullPath += "/";
+
+	return fullPath;
 }
 
 std::ostream &operator<<(std::ostream &os, const Location &loc)

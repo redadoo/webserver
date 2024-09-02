@@ -11,6 +11,8 @@
 #include <HttpResponse.hpp>
 #include <ClientBodySize.hpp>
 #include <stdexcept>
+#include <dirent.h>
+#include <sys/stat.h>
 
 //constructor
 
@@ -156,6 +158,7 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 
 	const Location* location = FindMatchingLocation(client.request.startLine.path);
 	std::string requestedPath;
+	std::string requestedFile;
 
 	if (location)
 	{
@@ -169,21 +172,44 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
 		requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
-		Logger::Log("Full requested path: " + requestedPath);
+		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+
+		if (!FileUtils::IsDirectory(requestedPath.c_str()) && !FileUtils::CheckFileExistence(requestedFile.c_str()))
+		{
+			Logger::Log("Requested path does not exist: " + requestedPath);
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
+		}
+	}
+	else
+	{
+		requestedPath = GetFullPath(client.request.startLine.path);
+		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
 	}
 
-    const HttpMessage& request = client.request;
-    Logger::Log("Processing request for path: " + request.startLine.path);
+	Logger::Log("Processing request for path: " + client.request.startLine.path);
+	Logger::Log("Full requested path: " + requestedPath);
 
-	requestedPath = GetFullPath(request.startLine.path);
-    Logger::Log("Full requested path: " + requestedPath);
-
-    if (FileUtils::IsDirectory(requestedPath.c_str()))
-		HandleDirectoryRequest(requestedPath);
-	else if (!FileUtils::CheckFileExistence(requestedPath.c_str()))
+	if (FileUtils::IsDirectory(requestedPath.c_str()))
+	{
+		if ((location && location->autoIndex) || (!location && serverConfig.autoIndex))
+			HandleDirectoryListing(requestedPath, client);
+		else
+			HandleDirectoryRequest(requestedPath);
+	}
+	else if (!FileUtils::CheckFileExistence(requestedFile.c_str()))
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
 	else
-		HandleFileRequest(requestedPath);
+		HandleFileRequest(requestedFile);
+
+    // const HttpMessage& request = client.request;
+
+
+    // if (FileUtils::IsDirectory(requestedPath.c_str()))
+	// 	HandleDirectoryRequest(requestedPath);
+	// else if (!FileUtils::CheckFileExistence(requestedPath.c_str()))
+	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
+	// else
+	// 	HandleFileRequest(requestedPath);
 
 	response.SetContentLength();
 	LogResponseHeaders();
@@ -238,11 +264,70 @@ std::string Server::GetFullPath(const std::string& path)
     return fullPath;
 }
 
-void Server::HandleNotFound()
+void Server::HandleDirectoryListing(const std::string& path, Client& client)
 {
-	Logger::Log("File not found, preparing 404 Not Found response");
-	response.SetStatusCode(HttpStatusCode::NotFound);
-	response.SetErrorBody(serverConfig);
+	DIR* dir;
+	struct dirent* entry;
+
+
+	std::string displayPath = path;
+
+	if (displayPath.substr(0, serverConfig.serverRoot.length()) == serverConfig.serverRoot)
+		displayPath = displayPath.substr(serverConfig.serverRoot.length());
+
+	std::string referer = client.request.referer;
+	std::string pathStart = displayPath.substr(0, displayPath.find("/", 1));
+	// while (referer.find(pathStart) == std::string::npos)
+	// {
+	// 	displayPath = displayPath.substr(displayPath.find("/", 1));
+	// 	pathStart = displayPath.substr(0, displayPath.find("/", 1));
+	// }
+
+
+
+	if (displayPath.empty())
+		displayPath = "/" + displayPath;
+
+
+	std::string directoryContent = "<html><head><title>Index of " + displayPath + "</title></head><body>";
+	directoryContent += "<h1>Index of " + displayPath + "</h1><hr><pre>";
+
+	dir = opendir(path.c_str());
+	if (!dir)
+	{
+		Logger::LogError("Failed to open directory: " + path);
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+	}
+
+	while ((entry = readdir(dir)) != NULL)
+	{
+		std::string name = entry->d_name;
+		if (name != "." && name != "..")
+		{
+			std::string fullPath;
+			fullPath = "<a href=\"" + client.request.referer + displayPath + "\">" + name + "</a>";
+
+
+			std::string rootPath = path + name;
+			struct stat fileStat;
+			if (stat(rootPath.c_str(), &fileStat) < 0)
+				continue;
+
+			std::string fileSize = S_ISDIR(fileStat.st_mode) ? "-" : StringUtils::ToString(fileStat.st_size);
+			std::string lastModified = StringUtils::FormatTime(fileStat.st_mtime);
+
+			directoryContent += fullPath;
+    		directoryContent += " (" + fileSize + ") " + lastModified + "</li>";
+		}
+	}
+
+	closedir(dir);
+
+	directoryContent += "</pre><hr></body></html>";
+
+	response.SetStatusCode(HttpStatusCode::OK);
+	response.SetBody(directoryContent);
+	response.header["Content-Type"] = "text/html";
 }
 
 void Server::HandleDirectoryRequest(const std::string& path)

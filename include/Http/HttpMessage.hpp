@@ -34,7 +34,8 @@ public:
 	StartLine 	startLine;
 	Header      header;
 	std::string body;
-	
+	std::string referer;
+
 	/// @brief Parses the HTTP message from a string chunk.
     /// @param messageChunk The chunk of the HTTP message to parse.
     void ParseMessage(const std::string& messageChunk);
@@ -46,7 +47,7 @@ public:
     /// @brief Provides a C-style string representation of the HTTP message.
     /// @return A C-style string of the HTTP message.
     std::string ToString() const;
-	
+
     /// @brief Provides a string representation of the HTTP message.
     /// @param os Output stream to write the message to.
     /// @param msg HTTP message object to be written.

@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
+#include <sys/types.h>
 
 namespace StringUtils
 {
@@ -19,6 +23,8 @@ namespace StringUtils
     std::string ToString(int n);
 
 	std::string ToString(unsigned long long n);
+
+	std::string ToString(off_t n);
 
     /// @brief Converts an string to integer.
     /// @param str The string to convert.
@@ -43,6 +49,8 @@ namespace StringUtils
     /// @param str The string to check.
     /// @return True if all characters in the string are digits, false otherwise.
     bool IsAllDigit(const std::string& str);
+
+	std::string FormatTime(time_t time);
 } // namespace StringUtils
 
 #endif

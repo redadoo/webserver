@@ -23,6 +23,13 @@ std::string StringUtils::ToString(unsigned long long n)
 	return ss.str();
 }
 
+std::string StringUtils::ToString(off_t n)
+{
+	std::stringstream ss;
+	ss << n;
+	return ss.str();
+}
+
 int StringUtils::StrintToInt(const std::string& str)
 {
 	std::stringstream ss(str);
@@ -86,4 +93,18 @@ bool StringUtils::IsAllDigit(const std::string &str)
 	}
 
     return true;
+}
+
+std::string StringUtils::FormatTime(time_t time)
+{
+	struct tm *timeinfo;
+	char buffer[80];
+
+	timeinfo = localtime(&time);
+
+	if (timeinfo == NULL)
+		return "Unknown time";
+
+	strftime(buffer, sizeof(buffer), "%d-%b-%Y %H:%M", timeinfo);
+	return std::string(buffer);
 }

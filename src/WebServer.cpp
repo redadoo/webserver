@@ -29,7 +29,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		return ;
 	}
 
-
 	try
 	{
 		server.ReadClientResponse(client);
