@@ -8,7 +8,10 @@ ServerConfig::ServerConfig()
 
 Location &ServerConfig::GetLastLocation()
 {
-	return (locations[locations.size() - 1]);
+	if (locations.empty())
+		throw LocationsEmpty();
+
+	return locations.back();
 }
 
 void ServerConfig::CheckServerConfig()

@@ -21,7 +21,7 @@ struct Location
 	bool 						uploadEnable;
 	bool 						uploadEnableFind;
 
-	Location(const std::string& _path) : path(_path) {}
+	Location(const std::string& _path) : path(_path), isInitAutoindex(false) {}
 
 	bool MatchesPath(const std::string& requestPath) const;
 	bool IsMethodAllowed(const std::string& method) const;

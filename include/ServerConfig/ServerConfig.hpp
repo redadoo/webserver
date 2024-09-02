@@ -38,6 +38,12 @@ struct ServerConfig
 
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const ServerConfig& sr);
+
+	
+	class LocationsEmpty : public std::exception {
+		public:
+			virtual const char* what() const throw() { return "access to locations vector but no location found\n"; }
+	};
 };
 
 #endif // SERVERCONFIG_HPP

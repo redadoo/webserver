@@ -16,50 +16,53 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 
 	for (size_t i = 0; i < tokens.size(); i++)
 	{
-		Server server;
-
 		if (tokens[i].tokenType == startServerContext)
 		{
+			Server server;
 			while (tokens[i].tokenType != endServerContext)
 			{
 				if (tokens[i].tokenType == startLocationContext)
 				{
+					GetLocationPath(tokens[i], server);
+
 					while (tokens[i].tokenType != endLocationContext)
 					{
-						GetLocationPath(tokens[i], server);
-						GetMethods(tokens[i], server);
-						GetRedirect(tokens[i], server);
-						GetRootPath(false, tokens[i], server);
-						GetAutoIndex(false, tokens[i], server);
-						GetIndex(false, tokens[i], server);
-						GetCgiExtension(tokens[i], server);
-						GetCgiPath(tokens[i], server);
-						GetUploadPath(tokens[i], server);
-						GetUploadEnable(tokens[i], server);
-
 						i++;
+						FillLocation(tokens[i], server);
 					}
 				}
-
-				GetPort(tokens[i], server);
-				GetHost(tokens[i], server);
-				GetServerName(tokens[i], server);
-				GetIndex(true, tokens[i], server);
-				GetErrorPage(tokens[i], server);
-				GetClientsBodySize(tokens[i], server);
-				GetRootPath(true, tokens[i], server);
-				GetAutoIndex(true, tokens[i], server);
-
+				FillServer(tokens[i], server);
 				i++;
 			}
-			server.serverConfig.CheckServerConfig();
-
 			servers.push_back(server);
 		}
-
 	}
 
-	Logger::Log("parsing finished");
+}
+
+void Parser::FillServer(const Token& token, Server& server)
+{
+	GetPort(token, server);
+	GetHost(token, server);
+	GetServerName(token, server);
+	GetIndex(true, token, server);
+	GetErrorPage(token, server);
+	GetClientsBodySize(token, server);
+	GetRootPath(true, token, server);
+	GetAutoIndex(true, token, server);
+}
+
+void Parser::FillLocation(const Token& token, Server& server)
+{
+	GetMethods(token, server);
+	GetRedirect(token, server);
+	GetRootPath(false, token, server);
+	GetAutoIndex(false, token, server);
+	GetIndex(false, token, server);
+	GetCgiExtension(token, server);
+	GetCgiPath(token, server);
+	GetUploadPath(token, server);
+	GetUploadEnable(token, server);
 }
 
 void Parser::GetPort(const Token& token, Server& server)
@@ -229,8 +232,6 @@ void Parser::GetAutoIndex(bool isServer, const Token& token, Server& server)
 				server.serverConfig.autoIndex = true;
 			else if (token.tokenValue == "off")
 				server.serverConfig.autoIndex = false;
-			else
-				throw std::invalid_argument("too many autoindex");
 		}
 		else
 		{

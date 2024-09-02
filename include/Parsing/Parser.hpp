@@ -16,6 +16,10 @@ namespace Parser
 	/// @param fileConf The path to the configuration file to be parsed.
 	void ParseConfigFile(std::vector<Server> &servers, const char *fileConf);
 
+	void FillServer(const Token& token, Server& server);
+
+	void FillLocation(const Token& token, Server& server);
+
 	/// @brief Extracts and sets the port configuration from the token.
 	/// @param token The token containing port information.
 	/// @param server The server to update with the port information.
