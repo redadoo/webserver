@@ -10,7 +10,7 @@
 #include <iostream>
 #include <HttpResponse.hpp>
 
-#define MAX_RESPONSE_SIZE 2048
+#define MAX_RESPONSE_SIZE 4096
 #define MAX_REDIRECT 5
 
 /// @brief Class representing server information and its operations.

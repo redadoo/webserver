@@ -15,6 +15,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <poll.h>
 
 //constructor
 
@@ -125,65 +126,52 @@ int Server::AcceptClient(int fd, int epollFd)
 
 void Server::ReadClientResponse(Client &client)
 {
-    const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-    ssize_t recvRet;
-    char buffer[MAX_RESPONSE_SIZE];
-    std::string totalBody;
-    size_t contentLength = 0;
+	const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
+	char	buffer[MAX_RESPONSE_SIZE];
+	std::string fullRequest;
+	ssize_t	recvRet;
+	size_t	totalReceived = 0;
+	size_t	contentLength = 0;
+	bool	headersComplete = false;
 
-    // Leggi l'header della richiesta
-    while (true)
-    {
-        recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
-        if (recvRet <= 0)
-            break;
+	while (true)
+	{
+		recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+		if (recvRet <= 0)
+			break;
 
-        buffer[recvRet] = '\0';
-        totalBody += buffer;
+		buffer[recvRet] = '\0';
+		fullRequest += buffer;
+		totalReceived += recvRet;
 
-        // Cerca la fine dell'header
-        if (totalBody.find("\r\n\r\n") != std::string::npos)
-            break;
-    }
+		if (totalReceived > maxBodySize)
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 
-    // Estrai Content-Length dall'header
-    size_t contentLengthPos = totalBody.find("Content-Length: ");
-    if (contentLengthPos != std::string::npos)
-    {
-        size_t endPos = totalBody.find("\r\n", contentLengthPos);
-        std::string contentLengthStr = totalBody.substr(contentLengthPos + 16, endPos - (contentLengthPos + 16));
-        contentLength = StringUtils::StringToSizeT(contentLengthStr);
-    }
+		if (!headersComplete)
+		{
+			size_t headerEnd = fullRequest.find("\r\n\r\n");
+			if (headerEnd != std::string::npos)
+			{
+				headersComplete = true;
+				size_t contentLengthPos = fullRequest.find("Content-Length: ");
+				if (contentLengthPos != std::string::npos)
+				{
+					size_t endPos = fullRequest.find("\r\n", contentLengthPos);
+					std::string contentLengthStr = fullRequest.substr(contentLengthPos + 16, endPos - (contentLengthPos + 16));
+					contentLength = StringUtils::StringToSizeT(contentLengthStr);
+				}
+			}
+		}
 
-    Logger::Log("Expected Content-Length: " + StringUtils::ToString(contentLength));
-    Logger::Log("Current body size: " + StringUtils::ToString(totalBody.length()));
+		if (headersComplete && totalReceived >= contentLength)
+			break;
+	}
 
-    // Continua a leggere il corpo se necessario
-    while (totalBody.length() < contentLength)
-    {
-        recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
-        if (recvRet <= 0)
-            break;
-
-        buffer[recvRet] = '\0';
-        totalBody += buffer;
-
-        Logger::Log("Received chunk of size: " + StringUtils::ToString(recvRet));
-        Logger::Log("Total body size now: " + StringUtils::ToString(totalBody.length()));
-    }
-
-    if (totalBody.length() > maxBodySize)
-    {
-        Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
-        throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
-    }
-
-    client.request.ParseMessage(totalBody);
-
-    Logger::Log("Final body size: " + StringUtils::ToString(client.request.body.length()));
-    Logger::Log("First 100 characters of body: " + client.request.body.substr(0, 100));
-
-    Logger::RequestLog(*this, client, client.request);
+	if (!fullRequest.empty())
+	{
+		client.request.ParseMessage(fullRequest);
+		Logger::RequestLog(*this, client, client.request);
+	}
 }
 
 void Server::ProcessRequest(Client& client, int redirectCount = 0)
@@ -409,6 +397,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		std::string filename = ExtractFilename(parts[i]);
 		Logger::Log("Extracted filename: " + filename);
 		std::string content = ExtractFileContent(parts[i]);
+		Logger::Log("Extracted content: " + content);
 		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.length()));
 
 		if (!filename.empty() && !content.empty())

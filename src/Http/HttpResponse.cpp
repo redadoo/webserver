@@ -14,6 +14,12 @@ std::string HttpResponse::GetErrorBody(HttpStatusCode::Code code)
             return "<html><body><h1>403 Forbidden</h1><p>You don't have permission to access this resource.</p></body></html>";
         case HttpStatusCode::InternalServerError:
             return "<html><body><h1>500 Internal Server Error</h1><p>The server encountered an unexpected condition that prevented it from fulfilling the request.</p></body></html>";
+		case HttpStatusCode::NotImplemented:
+			return "<html><body><h1>501 Not Implemented</h1><p>The server does not support the functionality required to fulfill the request.</p></body></html>";
+		case HttpStatusCode::BadRequest:
+			return "<html><body><h1>400 Bad Request</h1><p>The server could not understand the request due to invalid syntax.</p></body></html>";
+		case HttpStatusCode::PayloadTooLarge:
+			return "<html><body><h1>413 Payload Too Large</h1><p>The request is larger than the server is willing or able to process.</p></body></html>";
 
         default:
             return "<html><body><h1>Error " + HttpStatusCode::reasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
