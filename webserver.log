@@ -1,222 +1,218 @@
-[2024-9-3 4:56:54] start tokenization Configuration file ...
-[2024-9-3 4:56:54] tokenization finished
-[2024-9-3 4:56:54] start parsing token...
-[2024-9-3 4:56:54] signal handling started
-[2024-9-3 4:56:54] handled the signals successfully
-[2024-9-3 4:56:54] start create a new epoll instance
-[2024-9-3 4:56:54] init epoll instance successfully
-[2024-9-3 4:56:54] Creating TCP socket...
-[2024-9-3 4:56:54] add file descriptor to epoll instance ...
-[2024-9-3 4:56:54] Listening on 127.0.0.1:8080
-[2024-9-3 4:56:54] Creating TCP socket...
-[2024-9-3 4:56:54] add file descriptor to epoll instance ...
-[2024-9-3 4:56:54] Listening on 127.0.0.1:8081
-[2024-9-3 4:56:54] successfully init all servers data
-[2024-9-3 4:56:54] Entering event loop...
-[2024-9-3 4:56:57] I don't see any event within 3000 milliseconds
-[2024-9-3 4:56:58] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-9-3 4:56:58] Client 127.0.0.1::39786  has been accepted! by the socket: 127.0.0.1:8080
-[2024-9-3 4:56:58] add file descriptor to epoll instance ...
-[2024-9-3 4:56:58] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-9-3 4:56:58] Client 127.0.0.1::39798  has been accepted! by the socket: 127.0.0.1:8080
-[2024-9-3 4:56:58] add file descriptor to epoll instance ...
-[2024-9-3 4:56:58] Client 127.0.0.1:39798 send a request to socket 127.0.0.18080
+[2024-9-3 7:57:28] start tokenization Configuration file ...
+[2024-9-3 7:57:28] tokenization finished
+[2024-9-3 7:57:28] start parsing token...
+[2024-9-3 7:57:28] signal handling started
+[2024-9-3 7:57:28] handled the signals successfully
+[2024-9-3 7:57:28] start create a new epoll instance
+[2024-9-3 7:57:28] init epoll instance successfully
+[2024-9-3 7:57:28] Creating TCP socket...
+[2024-9-3 7:57:28] add file descriptor to epoll instance ...
+[2024-9-3 7:57:28] Listening on 127.0.0.1:8080
+[2024-9-3 7:57:28] Creating TCP socket...
+[2024-9-3 7:57:28] add file descriptor to epoll instance ...
+[2024-9-3 7:57:28] Listening on 127.0.0.1:8081
+[2024-9-3 7:57:28] successfully init all servers data
+[2024-9-3 7:57:28] Entering event loop...
+[2024-9-3 7:57:31] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:34] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:36] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-3 7:57:36] Client 127.0.0.1::52110  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-3 7:57:36] add file descriptor to epoll instance ...
+[2024-9-3 7:57:36] Expected Content-Length: 3115
+[2024-9-3 7:57:36] Current body size: 2047
+[2024-9-3 7:57:36] Received chunk of size: 1336
+[2024-9-3 7:57:36] Total body size now: 3383
+[2024-9-3 7:57:36] Final body size: 3039
+[2024-9-3 7:57:36] First 100 characters of body: ----------------------------398806101779221282778516Content-Disposition: form-data; name="file1"; fi
+[2024-9-3 7:57:36] Client 127.0.0.1:52110 send a request to socket 127.0.0.18080
 [ StartRequestBlock ] 
-GET /python/hello.py HTTP/1.1
-Accept-Encoding: gzip, deflate, br, zstd
-Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Cache-Control: max-age=0
+POST /upload HTTP/1.1
+Accept-Encoding: gzip, deflate, br
+Accept: */*
 Connection: keep-alive
-Host: 127.0.0.1:8080
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-sec-ch-ua: "Not/A)Brand";v="8", "Chromium";v="126", "Opera";v="112"
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0
+Content-Length: 3115
+Content-Type: multipart/form-data; boundary=--------------------------398806101779221282778516
+Host: localhost:8080
+Postman-Token: ecd76f78-a6cc-4dae-ba2f-4ed8d510cb44
+User-Agent: PostmanRuntime/7.41.2
+----------------------------398806101779221282778516Content-Disposition: form-data; name="file1"; filename="default.conf"Content-Type: text/plainserver  {
+	listen 8080;
+   	host 127.0.0.1;
+	server_name localhost pigro.com;
+	root web-page/;
+	index index.html boh.htm;
+	client_max_body_size 50000;
+
+	error_page 404 web-page/error-pages/404.html;
+	error_page 403 web-page/error-pages/403.html;
+
+	location /gotomacaco {
+		allow_methods GET POST DELETE;
+		auto_index on;
+		cgi_extension .py;
+		cgi_path cgi-bin;
+		upload_path gotomacaco/;
+		upload_enable on;
+	}
+
+	location /python {
+		allow_methods GET POST;
+		cgi_path cgi-bin;
+		cgi_extension .py;
+		upload_enable on;
+		upload_path python/;
+	}
+
+	location /upload {
+		upload_enable on;
+		upload_path uploads/;
+		allow_methods GET POST DELETE;
+	}
+}
+
+server  {
+	listen 8081;
+   	host 127.0.0.1;
+	server_name localhost;
+	root web-page/;
+	index index.html;
+	client_max_body_size 200M;
+	error_page 404 web-page/error-pages/404.html;
+	auto_index off;
+
+	location /gotomacaco {
+		# return /macaco;
+		allow_methods GET POST DELETE;
+		auto_index on;
+		cgi_extension .py;
+		cgi_path /usr/bin/python3;
+		upload_enable on;
+		upload_path /var/www/uploads;
+		try_file 404.html;
+	}
+}
+----------------------------398806101779221282778516Content-Disposition: form-data; name="file2"; filename="de.conf"Content-Type: text/plainserver {
+    listen 8080;
+    host localhost;
+    root pages/nano/;
+    index index.html;
+    error_page 404.html;
+    client_max_body_size 99999999999999999;
+
+    location /upload {
+        allow_methods GET POST;
+        upload_to pages/nano/uploads;
+        cgi_path cgi-bin/;
+        cgi_ext .py;
+    }
+
+    location /delete {
+        root pages/nano/to_delete;
+        allow_methods DELETE;
+    }
+
+    location /cgi_get {
+        cgi_path cgi-bin/;
+        cgi_ext .py;
+    }
+}
+
+server {
+    listen 8081;
+
+    host localhost;
+    root pages/nano/;
+    index index.html;
+    server_name www.example.com;
+    error_page 404.html;
+    client_max_body_size 99999999999999999;
+}
+
+server {
+    listen 8081;
+
+    host localhost;
+    root pages/cryptomonkey/;
+    index index.html;
+    server_name localhost:8081;
+    error_page 404.html;
+    client_max_body_size 99999999999999999;
+
+    location /details {
+        allow_methods GET POST DELETE;
+        root pages/cryptomonkey/;
+        try_file details.html;
+        upload_to /upload;
+    }
+
+    location /loop {
+        return /loop;
+    }
+
+    location /autoindex {
+        root pages/cryptomonkey/assets/images;
+        auto_index on;
+    }
+
+    location /tryfile {
+        root pages/cryptomonkey/folder;
+        try_file file_to_try.html;
+    }
+
+    location /folder {
+        root pages/cryptomonkey/folder;
+        # auto_index off;
+        # try_file file_to_try.html;
+    }
+
+    location /notallowed {
+        root pages/cryptomonkey;
+        allow_methods POST;
+    }
+
+    location /singlemethod {
+        root pages/cryptomonkey;
+        allow_methods GET;
+    }
+
+    location /gotoroute {
+        return /details;
+    }
+}
 
 [ EndRequestBlock ]
-[2024-9-3 4:56:58] Finding matching location for path: /python/hello.py
-[2024-9-3 4:56:58] Found matching location: /python
-[2024-9-3 4:56:58] Handling CGI request for script: web-page/python/hello.py
-[2024-9-3 4:56:58] Parent process waiting for CGI script to complete
-[2024-9-3 4:56:58] Child process executing CGI script
-[2024-9-3 4:56:58] Setting environment variables for CGI script
-[2024-9-3 4:56:58] Setting SCRIPT_FILENAME: web-page/python/hello.py
-[2024-9-3 4:56:58] Setting REQUEST_METHOD: GET
-[2024-9-3 4:56:58] Setting QUERY_STRING: 
-[2024-9-3 4:56:58] Setting CONTENT_LENGTH: 0
-[2024-9-3 4:56:58] Setting CONTENT_TYPE: 
-[2024-9-3 4:56:58] Executing CGI script: /usr/bin/python3 web-page/python/hello.py
-[2024-9-3 4:56:58] Read 1514 bytes from CGI script
-[2024-9-3 4:56:58] Child process exited with status: 0
-[2024-9-3 4:56:58] No headers found in CGI response, using entire output as body
-[2024-9-3 4:56:58] CGI request processed successfully
-[2024-9-3 4:56:58] Sent 3072 bytes to client
-[2024-9-3 4:56:58] Client 127.0.0.1::39798 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-9-3 4:57:1] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:4] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:7] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:10] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:13] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:16] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:18] Client 127.0.0.1:39786 send a request to socket 127.0.0.18080
-[ StartRequestBlock ] 
-GET /python/hello.py?boh=aaa HTTP/1.1
-Accept-Encoding: gzip, deflate, br, zstd
-Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Connection: keep-alive
-Host: 127.0.0.1:8080
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-sec-ch-ua: "Not/A)Brand";v="8", "Chromium";v="126", "Opera";v="112"
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0
-
-[ EndRequestBlock ]
-[2024-9-3 4:57:18] Finding matching location for path: /python/hello.py?boh=aaa
-[2024-9-3 4:57:18] Found matching location: /python
-[2024-9-3 4:57:18] Handling CGI request for script: web-page/python/hello.py
-[2024-9-3 4:57:18] Parent process waiting for CGI script to complete
-[2024-9-3 4:57:18] Child process executing CGI script
-[2024-9-3 4:57:18] Setting environment variables for CGI script
-[2024-9-3 4:57:18] Setting SCRIPT_FILENAME: web-page/python/hello.py
-[2024-9-3 4:57:18] Setting REQUEST_METHOD: GET
-[2024-9-3 4:57:18] Setting QUERY_STRING: boh=aaa
-[2024-9-3 4:57:18] Setting CONTENT_LENGTH: 0
-[2024-9-3 4:57:18] Setting CONTENT_TYPE: 
-[2024-9-3 4:57:18] Executing CGI script: /usr/bin/python3 web-page/python/hello.py
-[2024-9-3 4:57:18] Read 1555 bytes from CGI script
-[2024-9-3 4:57:18] Child process exited with status: 0
-[2024-9-3 4:57:18] No headers found in CGI response, using entire output as body
-[2024-9-3 4:57:18] CGI request processed successfully
-[2024-9-3 4:57:18] Sent 3154 bytes to client
-[2024-9-3 4:57:18] Client 127.0.0.1::39786 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-9-3 4:57:18] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-9-3 4:57:18] Client 127.0.0.1::41654  has been accepted! by the socket: 127.0.0.1:8080
-[2024-9-3 4:57:18] add file descriptor to epoll instance ...
-[2024-9-3 4:57:21] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:24] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:27] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:30] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:33] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:36] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:39] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:42] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:45] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:48] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:51] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:54] I don't see any event within 3000 milliseconds
-[2024-9-3 4:57:57] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:0] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:3] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:6] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:9] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:12] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:15] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:18] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:21] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:24] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:27] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:30] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:33] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:36] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:39] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:42] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:45] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:48] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:51] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:54] I don't see any event within 3000 milliseconds
-[2024-9-3 4:58:57] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:0] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:3] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:6] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:9] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:12] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:15] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:18] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:21] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:24] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:27] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:30] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:33] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:36] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:39] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:42] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:45] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:48] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:51] Finding matching location for path: 
-[2024-9-3 4:59:51] No matching location found
-[2024-9-3 4:59:51] Sent 3154 bytes to client
-[2024-9-3 4:59:51] Client 127.0.0.1::41654 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-9-3 4:59:54] I don't see any event within 3000 milliseconds
-[2024-9-3 4:59:57] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-9-3 4:59:57] Client 127.0.0.1::40038  has been accepted! by the socket: 127.0.0.1:8080
-[2024-9-3 4:59:57] add file descriptor to epoll instance ...
-[2024-9-3 4:59:57] Client 127.0.0.1:40038 send a request to socket 127.0.0.18080
-[ StartRequestBlock ] 
-GET /python/hello.py?boh=aa HTTP/1.1
-Accept-Encoding: gzip, deflate, br, zstd
-Accept-Language: it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
-Connection: keep-alive
-Host: 127.0.0.1:8080
-sec-ch-ua-mobile: ?0
-sec-ch-ua-platform: "Windows"
-sec-ch-ua: "Not/A)Brand";v="8", "Chromium";v="126", "Opera";v="112"
-Sec-Fetch-Dest: document
-Sec-Fetch-Mode: navigate
-Sec-Fetch-Site: none
-Sec-Fetch-User: ?1
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 OPR/112.0.0.0
-
-[ EndRequestBlock ]
-[2024-9-3 4:59:57] Finding matching location for path: /python/hello.py?boh=aa
-[2024-9-3 4:59:57] Found matching location: /python
-[2024-9-3 4:59:57] Handling CGI request for script: web-page/python/hello.py
-[2024-9-3 4:59:57] Parent process waiting for CGI script to complete
-[2024-9-3 4:59:57] Child process executing CGI script
-[2024-9-3 4:59:57] Setting environment variables for CGI script
-[2024-9-3 4:59:57] Setting SCRIPT_FILENAME: web-page/python/hello.py
-[2024-9-3 4:59:57] Setting REQUEST_METHOD: GET
-[2024-9-3 4:59:57] Setting QUERY_STRING: boh=aa
-[2024-9-3 4:59:57] Setting CONTENT_LENGTH: 0
-[2024-9-3 4:59:57] Setting CONTENT_TYPE: 
-[2024-9-3 4:59:57] Executing CGI script: /usr/bin/python3 web-page/python/hello.py
-[2024-9-3 4:59:57] Read 1553 bytes from CGI script
-[2024-9-3 4:59:57] Child process exited with status: 0
-[2024-9-3 4:59:57] No headers found in CGI response, using entire output as body
-[2024-9-3 4:59:57] CGI request processed successfully
-[2024-9-3 4:59:57] Sent 3150 bytes to client
-[2024-9-3 4:59:57] Client 127.0.0.1::40038 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-9-3 4:59:57] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-9-3 4:59:57] Client 127.0.0.1::40046  has been accepted! by the socket: 127.0.0.1:8080
-[2024-9-3 4:59:57] add file descriptor to epoll instance ...
-[2024-9-3 5:0:0] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:3] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:6] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:9] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:12] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:15] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:18] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:21] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:24] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:27] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:30] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:33] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:36] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:39] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:42] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:45] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:48] I don't see any event within 3000 milliseconds
-[2024-9-3 5:0:51] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:36] Finding matching location for path: /upload
+[2024-9-3 7:57:36] Found matching location: /upload
+[2024-9-3 7:57:36] Extracted boundary: --------------------------398806101779221282778516
+[2024-9-3 7:57:36] Splitting multipart data with boundary: --------------------------398806101779221282778516
+[2024-9-3 7:57:36] Data length: 3039
+[2024-9-3 7:57:36] First 100 characters of data: ----------------------------398806101779221282778516Content-Disposition: form-data; name="file1"; fi
+[2024-9-3 7:57:36] Found multipart data part of length: 1161
+[2024-9-3 7:57:36] ERROR: Failed to find end delimiter in multipart data
+[2024-9-3 7:57:36] Total parts found: 1
+[2024-9-3 7:57:36] Extracted 1 multipart data parts
+[2024-9-3 7:57:36] Processing multipart data part 1 of 1
+[2024-9-3 7:57:36] Extracted filename: default.conf
+[2024-9-3 7:57:36] Extracted filename: default.conf
+[2024-9-3 7:57:36] Extracted content of length: 1057
+[2024-9-3 7:57:36] Uploaded file: default.conf to web-page/uploads/default.conf
+[2024-9-3 7:57:36] Sent 97 bytes to client
+[2024-9-3 7:57:36] Client 127.0.0.1::52110 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-9-3 7:57:39] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:42] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:45] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:48] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:51] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:54] I don't see any event within 3000 milliseconds
+[2024-9-3 7:57:57] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:0] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:3] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:6] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:9] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:12] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:15] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:18] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:21] I don't see any event within 3000 milliseconds
+[2024-9-3 7:58:22] ERROR: Something interrupted me!
+[2024-9-3 7:58:22] Closing WebServer ...
+[2024-9-3 7:58:22] all resources released and Web Server closed successfully

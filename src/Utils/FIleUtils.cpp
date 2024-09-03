@@ -30,6 +30,16 @@ std::string FileUtils::ReadFile(const std::string &fileName)
 	return buffer.str();
 }
 
+bool FileUtils::WriteFile(const std::string &fileName, const std::string &content)
+{
+	std::ofstream file(fileName.c_str());
+	if (!file.is_open())
+		return false;
+	file << content;
+	file.close();
+	return true;
+}
+
 std::string FileUtils::GetContentType(const std::string &fileName)
 {
 	std::string extension = fileName.substr(fileName.find_last_of('.') + 1);

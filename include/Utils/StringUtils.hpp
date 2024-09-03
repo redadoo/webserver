@@ -35,6 +35,8 @@ namespace StringUtils
 
 	unsigned long long StringToUnsignedLongLong(const std::string& str);
 
+	size_t StringToSizeT(const std::string& str);
+
     /// @brief Splits a string into substrings based on a delimiter.
     /// @param str The string to split.
     /// @param delim The delimiter character.
@@ -53,6 +55,8 @@ namespace StringUtils
     bool IsAllDigit(const std::string& str);
 
 	std::string FormatTime(time_t time);
+
+	std::string Trim(const std::string& str);
 } // namespace StringUtils
 
 #endif

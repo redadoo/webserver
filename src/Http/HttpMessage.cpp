@@ -46,7 +46,6 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 void HttpMessage::ParseMessage(const std::string& messageChunk)
 {
-
 	std::istringstream 			messageChunkStream(messageChunk);
 	std::vector<std::string> 	messageLines = StringUtils::Split(messageChunk,"\r\n");
 	bool 						isBody = false;

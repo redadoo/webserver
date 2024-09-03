@@ -69,6 +69,7 @@ public:
 	bool IsCgiRequest(const std::string& path, const Location* location) const;
 
 	void HandleGetRequest(Client& client, const Location* location);
+	void HandlePostRequest(Client& client, const Location* location);
 	void HandleCgiRequest(Client& client, const std::string& scriptPath);
 	void HandleUploadRequest(Client& client, const Location* location);
 	void HandleDirectoryListing(const std::string& path, Client& client);
@@ -80,6 +81,10 @@ public:
 	std::pair<std::string, std::string> SplitPathAndQuery(const std::string& requestedPath);
 
 	const Location* FindMatchingLocation(const std::string& requestPath) const;
+	std::string GetBoundary(const std::string& contentType) const;
+	std::vector<std::string> SplitMultipartData(const std::string& data, const std::string& boundary) const;
+	std::string ExtractFilename(const std::string& part) const;
+	std::string ExtractFileContent(const std::string& part) const;
 
 
 

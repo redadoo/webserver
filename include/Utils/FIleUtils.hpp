@@ -14,6 +14,8 @@ namespace FileUtils
 
 	std::string ReadFile(const std::string& fileName);
 
+	bool WriteFile(const std::string& fileName, const std::string& content);
+
 	std::string GetContentType(const std::string& fileName);
 
 

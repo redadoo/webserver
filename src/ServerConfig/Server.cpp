@@ -125,29 +125,65 @@ int Server::AcceptClient(int fd, int epollFd)
 
 void Server::ReadClientResponse(Client &client)
 {
-	const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	ssize_t recvRet;
-	char	buffer[MAX_RESPONSE_SIZE];
+    const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
+    ssize_t recvRet;
+    char buffer[MAX_RESPONSE_SIZE];
+    std::string totalBody;
+    size_t contentLength = 0;
 
-	recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+    // Leggi l'header della richiesta
+    while (true)
+    {
+        recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+        if (recvRet <= 0)
+            break;
 
-	if (recvRet == 0)
-		return;
+        buffer[recvRet] = '\0';
+        totalBody += buffer;
 
-	if (recvRet < 0)
-		return CloseClientConnection(client);
+        // Cerca la fine dell'header
+        if (totalBody.find("\r\n\r\n") != std::string::npos)
+            break;
+    }
 
-	buffer[recvRet] = '\0';
+    // Estrai Content-Length dall'header
+    size_t contentLengthPos = totalBody.find("Content-Length: ");
+    if (contentLengthPos != std::string::npos)
+    {
+        size_t endPos = totalBody.find("\r\n", contentLengthPos);
+        std::string contentLengthStr = totalBody.substr(contentLengthPos + 16, endPos - (contentLengthPos + 16));
+        contentLength = StringUtils::StringToSizeT(contentLengthStr);
+    }
 
-	client.request.ParseMessage(buffer);
+    Logger::Log("Expected Content-Length: " + StringUtils::ToString(contentLength));
+    Logger::Log("Current body size: " + StringUtils::ToString(totalBody.length()));
 
-	Logger::RequestLog(*this, client, client.request);
+    // Continua a leggere il corpo se necessario
+    while (totalBody.length() < contentLength)
+    {
+        recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+        if (recvRet <= 0)
+            break;
 
-	if (client.request.body.size() > maxBodySize)
-	{
-		Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
-	}
+        buffer[recvRet] = '\0';
+        totalBody += buffer;
+
+        Logger::Log("Received chunk of size: " + StringUtils::ToString(recvRet));
+        Logger::Log("Total body size now: " + StringUtils::ToString(totalBody.length()));
+    }
+
+    if (totalBody.length() > maxBodySize)
+    {
+        Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
+        throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
+    }
+
+    client.request.ParseMessage(totalBody);
+
+    Logger::Log("Final body size: " + StringUtils::ToString(client.request.body.length()));
+    Logger::Log("First 100 characters of body: " + client.request.body.substr(0, 100));
+
+    Logger::RequestLog(*this, client, client.request);
 }
 
 void Server::ProcessRequest(Client& client, int redirectCount = 0)
@@ -159,8 +195,6 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 	}
 
 	const Location* location = FindMatchingLocation(client.request.startLine.path);
-
-
 	if (location && location->ShouldRedirect())
 	{
 		SendRedirectResponse(client, location->redirect, redirectCount);
@@ -169,77 +203,24 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 
 	if (client.request.startLine.httpMethod == "GET")
 		HandleGetRequest(client, location);
-	// else if (client.request.startLine.httpMethod == "POST")
-	// 	HandlePostRequest(client, location);
-	// else
-	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+	else if (client.request.startLine.httpMethod == "POST")
+		HandlePostRequest(client, location);
+	else
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
-
-	// std::string requestedPath;
-	// std::string requestedFile;
-
-	// const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	// if (client.request.body.size() > maxBodySize)
-	// {
-	// 	Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
-	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
-	// }
-
-	// if (location)
-	// {
-	// 	if (location->ShouldRedirect())
-	// 	{
-	// 		SendRedirectResponse(client, location->redirect, redirectCount);
-	// 		return;
-	// 	}
-
-	// 	if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
-	// 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-
-	// 	requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
-	// 	requestedFile = (requestedPath[requestedPath.length() - 1] == '/') ? requestedPath.substr(0, requestedPath.length() - 1) : requestedPath;
-
-	// 	if (IsCgiRequest(GetScriptPath(requestedFile), location))
-	// 	{
-	// 		HandleCgiRequest(client, requestedFile);
-	// 		SendResponse(client);
-	// 		return;
-	// 	}
-
-
-	// 	if (!FileUtils::IsDirectory(requestedPath.c_str()) && !FileUtils::CheckFileExistence(requestedFile.c_str()))
-	// 	{
-	// 		Logger::Log("Requested path does not exist: " + requestedPath);
-	// 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
-	// 	}
-	// }
-	// else
-	// {
-	// 	requestedPath = GetFullPath(client.request.startLine.path);
-	// 	if (FileUtils::IsDirectory(requestedPath.c_str()))
-	// 		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
-	// 	else
-	// 		requestedFile = requestedPath;
-	// }
-
-	// Logger::Log("Processing request for path: " + client.request.startLine.path);
-	// Logger::Log("Full requested path: " + requestedPath);
-
-	// if (FileUtils::IsDirectory(requestedPath.c_str()))
-	// {
-	// 	if ((location && location->autoIndex) || (!location && serverConfig.autoIndex))
-	// 		HandleDirectoryListing(requestedPath, client);
-	// 	else
-	// 		HandleDirectoryRequest(requestedPath);
-	// }
-	// else if (!FileUtils::CheckFileExistence(requestedFile.c_str()))
-	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
-	// else
-	// 	HandleFileRequest(requestedFile);
-
-	// response.SetContentLength();
-	// LogResponseHeaders();
 	SendResponse(client);
+}
+
+void Server::HandlePostRequest(Client& client, const Location* location)
+{
+	if (!location || !location->IsMethodAllowed("POST"))
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+	if (location->uploadEnable)
+		HandleUploadRequest(client, location);
+	else
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
 }
 
 void Server::HandleGetRequest(Client& client, const Location* location)
@@ -401,18 +382,155 @@ bool Server::IsCgiRequest(const std::string& path, const Location* location) con
 
 void Server::HandleUploadRequest(Client& client, const Location* location)
 {
-	if (!location->uploadEnable)
-	{
-		Logger::Log("Upload not allowed for this location");
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-	}
-	(void)client;
-
-	std::string uploadDir;
-	if (location->rootPath.empty())
-		uploadDir = serverConfig.serverRoot + location->uploadPath;
+	std::string uploadPath;
+	if (location && location->rootPath != "")
+		uploadPath = location->rootPath + location->uploadPath;
 	else
-		uploadDir = location->rootPath + location->uploadPath;
+		uploadPath = GetFullPath(location->uploadPath);
+
+	if (!FileUtils::CheckFileExistence(uploadPath.c_str()))
+	{
+		Logger::Log("Upload directory does not exist, creating it: " + uploadPath);
+		if (mkdir(uploadPath.c_str(), 0777) == -1)
+		{
+			Logger::LogError("Failed to create upload directory: " + uploadPath);
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+		}
+	}
+
+	std::string boundary = GetBoundary(client.request.header["Content-Type:"]);
+	Logger::Log("Extracted boundary: " + boundary);
+	std::vector<std::string> parts = SplitMultipartData(client.request.body, boundary);
+	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");
+
+	for (size_t i = 0; i < parts.size(); ++i)
+	{
+		Logger::Log("Processing multipart data part " + StringUtils::ToString(i + 1) + " of " + StringUtils::ToString(parts.size()));
+		std::string filename = ExtractFilename(parts[i]);
+		Logger::Log("Extracted filename: " + filename);
+		std::string content = ExtractFileContent(parts[i]);
+		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.length()));
+
+		if (!filename.empty() && !content.empty())
+		{
+			std::string uploadFilePath = uploadPath + filename;
+			if (FileUtils::WriteFile(uploadFilePath, content))
+				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
+			else
+			{
+				Logger::LogError("Failed to write uploaded file: " + filename);
+				throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+			}
+		}
+		else
+			Logger::LogError("Skipping empty file upload part");
+	}
+
+	response.SetStatusCode(HttpStatusCode::OK);
+	response.SetBody("File(s) uploaded successfully");
+}
+
+std::string Server::ExtractFileContent(const std::string& part) const
+{
+	size_t headerEnd = part.find("Content-Type:");
+	if (headerEnd == std::string::npos)
+	{
+		Logger::LogError("Failed to find Content-Type header in multipart data");
+		return "";
+	}
+
+	size_t contentStart = part.find("\n", headerEnd);
+	if (contentStart == std::string::npos)
+	{
+		Logger::LogError("Failed to find start of content in multipart data");
+		return "";
+	}
+
+	contentStart += 1;
+
+	std::string content = part.substr(contentStart);
+
+	content.erase(0, content.find_first_not_of("\t\r\n"));
+
+	return content;
+}
+
+std::string Server::ExtractFilename(const std::string& part) const
+{
+    size_t filenamePos = part.find("filename=\"");
+    if (filenamePos != std::string::npos)
+    {
+        size_t filenameStart = filenamePos + 10;
+        size_t filenameEnd = part.find("\"", filenameStart);
+        if (filenameEnd != std::string::npos)
+        {
+            std::string filename = part.substr(filenameStart, filenameEnd - filenameStart);
+            Logger::Log("Extracted filename: " + filename);
+            return filename;
+        }
+    }
+    Logger::LogError("Failed to extract filename from multipart data part");
+    return "";
+}
+
+std::string Server::GetBoundary(const std::string& contentType) const
+{
+	size_t boundaryPos = contentType.find("boundary=");
+	if (boundaryPos != std::string::npos)
+	{
+		std::string boundary = contentType.substr(boundaryPos + 9);
+		if (!boundary.empty() && boundary[0] == '"' && boundary[boundary.length() - 1] == '"')
+			boundary = boundary.substr(1, boundary.length() - 2);
+		return boundary;
+	}
+	return "";
+}
+
+std::vector<std::string> Server::SplitMultipartData(const std::string& data, const std::string& boundary) const
+{
+    std::vector<std::string> parts;
+    std::string startDelimiter = "--" + boundary;
+    std::string endDelimiter = startDelimiter + "--";
+
+    Logger::Log("Splitting multipart data with boundary: " + boundary);
+    Logger::Log("Data length: " + StringUtils::ToString(data.length()));
+    Logger::Log("First 100 characters of data: " + data.substr(0, 100));
+
+    size_t pos = data.find(startDelimiter);
+    if (pos == std::string::npos)
+    {
+        Logger::LogError("Failed to find start delimiter in multipart data");
+        return parts;
+    }
+
+    while (pos != std::string::npos)
+    {
+        size_t nextPos = data.find(startDelimiter, pos + startDelimiter.length());
+        if (nextPos == std::string::npos)
+        {
+            nextPos = data.find(endDelimiter, pos + startDelimiter.length());
+            if (nextPos == std::string::npos)
+            {
+                Logger::LogError("Failed to find end delimiter in multipart data");
+                break;
+            }
+        }
+
+        std::string part = data.substr(pos + startDelimiter.length(), nextPos - pos - startDelimiter.length());
+        part = StringUtils::Trim(part);
+        if (!part.empty())
+        {
+            parts.push_back(part);
+            Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
+        }
+
+        pos = nextPos;
+        if (data.substr(pos, endDelimiter.length()) == endDelimiter)
+            break;
+    }
+
+    Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
+    return parts;
 }
 
 

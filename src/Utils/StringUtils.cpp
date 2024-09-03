@@ -62,6 +62,21 @@ unsigned long long StringUtils::StringToUnsignedLongLong(const std::string& str)
 	return number;
 }
 
+size_t StringUtils::StringToSizeT(const std::string& str)
+{
+	size_t number;
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (!isdigit(str[i]))
+			throw std::invalid_argument("Invalid string to convert to size_t");
+	}
+
+	std::stringstream ss(str);
+	ss >> number;
+	return number;
+}
+
 std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 {
 	std::vector<std::string> tokens;
@@ -114,4 +129,13 @@ std::string StringUtils::FormatTime(time_t time)
 
 	strftime(buffer, sizeof(buffer), "%d-%b-%Y %H:%M", timeinfo);
 	return std::string(buffer);
+}
+
+std::string StringUtils::Trim(const std::string &str)
+{
+    size_t first = str.find_first_not_of(" \t\n\r");
+    if (first == std::string::npos)
+        return "";
+    size_t last = str.find_last_not_of(" \t\n\r");
+    return str.substr(first, (last - first + 1));
 }
