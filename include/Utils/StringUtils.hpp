@@ -22,6 +22,8 @@ namespace StringUtils
     /// @return A string representation of the number.
     std::string ToString(int n);
 
+	std::string ToString(size_t n);
+
 	std::string ToString(unsigned long long n);
 
 	std::string ToString(off_t n);

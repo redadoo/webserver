@@ -209,7 +209,7 @@ void Parser::GetRootPath(bool isServer,const Token& token, Server& server)
 		{
 			if (server.serverConfig.GetLastLocation().rootPath.size() != 0)
 				throw std::invalid_argument("too many roots");
-				
+
 			server.serverConfig.GetLastLocation().rootPath = token.tokenValue;
 		}
 	}

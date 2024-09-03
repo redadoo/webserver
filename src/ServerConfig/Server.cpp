@@ -13,6 +13,8 @@
 #include <stdexcept>
 #include <dirent.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+#include <stdlib.h>
 
 //constructor
 
@@ -157,62 +159,262 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 	}
 
 	const Location* location = FindMatchingLocation(client.request.startLine.path);
-	std::string requestedPath;
-	std::string requestedFile;
 
+
+	if (location && location->ShouldRedirect())
+	{
+		SendRedirectResponse(client, location->redirect, redirectCount);
+		return;
+	}
+
+	if (client.request.startLine.httpMethod == "GET")
+		HandleGetRequest(client, location);
+	// else if (client.request.startLine.httpMethod == "POST")
+	// 	HandlePostRequest(client, location);
+	// else
+	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+
+	// std::string requestedPath;
+	// std::string requestedFile;
+
+	// const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
+	// if (client.request.body.size() > maxBodySize)
+	// {
+	// 	Logger::Log("Client body size exceeded the limit: " + StringUtils::ToString(maxBodySize) + " bytes");
+	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
+	// }
+
+	// if (location)
+	// {
+	// 	if (location->ShouldRedirect())
+	// 	{
+	// 		SendRedirectResponse(client, location->redirect, redirectCount);
+	// 		return;
+	// 	}
+
+	// 	if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
+	// 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+	// 	requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
+	// 	requestedFile = (requestedPath[requestedPath.length() - 1] == '/') ? requestedPath.substr(0, requestedPath.length() - 1) : requestedPath;
+
+	// 	if (IsCgiRequest(GetScriptPath(requestedFile), location))
+	// 	{
+	// 		HandleCgiRequest(client, requestedFile);
+	// 		SendResponse(client);
+	// 		return;
+	// 	}
+
+
+	// 	if (!FileUtils::IsDirectory(requestedPath.c_str()) && !FileUtils::CheckFileExistence(requestedFile.c_str()))
+	// 	{
+	// 		Logger::Log("Requested path does not exist: " + requestedPath);
+	// 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
+	// 	}
+	// }
+	// else
+	// {
+	// 	requestedPath = GetFullPath(client.request.startLine.path);
+	// 	if (FileUtils::IsDirectory(requestedPath.c_str()))
+	// 		requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
+	// 	else
+	// 		requestedFile = requestedPath;
+	// }
+
+	// Logger::Log("Processing request for path: " + client.request.startLine.path);
+	// Logger::Log("Full requested path: " + requestedPath);
+
+	// if (FileUtils::IsDirectory(requestedPath.c_str()))
+	// {
+	// 	if ((location && location->autoIndex) || (!location && serverConfig.autoIndex))
+	// 		HandleDirectoryListing(requestedPath, client);
+	// 	else
+	// 		HandleDirectoryRequest(requestedPath);
+	// }
+	// else if (!FileUtils::CheckFileExistence(requestedFile.c_str()))
+	// 	throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
+	// else
+	// 	HandleFileRequest(requestedFile);
+
+	// response.SetContentLength();
+	// LogResponseHeaders();
+	SendResponse(client);
+}
+
+void Server::HandleGetRequest(Client& client, const Location* location)
+{
+	std::string folderPath;
 	if (location)
-	{
-		if (location->ShouldRedirect())
-		{
-			SendRedirectResponse(client, location->redirect, redirectCount);
-			return;
-		}
-
-		if (!location->IsMethodAllowed(client.request.startLine.httpMethod))
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-
-		requestedPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
-
-		if (requestedPath[requestedPath.length() - 1] == '/')
-			requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
-		else
-			requestedFile = requestedPath;
-
-
-		if (!FileUtils::IsDirectory(requestedPath.c_str()) && !FileUtils::CheckFileExistence(requestedFile.c_str()))
-		{
-			Logger::Log("Requested path does not exist: " + requestedPath);
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
-		}
-	}
+		folderPath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
 	else
+		folderPath = GetFullPath(client.request.startLine.path);
+
+	std::string filePath = (folderPath[folderPath.length() - 1] == '/') ? folderPath.substr(0, folderPath.length() - 1) : folderPath;
+	if (location && IsCgiRequest(GetScriptPath(filePath), location))
 	{
-		requestedPath = GetFullPath(client.request.startLine.path);
-		if (FileUtils::IsDirectory(requestedPath.c_str()))
-			requestedFile = requestedPath.substr(0, requestedPath.length() - 1);
-		else
-			requestedFile = requestedPath;
+		HandleCgiRequest(client, filePath);
+		return;
 	}
-
-	Logger::Log("Processing request for path: " + client.request.startLine.path);
-	Logger::Log("Full requested path: " + requestedPath);
-
-	if (FileUtils::IsDirectory(requestedPath.c_str()))
+	else if (FileUtils::IsDirectory(folderPath.c_str()))
 	{
 		if ((location && location->autoIndex) || (!location && serverConfig.autoIndex))
-			HandleDirectoryListing(requestedPath, client);
+			HandleDirectoryListing(folderPath, client);
 		else
-			HandleDirectoryRequest(requestedPath);
+			HandleDirectoryRequest(folderPath);
 	}
-	else if (!FileUtils::CheckFileExistence(requestedFile.c_str()))
+	else if (!FileUtils::CheckFileExistence(filePath.c_str()))
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
 	else
-		HandleFileRequest(requestedFile);
+		HandleFileRequest(filePath);
 
 	response.SetContentLength();
 	LogResponseHeaders();
-	SendResponse(client);
 }
+
+std::pair<std::string, std::string> Server::SplitPathAndQuery(const std::string& path)
+{
+	size_t queryPos = path.find("?");
+	if (queryPos != std::string::npos)
+		return std::make_pair(path.substr(0, queryPos), path.substr(queryPos + 1));
+	return std::make_pair(path, "");
+}
+
+void Server::HandleCgiRequest(Client& client, const std::string& requestedPath)
+{
+	std::pair<std::string, std::string> pathAndQuery = SplitPathAndQuery(requestedPath);
+	std::string scriptPath = pathAndQuery.first;
+	std::string queryString = pathAndQuery.second;
+
+	Logger::Log("Handling CGI request for script: " + scriptPath);
+
+	int pipefd[2];
+	pid_t pid;
+
+	if (pipe(pipefd) == -1)
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+
+	pid = fork();
+	if (pid == -1)
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+
+	if (pid == 0)
+	{
+		Logger::Log("Child process executing CGI script");
+		close(pipefd[0]);
+		dup2(pipefd[1], STDOUT_FILENO);
+		close(pipefd[1]);
+
+		Logger::Log("Setting environment variables for CGI script");
+		Logger::Log("Setting SCRIPT_FILENAME: " + scriptPath);
+		Logger::Log("Setting REQUEST_METHOD: " + client.request.startLine.httpMethod);
+		Logger::Log("Setting QUERY_STRING: " + queryString);
+		Logger::Log("Setting CONTENT_LENGTH: " + StringUtils::ToString(client.request.body.size()));
+		Logger::Log("Setting CONTENT_TYPE: " + client.request.header["Content-Type:"]);
+
+		setenv("SCRIPT_FILENAME", scriptPath.c_str(), 1);
+		setenv("REQUEST_METHOD", client.request.startLine.httpMethod.c_str(), 1);
+		setenv("QUERY_STRING", queryString.c_str(), 1);
+		setenv("CONTENT_LENGTH", StringUtils::ToString(client.request.body.size()).c_str(), 1);
+		setenv("CONTENT_TYPE", client.request.header["Content-Type:"].c_str(), 1);
+
+		if (client.request.startLine.httpMethod == "POST")
+		{
+			Logger::Log("Writing POST data to CGI script");
+			ssize_t written = write(STDIN_FILENO, client.request.body.c_str(), client.request.body.size());
+			if (written == -1)
+				Logger::LogError("Failed to write POST data to CGI script");
+			else
+				Logger::Log("Wrote " + StringUtils::ToString(written) + " bytes to CGI script");
+		}
+
+		Logger::Log("Executing CGI script: /usr/bin/python3 " + scriptPath);
+		execl("/usr/bin/python3", "python3", scriptPath.c_str(), NULL);
+		Logger::LogError("Failed to execute CGI script");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		Logger::Log("Parent process waiting for CGI script to complete");
+		close(pipefd[1]);
+		char buffer[4096];
+		std::string output;
+		ssize_t bytesRead;
+
+		while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0)
+		{
+			output.append(buffer, bytesRead);
+			Logger::Log("Read " + StringUtils::ToString(bytesRead) + " bytes from CGI script");
+		}
+
+		if (bytesRead == -1)
+			Logger::LogError("Failed to read from CGI script");
+
+		close(pipefd[0]);
+
+		int status;
+		waitpid(pid, &status, 0);
+
+		if (WIFEXITED(status))
+		{
+			Logger::Log("Child process exited with status: " + StringUtils::ToString(WEXITSTATUS(status)));
+			if (WEXITSTATUS(status) == 0)
+			{
+				size_t headerEnd = output.find("\r\n\r\n");
+				if (headerEnd != std::string::npos)
+				{
+					Logger::Log("Parsing CGI response headers and body");
+					response.body = output.substr(headerEnd + 4);
+					std::istringstream headerStream(output.substr(0, headerEnd));
+					std::string line;
+					while (std::getline(headerStream, line) && !line.empty())
+					{
+						size_t colonPos = line.find(":");
+						if (colonPos != std::string::npos)
+						{
+							std::string key = line.substr(0, colonPos);
+							std::string value = line.substr(colonPos + 1);
+							response.header[key] = value;
+							Logger::Log("CGI header: " + key + ": " + value);
+						}
+					}
+				}
+				else
+				{
+					Logger::Log("No headers found in CGI response, using entire output as body");
+					response.header["Content-Type"] = "text/html";
+					response.body = output;
+				}
+				response.SetStatusCode(HttpStatusCode::OK);
+				Logger::Log("CGI request processed successfully");
+			}
+		}
+		else
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+	}
+}
+
+bool Server::IsCgiRequest(const std::string& path, const Location* location) const
+{
+	return path.length() > 3 && path.substr(path.length() - 3) == ".py" && location->cgiExtension == ".py";
+}
+
+void Server::HandleUploadRequest(Client& client, const Location* location)
+{
+	if (!location->uploadEnable)
+	{
+		Logger::Log("Upload not allowed for this location");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+	}
+	(void)client;
+
+	std::string uploadDir;
+	if (location->rootPath.empty())
+		uploadDir = serverConfig.serverRoot + location->uploadPath;
+	else
+		uploadDir = location->rootPath + location->uploadPath;
+}
+
 
 const Location* Server::FindMatchingLocation(const std::string& requestPath) const
 {
@@ -260,6 +462,13 @@ std::string Server::GetFullPath(const std::string& path)
         fullPath += path;
 
     return fullPath;
+}
+
+std::string Server::GetScriptPath(const std::string& path)
+{
+	size_t queryPos = path.find("?");
+	std::string scriptPath = (queryPos != std::string::npos) ? path.substr(0, queryPos) : path;
+	return scriptPath;
 }
 
 void Server::HandleDirectoryListing(const std::string& path, Client& client)
@@ -342,10 +551,6 @@ void Server::HandleFileRequest(const std::string& path)
 {
 	Logger::Log("File found: " + path);
 	std::string fileContent = FileUtils::ReadFile(path);
-	if (fileContent.empty())
-	{
-		Logger::Log("Warning: File is empty or could not be read: " + path);
-	}
 	Logger::Log("File content length: " + StringUtils::ToString(static_cast<int>(fileContent.length())) + " bytes");
 
 	response.SetStatusCode(HttpStatusCode::OK);
@@ -375,7 +580,7 @@ void Server::SendResponse(const Client& client)
         if (bytesSent == -1)
         {
 
-           Logger::LogError("Failed to send response: " + std::string(strerror(errno)));
+           Logger::LogError("Failed to send response");
         	return;
 
         }
@@ -389,6 +594,7 @@ void Server::SendResponse(const Client& client)
     }
 
     Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
+	CloseClientConnection(client);
 }
 
 void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)

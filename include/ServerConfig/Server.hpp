@@ -66,12 +66,18 @@ public:
 	/// @param client Reference to the Client object.
 	void ProcessRequest(Client& client, int redirectCount);
 
-	std::string GetFullPath(const std::string& path);
-	void HandleNotFound();
+	bool IsCgiRequest(const std::string& path, const Location* location) const;
+
+	void HandleGetRequest(Client& client, const Location* location);
+	void HandleCgiRequest(Client& client, const std::string& scriptPath);
+	void HandleUploadRequest(Client& client, const Location* location);
 	void HandleDirectoryListing(const std::string& path, Client& client);
 	void HandleDirectoryRequest(const std::string& path);
 	void HandleFileRequest(const std::string& path);
 	void LogResponseHeaders();
+	std::string GetFullPath(const std::string& path);
+	std::string GetScriptPath(const std::string& path);
+	std::pair<std::string, std::string> SplitPathAndQuery(const std::string& requestedPath);
 
 	const Location* FindMatchingLocation(const std::string& requestPath) const;
 

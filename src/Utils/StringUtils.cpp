@@ -30,6 +30,13 @@ std::string StringUtils::ToString(off_t n)
 	return ss.str();
 }
 
+std::string StringUtils::ToString(size_t n)
+{
+	std::stringstream ss;
+	ss << n;
+	return ss.str();
+}
+
 int StringUtils::StrintToInt(const std::string& str)
 {
 	std::stringstream ss(str);
