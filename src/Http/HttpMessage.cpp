@@ -69,8 +69,10 @@ void HttpMessage::ParseMessage(const std::string& messageChunk)
 		}
 		else
 		{
-
-			body += messageLines[i] + "\n";
+			if (messageLines[i] != "\n")
+				body += messageLines[i] + "\n";
+			else
+				body += messageLines[i];
 
 			// if (!body.empty() && body[body.size() - 1] == '\n')
 			// 	body.erase(body.size() - 1);

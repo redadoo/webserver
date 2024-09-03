@@ -478,34 +478,27 @@ std::string Server::GetBoundary(const std::string& contentType) const
 std::vector<std::string> Server::SplitMultipartData(const std::string& data, const std::string& boundary) const
 {
     std::vector<std::string> parts;
-    std::string startDelimiter = "--" + boundary;
-    std::string endDelimiter = startDelimiter + "--";
+    std::string delimiter = "--" + boundary;
+    std::string endDelimiter = delimiter + "--";
 
-    Logger::Log("Splitting multipart data with boundary: " + boundary);
-    Logger::Log("Data length: " + StringUtils::ToString(data.length()));
-    Logger::Log("First 100 characters of data: " + data.substr(0, 100));
-
-    size_t pos = data.find(startDelimiter);
-    if (pos == std::string::npos)
+    size_t pos = 0;
+    while (true)
     {
-        Logger::LogError("Failed to find start delimiter in multipart data");
-        return parts;
-    }
+        size_t startPos = data.find(delimiter, pos);
+        if (startPos == std::string::npos)
+            break;
 
-    while (pos != std::string::npos)
-    {
-        size_t nextPos = data.find(startDelimiter, pos + startDelimiter.length());
-        if (nextPos == std::string::npos)
+        startPos += delimiter.length();
+
+        size_t endPos = data.find(delimiter, startPos);
+        if (endPos == std::string::npos)
         {
-            nextPos = data.find(endDelimiter, pos + startDelimiter.length());
-            if (nextPos == std::string::npos)
-            {
-                Logger::LogError("Failed to find end delimiter in multipart data");
-                break;
-            }
+            endPos = data.find(endDelimiter, startPos);
+            if (endPos == std::string::npos)
+                endPos = data.length();
         }
 
-        std::string part = data.substr(pos + startDelimiter.length(), nextPos - pos - startDelimiter.length());
+        std::string part = data.substr(startPos, endPos - startPos);
         part = StringUtils::Trim(part);
         if (!part.empty())
         {
@@ -513,9 +506,10 @@ std::vector<std::string> Server::SplitMultipartData(const std::string& data, con
             Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
         }
 
-        pos = nextPos;
-        if (data.substr(pos, endDelimiter.length()) == endDelimiter)
+        if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
             break;
+
+        pos = endPos;
     }
 
     Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
