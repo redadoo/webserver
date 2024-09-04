@@ -18,17 +18,57 @@ class Server
 {
 private:
 
+	/// @brief Sends an HTTP redirect response to the client with the specified status code and redirection path, then processes the redirected request.
+	/// @param client The client to which the redirect response will be sent.
+	/// @param redirect Contains the HTTP status code and the redirection path.
+	/// @param redirectCount The current count of redirects, used to prevent infinite redirection loops.
+	void SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount);
+
+	/// @brief Sends a response to the client.
+	/// @param client Reference to the Client object.
+	void SendResponse(const Client& client);
+
+	/// @brief Logs all the response headers to the server log, including both header names and their values.
+	void LogResponseHeaders();
+
+	/// @brief Handles requests for individual files by reading the file content and setting the appropriate response status and content type.
+	/// @param path The filesystem path of the file to be served.
+	void HandleFileRequest(const std::string& path);
+
+	/// @brief Handles requests for directories by searching for an index file within the directory.
+	/// @param path The filesystem path of the directory to check for an index file.
+	void HandleDirectoryRequest(const std::string& path);
+
+	/// @brief Handles the request for directory listing by generating an HTML page that lists the contents of the specified directory.
+	/// @param path The filesystem path of the directory to list.
+	/// @param client The client requesting the directory listing.
+	void HandleDirectoryListing(const std::string& path, Client& client);
+
+	/// @brief Handles file upload requests from the client by processing multipart/form-data and saving the uploaded files to the configured upload directory.
+	/// @param client The client making the upload request.
+	/// @param location The location object that contains the configuration and permissions for the requested resource.
+	void HandleUploadRequest(Client& client, const Location* location);
+
+	/// @brief Handles the GET HTTP request from the client, determining the appropriate action based on the requested resource.
+	/// @param client The client making the GET request.
+	/// @param location The location object that contains the configuration and permissions for the requested resource.
+	void HandleGetRequest(Client& client, const Location* location);
+
+	/// @brief Handles the POST HTTP request from the client, determining the appropriate action based on the location's configuration.
+	/// @param client The client making the POST request.
+	/// @param location The location object that contains the configuration and permissions for the requested resource.
+	void HandlePostRequest(Client& client, const Location* location);
+
+	/// @brief Handles the DELETE HTTP request from the client, checking if the DELETE method is allowed for the given location and attempting to delete the specified file.
+	/// @param client The client making the DELETE request.
+	/// @param location The location object that contains the configuration and permissions for the requested resource.
+	void HandleDeleteRequest(const Client& client, const Location* location);
+
 	/// @brief Adds a new client to the server's client list.
 	/// @param clientFd File descriptor for the client's socket.
 	/// @param ip Source IP address of the client.
 	/// @param port Source port of the client.
 	void AddClient(int clientFd, std::string ip, uint16_t port);
-
-	/// @brief Builds the response to be sent to the client.
-	void BuildResponse();
-
-    /// @brief Constructs an error response to be sent to the client.
-	void BuildErrorResponse();
 
 public:
 	ServerConfig                    serverConfig;
@@ -65,38 +105,14 @@ public:
 	/// @brief Processes the client's request and generates a response.
 	/// @param client Reference to the Client object.
 	void ProcessRequest(Client& client, int redirectCount);
+	
+	/// @brief Sends an error response to the client with the specified HTTP status code, including an error message body based on the server configuration.
+	/// @param client The client to which the error response will be sent.
+	/// @param code The HTTP status code representing the error condition.
+	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
 
 	bool IsCgiRequest(const std::string& path, const Location* location) const;
-
-	void HandleDeleteRequest(Client& client, const Location* location);
-	void HandleGetRequest(Client& client, const Location* location);
-	void HandlePostRequest(Client& client, const Location* location);
 	void HandleCgiRequest(Client& client, const std::string& scriptPath, const Location* location);
-	void HandleUploadRequest(Client& client, const Location* location);
-	void HandleDirectoryListing(const std::string& path, Client& client);
-	void HandleDirectoryRequest(const std::string& path);
-	void HandleFileRequest(const std::string& path);
-	void LogResponseHeaders();
-	std::string GetFullPath(const std::string& path);
-	std::string GetScriptPath(const std::string& path);
-	std::pair<std::string, std::string> SplitPathAndQuery(const std::string& requestedPath);
-
-	const Location* FindMatchingLocation(const std::string& requestPath) const;
-	std::string GetBoundary(const std::string& contentType) const;
-	std::vector<std::string> SplitMultipartData(const std::string& data, const std::string& boundary) const;
-	std::string ExtractFilename(const std::string& part) const;
-	std::string ExtractFileContent(const std::string& part) const;
-
-
-
-
-	/// @brief Sends a response to the client.
-	/// @param client Reference to the Client object.
-	void SendResponse(const Client& client);
-
-	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
-	void SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount);
-
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.
 	/// @param client Reference to the Client object.

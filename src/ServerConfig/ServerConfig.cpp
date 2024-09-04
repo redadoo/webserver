@@ -1,4 +1,5 @@
 #include <ServerConfig.hpp>
+#include <Logger.hpp>
 
 ServerConfig::ServerConfig()
 {
@@ -27,6 +28,53 @@ void ServerConfig::CheckServerConfig()
 
 	if (this->errorPage.size() == 0)
 		throw std::invalid_argument("Error page not found");
+}
+
+const Location* ServerConfig::FindMatchingLocation(const std::string& requestPath) const
+{
+	const Location* bestMatch = NULL;
+	size_t bestMatchLength = 0;
+	Logger::Log("Finding matching location for path: " + requestPath);
+
+	if (locations.empty())
+	{
+		Logger::Log("No locations defined, using default location");
+		return NULL;
+	}
+
+	for (std::vector<Location>::const_iterator it = locations.begin(); it != locations.end(); ++it)
+	{
+		if (it->MatchesPath(requestPath) && it->path.length() > bestMatchLength)
+		{
+			bestMatch = &(*it);
+			bestMatchLength = it->path.length();
+		}
+	}
+
+	if (bestMatch)
+		Logger::Log("Found matching location: " + bestMatch->path);
+	else
+		Logger::Log("No matching location found");
+
+	return bestMatch;
+}
+
+std::string ServerConfig::GetFullPath(const std::string& path) const
+{
+	std::string fullPath = serverRoot;
+
+	if (!fullPath.empty() && fullPath[fullPath.length() - 1] != '/')
+		fullPath += "/";
+
+	if (path.empty() || path == "/")
+		return fullPath;
+
+	if (path[0] == '/')
+		fullPath += path.substr(1);
+	else
+		fullPath += path;
+
+	return fullPath;
 }
 
 std::ostream &operator<<(std::ostream &os, const ServerConfig &sr)

@@ -39,7 +39,16 @@ struct ServerConfig
 	// Overload the << operator
 	friend std::ostream& operator<<(std::ostream& os, const ServerConfig& sr);
 
-	
+	/// @brief Finds the best matching `Location` object for a given request path by comparing the length of matching paths.
+	/// @param requestPath The path of the incoming request to match against the defined locations.
+	/// @return A pointer to the `Location` object that has the longest matching path. Returns `nullptr` if no matching location is found.
+	const Location* FindMatchingLocation(const std::string& requestPath) const;
+
+	/// @brief Constructs the full filesystem path from a relative path by combining it with the server's root directory.
+	/// @param path The relative path to be combined with the server root.
+	/// @return The resulting full path. If the relative path is empty or just "/", it returns the server root path. Otherwise, it appends the relative path to the server root.
+	std::string GetFullPath(const std::string& path) const;
+
 	class LocationsEmpty : public std::exception {
 		public:
 			virtual const char* what() const throw() { return "access to locations vector but no location found\n"; }

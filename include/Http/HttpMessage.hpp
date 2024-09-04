@@ -53,7 +53,6 @@ public:
     /// @return The output stream with the HTTP message written.
     friend std::ostream& operator<<(std::ostream& os, const HttpMessage& msg);
 
-
 private:
 
    	/// @brief Parses the start line of the HTTP message.

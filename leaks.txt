@@ -1,0 +1,24 @@
+==46356== Memcheck, a memory error detector
+==46356== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==46356== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==46356== Command: ./webserver
+==46356== Parent PID: 46196
+==46356== 
+==46356== Conditional jump or move depends on uninitialised value(s)
+==46356==    at 0x11C450: Parser::GetUploadEnable(Lexer::Token const&, Server&) (in /home/edoardo/42/webserver/webserver)
+==46356==    by 0x11A3FD: Parser::FillLocation(Lexer::Token const&, Server&) (in /home/edoardo/42/webserver/webserver)
+==46356==    by 0x11A0B8: Parser::ParseConfigFile(std::vector<Server, std::allocator<Server> >&, char const*) (in /home/edoardo/42/webserver/webserver)
+==46356==    by 0x10DD50: WebServer::InitServer(char const*) (in /home/edoardo/42/webserver/webserver)
+==46356==    by 0x10D37E: main (in /home/edoardo/42/webserver/webserver)
+==46356==  Uninitialised value was created by a stack allocation
+==46356==    at 0x11AE04: Parser::GetLocationPath(Lexer::Token const&, Server&) (in /home/edoardo/42/webserver/webserver)
+==46356== 
+==46356== 
+==46356== HEAP SUMMARY:
+==46356==     in use at exit: 0 bytes in 0 blocks
+==46356==   total heap usage: 271 allocs, 271 frees, 129,443 bytes allocated
+==46356== 
+==46356== All heap blocks were freed -- no leaks are possible
+==46356== 
+==46356== For lists of detected and suppressed errors, rerun with: -s
+==46356== ERROR SUMMARY: 4 errors from 1 contexts (suppressed: 0 from 0)
