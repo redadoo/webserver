@@ -17,7 +17,6 @@ bool Location::IsMethodAllowed(const std::string &method) const
 		if (methods[i] == method)
 			return true;
 	}
-
 	return false;
 }
 

@@ -49,10 +49,6 @@ struct ServerConfig
 	/// @return The resulting full path. If the relative path is empty or just "/", it returns the server root path. Otherwise, it appends the relative path to the server root.
 	std::string GetFullPath(const std::string& path) const;
 
-	class LocationsEmpty : public std::exception {
-		public:
-			virtual const char* what() const throw() { return "access to locations vector but no location found\n"; }
-	};
 };
 
 #endif // SERVERCONFIG_HPP

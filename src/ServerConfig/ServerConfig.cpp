@@ -10,7 +10,7 @@ ServerConfig::ServerConfig()
 Location &ServerConfig::GetLastLocation()
 {
 	if (locations.empty())
-		throw LocationsEmpty();
+		throw std::invalid_argument("access to locations vector but no location found");
 
 	return locations.back();
 }

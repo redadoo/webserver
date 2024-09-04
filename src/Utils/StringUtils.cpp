@@ -92,19 +92,19 @@ std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 std::vector<std::string> StringUtils::Split(const std::string &str, const std::string &delim)
 {
 	std::vector<std::string> tokens;
-    size_t start = 0;
-    size_t end = str.find(delim);
+	size_t start = 0;
+	size_t end = str.find(delim);
 
-    while (end != std::string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-        start = end + delim.length();
-        end = str.find(delim, start);
-    }
+	while (end != std::string::npos) {
+		tokens.push_back(str.substr(start, end - start));
+		start = end + delim.length();
+		end = str.find(delim, start);
+	}
 
-    // Add the last token
-    tokens.push_back(str.substr(start));
+	// Add the last token
+	tokens.push_back(str.substr(start));
 
-    return tokens;
+	return tokens;
 }
 
 bool StringUtils::IsAllDigit(const std::string &str)
@@ -115,7 +115,7 @@ bool StringUtils::IsAllDigit(const std::string &str)
 			return false;
 	}
 
-    return true;
+	return true;
 }
 
 std::string StringUtils::FormatTime(time_t time)
@@ -134,11 +134,11 @@ std::string StringUtils::FormatTime(time_t time)
 
 std::string StringUtils::Trim(const std::string &str)
 {
-    size_t first = str.find_first_not_of(" \t\n\r");
-    if (first == std::string::npos)
-        return "";
-    size_t last = str.find_last_not_of(" \t\n\r");
-    return str.substr(first, (last - first + 1));
+	size_t first = str.find_first_not_of(" \t\n\r");
+	if (first == std::string::npos)
+		return "";
+	size_t last = str.find_last_not_of(" \t\n\r");
+	return str.substr(first, (last - first + 1));
 }
 
 std::pair<std::string, std::string> StringUtils::SplitPathAndQuery(const std::string &path)
@@ -176,7 +176,7 @@ std::string StringUtils::ExtractFileContent(const std::string& part)
 
 std::string StringUtils::ExtractFilename(const std::string &part) 
 {
-    size_t filenamePos = part.find("filename=\"");
+	size_t filenamePos = part.find("filename=\"");
 	if (filenamePos != std::string::npos)
 	{
 		size_t filenameStart = filenamePos + 10;
