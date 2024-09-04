@@ -193,10 +193,32 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 		HandleGetRequest(client, location);
 	else if (client.request.startLine.httpMethod == "POST")
 		HandlePostRequest(client, location);
+	else if (client.request.startLine.httpMethod == "DELETE")
+		HandleDeleteRequest(client, location);
 	else
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
 	SendResponse(client);
+}
+
+void Server::HandleDeleteRequest(Client& client, const Location* location)
+{
+	if (!location || !location->IsMethodAllowed("DELETE"))
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
+
+	std::string filePath = GetFullPath(client.request.startLine.path);
+	if (FileUtils::CheckFileExistence(filePath.c_str()))
+	{
+		if (remove(filePath.c_str()) == 0)
+		{
+			response.SetStatusCode(HttpStatusCode::NoContent);
+			response.SetBody("File deleted successfully");
+		}
+		else
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+	}
+	else
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::NotFound);
 }
 
 void Server::HandlePostRequest(Client& client, const Location* location)
@@ -206,9 +228,10 @@ void Server::HandlePostRequest(Client& client, const Location* location)
 
 	if (location->uploadEnable)
 		HandleUploadRequest(client, location);
+	else if (IsCgiRequest(GetScriptPath(client.request.startLine.path), location))
+		HandleCgiRequest(client, GetScriptPath(client.request.startLine.path), location);
 	else
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-
 }
 
 void Server::HandleGetRequest(Client& client, const Location* location)
@@ -222,7 +245,7 @@ void Server::HandleGetRequest(Client& client, const Location* location)
 	std::string filePath = (folderPath[folderPath.length() - 1] == '/') ? folderPath.substr(0, folderPath.length() - 1) : folderPath;
 	if (location && IsCgiRequest(GetScriptPath(filePath), location))
 	{
-		HandleCgiRequest(client, filePath);
+		HandleCgiRequest(client, filePath, location);
 		return;
 	}
 	else if (FileUtils::IsDirectory(folderPath.c_str()))
@@ -249,10 +272,13 @@ std::pair<std::string, std::string> Server::SplitPathAndQuery(const std::string&
 	return std::make_pair(path, "");
 }
 
-void Server::HandleCgiRequest(Client& client, const std::string& requestedPath)
+void Server::HandleCgiRequest(Client& client, const std::string& requestedPath, const Location* location)
 {
+	if (!location || !location->cgiPath.empty() || !location->cgiExtension.empty())
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+
 	std::pair<std::string, std::string> pathAndQuery = SplitPathAndQuery(requestedPath);
-	std::string scriptPath = pathAndQuery.first;
+	std::string scriptPath = GetFullPath(pathAndQuery.first);
 	std::string queryString = pathAndQuery.second;
 
 	Logger::Log("Handling CGI request for script: " + scriptPath);
@@ -274,13 +300,6 @@ void Server::HandleCgiRequest(Client& client, const std::string& requestedPath)
 		dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 
-		Logger::Log("Setting environment variables for CGI script");
-		Logger::Log("Setting SCRIPT_FILENAME: " + scriptPath);
-		Logger::Log("Setting REQUEST_METHOD: " + client.request.startLine.httpMethod);
-		Logger::Log("Setting QUERY_STRING: " + queryString);
-		Logger::Log("Setting CONTENT_LENGTH: " + StringUtils::ToString(client.request.body.size()));
-		Logger::Log("Setting CONTENT_TYPE: " + client.request.header["Content-Type:"]);
-
 		setenv("SCRIPT_FILENAME", scriptPath.c_str(), 1);
 		setenv("REQUEST_METHOD", client.request.startLine.httpMethod.c_str(), 1);
 		setenv("QUERY_STRING", queryString.c_str(), 1);
@@ -289,17 +308,16 @@ void Server::HandleCgiRequest(Client& client, const std::string& requestedPath)
 
 		if (client.request.startLine.httpMethod == "POST")
 		{
-			Logger::Log("Writing POST data to CGI script");
-			ssize_t written = write(STDIN_FILENO, client.request.body.c_str(), client.request.body.size());
-			if (written == -1)
-				Logger::LogError("Failed to write POST data to CGI script");
-			else
-				Logger::Log("Wrote " + StringUtils::ToString(written) + " bytes to CGI script");
+			if (write(STDIN_FILENO, client.request.body.c_str(), client.request.body.size()) == -1)
+			{
+				Logger::LogError("Failed to write POST body to CGI script");
+				exit(EXIT_FAILURE);
+			}
 		}
 
-		Logger::Log("Executing CGI script: /usr/bin/python3 " + scriptPath);
-		execl("/usr/bin/python3", "python3", scriptPath.c_str(), NULL);
-		Logger::LogError("Failed to execute CGI script");
+		std::string cgiInterpreter = location->cgiPath;
+		execl(cgiInterpreter.c_str(), cgiInterpreter.c_str(), scriptPath.c_str(), NULL);
+		Logger::LogError("Failed to execute CGI script: " + cgiInterpreter);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -313,7 +331,6 @@ void Server::HandleCgiRequest(Client& client, const std::string& requestedPath)
 		while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0)
 		{
 			output.append(buffer, bytesRead);
-			Logger::Log("Read " + StringUtils::ToString(bytesRead) + " bytes from CGI script");
 		}
 
 		if (bytesRead == -1)
@@ -372,9 +389,9 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 {
 	std::string uploadPath;
 	if (location && location->rootPath != "")
-		uploadPath = location->rootPath + location->uploadPath;
+		uploadPath = location->rootPath.substr(0, location->rootPath.size() - 1) + location->path + "/" + location->uploadPath;
 	else
-		uploadPath = GetFullPath(location->uploadPath);
+		uploadPath = serverConfig.serverRoot.substr(0, serverConfig.serverRoot.size() - 1) + location->path + "/" + location->uploadPath;
 
 	if (!FileUtils::CheckFileExistence(uploadPath.c_str()))
 	{
@@ -446,20 +463,20 @@ std::string Server::ExtractFileContent(const std::string& part) const
 
 std::string Server::ExtractFilename(const std::string& part) const
 {
-    size_t filenamePos = part.find("filename=\"");
-    if (filenamePos != std::string::npos)
-    {
-        size_t filenameStart = filenamePos + 10;
-        size_t filenameEnd = part.find("\"", filenameStart);
-        if (filenameEnd != std::string::npos)
-        {
-            std::string filename = part.substr(filenameStart, filenameEnd - filenameStart);
-            Logger::Log("Extracted filename: " + filename);
-            return filename;
-        }
-    }
-    Logger::LogError("Failed to extract filename from multipart data part");
-    return "";
+	size_t filenamePos = part.find("filename=\"");
+	if (filenamePos != std::string::npos)
+	{
+		size_t filenameStart = filenamePos + 10;
+		size_t filenameEnd = part.find("\"", filenameStart);
+		if (filenameEnd != std::string::npos)
+		{
+			std::string filename = part.substr(filenameStart, filenameEnd - filenameStart);
+			Logger::Log("Extracted filename: " + filename);
+			return filename;
+		}
+	}
+	Logger::LogError("Failed to extract filename from multipart data part");
+	return "";
 }
 
 std::string Server::GetBoundary(const std::string& contentType) const
@@ -477,43 +494,43 @@ std::string Server::GetBoundary(const std::string& contentType) const
 
 std::vector<std::string> Server::SplitMultipartData(const std::string& data, const std::string& boundary) const
 {
-    std::vector<std::string> parts;
-    std::string delimiter = "--" + boundary;
-    std::string endDelimiter = delimiter + "--";
+	std::vector<std::string> parts;
+	std::string delimiter = "--" + boundary;
+	std::string endDelimiter = delimiter + "--";
 
-    size_t pos = 0;
-    while (true)
-    {
-        size_t startPos = data.find(delimiter, pos);
-        if (startPos == std::string::npos)
-            break;
+	size_t pos = 0;
+	while (true)
+	{
+		size_t startPos = data.find(delimiter, pos);
+		if (startPos == std::string::npos)
+			break;
 
-        startPos += delimiter.length();
+		startPos += delimiter.length();
 
-        size_t endPos = data.find(delimiter, startPos);
-        if (endPos == std::string::npos)
-        {
-            endPos = data.find(endDelimiter, startPos);
-            if (endPos == std::string::npos)
-                endPos = data.length();
-        }
+		size_t endPos = data.find(delimiter, startPos);
+		if (endPos == std::string::npos)
+		{
+			endPos = data.find(endDelimiter, startPos);
+			if (endPos == std::string::npos)
+				endPos = data.length();
+		}
 
-        std::string part = data.substr(startPos, endPos - startPos);
-        part = StringUtils::Trim(part);
-        if (!part.empty())
-        {
-            parts.push_back(part);
-            Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
-        }
+		std::string part = data.substr(startPos, endPos - startPos);
+		part = StringUtils::Trim(part);
+		if (!part.empty())
+		{
+			parts.push_back(part);
+			Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
+		}
 
-        if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
-            break;
+		if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
+			break;
 
-        pos = endPos;
-    }
+		pos = endPos;
+	}
 
-    Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
-    return parts;
+	Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
+	return parts;
 }
 
 
@@ -548,21 +565,21 @@ const Location* Server::FindMatchingLocation(const std::string& requestPath) con
 
 std::string Server::GetFullPath(const std::string& path)
 {
-    std::string fullPath = serverConfig.serverRoot;
+	std::string fullPath = serverConfig.serverRoot;
 
-    if (!fullPath.empty() && fullPath[fullPath.length() - 1] != '/')
-        fullPath += "/";
+	if (!fullPath.empty() && fullPath[fullPath.length() - 1] != '/')
+		fullPath += "/";
 
-    if (path.empty() || path == "/")
-        return fullPath;
+	if (path.empty() || path == "/")
+		return fullPath;
 
 
-    if (path[0] == '/')
-        fullPath += path.substr(1);
-    else
-        fullPath += path;
+	if (path[0] == '/')
+		fullPath += path.substr(1);
+	else
+		fullPath += path;
 
-    return fullPath;
+	return fullPath;
 }
 
 std::string Server::GetScriptPath(const std::string& path)
@@ -614,7 +631,7 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 			std::string lastModified = StringUtils::FormatTime(fileStat.st_mtime);
 
 			directoryContent += fullPath;
-    		directoryContent += " (" + fileSize + ") " + lastModified + "\n";
+			directoryContent += " (" + fileSize + ") " + lastModified + "\n";
 		}
 	}
 
@@ -630,7 +647,7 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 void Server::HandleDirectoryRequest(const std::string& path)
 {
 	Logger::Log("Requested path is a directory, looking for index file");
-    bool indexFound = false;
+	bool indexFound = false;
 	for (std::vector<std::string>::const_iterator it = serverConfig.indexPages.begin(); it != serverConfig.indexPages.end(); ++it)
 	{
 		std::string indexPath = path + "/" + *it;
@@ -670,31 +687,31 @@ void Server::LogResponseHeaders()
 
 void Server::SendResponse(const Client& client)
 {
-    std::string responseStr = response.ToString();
-    size_t totalBytesSent = 0;
-    size_t totalLength = responseStr.length();
+	std::string responseStr = response.ToString();
+	size_t totalBytesSent = 0;
+	size_t totalLength = responseStr.length();
 
-    while (totalBytesSent < totalLength)
-    {
-        ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
+	while (totalBytesSent < totalLength)
+	{
+		ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
 
-        if (bytesSent == -1)
-        {
+		if (bytesSent == -1)
+		{
 
-           Logger::LogError("Failed to send response");
-        	return;
+		   Logger::LogError("Failed to send response");
+			return;
 
-        }
-        else if (bytesSent == 0)
-        {
-            Logger::Log("Connection closed by client");
-            return;
-        }
+		}
+		else if (bytesSent == 0)
+		{
+			Logger::Log("Connection closed by client");
+			return;
+		}
 
-        totalBytesSent += bytesSent;
-    }
+		totalBytesSent += bytesSent;
+	}
 
-    Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
+	Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
 	CloseClientConnection(client);
 }
 

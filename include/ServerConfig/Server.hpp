@@ -68,9 +68,10 @@ public:
 
 	bool IsCgiRequest(const std::string& path, const Location* location) const;
 
+	void HandleDeleteRequest(Client& client, const Location* location);
 	void HandleGetRequest(Client& client, const Location* location);
 	void HandlePostRequest(Client& client, const Location* location);
-	void HandleCgiRequest(Client& client, const std::string& scriptPath);
+	void HandleCgiRequest(Client& client, const std::string& scriptPath, const Location* location);
 	void HandleUploadRequest(Client& client, const Location* location);
 	void HandleDirectoryListing(const std::string& path, Client& client);
 	void HandleDirectoryRequest(const std::string& path);
