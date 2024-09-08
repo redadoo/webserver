@@ -248,6 +248,10 @@ void Server::SendResponse(const Client& client)
 
 		if (bytesSent <= 0)
 		{
+			if (errno == EBADF)
+			{
+				Logger::Log("sadasdas");
+			}
 			Logger::LogError("Failed to send response to client");
 			break;
 		}

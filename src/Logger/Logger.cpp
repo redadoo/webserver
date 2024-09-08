@@ -68,7 +68,7 @@ void Logger::RequestLog(const Server &server, const Client &client, const HttpMe
 	if (logFile.is_open())
 	{
 		logFile << "Client " << client.clientConfig.ip << client.clientConfig.port << 
-		" send a request to socket " << server.serverConfig.host << server.serverConfig.serverPort.port << std::endl;
+		" send a request to socket " << server.serverConfig.host << ":" << server.serverConfig.serverPort.port << std::endl;
 
 		logFile << "[ StartRequestBlock ] " << std::endl << request << "[ EndRequestBlock ]" << std::endl;
 	}

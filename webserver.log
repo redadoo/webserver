@@ -1,0 +1,387 @@
+[2024-9-8 22:6:43] start tokenization Configuration file ...
+[2024-9-8 22:6:43] tokenization finished
+[2024-9-8 22:6:43] start parsing token...
+[2024-9-8 22:6:43] signal handling started
+[2024-9-8 22:6:43] handled the signals successfully
+[2024-9-8 22:6:43] start create a new epoll instance
+[2024-9-8 22:6:43] init epoll instance successfully
+[2024-9-8 22:6:43] Creating TCP socket...
+[2024-9-8 22:6:43] add file descriptor to epoll instance ...
+[2024-9-8 22:6:43] Listening on 127.0.0.1:8080
+[2024-9-8 22:6:43] Creating TCP socket...
+[2024-9-8 22:6:43] add file descriptor to epoll instance ...
+[2024-9-8 22:6:43] Listening on 127.0.0.1:8081
+[2024-9-8 22:6:43] successfully init all servers data
+[2024-9-8 22:6:43] Entering event loop...
+[2024-9-8 22:6:46] I don't see any event within 3000 milliseconds
+[2024-9-8 22:6:49] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:49] File descriptor set to non-blocking mode
+[2024-9-8 22:6:49] Client 127.0.0.1::38302  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:49] add file descriptor to epoll instance ...
+[2024-9-8 22:6:49] Client 127.0.0.1:38302 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:49] Finding matching location for path: /
+[2024-9-8 22:6:49] No matching location found
+[2024-9-8 22:6:49] Requested path is a directory, looking for index file
+[2024-9-8 22:6:49] File found: web-page//index.html
+[2024-9-8 22:6:49] File content length: 841 bytes
+[2024-9-8 22:6:49] Response headers:
+[2024-9-8 22:6:49]   Content-Length: 841
+[2024-9-8 22:6:49]   Content-Type: text/html
+[2024-9-8 22:6:49] Attempting to send response of 1747 bytes
+[2024-9-8 22:6:49] Sent 1747 bytes to client
+[2024-9-8 22:6:49] Closing connection for client 7
+[2024-9-8 22:6:52] I don't see any event within 3000 milliseconds
+[2024-9-8 22:6:53] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:53] File descriptor set to non-blocking mode
+[2024-9-8 22:6:53] Client 127.0.0.1::38314  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:53] add file descriptor to epoll instance ...
+[2024-9-8 22:6:53] Client 127.0.0.1:38314 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:53] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:53] Found matching location: /python
+[2024-9-8 22:6:53] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:53] 9
+[2024-9-8 22:6:53] 8
+[2024-9-8 22:6:53] CGI script executed successfully
+[2024-9-8 22:6:53] Attempting to send response of 780 bytes
+[2024-9-8 22:6:53] Sent 780 bytes to client
+[2024-9-8 22:6:53] Closing connection for client 7
+[2024-9-8 22:6:55] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:55] File descriptor set to non-blocking mode
+[2024-9-8 22:6:55] Client 127.0.0.1::38328  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:55] add file descriptor to epoll instance ...
+[2024-9-8 22:6:55] Client 127.0.0.1:38328 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:55] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:55] Found matching location: /python
+[2024-9-8 22:6:55] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:55] 9
+[2024-9-8 22:6:55] 8
+[2024-9-8 22:6:55] CGI script executed successfully
+[2024-9-8 22:6:55] Attempting to send response of 780 bytes
+[2024-9-8 22:6:55] Sent 780 bytes to client
+[2024-9-8 22:6:55] Closing connection for client 7
+[2024-9-8 22:6:55] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:55] File descriptor set to non-blocking mode
+[2024-9-8 22:6:55] Client 127.0.0.1::38342  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:55] add file descriptor to epoll instance ...
+[2024-9-8 22:6:55] Client 127.0.0.1:38342 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:55] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:55] Found matching location: /python
+[2024-9-8 22:6:55] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:55] 9
+[2024-9-8 22:6:55] 8
+[2024-9-8 22:6:55] CGI script executed successfully
+[2024-9-8 22:6:55] Attempting to send response of 780 bytes
+[2024-9-8 22:6:55] Sent 780 bytes to client
+[2024-9-8 22:6:55] Closing connection for client 7
+[2024-9-8 22:6:55] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:55] File descriptor set to non-blocking mode
+[2024-9-8 22:6:55] Client 127.0.0.1::38356  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:55] add file descriptor to epoll instance ...
+[2024-9-8 22:6:55] Client 127.0.0.1:38356 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:55] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:55] Found matching location: /python
+[2024-9-8 22:6:55] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:55] 9
+[2024-9-8 22:6:56] 8
+[2024-9-8 22:6:56] CGI script executed successfully
+[2024-9-8 22:6:56] Attempting to send response of 780 bytes
+[2024-9-8 22:6:56] Sent 780 bytes to client
+[2024-9-8 22:6:56] Closing connection for client 7
+[2024-9-8 22:6:56] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:56] File descriptor set to non-blocking mode
+[2024-9-8 22:6:56] Client 127.0.0.1::48834  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:56] add file descriptor to epoll instance ...
+[2024-9-8 22:6:56] Client 127.0.0.1:48834 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:56] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:56] Found matching location: /python
+[2024-9-8 22:6:56] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:56] 9
+[2024-9-8 22:6:56] 8
+[2024-9-8 22:6:56] CGI script executed successfully
+[2024-9-8 22:6:56] Attempting to send response of 780 bytes
+[2024-9-8 22:6:56] Sent 780 bytes to client
+[2024-9-8 22:6:56] Closing connection for client 7
+[2024-9-8 22:6:56] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:56] File descriptor set to non-blocking mode
+[2024-9-8 22:6:56] Client 127.0.0.1::48838  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:56] add file descriptor to epoll instance ...
+[2024-9-8 22:6:56] Client 127.0.0.1:48838 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:56] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:56] Found matching location: /python
+[2024-9-8 22:6:56] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:56] 9
+[2024-9-8 22:6:56] 8
+[2024-9-8 22:6:56] CGI script executed successfully
+[2024-9-8 22:6:56] Attempting to send response of 780 bytes
+[2024-9-8 22:6:56] Sent 780 bytes to client
+[2024-9-8 22:6:56] Closing connection for client 7
+[2024-9-8 22:6:57] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:57] File descriptor set to non-blocking mode
+[2024-9-8 22:6:57] Client 127.0.0.1::48850  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:57] add file descriptor to epoll instance ...
+[2024-9-8 22:6:57] Client 127.0.0.1:48850 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:57] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:57] Found matching location: /python
+[2024-9-8 22:6:57] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:57] 9
+[2024-9-8 22:6:57] 8
+[2024-9-8 22:6:57] CGI script executed successfully
+[2024-9-8 22:6:57] Attempting to send response of 780 bytes
+[2024-9-8 22:6:57] Sent 780 bytes to client
+[2024-9-8 22:6:57] Closing connection for client 7
+[2024-9-8 22:6:57] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:57] File descriptor set to non-blocking mode
+[2024-9-8 22:6:57] Client 127.0.0.1::48860  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:57] add file descriptor to epoll instance ...
+[2024-9-8 22:6:57] Client 127.0.0.1:48860 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:57] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:57] Found matching location: /python
+[2024-9-8 22:6:57] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:57] 9
+[2024-9-8 22:6:57] 8
+[2024-9-8 22:6:57] CGI script executed successfully
+[2024-9-8 22:6:57] Attempting to send response of 780 bytes
+[2024-9-8 22:6:57] Sent 780 bytes to client
+[2024-9-8 22:6:57] Closing connection for client 7
+[2024-9-8 22:6:57] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:57] File descriptor set to non-blocking mode
+[2024-9-8 22:6:57] Client 127.0.0.1::48872  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:57] add file descriptor to epoll instance ...
+[2024-9-8 22:6:57] Client 127.0.0.1:48872 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:57] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:57] Found matching location: /python
+[2024-9-8 22:6:57] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:57] 9
+[2024-9-8 22:6:57] 8
+[2024-9-8 22:6:57] CGI script executed successfully
+[2024-9-8 22:6:57] Attempting to send response of 780 bytes
+[2024-9-8 22:6:57] Sent 780 bytes to client
+[2024-9-8 22:6:57] Closing connection for client 7
+[2024-9-8 22:6:58] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-9-8 22:6:58] File descriptor set to non-blocking mode
+[2024-9-8 22:6:58] Client 127.0.0.1::48874  has been accepted! by the socket: 127.0.0.1:8080
+[2024-9-8 22:6:58] add file descriptor to epoll instance ...
+[2024-9-8 22:6:58] Client 127.0.0.1:48874 send a request to socket 127.0.0.1:8080
+[ StartRequestBlock ] 
+GET /python/hello.py HTTP/1.1
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.5
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8
+Connection: keep-alive
+Cookie: csrftoken=zm3EzETiWoh5YejkNICkTidJwkZMKj79; sessionid=c0zxzvrqkkp7alqrgxh384no5m0u36dt
+Host: 127.0.0.1:8080
+Priority: u=0, i
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:130.0) Gecko/20100101 Firefox/130.0
+
+
+
+[ EndRequestBlock ]
+[2024-9-8 22:6:58] Finding matching location for path: /python/hello.py
+[2024-9-8 22:6:58] Found matching location: /python
+[2024-9-8 22:6:58] Executing CGI script: web-page/python/hello.py
+[2024-9-8 22:6:58] 9
+[2024-9-8 22:6:58] 8
+[2024-9-8 22:6:58] CGI script executed successfully
+[2024-9-8 22:6:58] Attempting to send response of 780 bytes
+[2024-9-8 22:6:58] Sent 780 bytes to client
+[2024-9-8 22:6:58] Closing connection for client 7
+[2024-9-8 22:7:1] I don't see any event within 3000 milliseconds
+[2024-9-8 22:7:4] I don't see any event within 3000 milliseconds
+[2024-9-8 22:7:5] ERROR: Something interrupted me!
+[2024-9-8 22:7:5] Closing WebServer ...
+[2024-9-8 22:7:5] all resources released and Web Server closed successfully

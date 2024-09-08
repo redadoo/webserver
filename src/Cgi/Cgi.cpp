@@ -80,10 +80,7 @@ std::string Cgi::ExecuteCgi(const std::string& requestBody)
 		close(pipefd[1]);
 
 		if (!requestBody.empty())
-		{
 			write(STDIN_FILENO, requestBody.c_str(), requestBody.length());
-			close(STDIN_FILENO);
-		}
 
 		std::string output;
 		char buffer[4096];
