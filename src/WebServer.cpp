@@ -25,7 +25,8 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	if (EpollUtils::EpollCheckEventError(events))
 	{
 		Logger::ClientLog(server, client, "has closed its connection");
-		server.CloseClientConnection(client);
+		EpollUtils::EpollDelete(epollFd, client.clientFd);
+		server.CloseClientConnection(client.clientFd);
 		return ;
 	}
 
@@ -33,17 +34,26 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 	{
 		server.ReadClientResponse(client);
 		server.ProcessRequest(client, 0);
+		server.SendResponse(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e)
 	{
 		Logger::LogError("HTTP error occurred: " + StringUtils::ToString(e.code));
-		server.SendErrorResponse(client, e.code);
+		try {
+			server.SendErrorResponse(client, e.code);
+		}
+		catch (const std::exception &e)
+		{
+			Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+		}
 	}
 	catch (const std::exception &e)
 	{
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
-		server.CloseClientConnection(client);
 	}
+
+	EpollUtils::EpollDelete(epollFd, client.clientFd);
+	server.CloseClientConnection(client.clientFd);
 }
 
 void WebServer::CheckSockets(int epollRet)

@@ -1,5 +1,6 @@
 #include <EpollUtils.hpp>
 #include <Logger.hpp>
+#include <StringUtils.hpp>
 #include <WebServerException.hpp>
 
 
@@ -21,10 +22,10 @@ void EpollUtils::EpollAdd(int epollFd, int fd, uint32_t events)
 void EpollUtils::EpollDelete(int epoll_fd, int fd)
 {
 
-	if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, NULL) < 0) 
-		throw WebServerException::ExceptionErrno("epoll_ctl(EPOLL_CTL_DEL): ", errno);
-	
-	Logger::Log("Delete file descriptor from epoll instance ...");
+	if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, NULL) < 0)
+		Logger::LogError("Failed to remove file descriptor " + StringUtils::ToString(fd) + " from epoll");
+	else
+		Logger::Log("Removed file descriptor " + StringUtils::ToString(fd) + " from epoll instance");
 }
 
 bool EpollUtils::EpollCheckEventError(uint32_t events)
@@ -41,7 +42,7 @@ int EpollUtils::EpollInit()
 	epollFd = epoll_create1(0);
 	if (epollFd < 0)
 		throw WebServerException::ExceptionErrno("epoll_create() failed ", errno);
-	
+
 	Logger::Log("init epoll instance successfully");
 
 	return epollFd;

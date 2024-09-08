@@ -38,7 +38,6 @@ public:
 	/// @brief Starts the web server, entering the main event loop to handle incoming connections.
 	void StartServer();
 
-
 	WebServer();
 	~WebServer();
 };

@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <Cgi.hpp>
 
 //constructor
 
@@ -239,28 +240,23 @@ void Server::SendResponse(const Client& client)
 	size_t totalBytesSent = 0;
 	size_t totalLength = responseStr.length();
 
+	Logger::Log("Attempting to send response of " + StringUtils::ToString(totalLength) + " bytes");
+
 	while (totalBytesSent < totalLength)
 	{
 		ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
 
-		if (bytesSent == -1)
+		if (bytesSent <= 0)
 		{
-
-		   Logger::LogError("Failed to send response");
-			return;
-
-		}
-		else if (bytesSent == 0)
-		{
-			Logger::Log("Connection closed by client");
-			return;
+			Logger::LogError("Failed to send response to client");
+			break;
 		}
 
 		totalBytesSent += bytesSent;
 	}
 
 	Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
-	CloseClientConnection(client);
+
 }
 
 void Server::SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount)
@@ -342,6 +338,13 @@ int Server::AcceptClient(int fd, int epollFd)
 		return (-1);
 	}
 
+	if (!NetworkUtils::SetNonBlocking(clientFd))
+	{
+		Logger::LogWarning("Cannot set client socket to non-blocking mode");
+		close(clientFd);
+		return (-1);
+	}
+
 	port = ntohs(addr.sin_port);
 	ip = NetworkUtils::ConvertAddrNtop(&addr, ipBuffer);
 	if (!ip)
@@ -370,7 +373,13 @@ void Server::ReadClientResponse(Client &client)
 	{
 		recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
 		if (recvRet <= 0)
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+		{
+			if (recvRet == 0)
+				Logger::ClientLog(*this, client, " has been disconnected ");
+			else
+				Logger::LogError("Failed to receive data from client");
+			return;
+		}
 
 		buffer[recvRet] = '\0';
 		fullRequest += buffer;
@@ -430,114 +439,29 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 	else
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
-	SendResponse(client);
 }
 
 void Server::HandleCgiRequest(Client& client, const std::string& requestedPath, const Location* location)
 {
-	if (!location || !location->cgiPath.empty() || !location->cgiExtension.empty())
+	if (!location || location->cgiPath.empty() || location->cgiExtension.empty())
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
 
 	std::pair<std::string, std::string> pathAndQuery = StringUtils::SplitPathAndQuery(requestedPath);
-	std::string scriptPath = serverConfig.GetFullPath(pathAndQuery.first);
-	std::string queryString = pathAndQuery.second;
+	std::string scriptPath = pathAndQuery.first;
 
-	Logger::Log("Handling CGI request for script: " + scriptPath);
+	Logger::Log("Executing CGI script: " + scriptPath);
 
-	int pipefd[2];
-	pid_t pid;
+	Cgi cgi(location->cgiPath, scriptPath);
 
-	if (pipe(pipefd) == -1)
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
-
-	pid = fork();
-	if (pid == -1)
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
-
-	if (pid == 0)
+	try
 	{
-		Logger::Log("Child process executing CGI script");
-		close(pipefd[0]);
-		dup2(pipefd[1], STDOUT_FILENO);
-		close(pipefd[1]);
-
-		setenv("SCRIPT_FILENAME", scriptPath.c_str(), 1);
-		setenv("REQUEST_METHOD", client.request.startLine.httpMethod.c_str(), 1);
-		setenv("QUERY_STRING", queryString.c_str(), 1);
-		setenv("CONTENT_LENGTH", StringUtils::ToString(client.request.body.size()).c_str(), 1);
-		setenv("CONTENT_TYPE", client.request.header["Content-Type:"].c_str(), 1);
-
-		if (client.request.startLine.httpMethod == "POST")
-		{
-			if (write(STDIN_FILENO, client.request.body.c_str(), client.request.body.size()) == -1)
-			{
-				Logger::LogError("Failed to write POST body to CGI script");
-				exit(EXIT_FAILURE);
-			}
-		}
-
-		std::string cgiInterpreter = location->cgiPath;
-		execl(cgiInterpreter.c_str(), cgiInterpreter.c_str(), scriptPath.c_str(), NULL);
-		Logger::LogError("Failed to execute CGI script: " + cgiInterpreter);
-		exit(EXIT_FAILURE);
+		response = cgi.ProcessCgiRequest(client.request, serverConfig.host, serverConfig.serverPort.port);
+		Logger::Log("CGI script executed successfully");
 	}
-	else
+	catch (const std::exception& ex)
 	{
-		Logger::Log("Parent process waiting for CGI script to complete");
-		close(pipefd[1]);
-		char buffer[4096];
-		std::string output;
-		ssize_t bytesRead;
-
-		while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0)
-		{
-			output.append(buffer, bytesRead);
-		}
-
-		if (bytesRead == -1)
-			Logger::LogError("Failed to read from CGI script");
-
-		close(pipefd[0]);
-
-		int status;
-		waitpid(pid, &status, 0);
-
-		if (WIFEXITED(status))
-		{
-			Logger::Log("Child process exited with status: " + StringUtils::ToString(WEXITSTATUS(status)));
-			if (WEXITSTATUS(status) == 0)
-			{
-				size_t headerEnd = output.find("\r\n\r\n");
-				if (headerEnd != std::string::npos)
-				{
-					Logger::Log("Parsing CGI response headers and body");
-					response.body = output.substr(headerEnd + 4);
-					std::istringstream headerStream(output.substr(0, headerEnd));
-					std::string line;
-					while (std::getline(headerStream, line) && !line.empty())
-					{
-						size_t colonPos = line.find(":");
-						if (colonPos != std::string::npos)
-						{
-							std::string key = line.substr(0, colonPos);
-							std::string value = line.substr(colonPos + 1);
-							response.header[key] = value;
-							Logger::Log("CGI header: " + key + ": " + value);
-						}
-					}
-				}
-				else
-				{
-					Logger::Log("No headers found in CGI response, using entire output as body");
-					response.header["Content-Type"] = "text/html";
-					response.body = output;
-				}
-				response.SetStatusCode(HttpStatusCode::OK);
-				Logger::Log("CGI request processed successfully");
-			}
-		}
-		else
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+		Logger::LogError("Error executing CGI script: " + std::string(ex.what()));
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
 	}
 }
 
@@ -555,22 +479,33 @@ void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 
 void Server::CloseClientConnection(const Client &client)
 {
-	close(client.clientFd);
-	this->clients.erase(client.clientFd);
-	Logger::ClientLog(*this, client, "has been disconnected ");
+	if (clients.find(client.clientFd) != clients.end())
+	{
+		close(client.clientFd);
+		this->clients.erase(client.clientFd);
+		Logger::ClientLog(*this, client, "has been disconnected ");
+	}
 }
 
 void Server::CloseClientConnection(int clientFd)
 {
-	Client	client;
+	if (clientFd <= 0)
+    {
+        Logger::LogError("Attempted to close invalid client file descriptor: " + StringUtils::ToString(clientFd));
+        return;
+    }
 
-	if (IsMyClient(clientFd))
-	{
-		client = clients.find(clientFd)->second;
-		close(client.clientFd);
-		this->clients.erase(clientFd);
-		Logger::ClientLog(*this, client, "has been disconnected ");
-	}
+    std::map<int, Client>::iterator it = clients.find(clientFd);
+    if (it != clients.end())
+    {
+        Logger::Log("Closing connection for client " + StringUtils::ToString(clientFd));
+        close(clientFd);
+        clients.erase(it);
+    }
+    else
+    {
+        Logger::Log("Attempted to close connection for non-existent client " + StringUtils::ToString(clientFd));
+    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Server &sr)

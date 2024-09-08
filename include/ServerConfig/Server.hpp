@@ -24,9 +24,6 @@ private:
 	/// @param redirectCount The current count of redirects, used to prevent infinite redirection loops.
 	void SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount);
 
-	/// @brief Sends a response to the client.
-	/// @param client Reference to the Client object.
-	void SendResponse(const Client& client);
 
 	/// @brief Logs all the response headers to the server log, including both header names and their values.
 	void LogResponseHeaders();
@@ -105,7 +102,7 @@ public:
 	/// @brief Processes the client's request and generates a response.
 	/// @param client Reference to the Client object.
 	void ProcessRequest(Client& client, int redirectCount);
-	
+
 	/// @brief Sends an error response to the client with the specified HTTP status code, including an error message body based on the server configuration.
 	/// @param client The client to which the error response will be sent.
 	/// @param code The HTTP status code representing the error condition.
@@ -122,6 +119,9 @@ public:
 	/// @param clientFd File descriptor of the client.
 	void CloseClientConnection(int clientFd);
 
+	/// @brief Sends a response to the client.
+	/// @param client Reference to the Client object.
+	void SendResponse(const Client& client);
     /// @brief Overloads the << operator to output server configuration details.
 	/// @param os Output stream object.
 	/// @param sr Reference to the Server object.
@@ -130,3 +130,4 @@ public:
 };
 
 #endif // SERVER_HPP
+

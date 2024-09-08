@@ -17,12 +17,14 @@ namespace NetworkUtils
     /// @param src_ip_buf A buffer to store the converted IP address.
     /// @return A pointer to the converted IP address string.
     const char *ConvertAddrNtop(struct sockaddr_in *addr, char *src_ip_buf);
-    
+
     /// @brief Checks if a string is a valid domain name.
     /// @param str The string to check.
     /// @return True if the string is a valid domain name, false otherwise.
     bool IsDomain(const std::string& str);
-    
+
+	bool SetNonBlocking(int fd);
+
 } // namespace NetworkUtils
 
 #endif
