@@ -49,6 +49,12 @@ HttpResponse::HttpResponse() : code(HttpStatusCode::OK)
 	startLine.httpVersion = "HTTP/1.1";
 }
 
+void HttpResponse::SetUploadBody()
+{
+	SetBody(UPLOAD_SUCCESS_BODY);
+	SetContentType("text/html");
+}
+
 void HttpResponse::SetStatusCode(HttpStatusCode::Code statusCode)
 {
 	code = statusCode;

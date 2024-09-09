@@ -1,2 +1,0 @@
-void Server::ReadClientResponse(Client &client)
-void Server::ProcessRequest(Client& client, int redirectCount = 0)

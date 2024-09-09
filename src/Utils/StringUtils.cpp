@@ -152,11 +152,11 @@ std::pair<std::string, std::string> StringUtils::SplitPathAndQuery(const std::st
 std::string StringUtils::ExtractFileContent(const std::string& part)
 {
 	size_t headerEnd = part.find("Content-Type:");
-	if (headerEnd == std::string::npos)
-	{
-		Logger::LogError("Failed to find Content-Type header in multipart data");
-		return "";
-	}
+	// if (headerEnd == std::string::npos)
+	// {
+	// 	Logger::LogError("Failed to find Content-Type header in multipart data");
+	// 	return "";
+	// }
 
 	size_t contentStart = part.find("\n", headerEnd);
 	if (contentStart == std::string::npos)
@@ -174,7 +174,7 @@ std::string StringUtils::ExtractFileContent(const std::string& part)
 	return content;
 }
 
-std::string StringUtils::ExtractFilename(const std::string &part) 
+std::string StringUtils::ExtractFilename(const std::string &part)
 {
 	size_t filenamePos = part.find("filename=\"");
 	if (filenamePos != std::string::npos)
@@ -192,7 +192,7 @@ std::string StringUtils::ExtractFilename(const std::string &part)
 	return "";
 }
 
-std::string StringUtils::GetBoundary(const std::string& contentType) 
+std::string StringUtils::GetBoundary(const std::string& contentType)
 {
 	size_t boundaryPos = contentType.find("boundary=");
 	if (boundaryPos != std::string::npos)
@@ -205,7 +205,7 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 	return "";
 }
 
-std::vector<std::string> StringUtils::SplitMultipartData(const std::string& data, const std::string& boundary) 
+std::vector<std::string> StringUtils::SplitMultipartData(const std::string& data, const std::string& boundary)
 {
 	std::vector<std::string> parts;
 	std::string delimiter = "--" + boundary;

@@ -14,11 +14,11 @@ class Cgi
 		std::string scriptPath;
 		std::map<std::string, std::string> env;
 
-		void SetEnv(const HttpMessage& request, const std::string& serverName, int serverPort);
+		void SetEnv(HttpMessage& request, const std::string& serverName, int serverPort);
 		std::string ExecuteCgi(const std::string& requestBody);
 	public:
 		Cgi(const std::string& interpreterPath, const std::string& scriptPath);
-		HttpResponse ProcessCgiRequest(const HttpMessage& request, const std::string& serverName, int serverPort);
+		HttpResponse ProcessCgiRequest(HttpMessage& request, const std::string& serverName, int serverPort);
 
 };
 

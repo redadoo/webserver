@@ -12,16 +12,11 @@
 Cgi::Cgi(const std::string& interpreterPath, const std::string& scriptPath)
 	: interpreterPath(interpreterPath), scriptPath(scriptPath) {}
 
-void Cgi::SetEnv(const HttpMessage& request, const std::string& serverName, int serverPort)
+void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int serverPort)
 {
-
-	env["SERVER_SOFTWARE"] = "WebServer/1.0";
 	env["SERVER_NAME"] = serverName;
-	env["GATEWAY_INTERFACE"] = "CGI/1.1";
-	env["SERVER_PROTOCOL"] = "HTTP/1.1";
 	env["SERVER_PORT"] = StringUtils::ToString(serverPort);
 	env["REQUEST_METHOD"] = request.startLine.httpMethod;
-	env["SCRIPT_NAME"] = scriptPath;
 
 	std::pair<std::string, std::string> pathInfo = StringUtils::SplitPathAndQuery(request.startLine.path);
 
@@ -29,28 +24,15 @@ void Cgi::SetEnv(const HttpMessage& request, const std::string& serverName, int 
 	if (!pathInfo.second.empty())
 		env["QUERY_STRING"] = pathInfo.second;
 
-	Header::const_iterator contentType = request.header.find("Content-Length:");
-	if (contentType != request.header.end())
-		env["CONTENT_LENGTH"] = contentType->second;
+	env["CONTENT_LENGTH"] = StringUtils::ToString(request.body.length());
 
-	Header::const_iterator contentLength = request.header.find("Content-Type:");
-	if (contentLength != request.header.end())
-		env["CONTENT_TYPE"] = contentLength->second;
+	std::string boundary = StringUtils::GetBoundary(request.header["Content-Type:"]);
+	std::vector<std::string> parts = StringUtils::SplitMultipartData(request.body, boundary);
+	env["CONTENT_TYPE"] = request.header["Content-Type:"];
 
-	for (Header::const_iterator it = request.header.begin(); it != request.header.end(); ++it)
-	{
-		std::string headerName = it->first;
-		headerName.erase(headerName.length() - 1);
-		std::string envName = "HTTP_" + headerName;
-		for (std::string::iterator ch = envName.begin(); ch != envName.end(); ++ch)
-		{
-			if (*ch == '-')
-				*ch = '_';
-			else
-				*ch = std::toupper(*ch);
-		}
-		env[envName] = it->second;
-	}
+	env["CONTENT_SIZE"] = StringUtils::ToString(parts.size());
+	for (std::vector<std::string>::size_type i = 0; i < parts.size(); ++i)
+			env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
 }
 
 std::string Cgi::ExecuteCgi(const std::string& requestBody)
@@ -100,7 +82,7 @@ std::string Cgi::ExecuteCgi(const std::string& requestBody)
 	}
 }
 
-HttpResponse Cgi::ProcessCgiRequest(const HttpMessage& request, const std::string& serverName, int serverPort)
+HttpResponse Cgi::ProcessCgiRequest(HttpMessage& request, const std::string& serverName, int serverPort)
 {
 	SetEnv(request, serverName, serverPort);
 

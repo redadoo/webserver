@@ -49,10 +49,14 @@ void Server::HandlePostRequest(Client& client, const Location* location)
 	if (!location || !location->IsMethodAllowed("POST"))
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
+	std::string filePath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
+	if (filePath[filePath.length() - 1] == '/')
+		filePath = filePath.substr(0, filePath.length() - 1);
+
 	if (location->uploadEnable)
 		HandleUploadRequest(client, location);
-	else if (IsCgiRequest(StringUtils::GetScriptPath(client.request.startLine.path), location))
-		HandleCgiRequest(client, StringUtils::GetScriptPath(client.request.startLine.path), location);
+	else if (IsCgiRequest(StringUtils::GetScriptPath(filePath), location))
+		HandleCgiRequest(client, filePath, location);
 	else
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 }
@@ -135,7 +139,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 	}
 
 	response.SetStatusCode(HttpStatusCode::OK);
-	response.SetBody("File(s) uploaded successfully");
+	response.SetUploadBody();
 }
 
 void Server::HandleDirectoryListing(const std::string& path, Client& client)
