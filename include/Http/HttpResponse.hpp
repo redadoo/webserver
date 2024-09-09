@@ -12,6 +12,7 @@
 # define NOT_IMPLEMENTED_BODY_ERROR "<html><body><h1>501 Not Implemented</h1><p>The server does not support the functionality required to fulfill the request.</p></body></html>"
 # define BAD_REQUEST_BODY_ERROR "<html><body><h1>400 Bad Request</h1><p>The server could not understand the request due to invalid syntax.</p></body></html>"
 # define PAYLOAD_TOO_LARGE_BODY_ERROR "<html><body><h1>413 Payload Too Large</h1><p>The request is larger than the server is willing or able to process.</p></body></html>"
+# define OK_ERROR "<html><body><h1>Request processed Successful</h1><p>Your request has been processed successfully.</p></body></html>"
 
 class HttpResponse : public HttpMessage
 {

@@ -30,7 +30,7 @@ void EpollUtils::EpollDelete(int epoll_fd, int fd)
 
 bool EpollUtils::EpollCheckEventError(uint32_t events)
 {
-	return (events & EPOLLERR) || (events & EPOLLHUP) ||  (!(events & EPOLLIN ));
+	return (events & EPOLLERR) || (events & EPOLLHUP);
 }
 
 int EpollUtils::EpollInit()

@@ -42,7 +42,7 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		try {
 			server.SendErrorResponse(client, e.code);
 		}
-		catch (const std::exception &e)
+		catch (const std::invalid_argument &e)
 		{
 			Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 		}
@@ -73,7 +73,6 @@ void WebServer::CheckSockets(int epollRet)
 			}
 			else if (EpollUtils::EpollCheckEventError(events[i].events))
 			{
-				Logger::Log("crazy ass nigga");
 				servers[y].CloseClientConnection(fd);
 				break ;
 			}

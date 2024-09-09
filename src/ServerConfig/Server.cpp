@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <Cgi.hpp>
+#include <stdexcept>
 
 //constructor
 
@@ -241,6 +242,7 @@ void Server::SendResponse(const Client& client)
 	size_t totalBytesSent = 0;
 	size_t totalLength = responseStr.length();
 
+	Logger::ResponseLog(*this,client,responseStr.c_str());
 	Logger::Log("Attempting to send response of " + StringUtils::ToString(totalLength) + " bytes");
 
 	while (totalBytesSent < totalLength)
@@ -249,6 +251,14 @@ void Server::SendResponse(const Client& client)
 
 		if (bytesSent <= 0)
 		{
+			if (bytesSent == 0)
+			{
+
+			}
+			else if (bytesSent == -1)
+			{
+				
+			}
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
@@ -373,12 +383,20 @@ void Server::ReadClientResponse(Client &client)
 	while (true)
 	{
 		recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
+		Logger::Log(StringUtils::ToString(recvRet));
 		if (recvRet <= 0)
 		{
 			if (recvRet == 0)
+			{
+				Logger::Log("asdsadasdas");
 				Logger::ClientLog(*this, client, " has been disconnected ");
-			else
+
+			}
+			else if (recvRet == -1)
+			{
 				Logger::LogError("Failed to receive data from client");
+				throw WebServerException::HttpStatusCodeException(HttpStatusCode::OK);
+			}
 			return;
 		}
 
@@ -439,7 +457,6 @@ void Server::ProcessRequest(Client& client, int redirectCount = 0)
 		HandleDeleteRequest(client, location);
 	else
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
-
 }
 
 void Server::HandleCgiRequest(Client& client, const std::string& requestedPath, const Location* location)

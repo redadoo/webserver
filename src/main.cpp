@@ -1,8 +1,9 @@
 #include <WebServer.hpp>
 #include <Logger.hpp>
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char** env)
 {
+	(void)env;
 	const char *configFile = (argc == 2) ? argv[1] : "config/default.conf";
 	
 	Logger::Init();

@@ -20,7 +20,6 @@ std::string HttpResponse::GetErrorBody(HttpStatusCode::Code code)
 			return BAD_REQUEST_BODY_ERROR;
 		case HttpStatusCode::PayloadTooLarge:
 			return PAYLOAD_TOO_LARGE_BODY_ERROR;
-
         default:
             return "<html><body><h1>Error " + HttpStatusCode::reasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
 	}
