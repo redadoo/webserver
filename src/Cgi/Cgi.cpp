@@ -35,7 +35,7 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 			env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
 }
 
-std::string Cgi::ExecuteCgi(const std::string& requestBody)
+std::string Cgi::ExecuteCgi()
 {
 	int pipefd[2];
 	if (pipe(pipefd) == -1)
@@ -61,9 +61,6 @@ std::string Cgi::ExecuteCgi(const std::string& requestBody)
 	{
 		close(pipefd[1]);
 
-		if (!requestBody.empty())
-			write(STDIN_FILENO, requestBody.c_str(), requestBody.length());
-
 		std::string output;
 		char buffer[4096];
 		ssize_t bytesRead;
@@ -88,7 +85,7 @@ HttpResponse Cgi::ProcessCgiRequest(HttpMessage& request, const std::string& ser
 
 	try
 	{
-		std::string cgiOutput = ExecuteCgi(request.body);
+		std::string cgiOutput = ExecuteCgi();
 
 		HttpResponse response;
 		std::istringstream cgiStream(cgiOutput);

@@ -15,7 +15,7 @@ class Cgi
 		std::map<std::string, std::string> env;
 
 		void SetEnv(HttpMessage& request, const std::string& serverName, int serverPort);
-		std::string ExecuteCgi(const std::string& requestBody);
+		std::string ExecuteCgi();
 	public:
 		Cgi(const std::string& interpreterPath, const std::string& scriptPath);
 		HttpResponse ProcessCgiRequest(HttpMessage& request, const std::string& serverName, int serverPort);

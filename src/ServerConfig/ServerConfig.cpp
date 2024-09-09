@@ -3,6 +3,7 @@
 
 ServerConfig::ServerConfig()
 {
+	this->autoIndex = false;
 	this->serverPort.port = 0;
 	this->isInitAutoindex = false;
 }

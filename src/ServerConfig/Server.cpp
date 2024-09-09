@@ -71,10 +71,7 @@ void Server::HandleGetRequest(Client& client, const Location* location)
 
 	std::string filePath = (folderPath[folderPath.length() - 1] == '/') ? folderPath.substr(0, folderPath.length() - 1) : folderPath;
 	if (location && IsCgiRequest(StringUtils::GetScriptPath(filePath), location))
-	{
-		HandleCgiRequest(client, filePath, location);
-		return;
-	}
+		return (HandleCgiRequest(client, filePath, location));
 	else if (FileUtils::IsDirectory(folderPath.c_str()))
 	{
 		if ((location && location->autoIndex) || (!location && serverConfig.autoIndex))
@@ -252,10 +249,6 @@ void Server::SendResponse(const Client& client)
 
 		if (bytesSent <= 0)
 		{
-			if (errno == EBADF)
-			{
-				Logger::Log("sadasdas");
-			}
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
@@ -307,7 +300,7 @@ void Server::InitSocket(int epollFd)
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("listen() failed ", errno);
 
-	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLET);
+	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLOUT | EPOLLET);
 
 	Logger::Log(std::string("Listening on ") + this->serverConfig.socketIp + ":"
 		+ StringUtils::ToString(this->serverConfig.serverPort.port));
@@ -363,7 +356,7 @@ int Server::AcceptClient(int fd, int epollFd)
 	}
 	this->AddClient(clientFd, ip, port);
 	Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
-	EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLET);
+	EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLOUT | EPOLLET);
 	return (0);
 }
 
