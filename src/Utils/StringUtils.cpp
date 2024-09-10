@@ -252,3 +252,32 @@ std::string StringUtils::GetScriptPath(const std::string& path)
 	std::string scriptPath = (queryPos != std::string::npos) ? path.substr(0, queryPos) : path;
 	return scriptPath;
 }
+
+char **StringUtils::GetMatrix(const std::map<std::string, std::string>& map)
+{
+    size_t i = 0;
+    char** matrix = new char*[map.size() + 1]; 
+
+    std::map<std::string, std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it)
+    {
+        std::string envStr = it->first + "=" + it->second;
+        matrix[i] = new char[envStr.length() + 1]; // Allocate space for the string
+        std::strcpy(matrix[i], envStr.c_str());    // Copy the string into the matrix
+        ++i;
+    }
+    matrix[i] = NULL; // Null terminate the array of strings
+    return matrix;
+}
+
+void FreeMatrix(char** matrix)
+{
+    if (matrix)
+    {
+        for (size_t i = 0; matrix[i] != NULL; ++i)
+        {
+            delete[] matrix[i];  // Free each string
+        }
+        delete[] matrix;  // Free the array of pointers
+    }
+}

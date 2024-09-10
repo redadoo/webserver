@@ -51,10 +51,9 @@ std::string Cgi::ExecuteCgi()
 		dup2(pipefd[1], STDOUT_FILENO);
 		close(pipefd[1]);
 
-		for (std::map<std::string, std::string>::const_iterator it = env.begin(); it != env.end(); ++it)
-			setenv(it->first.c_str(), it->second.c_str(), 1);
+		char* matrix[] = { (char*)interpreterPath.c_str(), (char*)scriptPath.c_str(), NULL };
 
-		execl(interpreterPath.c_str(), interpreterPath.c_str(), scriptPath.c_str(), NULL);
+		execve(interpreterPath.c_str(), matrix, StringUtils::GetMatrix(env));
 		exit(EXIT_FAILURE);
 	}
 	else

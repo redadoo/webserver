@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <sstream>
 #include <sys/types.h>
+#include <map>
 
 namespace StringUtils
 {
@@ -102,6 +103,9 @@ namespace StringUtils
 	/// @param path The full URL path which may include a query string.
 	/// @return The script path without the query string.
 	std::string GetScriptPath(const std::string& path);
+
+	char **GetMatrix(const std::map<std::string,std::string>& map);
+	char **GetMatrix(const std::string &str);
 
 } // namespace StringUtils
 

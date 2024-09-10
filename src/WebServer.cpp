@@ -52,7 +52,6 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 	}
 
-	// EpollUtils::EpollDelete(epollFd, client.clientFd);
 	server.CloseClientConnection(client.clientFd);
 }
 

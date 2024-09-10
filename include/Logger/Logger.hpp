@@ -16,8 +16,9 @@
 class Logger 
 {
 private:
-	static std::ofstream logFile;
-	static std::string logFileName;
+	static bool				isEnable;
+	static std::ofstream 	logFile;
+	static std::string 		logFileName;
 
 	/// @brief Gets the current date and time as a formatted string.
 	/// @return A string representing the current date and time.
@@ -58,10 +59,6 @@ public:
 	/// @param request The raw HTTP request string to log.
 	static void RequestLog(const Server &server, const Client &client, const std::string& request);
 
-	/// @brief Logs an empty or placeholder message to the log file.
-	/// @param msg The message to log.
-	static void EmptyLog(const std::string &msg);
-	
 	/// @brief Logs a server-specific message to the log file.
 	/// @param server The server instance associated with the log.
 	/// @param msg The specific message to log for the server.
