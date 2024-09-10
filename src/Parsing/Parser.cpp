@@ -24,7 +24,6 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 				if (tokens[i].tokenType == startLocationContext)
 				{
 					GetLocationPath(tokens[i], server);
-
 					while (tokens[i].tokenType != endLocationContext)
 					{
 						i++;

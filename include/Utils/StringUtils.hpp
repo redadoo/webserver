@@ -104,10 +104,10 @@ namespace StringUtils
 	/// @return The script path without the query string.
 	std::string GetScriptPath(const std::string& path);
 
+	/// @brief Converts a map of key-value pairs to a null-terminated array of "key=value" C-strings.
+	/// @param map The map of key-value pairs.
+	/// @return A dynamically allocated array of C-strings. Caller must free the memory.
 	char **GetMatrix(const std::map<std::string,std::string>& map);
-	char **GetMatrix(const std::string &str);
-
-	void FreeMatrix(char** matrix);
 
 } // namespace StringUtils
 
