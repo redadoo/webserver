@@ -270,7 +270,7 @@ char **StringUtils::GetMatrix(const std::map<std::string, std::string>& map)
     return matrix;
 }
 
-void FreeMatrix(char** matrix)
+void StringUtils::FreeMatrix(char** matrix)
 {
     if (matrix)
     {

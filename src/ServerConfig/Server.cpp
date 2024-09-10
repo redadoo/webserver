@@ -387,15 +387,11 @@ void Server::ReadClientResponse(Client &client)
 		if (recvRet <= 0)
 		{
 			if (recvRet == 0)
-			{
-				Logger::Log("asdsadasdas");
 				Logger::ClientLog(*this, client, " has been disconnected ");
-
-			}
 			else if (recvRet == -1)
 			{
+				this->CloseClientConnection(client);
 				Logger::LogError("Failed to receive data from client");
-				throw WebServerException::HttpStatusCodeException(HttpStatusCode::OK);
 			}
 			return;
 		}

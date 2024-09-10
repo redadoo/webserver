@@ -107,6 +107,8 @@ namespace StringUtils
 	char **GetMatrix(const std::map<std::string,std::string>& map);
 	char **GetMatrix(const std::string &str);
 
+	void FreeMatrix(char** matrix);
+
 } // namespace StringUtils
 
 #endif

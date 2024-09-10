@@ -8,6 +8,7 @@
 #include <Logger.hpp>
 #include <StringUtils.hpp>
 #include <FIleUtils.hpp>
+#include <WebServerException.hpp>
 
 Cgi::Cgi(const std::string& interpreterPath, const std::string& scriptPath)
 	: interpreterPath(interpreterPath), scriptPath(scriptPath) {}
@@ -37,6 +38,10 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 
 std::string Cgi::ExecuteCgi()
 {
+
+	if (!FileUtils::CheckFileExistence(interpreterPath.c_str()))
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
+
 	int pipefd[2];
 	if (pipe(pipefd) == -1)
 		throw std::runtime_error("Error creating pipe for CGI execution");
@@ -52,8 +57,8 @@ std::string Cgi::ExecuteCgi()
 		close(pipefd[1]);
 
 		char* matrix[] = { (char*)interpreterPath.c_str(), (char*)scriptPath.c_str(), NULL };
-
-		execve(interpreterPath.c_str(), matrix, StringUtils::GetMatrix(env));
+		char **new_env = StringUtils::GetMatrix(env);
+		execve(interpreterPath.c_str(), matrix, new_env);
 		exit(EXIT_FAILURE);
 	}
 	else
