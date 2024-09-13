@@ -88,9 +88,8 @@ HttpResponse Cgi::ProcessCgiRequest(HttpMessage& request, const std::string& ser
 
 	try
 	{
-		std::string cgiOutput = ExecuteCgi();
+		std::istringstream cgiStream(ExecuteCgi());
 		HttpResponse response;
-		std::istringstream cgiStream(cgiOutput);
 		std::string line;
 		bool headersDone = false;
 

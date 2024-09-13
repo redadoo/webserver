@@ -1,30 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon?v=2" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Homepage</title>
+    <title>Homepage</title>
+    <style>
+        /* CSS Styles */
+
+        /* Reset some basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+    </style>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
-        <h1>Welcome to My Homepage</h1>
+        <h1>Welcome to My Website</h1>
         <nav>
-            <a href="#">Home</a> |
-            <a href="#">About</a> |
-            <a href="#">Contact</a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main>
-        <h2>Hello, World!</h2>
-        <p>This is a simple homepage created using only HTML.</p>
-        <p>Feel free to explore and learn more about web development.</p>
-    </main>
+    <!-- Main Section -->
+    <section>
+        <h1>Homepage</h1>
+        <p>This is the homepage of my awesome website. Here you can find various services and information about what we offer.</p>
+        <a href="#!" class="cta-button" id="cta-button">Click Me</a>
+    </section>
 
+    <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 My Homepage. All rights reserved.</p>
+        <p>&copy; 2024 My Website | All rights reserved</p>
     </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("cta-button").addEventListener("click", function() {
+            alert("Thank you for clicking!");
+        });
+    </script>
+
 </body>
 </html>
