@@ -31,6 +31,8 @@ void WebServer::InitServer(const char *configFIle)
 	for (size_t i = 0; i < servers.size(); i++)
 		servers[i].InitSocket(epollFd);
 
+	needToStop = false;
+
 	Logger::Log("successfully init all servers data");
 }
 
@@ -38,9 +40,7 @@ void WebServer::StartServer()
 {
 	int	epollRet;
 
-	needToStop = false;
 	Logger::Log("Entering event loop...");
-
 	while (!needToStop)
 	{
 		needToStop = signalState.signCaught;
@@ -72,48 +72,12 @@ void WebServer::StartServer()
 
 // private function
 
-void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &server)
-{
-	if (EpollUtils::EpollCheckEventError(events))
-	{
-		Logger::ClientLog(server, client, "has closed its connection");
-		EpollUtils::EpollDelete(epollFd, client.clientFd);
-		server.CloseClientConnection(client.clientFd);
-		return ;
-	}
-
-	try
-	{
-		server.ReadClientResponse(client);
-		server.ProcessRequest(client, 0);
-		server.SendResponse(client);
-	}
-	catch(const WebServerException::HttpStatusCodeException& e)
-	{
-		Logger::LogError("HTTP error occurred: " + StringUtils::ToString(e.code));
-		try {
-			server.SendErrorResponse(client, e.code);
-		}
-		catch (const std::invalid_argument &e)
-		{
-			Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
-		}
-	}
-	catch (const std::exception &e)
-	{
-		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
-	}
-
-	server.CloseClientConnection(client.clientFd);
-}
-
 void WebServer::CheckSockets(int epollRet)
 {
 	int	fd;
 
 	for (int y = 0; y < (int)servers.size(); y++)
 	{
-
 		for (int i = 0; i < epollRet; i++)
 		{
 			fd = events[i].data.fd;
@@ -128,11 +92,35 @@ void WebServer::CheckSockets(int epollRet)
 				break ;
 			}
 			else if (servers[y].IsMyClient(fd))
-			{
 				HandleClientEvent(servers[y].GetClient(fd), events[i].events, servers[y]);
-			}
 		}
 	}
+}
+
+void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &server)
+{
+	try
+	{
+		server.ReadClientResponse(client);
+		server.ProcessRequest(client, 0);
+		server.SendResponse(client);
+	}
+	catch(const WebServerException::HttpStatusCodeException& e)
+	{
+		Logger::LogError("HTTP error occurred: " + StringUtils::ToString(e.code));
+		try {
+			server.SendErrorResponse(client, e.code);
+		}
+		catch (const std::invalid_argument &e) {
+			Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+		}
+	}
+	catch (const std::exception &e)
+	{
+		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+	}
+
+	server.CloseClientConnection(client.clientFd);
 }
 
 void WebServer::CheckServerPort()

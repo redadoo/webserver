@@ -269,15 +269,3 @@ char **StringUtils::GetMatrix(const std::map<std::string, std::string>& map)
     matrix[i] = NULL; // Null terminate the array of strings
     return matrix;
 }
-
-void StringUtils::FreeMatrix(char** matrix)
-{
-    if (matrix)
-    {
-        for (size_t i = 0; matrix[i] != NULL; ++i)
-        {
-            delete[] matrix[i];  // Free each string
-        }
-        delete[] matrix;  // Free the array of pointers
-    }
-}
