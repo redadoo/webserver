@@ -19,8 +19,8 @@ private:
 	int						epollFd;
 	bool					needToStop;
 
-	/// @brief Handles events for a specific client.
-	void HandleClientEvent(Client &client, uint32_t revents, Server& Server);
+	/// @brief Handles request and response from and to server e client.
+	void HandleClientEvent(Client &client, Server& Server);
 
     /// @brief Processes all active sockets and handles their events.
 	void CheckSockets(int epollRet);

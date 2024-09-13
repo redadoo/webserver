@@ -24,6 +24,8 @@ void WebServer::InitServer(const char *configFIle)
 {
 	Parser::ParseConfigFile(servers, configFIle);
 
+	CheckServerPort();
+	
 	HandleSignal::SetupSignalHandler();
 
 	epollFd = EpollUtils::EpollInit();
@@ -92,12 +94,12 @@ void WebServer::CheckSockets(int epollRet)
 				break ;
 			}
 			else if (servers[y].IsMyClient(fd))
-				HandleClientEvent(servers[y].GetClient(fd), events[i].events, servers[y]);
+				HandleClientEvent(servers[y].GetClient(fd), servers[y]);
 		}
 	}
 }
 
-void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &server)
+void WebServer::HandleClientEvent(Client &client, Server &server)
 {
 	try
 	{
@@ -105,18 +107,10 @@ void WebServer::HandleClientEvent(Client &client, uint32_t events, Server &serve
 		server.ProcessRequest(client, 0);
 		server.SendResponse(client);
 	}
-	catch(const WebServerException::HttpStatusCodeException& e)
-	{
-		Logger::LogError("HTTP error occurred: " + StringUtils::ToString(e.code));
-		try {
-			server.SendErrorResponse(client, e.code);
-		}
-		catch (const std::invalid_argument &e) {
-			Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
-		}
+	catch(const WebServerException::HttpStatusCodeException& e) {
+		server.SendErrorResponse(client, e.code);
 	}
-	catch (const std::exception &e)
-	{
+	catch (const std::exception &e) {
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 	}
 
@@ -129,8 +123,7 @@ void WebServer::CheckServerPort()
 	{
 		for (size_t j = 0; j < servers.size(); j++)
 		{
-			if (i == j)
-				continue;
+			if (i == j) continue;
 
 			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
 				throw std::invalid_argument("same port on different server");
@@ -141,9 +134,7 @@ void WebServer::CheckServerPort()
 void WebServer::CleanUpAll()
 {
 	for (size_t i = 0; i < servers.size(); ++i)
-	{
 		close(servers[i].serverFd);
-	}
 
 	if (epollFd != -1)
 		close(epollFd);

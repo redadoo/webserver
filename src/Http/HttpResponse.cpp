@@ -21,7 +21,7 @@ std::string HttpResponse::GetErrorBody(HttpStatusCode::Code code)
 		case HttpStatusCode::PayloadTooLarge:
 			return PAYLOAD_TOO_LARGE_BODY_ERROR;
         default:
-            return "<html><body><h1>Error " + HttpStatusCode::reasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
+            return "<html><body><h1>Error " + HttpStatusCode::ReasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
 	}
 }
 
@@ -57,7 +57,7 @@ void HttpResponse::SetUploadBody()
 void HttpResponse::SetStatusCode(HttpStatusCode::Code statusCode)
 {
 	code = statusCode;
-	startLine.httpMethod = HttpStatusCode::reasonPhrase(statusCode);
+	startLine.httpMethod = HttpStatusCode::ReasonPhrase(statusCode);
 }
 
 void HttpResponse::SetBody(const std::string& body)
@@ -79,7 +79,7 @@ void HttpResponse::SetErrorBody(const ServerConfig& config)
 	{
 		SetBody(GetErrorBody(code));
 		SetContentType("text/html");
-		Logger::Log("Using default error page for code " + HttpStatusCode::reasonPhrase(code));
+		Logger::Log("Using default error page for code " + HttpStatusCode::ReasonPhrase(code));
 	}
 
 }
@@ -100,7 +100,7 @@ std::string HttpResponse::ToString() const
 	std::stringstream ss;
 
 
-	ss << startLine.httpVersion << " " << HttpStatusCode::reasonPhrase(code) << "\r\n";
+	ss << startLine.httpVersion << " " << HttpStatusCode::ReasonPhrase(code) << "\r\n";
 
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
 	{

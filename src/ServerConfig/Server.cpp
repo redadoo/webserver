@@ -486,9 +486,16 @@ bool Server::IsCgiRequest(const std::string& path, const Location* location) con
 
 void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 {
-	response.SetStatusCode(code);
-	response.SetErrorBody(serverConfig);
-	SendResponse(client);
+	Logger::LogError("HTTP error occurred: " + HttpStatusCode::ReasonPhrase(code));
+	try 
+	{
+		response.SetStatusCode(code);
+		response.SetErrorBody(serverConfig);
+		SendResponse(client);
+	}
+	catch (const std::invalid_argument &e) {
+		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+	}
 }
 
 void Server::CloseClientConnection(const Client &client)

@@ -28,7 +28,7 @@ namespace WebServerException
         ~HttpStatusCodeException() throw() {}
 
         virtual const char* what() const throw() {
-            return HttpStatusCode::reasonPhrase(code).c_str();
+            return HttpStatusCode::ReasonPhrase(code).c_str();
         };
     };
 	

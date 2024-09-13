@@ -9,6 +9,7 @@
 #include <vector>
 #include <iostream>
 #include <HttpResponse.hpp>
+#include <unistd.h>
 
 #define MAX_RESPONSE_SIZE 4096
 #define MAX_REDIRECT 5
