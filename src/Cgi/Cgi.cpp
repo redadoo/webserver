@@ -38,7 +38,6 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 
 std::string Cgi::ExecuteCgi()
 {
-
 	if (!FileUtils::CheckFileExistence(interpreterPath.c_str()))
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
 
@@ -90,7 +89,6 @@ HttpResponse Cgi::ProcessCgiRequest(HttpMessage& request, const std::string& ser
 	try
 	{
 		std::string cgiOutput = ExecuteCgi();
-
 		HttpResponse response;
 		std::istringstream cgiStream(cgiOutput);
 		std::string line;

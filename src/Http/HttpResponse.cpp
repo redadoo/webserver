@@ -103,13 +103,8 @@ std::string HttpResponse::ToString() const
 	ss << startLine.httpVersion << " " << HttpStatusCode::ReasonPhrase(code) << "\r\n";
 
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
-	{
 		ss << it->first << ": " << it->second << "\r\n";
-	}
 
 	ss << "\r\n" << body;
-
-	ss << body;
-
 	return ss.str();
 }
