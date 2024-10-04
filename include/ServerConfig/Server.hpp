@@ -11,7 +11,7 @@
 #include <HttpResponse.hpp>
 #include <unistd.h>
 
-#define MAX_RESPONSE_SIZE 4096
+#define MAX_RESPONSE_CHUNK_SIZE 4096
 #define MAX_REDIRECT 5
 
 /// @brief Class representing server information and its operations.
@@ -98,7 +98,7 @@ public:
 
 	/// @brief Reads the client's response and stores it in the client's request.
 	/// @param client Reference to the Client object.
-	void ReadClientResponse(Client& client);
+	void ReadClientRequest(Client& client);
 
 	/// @brief Processes the client's request and generates a response.
 	/// @param client Reference to the Client object.

@@ -300,16 +300,16 @@ void Parser::GetUploadPath(const Token& token, Server& server)
 
 void Parser::GetUploadEnable(const Token& token, Server& server)
 {
-	if (token.tokenName == "upload_enable")
+	if (!token.tokenName.empty() && token.tokenName == "upload_enable")
 	{
-		if(!server.serverConfig.GetLastLocation().uploadEnableFind == false)
+		if(server.serverConfig.locations.empty() && !server.serverConfig.GetLastLocation().uploadEnableFind == false)
 			throw std::invalid_argument("Too many uploadEnables");
 
 		server.serverConfig.GetLastLocation().uploadEnableFind = true;
 
-		if (token.tokenValue == "on")
+		if (!token.tokenName.empty() &&token.tokenValue == "on")
 			server.serverConfig.GetLastLocation().uploadEnable = true;
-		else if (token.tokenValue == "off")
+		else if (!token.tokenName.empty() && token.tokenValue == "off")
 			server.serverConfig.GetLastLocation().uploadEnable = false;
 		else
 			throw std::invalid_argument("invalid uploadEnables");

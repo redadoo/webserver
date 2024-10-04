@@ -1,2004 +1,0 @@
-   %PDF-1.7
-   %����
-   4851 0 obj
-   <</Filter/FlateDecode/First 16/Length 168/N 2/Type/ObjStm>>stream
-   h�4NA
-   �0����j"M
-   ���멷D������k��awfgf�$$�x�!�2�sԗVn���Q�$\�6t~h��R��O��k���Jz�>!���B�뇌E�x�e/	���C�!~��!+�O��i�4��H[�>u��<��^3=!e�� 7Y]�A����`��&+,o�#��X�G'��8�:�l�c�4&��&�&��G+x�
-   Xal<��Z��0��Q��� �fj1��C,�<C�O�f4"�����2̋���fC��0�hȓ�!���^��#I���2�4Y�ń��m�����+��!�N`�6��a��u�Ķ���q�����8r�ɳ�~�&��
-   ��r$>P~O�V���o�Ի��
-   �
-   �
-   �
-   �.7|nd�.K�Y�ϒ}��d�%�,�g�>K�Y�ϒC���%�,9d�!�	yx��c3F̳�<*��c?<���
-   �
-   �
-   �
-   �.7|n��ȒM�l�d��,���&���rgȳCyv��!�Y��1��\�%c��Y2fɘ%c��Y2eɔ%S�LY2eɔR�c�p�G�����6wv��˝]��rg�;�����>w���ϝC��S�<*�yx������'����Yr̒c���?�=;{�/���Vt��������؍:�~���gϟ�]�u�I��w�����F���Uc��m��z�&�����������ٯ�����ꇗw�f�s������J�9_.W���w�[ 0PcX�21�)�������a��
-   �����d�<���֌=BRHe��G|����D�DpV��B �Mˡ���==?'�{q�����'���<�v8�n�.��O�J�4g�.�&�3}==$�]��V'�]��*�l*�{7/�������v���o��vk��w����?��t������o�m\/}��tm|x�>��g�����H����t�)��|,Î`�\/��>M�g����69n%������2Y�U�7��M���]�h.���y,ݚ����Fy�T���{v僝�Y�T�|U���2�S��KOR|Z2>O�V��iX��|�R�K)ߥ��NuN�:u�S���❏��j��{q�z?�V��x`+�^���⋄F�")J �!9������������s��nw�B���_�r�vժ*��5�#<$R}�J�F�AQ�F�A��F�A��F��\�/��!�_��I�/����(>8�6
-   ��b�?l�����h{.b��|N���C��?T�i�9ؼ1>�����H!G�  ����#	�GJ��������o�1S���%���������\x��^B����\��QRh��G)ԾK�������HU!#~Ԍ׉=j�m��c0d��
-   �׹xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">
-      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-         <rdf:Description rdf:about=""
-               xmlns:dc="http://purl.org/dc/elements/1.1/">
-            <dc:format>application/pdf</dc:format>
-            <dc:title>
-               <rdf:Alt>
-                  <rdf:li xml:lang="x-default">DnD_Bug_1c_V2_M</rdf:li>
-               </rdf:Alt>
-            </dc:title>
-            <dc:subject>
-               <rdf:Bag>
-                  <rdf:li>1 Color</rdf:li>
-                  <rdf:li>DnD Dungeons &amp; Dragons</rdf:li>
-                  <rdf:li>Logo</rdf:li>
-                  <rdf:li>Medium</rdf:li>
-                  <rdf:li>Vector</rdf:li>
-               </rdf:Bag>
-            </dc:subject>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:xmp="http://ns.adobe.com/xap/1.0/">
-            <xmp:MetadataDate>2014-04-24T17:01:55-07:00</xmp:MetadataDate>
-            <xmp:ModifyDate>2014-04-24T17:01:55-07:00</xmp:ModifyDate>
-            <xmp:CreateDate>2014-04-21T16:56:21-07:00</xmp:CreateDate>
-            <xmp:CreatorTool>Adobe Illustrator CS6 (Macintosh)</xmp:CreatorTool>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
-               xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
-               xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#">
-            <xmpMM:InstanceID>uuid:89b02a89-e84e-6741-bb12-685b1d06f5bd</xmpMM:InstanceID>
-            <xmpMM:DocumentID>xmp.did:8A86908C1D20681180838E8D3DCB6432</xmpMM:DocumentID>
-            <xmpMM:OriginalDocumentID>uuid:5D20892493BFDB11914A8590D31508C8</xmpMM:OriginalDocumentID>
-            <xmpMM:RenditionClass>proof:pdf</xmpMM:RenditionClass>
-            <xmpMM:DerivedFrom rdf:parseType="Resource">
-               <stRef:instanceID>uuid:9d4c76c7-6679-274f-833b-54c12be26df0</stRef:instanceID>
-               <stRef:documentID>xmp.did:F0EA69BF1720681180838E8D3DCB6432</stRef:documentID>
-               <stRef:originalDocumentID>uuid:5D20892493BFDB11914A8590D31508C8</stRef:originalDocumentID>
-               <stRef:renditionClass>proof:pdf</stRef:renditionClass>
-            </xmpMM:DerivedFrom>
-            <xmpMM:History>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:00801174072068118083F0F8301E2230</stEvt:instanceID>
-                     <stEvt:when>2014-04-14T20:28:49-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:8A86908C1D20681180838E8D3DCB6432</stEvt:instanceID>
-                     <stEvt:when>2014-04-21T16:56:18-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:1821A977072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:00:13-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:208419B4072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:01:55-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpMM:History>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:illustrator="http://ns.adobe.com/illustrator/1.0/">
-            <illustrator:Type>Document</illustrator:Type>
-            <illustrator:StartupProfile>Print</illustrator:StartupProfile>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-               xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
-               xmlns:xmpG="http://ns.adobe.com/xap/1.0/g/">
-            <xmpTPg:HasVisibleOverprint>False</xmpTPg:HasVisibleOverprint>
-            <xmpTPg:HasVisibleTransparency>False</xmpTPg:HasVisibleTransparency>
-            <xmpTPg:NPages>1</xmpTPg:NPages>
-            <xmpTPg:MaxPageSize rdf:parseType="Resource">
-               <stDim:w>3.523159</stDim:w>
-               <stDim:h>1.800930</stDim:h>
-               <stDim:unit>Inches</stDim:unit>
-            </xmpTPg:MaxPageSize>
-            <xmpTPg:PlateNames>
-               <rdf:Seq>
-                  <rdf:li>Black</rdf:li>
-               </rdf:Seq>
-            </xmpTPg:PlateNames>
-            <xmpTPg:SwatchGroups>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <xmpG:groupName>Default Swatch Group</xmpG:groupName>
-                     <xmpG:groupType>0</xmpG:groupType>
-                     <xmpG:Colorants>
-                        <rdf:Seq>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>White</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>0.000000</xmpG:black>
-                           </rdf:li>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>Black</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>100.000000</xmpG:black>
-                           </rdf:li>
-                        </rdf:Seq>
-                     </xmpG:Colorants>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpTPg:SwatchGroups>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:pdf="http://ns.adobe.com/pdf/1.3/">
-            <pdf:Producer>Adobe PDF library 10.01</pdf:Producer>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:lr="http://ns.adobe.com/lightroom/1.0/">
-            <lr:hierarchicalSubject>
-               <rdf:Bag>
-                  <rdf:li>Brand|DnD Dungeons &amp; Dragons</rdf:li>
-                  <rdf:li>Logo</rdf:li>
-                  <rdf:li>Logo|1 Color</rdf:li>
-                  <rdf:li>Logo|Vector</rdf:li>
-                  <rdf:li>Logo|Medium</rdf:li>
-               </rdf:Bag>
-            </lr:hierarchicalSubject>
-         </rdf:Description>
-      </rdf:RDF>
-   </x:xmpmeta>
-   <?xpacket end="r"?>
-   endstream
-   endobj
-   9 0 obj
-   <</Filter/FlateDecode/Length 336>>stream
-   H��R[�BA�,`����X��X�B,`�d<l�z�M���`�3�q��Y�rV��#v����!�j�jGq���4�1�k�:XYδ{��]�j�=�Xp���"�ĒK-]R�V\i�p��k��v)WCH�eh�
-   z)��ʲ+�}���s���a��uV[�Hд;�Nb�_X�hdX\�ϯ����\wWt�Q�P�Pآ�!����dQ��m>���:��3gQZV;�'�#�˰z�'�W�_X����    
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                              
-   <?xpacket end="w"?>
-   endstream
-   endobj
-   2121 0 obj
-   <</AcroForm 2248 0 R/Extensions<</ADBE<</BaseVersion/1.7/ExtensionLevel 3>>>>/MarkInfo<</Marked true>>/Metadata 348 0 R/OCProperties<</D<</OFF[]/Order[[(��v=���M����m����R 4	�
-   n�3ܣ�k�Gݯz=��[=��=�<�=G</z�^�^j��^��	ޡ�Z�Q�B�0FX'�+������t���<�u�-���{���_�_�ߘ�-G�,�}���/���Hh8�m�W�2p[����AiA��N�#8$X�?�A�KHI�{!7�<q��W�y(!46�-���a�a���a�W��	��@�@�`l���YĎ��H,�$����(�(Y�h�7��ъ���b<b*b��<�����~�L&Y&9��%�u�M�s�s��NpJP%�M�IJlN<�DHJIڐtCj'�KwKg�C��%�N��d��|�ꙪO=��%�mL���u�v�x:H��oL��!Ȩ��C&13#s$�/Y����������=�Osbs�rn��sO�1��v�=ˏ��ϟ\�h٢���#��¼����oZ<]T�Ut}�`IÒsK��V-���Y,+>TB(�/�S�,]6*�-���W:#��7�*���e��^YDY�}U�j��AyT�`�#�D=���"�b{ų���+�ʯ:�!kJ4G�m��t�}uC�%���K7YV��fF���Y�.�=b��?S��ƕƩ�Ⱥ����y���
-   چ���k�5%4��m�7�lqlio�Z�lG+�Z�z�͹��mzy��]�����?u�u�w|�"űN���wW&���e֥ﺱ*|����j��5k��yݭ���ǯg��^y�kEk�����l�D_p߶������7Dm����o꿻1m��l�{��Mś�
-   n�L�l�<9��OX���=��SFM�!���[%ݑ�l�T���$|�VHdp��X=���S{��~GT�=��âKqW�7K��Ϥ���
-   .U��>�6���6�Iu,�=���E���0�H�e1�)�*b�&�&�d��m��K�d�ن�y�,"|q��-��^j�>�;t�h�y<��g�ڡ�t���Tٲs�;	I�L���� �]'�����B�#]u^k�R"��-`����|u��m�-�9�|1:G�g~CQ9Uk�ػ3�.�fY���������e�(*鋶�(U�K]�4o��2��s:�
-   T0�xYS���֛t5��?
-   �y��:K�zn��7�;�4W^��}�
-   f���[2�_�@��d�wlM1ŅU�S�����@"���e?�좷(2lk��1�����f^uKr8�$�%[��KO���t&T3���.7��+7�t�lF1�'�S�{ڛx�I���f���z�|ktX~�=m����<�03[������|	"6��^�xZ=MH��3�҈��������.t�pq�߭?�����3���Կk�"d}ͬM�2�n�wc�J��`����ż@��f���;_^�3Ί�⨛�;~q�,�T8�tp�[�г�c	���$�b�	��n��[D/��.�y������+�c�F����Ə�Z�I�{����xm�{��<ʉ3���|P���5��F�k�{�64��B�S�ɹ���[b/E����M�G�nj�� 0#�S�o����e�xg�%y>�L9\��/)�#�`ӳ)ȯ��ƪ�;����źm��^�s"�����l��>��n�øI��$����?�(�%��b�O}����-�~���y�����\���f��>�M�.~�[R���;�Dǟ��~���EK^��\5���A����]�K�L%XF
-   N��_��
-   ���!iM_bl�43�gI
-   �S�'H�� �t���Y/�Q]F#[%���Uu��m�/9�(KEoC�Eg1^Pu��*պXQ�W��݉R	������"~,f'.W�W��I"�S�Q��V^I�U��6tg��gHʸ���*��
-   �:6
-   �ł�P��������G��F��-K�p�AI=��b}�F���:������I�.�7�$!\��4�l�Z��n�r@Q{�k��+���y�o��j���<ρ����лW{�.3�/b
-   u_�AX�Ḙ�������f�Z��_��5�'�S��� U�C��Ѽ|*u��ޣ����e%g�1���r�u���F����a��pH1�쪋�1�IQ��e<�K��Tj�8�F5��v�]tq�^�4S���Rr͐ ��r@�)5��G��H�I�U)�����]%Y��8�*q���q��m��m��Y�s�B�I^&���T���nxUO8t�=h�>�*]�����X7MBB>��0z��X#gC�t���A&�D��`�/�2�s�L&�|��v��ׂ!�ľp�8r�klPzj~�.�}m;T&Ok.�M̽��@5��?�/G��(^��'�i�܁����u0�=c/�F��O~�l���O�M�2�
-   ����'ϯ�}���_��/x���8�OD�^���K"�|D�M�3��1����f]Z�&�N���x�u�YRyH�ޜGO��.:�@>�k��a1|ؔ����J�*6�����?�@�~�ts~8���[���qFX-��~q~h�>_��'�*b݂�k�/S(�I��Q�!����Z�	�#J�����W1�GО=�6�#N�l�(Y�O��-+��U�A�7z���@z�v�wAv�FO����]��	�	�$_"�@$�"g=�8F���C*�Kk�>�^�"� g�������6�d��,��4���[�^��&��T��@�P�Ҩ"~�%�Z��pp�D н�$���**<�\ў�i0#w�¡���C#4�Q�{��YU6��ջ
-   ������r3�ކ�p
-   uoâ��kߦ����'	5��MW�a���k����3�azf�?�cU}�� GtL��.m"�GI�Aį��~����2��J��Y�&��#ֿ�?�R�S^t�9��럼8�CYu�(�'\�N`�4��t���G�! ���o���"�<?X܁?�hт�kb����}
-   J�v9w��9����Uw�z�M��_y���v����� s�Ze_U�n�">�[M�Yт�f�%�,�{��f�A���	؟��gb�Le�B�}H}�
-   q�m�dbV���I�s<���8&f�3�l�O-��[���P�$��0�Be��G�5ŀ--�L��ŹPP��߽��WC7��e뽪�꣯��s,��j��*���6�������P����G=��p�,�j*S��PP���K~P��D2뤒	�U6C���8��x��º�T�xK�)?�:k�`���,��G"�Y8�aw�wK���@R��J�><P�W�W��Zz���Ȳ8��3$�v���
-   �Br&�W�"��]$���@�����6����U�$K�î2�	c��/6֒���*.����N�ZG7_
-   B��
-   �1����Xè�o�B����8�������W�	0����gk��b@)�7�é�C����h��08\�J��oZ��%,�����4�F�j�(�������q.�7Ƈ���q>�ַB�Fu<kZȲ�b�H<#�@�G�J���k*�%<D^r��K�o�2�Q	1�Dmw&���pZ��*wo���L�<7b<:�p�C|�4.mBӽ�>�v���R���'Gl(�^��eww�A�u�g�t���ms�����"�9�Z���-i$��ۂ~ύ��-,�B����R蜐F>�s��*aCB��@�cr<K��~�[V�������w�_ U���JGt�2Sl�1��pufwp��:��VDO�g[@�x�P�A��\[����-�x���v$��%��6g�յp�Tܓ��c�TU�J�8 �l��3����h쭫��f��՚��5�OAq���2������{L��5�K�Z&��Mm���۲p����~�Y7+��b���I��C��
-   �@�M��߮76s�gv���}��A^ў���/���ޕ��~�}^%&4팃�j;��U������8�8H؂7�BvGK��'Z�]fq�<ӓ��:�B����n��`ʰX�.����_�(���·����,���A�L$�����&�Klՠ�PY}�`�#��aEt����ZNr�7�Z��u�n�i����;�Z���*L�h7ή�t��lc��Ko��&;���ܟ���ˡu�gݴ��]�X�'M�>�ȹ�5�5<�;
-   �<�Ot�f��y;�x~�
-   �eԍƓ5���È������s��K7�j�`G7z�f�m�����L�M�]�UXe�^#bQN��w���������PK�P�P�Ɔh��4C!���`�k�^���,�p��4L^&��Rs�!{�cLS�S�yc��X�
-   VI�sh��������W��w|��ލ�D�p�l��Y���&����^�3/[W�
-   ��6Q�����-����x�J��@�OX�ʬ E��%�zM�j���-吶�箳�MUCp������qx���VS��4��R�R�ϣ7}�pKb�nÓZ�T����h�C^�afTj%��r�Ю;�^,=����]
-   �<�ȉq3YCg���؞�٭p�዆,Ϙ����҃BY�*���J���xC;�M2iz`��k�}�΋�ZvL�d}h��v������0<G�}�KM��b�;˲�3
-   <ң��c��of��p��Ɛ^x��}���+�]x��=���h'�e]��t�	�p�b6VR��7���H��e�.���!�B{)��K���tt%})Y{%%]*D�Q;�RbKB�NI������v9H(tR��\�Sݙ���eB;=�*�Y�wC�!l���<9�1�z���e�Wq�Y�M�W�~Kar����-���
-   }���r���_���H�Oq���ߚ��B�O�D%�*�u���l�XBj5
-   ��v���V�I���m�b�(7����i`T��%�����G�
-   ]���$G>5�_�I���7����xUj6�#��ޮ��椅��z�-�������I��c��Ց�H��
-   }�'Hп����_7
-   J*u�ޘ$��6ǈn~]���H�S�3�@^y놝4��*�V��ܠ&����$�`In�ó��x�批���$R}�v�>~�m�Z�&�}�}}N3��O��s%�9m[7X�TҜ��e�l���h���K|�xB[=#�-s�1_��=�E�N���}�?_-�#���+v����Rk��.T�EH�
-   �Uq�͎�����SN�6��kcv�%[ͯ�%K��|1��9��-e#��
-   �c`z��5W�Nk�QY���^��N���C�ӆ��[�����m�|m����_7�]~~E�d{Si�ɉ�s�`�k&��eI�k�Ͷ�jؖtG�|�7�~��|g�(	>݂}���>�0���ױ�J.��o����.� �@�0�'�m[�/�M���=���{���ϖ����+?_�ɦ�
-   ͡_*U�)���T{
-   jm���o�2k�'���?���\;��9��L�/����{��Ө;��~y�5�B���S/7
-   ~�r���x���ٲ�ϩ�+���eෞ�bL��4���P����\�Ko�<�r��ǳ���qea���ќ7�z<U2��p�h;��+�"��CbV��~3�a����%��Q+�3o��!'�{��Ǒ
-   @,�L1;w��df3�*�T�D�g��y�$�=�]����8��l1��IL��"��5P���);��&7������jm�_�1��b�W6�IC���{��pUI�I񒨆(�ļ���!�
-   ����T"k�J�T��K�^�vKΛ��0�>��! � ��k����y�!���S����B��w�� ~{Gņ���CSC�+2�p!��!��â��<?�位� ��U	B#����?]��+��;���z�ڃ$%`���X\��cǀ�q�)1TR���ni6�r��^��}Y��	�����Ѥ��ԸU;��1r�ɐ��bn?�@�F�װ��F��>�b늲3¾�k�Ɣ����t��㹭Vc�`�(�鷦W�����Ƕ�.��m�YM�����2�z0�Q�;(l~��ʠ�F=m�t۲���bBi�y�i���}������9$�sӝ����_�[j8]��o�1lI0��f��ȈL��C�$>�+E��JD���:�d�SxC
-   9���!����LA�r�d�񁏩�<�Ͱ��<�CٍW�=�4<_t7��3}����M�-���v)��x0˥�/d�%u��y��U�����vk�~���������Ӑ�����C�3̰�S��7�AZ��3����j��x��k�e�p/��r�<�ngth 706/Width 76>>stream
-   H��WAr� �gz�+�n}��SH 	��43%��!fY�A��.��گ�v=�g�`>b���$���*~� �:����E���b��~���,m,�-��ݖ,�Y��¬�*�6X�[ݱF�=�3�뭷Y��~dó	���t���i�z�f�6�~`{�v���.�Ng����#{�}�}��������j������c1X6���fm���;'_9	�r�:�8�q�:��˜�O:ϸ8������u��Jq���nv=���M����m����R 4	�
-   n�3ܣ�k�Gݯz=��[=��=�<�=G</z�^�^j��^��	ޡ�Z�Q�B�0FX'�+������t���<�u�-���{���_�_�ߘ�-G�,�}���/���Hh8�m�W�2p[����AiA��N�#8$X�?�A�KHI�{!7�<q��W�y(!46�-���a�a���a�W��	��@�@�`l���YĎ��H,�$����(�(Y�h�7��ъ���b<b*b��<�����~�L&Y&9��%�u�M�s�s��NpJP%�M�IJlN<�DHJIڐtCj'�KwKg�C��%�N��d��|�ꙪO=��%�mL���u�v�x:H��oL��!Ȩ��C&13#s$�/Y����������=�Osbs�rn��sO�1��v�=ˏ��ϟ\�h٢���#��¼����oZ<]T�Ut}�`IÒsK��V-���Y,+>TB(�/�S�,]6*�-���W:#��7�*���e��^YDY�}U�j��AyT�`�#�D=���"�b{ų���+�ʯ:�!kJ4G�m��t�}uC�%���K7YV��fF���Y�.�=b��?S��ƕƩ�Ⱥ����y���
-   چ���k�5%4��m�7�lqlio�Z�lG+�Z�z�͹��mzy��]�����?u�u�w|�"űN���wW&���e֥ﺱ*|����j��5k��yݭ���ǯg��^y�kEk�����l�D_p߶������7Dm����o꿻1m��l�{��Mś�
-   n�L�l�<9��OoriginalDocumentID>
-               <stRef:renditionClass>proof:pdf</stRef:renditionClass>
-            </xmpMM:DerivedFrom>
-            <xmpMM:History>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:00801174072068118083F0F8301E2230</stEvt:instanceID>
-                     <stEvt:when>2014-04-14T20:28:49-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:01801174072068118083E29E55DE353E</stEvt:instanceID>
-                     <stEvt:when>2014-04-22T10:22:47-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:9D76A875072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:00:10-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:BF1928A8072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:01:35-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpMM:History>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:illustrator="http://ns.adobe.com/illustrator/1.0/">
-            <illustrator:Type>Document</illustrator:Type>
-            <illustrator:StartupProfile>Print</illustrator:StartupProfile>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-               xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
-               xmlns:xmpG="http://ns.adobe.com/xap/1.0/g/">
-            <xmpTPg:HasVisibleOverprint>False</xmpTPg:HasVisibleOverprint>
-            <xmpTPg:HasVisibleTransparency>False</xmpTPg:HasVisibleTransparency>
-            <xmpTPg:NPages>1</xmpTPg:NPages>
-            <xmpTPg:MaxPageSize rdf:parseType="Resource">
-               <stDim:w>17.000000</stDim:w>
-               <stDim:h>2.000000</stDim:h>
-               <stDim:unit>Inches</stDim:unit>
-            </xmpTPg:MaxPageSize>
-            <xmpTPg:PlateNames>
-               <rdf:Seq>
-                  <rdf:li>Black</rdf:li>
-               </rdf:Seq>
-            </xmpTPg:PlateNames>
-            <xmpTPg:SwatchGroups>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <xmpG:groupName>Default Swatch Group</xmpG:groupName>
-                     <xmpG:groupType>0</xmpG:groupType>
-                     <xmpG:Colorants>
-                        <rdf:Seq>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>White</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>0.000000</xmpG:black>
-                           </rdf:li>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>Black</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>100.000000</xmpG:black>
-                           </rdf:li>
-                        </rdf:Seq>
-                     </xmpG:Colorants>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpTPg:SwatchGroups>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:pdf="http://ns.adobe.com/pdf/1.3/">
-            <pdf:Producer>Adobe PDF library 10.01</pdf:Producer>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:lr="http://ns.adobe.com/lightroom/1.0/">
-            <lr:hierarchicalSubject>
-               <rdf:Bag>
-                  <rdf:li>Brand|DnD Dungeons &amp; Dragons</rdf:li>
-                  <rdf:li>Logo</rdf:li>
-                  <rdf:li>Logo|1 Color</rdf:li>
-                  <rdf:li>Logo|Vector</rdf:li>
-                  <rdf:li>Logo|Small</rdf:li>
-               </rdf:Bag>
-            </lr:hierarchicalSubject>
-         </rdf:Description>
-      </rdf:RDF>
-   </x:xmpmeta>
-   <?xpacket end="r"?>
-   endstream
-   endobj
-   3112 0 obj
-   [/View/Design]
-   endobj
-   3113 0 obj
-   <</CreatorInfo<</Creator(Adobe InDesign CS6 \(Macintosh\))/Subtype/Artwork>>>>
-   endobj
-   3114 0 obj
-   <</Filter/FlateDecode/Length 344>>stream
-   H�\��n�0��y��C��?BZi+q؏���U,�_3�ܳZ�*��ytQļ����Z�O�)����_9����%*r}]
-   s���~)
-   �Z02{�"�b�p�%�nF3.a�g�����bC��8|7��;���:�?�񠝢��ڣ{�M݄���ۇ���m��~X���<m+C��w��◵����V�Q���t�X�ҕ��h=
-   $!�\tQ�wC�
-   aJ]��*yV���:jgJ��x������:��Ԩ�i�N��6�-��<������Ƣ�E5��b�����18�]���mE1O{pHt�P�4!Nm!��j8;O�m;8�;l�@ﰝ��mo��m�s��������^w�t/�[*G��T��yzxN膝���;���4 �zV�)�ƒ�e�����J�h��0y�\ '[����X�e�3�*
-   HŶ������~^�A�Ӄ:y��&,�����N�90}6�U@�	����8�܎)�j�n�e`�4u
-   LVsPZ�!��)�w�^���MsV�bc�0Z`-
-   ���f��'������6�+	X�y�X�,�V.���B�h�n-�����ih�L�冉X����ݐ�&
-   �j��A�4�>�Ѭ�;?Ǒ��m�GBХȣ���[G���<AP=+����\������G�}4_�Zht��I�
-   o�'\��`��18��Y�����/E�i�&{�mȡ�`�[�'؊�����|g/ +K:x*���0�B}��5g�q��ྃ	v^�rw�)��s���Vw�.��8���J�D�����I�o:�C�$��~�c��i����/M�H���L[�j��3�����=g�9���6eF�Μ��\�O���1+P�GB��q�?$��
-   3��$U<Yr#Fm�pV���*L�B����4Bl�ݪ)��}��������$z���r �����&Y����x�>��8W�4���5�=Tc�L�b�t(�<�%|4�@񵣕Gl��:y��3|2]e��xϚ�ـ2O�HFډ4���o�C��ZG����o1��5U�Z~B,����0�踔�G�2��RT���4�b�C0�@�=�_�����P�Q���P��������v��p��1�ϊ��_�`��zHA��'@�����"sa\.�ME	d�F�lt�}._[��j��Ȳ�-~o�ՌX��ҏⵞ��AX!G�y\io(~](a�Ojغk(^���J�(���U��=<x�q@�B�4uP��T�
-   ���VDX5��
-   �\��2�8�֬��ߣ"v����
-   /��"�Q*����A�ho���`�y�*@������t�oc�Q���^o���~X�U�T�S�
-   9/��mH��+�Pw��%ȹ��l�E	�$ߜ�#�!�|]@l4�9�a{���m���O�b��6���eٛ);�����7#�𠣝T��s�1�����@�6'�8Q�������JZ����=56���hBԼ�����(��h���
-   V������=��������� D2�P'S4�I>!������V��%�~��*>0}?�/��6�YU�:�Yh��%{��vN�(����@9����Ɩ�~��)#�~�������H��x��f��S�@I$��L,����D�0x_< l�+o�i�5K�Ʊ��X�YCe�p1���o �]S���2?!W1�+# �ʏ�> k�C~�,������(&�S�~����o�%�nHf�=(��M��%E�P��ȓ]]U�;���}
-   ���}e��I��;�����.-]��(pFU���P�|�M� ��w�ǖ+c�\�ʀ��B����W^W`3���h.>2�8[�y��
-   p���W*����Bg�1��R����#׋�B�Ԇۏ�z=�hOK*�EБJD�"	@:��fҺ�<|*i���DKI����|�1�;�i�����csɾ��� KU��r�|����{�]o�B����J�T�z��a?s�h �Ȧl�:m{{���)�u�!I��7���hͪL46�����UDPD�pMZ1z�^Y��h�Y�ޥ5x�Uu���#:�u�����m��Ϊ�{�2���5	#w�����1��Y�\6c�e0�ɒ8��LV{�.�xæ��!���i׃�.�|1��x=��Fg'pƘ�!_0nm�-��V=l�]�.�&K|u�a�[i�`��9��_��'����3�E�1��(��ih��沮S4��<�f�1e����k}���,�PEM`��z�㘀nb�%�#	bۊCή��lWMmz1�!�T R�!!�uuYdk�bk��Jiy��K��"yh okW������Z������0y����c7���F�Ԟ�Ms�,v6�7�f���*1�ȅ�_��6V�i=�[���JkO��U|�����#y��9��"S��ݗ�4\��Pj5�Y���6ۜ&�~�m&�Q���]s0twJ��~����i��F���B�1������Pw�d�wk��Ԯs\:���B�ʒD����'S(�tLFNOf!l@,�D�
-   p
-   ����|x�}y�Q,c���R֫�����/�9�����~�CRt�G�l���c���jO�f�R!��z�7g>=�|����?"
-   ����ús��cX�?�#S�5\�'B�4΢�H��_��䑄<��p"�HAt��Ȗ���D�Z�UE�L� z�o?�7h�2ġ�A(‮�h&�-ڌ�-�C�7�M���R�#Jҟes�����.!�֖9�^����*	3�9��-�_?Qq�����[q��0͢��ړ��M�5Ҹ��:Ռ#??;J@��vς��]�.N��(�g��65D�qh����2.3(���
-   8���D��^Ђzh��7�T�j.��T���:]5��X�"��>�r� V�ܡ,Lȱ��z;1��);��{(dUt6s�bbPC�Ӛ:"�S�j��f��ck�4V
-   L� =ȯ��/@SL��f�&a��^]I����D�)��ƃ��兕��a�q�V(��I���x��F��؄
-   #�Ȧ�I��j;$
-   QQ
-   ]\R�ׯ��r���~��C�M{�ᢊI��~�V"ڞ8��u�F|��-���^�X��N�/Z0K{�:�BgX饭{�T���_j�:�F�m�Ϙn��s���o�%�"�J�,%�j`������uEX���x��ۖ@��a��B�2�1��g��v�y��߾��=��}���_���2�nJ!�!��i!6��ͤ��o*��퇝�Y�\3
-   �[E-r�+)_�������F5(�j�/ߣ���]g��eT�����<|{��/-��;��z�������?��������</BBox[0.0 0.0 6.12 8.69]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3071 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�,ʽ
-   �0��{�o��57��YKݺ
-   �*���P�P��p��X��ptL��ER����Je�a���wv���MWFZ�J̅^jU�
-   A���f�큳ႏ0.0 0.0]/Resources<</Font<</ZaDb 3061 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�,ʽ
-   �0��{�o��57��YKݺ
-   �*���P�P��p��X��ptL��ER����Je�a���wv���MWFZ�J̅^jU�
-   A���f�큳ႏ>>stream
-   H�,ʽ
-   �0��{�o��57��YKݺ
-   �*���P�P��p��X��ptL��ER����Je�a���wv���MWFZ�J̅^jU�
-   A���f�큳ႏ.0]/Resources<<>>/Subtype/Form>>stream
-   H���Pp�uV�rct>>stream
-   0.749023 g
-   0 0 6.12 8.69 re
-   f
-
-   endstream
-   endobj
-   3239 0 obj
-   <</BBox[0.0 0.0 6.12 8.69]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3014 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�,ʽ
-   �0��{�o��57��YKݺ
-   �*���P�P��p��X��ptL��ER����Je�a���wv���MWFZ�J̅^jU�
-   A���f�큳ႏMatrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 2988 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 7.282 10.227 re
-   W
-   n
-   BT
-   /ZaDb 6.5988 Tf
-   2.0312 3.8798 Td
-   6.3546 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   3269 0 obj
-   <</BBox[0.0 0.0 9.28201 12.227]/FormType 1/Length 33/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 9.282 12.227 re
-   f
-
-   endstream
-   endobj
-   3270 0 obj
-   <</BBox[0.0 0.0 9.28201 12.227]/Filter/FlateDecode/FormType 1/Length 112/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 2988 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4ʻ
-   �@��~�-c3��&�hE;a �.b"��/��Q�mU�\�TV�b&f��	36����=>�_pq����d���B�a�1��\wx!I��D��y��+n�~318 0 obj
-   <</BBox[100.75 326.854 107.909 334.012]/O/Layout>>
-   endobj
-   3319 0 obj
-   <</BBox[110.75 338.604 127.474 341.104]/O/Layout>>
-   endobj
-   3320 0 obj
-   <</BBox[100.75 340.354 107.909 347.512]/O/Layout>>
-   endobj
-   3321 0 obj
-   <</BBox[110.75 352.104 127.474 354.604]/O/Layout>>
-   endobj
-   3322 0 obj
-   <</BBox[100.75 353.854 107.909 361.012]/O/Layout>>
-   endobj
-   3323 0 obj
-   <</BBox[110.75 365.604 127.474 368.104]/O/Layout>>
-   endobj
-   3324 0 obj
-   <</BBox[100.75 367.354 107.909 374.512]/O/Layout>>
-   endobj
-   3325 0 obj
-   <</BBox[110.75 379.104 127.474 381.604]/O/Layout>>
-   endobj
-   3326 0 obj
-   <</BBox[100.75 380.854 107.909 388.012]/O/Layout>>
-   endobj
-   3327 0 obj
-   <</BBox[110.75 392.604 127.474 395.104]/O/Layout>>
-   endobj
-   3328 0 obj
-   <</BBox[100.75 394.354 107.909 401.512]/O/Layout>>
-   endobj
-   3329 0 obj
-   <</BBox[110.75 406.104 127.474 408.604]/O/Layout>>
-   endobj
-   3330 0 obj
-   <</BBox[100.75 407.854 107.909 415.012]/O/Layout>>
-   endobj
-   3331 0 obj
-   <</BBox[110.75 419.604 127.474 422.104]/O/Layout>>
-   endobj
-   3332 0 obj
-   <</BBox[100.75 421.354 107.909 428.512]/O/Layout>>
-   endobj
-   3333 0 obj
-   <</BBox[110.75 433.104 127.474 435.604]/O/Layout>>
-   endobj
-   3334 0 obj
-   <</BBox[100.75 434.854 107.909 442.012]/O/Layout>>
-   endobj
-   3335 0 obj
-   <</BBox[110.75 446.604 127.474 449.104]/O/Layout>>
-   endobj
-   3336 0 obj
-   <</BBox[100.75 448.354 107.909 455.512]/O/Layout>>
-   endobj
-   3337 0 obj
-   <</BBox[110.75 460.104 127.474 462.604]/O/Layout>>
-   endobj
-   3338 0 obj
-   <</BBox[100.75 461.854 107.909 469.012]/O/Layout>>
-   endobj
-   3339 0 obj
-   <</BBox[111.75 507.863 128.474 510.363]/O/Layout>>
-   endobj
-   3340 0 obj
-   <</BBox[100.75 509.613 107.909 516.771]/O/Layout>>
-   endobj
-   3341 0 obj
-   <</BBox[111.75 521.363 128.474 523.863]/O/Layout>>
-   endobj
-   3342 0 obj
-   <</BBox[100.75 523.113 107.909 530.271]/O/Layout>>
-   endobj
-   3343 0 obj
-   <</BBox[111.75 534.863 128.474 537.363]/O/Layout>>
-   endobj
-   3344 0 obj
-   <</BBox[100.75 536.613 107.909 543.771]/O/Layout>>
-   endobj
-   3345 0 obj
-   <</BBox[111.75 548.363 128.474 550.863]/O/Layout>>
-   endobj
-   3346 0 obj
-   <</BBox[100.75 550.113 107.909 557.271]/O/Layout>>
-   endobj
-   3347 0 obj
-   <</BBox[111.75 561.863 128.474 564.363]/O/Layout>>
-   endobj
-   3348 0 obj
-   <</BBox[100.75 563.613 107.909 570.771]/O/Layout>>
-   endobj
-   3349 0 obj
-   <</BBox[111.75 575.363 128.474 577.863]/O/Layout>>
-   endobj
-   3350 0 obj
-   <</BBox[100.75 577.113 107.909 584.271]/O/Layout>>
-   endobj
-   4130 0 obj
-   <</BitsPerComponent 8/ColorSpace 4131 0 R/Filter/FlateDecode/Height 99/Length 542/Width 76>>stream
-   H���� Eٺ��~��Q�C^0�i9�X����|�P�Ź�O�_L�a�s1��ď_���*��p���&֏�XV�q=I|O��tW��L�����M�C.^����7Lō�W���'���L��Q�Rt=�z���+���C�]Juv���TE�R�B�T�'=9q��U�y�5�B E]wus�W�$�4�7��KJ ��/�Еi���3W�a���CMU��F\�s��c�����O�\���WK�G�#r����t�
-   ��w��C�K�/ _��u\������L�(\�
-   ��C��F��NT��Dz�Bݱ�e����\�tZ��s/~���>!��O������wh��|����G��zO\_뫷�cS���%CO�s�M�ŋg���q�d�2U_ѡ�}(а�5]3\4134 0 obj
-   <</Filter/FlateDecode/Length 382>>stream
-   H�\�Ɋ�@��>E�Cp��	��@�0�<��JF���1�~��C�A�kk�ˮp{�];���wuɃ9���|��fs�K�81M[�����U�\����Gw�<7�o��l�t'��oط�bf_�rn����?|e7���i�,�^�����	��ű{;�����{6�t�!����U;r�HVa�"`����)�N����A��s�&L`Rރ��)|R�Icp����%x)�L'�Mx�*��;�93͙!6��̂�0�i-BNҜR���2���'�)�
-   �R^����F����T�w����^j��^��	ޡ�Z�Q�B�0FX'�+������t���<�u�-���{���_�_�ߘ�-G�,�}���/���Hh8�m�W�2p[����AiA��N�#8$X�?�A�KHI�{!7�<q��W�y(!46�-���a�a���a�W��	��@�@�`l���YĎ��H,�$����(�(Y�h�7��ъ���b<b*b��<�����~�L&Y&9��%�u�M�s�s��NpJP%�M�IJlN<�DHJIڐtCj'�KwKg�C��%�N��d��|�ꙪO=��%�mL���u�v�x:H��oL��!Ȩ��C&13#s$�/Y����������=�Osbs�rn��sO�1��v�=ˏ��ϟ\�h٢���#��¼����oZ<]T�Ut}�`IÒsK��V-���Y,+>TB(�/�S�,]6*�-���W:#��7�*���e��^YDY�}U�j��AyT�`�#�D=���"�b{ų���+�ʯ:�!kJ4G�m��t�}uC�%���K7YV��fF���Y�.�=b��?S��ƕƩ�Ⱥ����y���
-   چ���k�5%4��m�7�lqlio�Z�lG+�Z�z�͹��mzy��]�����?u�u�w|�"űN���wW&���e֥ﺱ*|����j��5k��yݭ���ǯg��^y�kEk�����l�D_p߶������7Dm����o꿻1m��l�{��Mś�
-   n�L�l�<9��On>
-                     <stEvt:instanceID>xmp.iid:00801174072068118083F0F8301E2230</stEvt:instanceID>
-                     <stEvt:when>2014-04-14T20:28:49-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:8A86908C1D20681180838E8D3DCB6432</stEvt:instanceID>
-                     <stEvt:when>2014-04-21T16:56:18-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Illustrator CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:1821A977072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:00:13-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>saved</stEvt:action>
-                     <stEvt:instanceID>xmp.iid:208419B4072068118083B16D98D03138</stEvt:instanceID>
-                     <stEvt:when>2014-04-24T17:01:55-07:00</stEvt:when>
-                     <stEvt:softwareAgent>Adobe Bridge CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/metadata</stEvt:changed>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpMM:History>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:illustrator="http://ns.adobe.com/illustrator/1.0/">
-            <illustrator:Type>Document</illustrator:Type>
-            <illustrator:StartupProfile>Print</illustrator:StartupProfile>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-               xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
-               xmlns:xmpG="http://ns.adobe.com/xap/1.0/g/">
-            <xmpTPg:HasVisibleOverprint>False</xmpTPg:HasVisibleOverprint>
-            <xmpTPg:HasVisibleTransparency>False</xmpTPg:HasVisibleTransparency>
-            <xmpTPg:NPages>1</xmpTPg:NPages>
-            <xmpTPg:MaxPageSize rdf:parseType="Resource">
-               <stDim:w>3.523159</stDim:w>
-               <stDim:h>1.800930</stDim:h>
-               <stDim:unit>Inches</stDim:unit>
-            </xmpTPg:MaxPageSize>
-            <xmpTPg:PlateNames>
-               <rdf:Seq>
-                  <rdf:li>Black</rdf:li>
-               </rdf:Seq>
-            </xmpTPg:PlateNames>
-            <xmpTPg:SwatchGroups>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <xmpG:groupName>Default Swatch Group</xmpG:groupName>
-                     <xmpG:groupType>0</xmpG:groupType>
-                     <xmpG:Colorants>
-                        <rdf:Seq>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>White</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>0.000000</xmpG:black>
-                           </rdf:li>
-                           <rdf:li rdf:parseType="Resource">
-                              <xmpG:swatchName>Black</xmpG:swatchName>
-                              <xmpG:mode>CMYK</xmpG:mode>
-                              <xmpG:type>PROCESS</xmpG:type>
-                              <xmpG:cyan>0.000000</xmpG:cyan>
-                              <xmpG:magenta>0.000000</xmpG:magenta>
-                              <xmpG:yellow>0.000000</xmpG:yellow>
-                              <xmpG:black>100.000000</xmpG:black>
-                           </rdf:li>
-                        </rdf:Seq>
-                     </xmpG:Colorants>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpTPg:SwatchGroups>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:pdf="http://ns.adobe.com/pdf/1.3/">
-            <pdf:Producer>Adobe PDF library 10.01</pdf:Producer>
-         </rdf:Description>
-         <rdf:Description rdf:about=""
-               xmlns:lr="http://ns.adobe.com/lightroom/1.0/">
-            <lr:hierarchicalSubject>
-               <rdf:Bag>
-                  <rdf:li>Brand|DnD Dungeons &amp; Dragons</rdf:li>
-                  <rdf:li>Logo</rdf:li>
-                  <rdf:li>Logo|1 Color</rdf:li>
-                  <rdf:li>Logo|Vector</rdf:li>
-                  <rdf:li>Logo|Medium</rdf:li>
-               </rdf:Bag>
-            </lr:hierarchicalSubject>
-         </rdf:Description>
-      </rdf:RDF>
-   </x:xmpmeta>
-   <?xpacket end="r"?>
-   endstream
-   endobj
-   4146 0 obj
-   [/View/Design]
-   endobj
-   4147 0 obj
-   <</CreatorInfo<</Creator(Adobe InDesign CS6 \(Macintosh\))/Subtype/Artwork>>>>
-   endobj
-   4148 0 obj
-   <</Filter/FlateDecode/Length 332>>stream
-   H�\��j�0E���Y&����CqR���li�jY���_�'�P��#F��G���Ε�g����k����8�7�Z��V$)�^�����C�D��2�8T�E�C�����<��ŭ�޼A��+l��zQ}s��3�P`�F/�{m�h��*����������u����������WyF�s�@k��ӌem��/��qXD�1g+'�	qʜg��d�ĊY������H|b>��KR.����%�K��/�_�V�ڒ�$>3��/̗���RT��Zբ8��\�s��.�~;t}���荾yڲ>��ԉ��㵸�AP��5����U�����a��#�fe��r�s��N��[�|�s֜r��q|�Q�~Ń�4�W*ͱ.}S�'<uP���u	�f�0�z2�����P�A�f���莄�םa��}�1�x�x�0md秪3l�܏9c<d��>;�9�&�c��8bK+����[�\ge�W���t��w;�1�]ri~+��]|��19�0��kB�E]�Y�8E�T�����Å�1�O�CH�����'����ꋃb��Mr�\�C���ǋAe|8V
-   �Q����k�䡴��f3�@�m�F#4��Č�V�p&�A�iɃ?W ���Tw���:y(x@�R���`I��Һ���-�=]2�������\)�"�|�3Z}nv*���8�:^�;1�����IX>rtA�@�	��!�"��]��%޻ �"��>>$��ػs;�,��L6�O��2�9��U����l1U���Y�81y�������'R����Ńi���[Y�
-   x���Jb��;-������=�2��o瘴>��ZW���ƞ����)��h;�V��ް.�T#r:�ߗ�H�G+�he��}�˯�bwϰ��sK����������˰W��e���E,�!Q���y}��o�9"�~������Ǣ�X?a?<t��p�@�y�2"�u�}��2{���ow8dyd���(�;�~��.2�<ڙerNg�PlI/^_��!8�,���p��w��Q�Xf`��Pj0ʣ��G�p�Q5�rؕ��p9��_�w�̫�������O�*�q�����hJ��=� ��&W�䛶m��b�,qŕ��(�#���F���D�go��8���$����:�ô��K.QON����h?;LO�C��k2��8)�|���'�c~��uP�z�j�i��}즬#m��m�&D����{�Ii>�b��(^���1��Hێ8��Vw�`f��4�%ٻi��B
-   /�Y}<p�v-:R� �s�Z!feam
-   endobj
-   4154 0 obj
-   <</Filter/FlateDecode/Length 4353>>stream
-   H��W�nl�ܟ�8?px�Mv��Z6��0�,�B/$���T5ό�H��s�r�Sy�����ՉN�@l�D�g8͡yG�9�3������m�jRK/4�I=n��!m���h�Ǳ��x)�z�2��ʷ�^��-,�g���ԅ�>�ME�k��܏��I	��ڣ���5�y�/�m�f�dCm��Y��a[���4�����
-   �����8ޖwsN핤��h���~H�����D8�R��#���~�`dH�ua�՟���ж/�Y�=�I�:�鴎:���tL�r�Giֶ�R�T(̔U���T����g~���8{�m���C�@�oOʰܰe嵫��5�oF���Za&.)���`��=Y
-   ��Ջ�`�^�����Z��.�p]K���{��e���\�n��>K�v�����p�r/�����-��@�\F�����[��˨�"ċY�1W��38���r������y��ͧ��?���w�?�7�k'��jiu�x�¡�L��t���ޟ6���`��*�v�`�Vt�cXe��d�Ya0�t�%���%�����
-   ��KC�
-   R�}�]�D;T�f�v�XԄE/q�\�/�;�����f����+�q��*����E5U�����~4��FL�A�6�C����8<��}�w{?/��5�Γ��y�*c8K�`!E9�l�鋃��O�V��S�0b|�L?��v�r*5z-�Je'��D
-   �g7�F_}����_pH�����`�0��"��1�pi]a��yn��| 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`j
-   4205 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47409]/FormType 1/Length 33/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.4741 re
-   f
-
-   endstream
-   endobj
-   4206 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47409]/Filter/FlateDecode/FormType 1/Length 107/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�<ʱ
-   �P��~�u��K�{]E7!P��D��A��z8*5z-�Je'��D
-   �g7�F_}����_pH�����`�0��"��1�pi]a��yn��|rix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 3.904 6.474 re
-   W
-   n
-   BT
-   /ZaDb 4 Tf
-   1.37 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4225 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4226 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`.0 0.0 5.90401 8.47409]/Filter/FlateDecode/FormType 1/Length 107/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�<ʱ
-   �P��~�u��K�{]E7!P��D��A��z8*5z-�Je'��D
-   �g7�F_}����_pH�����`�0��"��1�pi]a��yn��|4]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4268 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`ype 1/Length 74/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 3.904 6.474 re
-   W
-   n
-   BT
-   /ZaDb 4 Tf
-   1.37 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4289 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4290 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`et[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4ʱ
-   �0��~���|�KL���\���b[(R��?(����RR�h��Tfi�X%��u��/m���w,�=��8>��}D+�R�e�&5G���@��;n�	0pe/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.475 re
-   f
-
-   endstream
-   endobj
-   4329 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47499]/Filter/FlateDecode/FormType 1/Length 107/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4ʱ
-   �0��~���|�KL���\���b[(R��?(����RR�h��Tfi�X%��u��/m���w,�=��8>��}D+�R�e�&5G���@��;n�	037 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4348 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4349 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`obj
-   4368 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4369 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4370 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4371 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4372 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4373 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4374 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4375 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4376 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4377 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4378 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4379 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4380 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4381 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4382 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4383 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4384 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4385 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4386 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4387 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4388 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4389 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4390 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4391 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4392 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4393 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4394 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4395 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4396 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4397 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4398 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4399 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4400 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4401 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4402 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4403 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4404 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4405 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4406 0 obj
-   <</BC[]/BG[]/CA(l)>>
-   endobj
-   4407 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47403]/FormType 1/Length 74/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 3.904 6.474 re
-   W
-   n
-   BT
-   /ZaDb 4 Tf
-   1.37 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4408 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47403]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4409 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47403]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`obj
-   4426 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/FormType 1/Length 74/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 3.904 6.474 re
-   W
-   n
-   BT
-   /ZaDb 4 Tf
-   1.37 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4427 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4428 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`/Subtype/Form/Type/XObject>>stream
-   H�4ʱ
-   �0��~���|�KL���\���b[(R��?(����RR�h��Tfi�X%��u��/m���w,�=��8>��}D+�R�e�&5G���@��;n�	0rm/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`bj
-   4522 0 obj
-   <</BBox[0.0 0.0 5.90401 8.47403]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`0.0 5.90401 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4542 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   q
-   1 1 3.904 6.474 re
-   W
-   n
-   BT
-   /ZaDb 4 Tf
-   1.37 2.883 Td
-   3.852 TL
-   (l) Tj
-   ET
-   Q
-
-   endstream
-   endobj
-   4562 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/FormType 1/Length 32/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4563 0 obj
-   <</BBox[0.0 0.0 5.90399 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`�w,�=��8>��}D+�R�e�&5G���@��;n�	0ngth 107/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4ʱ
-   �0��~���|�KL���\���b[(R��?(����RR�h��Tfi�X%��u��/m���w,�=��8>��}D+�R�e�&5G���@��;n�	0ces<</ProcSet[/PDF]>>/Subtype/Form/Type/XObject>>stream
-   0.749023 g
-   0 0 5.904 8.474 re
-   f
-
-   endstream
-   endobj
-   4619 0 obj
-   <</BBox[0.0 0.0 5.90401 8.474]/Filter/FlateDecode/FormType 1/Length 106/Matrix[1.0 0.0 0.0 1.0 0.0 0.0]/Resources<</Font<</ZaDb 3931 0 R>>/ProcSet[/PDF/Text]>>/Subtype/Form/Type/XObject>>stream
-   H�4�1
-   �@����ڌ�;���l��.!& H�_D��S)�i6�P*��Yŋs{a�D�q����q���e�3&$��,�c�Im2����x��c`[]/BG[]>>
-   endobj
-   4643 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4644 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4645 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4646 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4647 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4648 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4649 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4650 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4651 0 obj
-   <</BC[]/BG[]>>
-   endobj
-   4652 0 obj
-   <</BBox[415.935 41.2144 580.204 42.4644]/O/Layout>>
-   endobj
-   4653 0 obj
-   <</BBox[407.9 41.4644 415.06 48.6226]/O/Layout>>
-   endobj
-   4654 0 obj
-   <</BBox[415.935 55.2144 580.204 56.4644]/O/Layout>>
-   endobj
-   4655 0 obj
-   <</BBox[407.9 55.4644 415.06 62.6226]/O/Layout>>
-   endobj
-   4656 0 obj
-   <</BBox[415.935 69.2144 580.204 70.4644]/O/Layout>>
-   endobj
-   4657 0 obj
-   <</BBox[407.9 69.4644 415.06 76.6226]/O/Layout>>
-   endobj
-   4658 0 obj
-   <</BBox[415.935 83.2144 580.204 84.4644]/O/Layout>>
-   endobj
-   4659 0 obj
-   <</BBox[407.9 83.4644 415.06 90.6226]/O/Layout>>
-   endobj
-   4660 0 obj
-   <</BBox[415.935 97.2144 580.204 98.4644]/O/Layout>>
-   endobj
-   4661 0 obj
-   <</BBox[407.9 97.4644 415.06 104.623]/O/Layout>>
-   endobj
-   4662 0 obj
-   <</BBox[415.935 111.214 580.204 112.464]/O/Layout>>
-   endobj
-   4663 0 obj
-   <</BBox[407.9 111.464 415.06 118.623]/O/Layout>>
-   endobj
-   4664 0 obj
-   <</BBox[415.935 125.214 580.204 126.464]/O/Layout>>
-   endobj
-   4665 0 obj
-   <</BBox[407.9 125.464 415.06 132.623]/O/Layout>>
-   endobj
-   4666 0 obj
-   <</BBox[228.809 41.1995 393.079 42.4495]/O/Layout>>
-   endobj
-   4667 0 obj
-   <</BBox[220.775 41.5957 227.934 48.7539]/O/Layout>>
-   endobj
-   4668 0 obj
-   <</BBox[228.809 55.3457 393.079 56.5957]/O/Layout>>
-   endobj
-   4669 0 obj
-   <</BBox[220.775 55.5957 227.934 62.7539]/O/Layout>>
-   endobj
-   4670 0 obj
-   <</BBox[228.809 69.3457 393.079 70.5957]/O/Layout>>
-   endobj
-   4671 0 obj
-   <</BBox[220.775 69.5957 227.934 76.7539]/O/Layout>>
-   endobj
-   4672 0 obj
-   <</BBox[228.809 83.3457 393.079 84.5957]/O/Layout>>
-   endobj
-   4673 0 obj
-   <</BBox[220.775 83.5957 227.934 90.7539]/O/Layout>>
-   endobj
-   4674 0 obj
-   <</BBox[228.809 97.3457 393.079 98.5957]/O/Layout>>
-   endobj
-   4675 0 obj
-   <</BBox[220.775 97.5957 227.934 104.754]/O/Layout>>
-   endobj
-   4676 0 obj
-   <</BBox[228.809 111.346 393.079 112.596]/O/Layout>>
-   endobj
-   4677 0 obj
-   <</BBox[220.775 111.596 227.934 118.754]/O/Layout>>
-   endobj
-   4678 0 obj
-   <</BBox[228.809 125.346 393.079 126.596]/O/Layout>>
-   endobj
-   4679 0 obj
-   <</BBox[220.775 125.596 227.934 132.754]/O/Layout>>
-   endobj
-   4680 0 obj
-   <</BBox[228.809 139.346 393.079 140.596]/O/Layout>>
-   endobj
-   4681 0 obj
-   <</BBox[220.775 139.596 227.934 146.754]/O/Layout>>
-   endobj
-   4682 0 obj
-   <</BBox[228.809 153.346 393.079 154.596]/O/Layout>>
-   endobj
-   4683 0 obj
-   <</BBox[220.775 153.596 227.934 160.754]/O/Layout>>
-   endobj
-   4684 0 obj
-   <</BBox[39.8095 41.1938 204.079 42.4438]/O/Layout>>
-   endobj
-   4685 0 obj
-   <</BBox[31.7753 41.4438 38.9344 48.6021]/O/Layout>>
-   endobj
-   4686 0 obj
-   <</BBox[39.8095 55.1938 204.079 56.4438]/O/Layout>>
-   endobj
-   4687 0 obj
-   <</BBox[31.7753 55.4438 38.9344 62.6021]/O/Layout>>
-   endobj
-   4688 0 obj
-   <</BBox[39.8095 69.1938 204.079 70.4438]/O/Layout>>
-   endobj
-   4689 0 obj
-   <</BBox[31.7753 69.4438 38.9344 76.6021]/O/Layout>>
-   endobj
-   4690 0 obj
-   <</BBox[39.8095 83.1938 204.079 84.4438]/O/Layout>>
-   endobj
-   4691 0 obj
-   <</BBox[31.7753 83.4438 38.9344 90.6021]/O/Layout>>
-   endobj
-   4692 0 obj
-   <</BBox[39.8095 97.1938 204.079 98.4438]/O/Layout>>
-   endobj
-   4693 0 obj
-   <</BBox[31.7753 97.4438 38.9344 104.602]/O/Layout>>
-   endobj
-   4694 0 obj
-   <</BBox[39.8095 111.194 204.079 112.444]/O/Layout>>
-   endobj
-   4695 0 obj
-   <</BBox[31.7753 111.444 38.9344 118.602]/O/Layout>>
-   endobj
-   4696 0 obj
-   <</BBox[39.8095 125.194 204.079 126.444]/O/Layout>>
-   endobj
-   4697 0 obj
-   <</BBox[31.7753 125.444 38.9344 132.602]/O/Layout>>
-   endobj
-   4698 0 obj
-   <</BBox[39.8095 139.194 204.079 140.444]/O/Layout>>
-   endobj
-   4699 0 obj
-   <</BBox[31.7753 139.444 38.9344 146.602]/O/Layout>>
-   endobj
-   4700 0 obj
-   <</BBox[39.8095 153.194 204.079 154.444]/O/Layout>>
-   endobj
-   4701 0 obj
-   <</BBox[31.7753 153.444 38.9344 160.602]/O/Layout>>
-   endobj
-   4702 0 obj
-   <</BBox[39.8095 167.194 204.079 168.444]/O/Layout>>
-   endobj
-   4703 0 obj
-   <</BBox[31.7753 167.444 38.9344 174.602]/O/Layout>>
-   endobj
-   4704 0 obj
-   <</BBox[39.8095 181.194 204.079 182.444]/O/Layout>>
-   endobj
-   4705 0 obj
-   <</BBox[31.7753 181.444 38.9344 188.602]/O/Layout>>
-   endobj
-   4706 0 obj
-   <</BBox[39.8095 195.194 204.079 196.444]/O/Layout>>
-   endobj
-   4707 0 obj
-   <</BBox[31.7753 195.444 38.9344 202.602]/O/Layout>>
-   endobj
-   4708 0 obj
-   <</BBox[39.8095 209.194 204.079 210.444]/O/Layout>>
-   endobj
-   4709 0 obj
-   <</BBox[31.7753 209.444 38.9344 216.602]/O/Layout>>
-   endobj
-   4710 0 obj
-   <</BBox[415.935 181.938 580.204 183.188]/O/Layout>>
-   endobj
-   4711 0 obj
-   <</BBox[407.9 182.188 415.06 189.346]/O/Layout>>
-   endobj
-   4712 0 obj
-   <</BBox[415.935 195.938 580.204 197.188]/O/Layout>>
-   endobj
-   4713 0 obj
-   <</BBox[407.9 196.188 415.06 203.346]/O/Layout>>
-   endobj
-   4714 0 obj
-   <</BBox[415.935 209.938 580.204 211.188]/O/Layout>>
-   endobj
-   4715 0 obj
-   <</BBox[407.9 210.188 415.06 217.346]/O/Layout>>
-   endobj
-   4716 0 obj
-   <</BBox[415.935 223.938 580.204 225.188]/O/Layout>>
-   endobj
-   4717 0 obj
-   <</BBox[407.9 224.188 415.06 231.346]/O/Layout>>
-   endobj
-   4718 0 obj
-   <</BBox[415.935 237.938 580.204 239.188]/O/Layout>>
-   endobj
-   4719 0 obj
-   <</BBox[407.9 238.188 415.06 245.346]/O/Layout>>
-   endobj
-   4720 0 obj
-   <</BBox[415.935 251.938 580.204 253.188]/O/Layout>>
-   endobj
-   4721 0 obj
-   <</BBox[407.9 252.188 415.06 259.346]/O/Layout>>
-   endobj
-   4722 0 obj
-   <</BBox[415.935 265.938 580.204 267.188]/O/Layout>>
-   endobj
-   4723 0 obj
-   <</BBox[407.9 266.188 415.06 273.346]/O/Layout>>
-   endobj
-   4724 0 obj
-   <</BBox[228.809 211.909 393.079 213.159]/O/Layout>>
-   endobj
-   4725 0 obj
-   <</BBox[220.775 212.159 227.934 219.318]/O/Layout>>
-   endobj
-   4726 0 obj
-   <</BBox[228.809 225.909 393.079 227.159]/O/Layout>>
-   endobj
-   4727 0 obj
-   <</BBox[220.775 226.159 227.934 233.318]/O/Layout>>
-   endobj
-   4728 0 obj
-   <</BBox[228.809 239.909 393.079 241.159]/O/Layout>>
-   endobj
-   4729 0 obj
-   <</BBox[220.775 240.159 227.934 247.318]/O/Layout>>
-   endobj
-   4730 0 obj
-   <</BBox[228.809 253.909 393.079 255.159]/O/Layout>>
-   endobj
-   4731 0 obj
-   <</BBox[220.775 254.159 227.934 261.318]/O/Layout>>
-   endobj
-   4732 0 obj
-   <</BBox[228.809 267.909 393.079 269.159]/O/Layout>>
-   endobj
-   4733 0 obj
-   <</BBox[220.775 268.159 227.934 275.318]/O/Layout>>
-   endobj
-   4734 0 obj
-   <</BBox[228.809 281.909 393.079 283.159]/O/Layout>>
-   endobj
-   4735 0 obj
-   <</BBox[220.775 282.159 227.934 289.318]/O/Layout>>
-   endobj
-   4736 0 obj
-   <</BBox[228.809 295.909 393.079 297.159]/O/Layout>>
-   endobj
-   4737 0 obj
-   <</BBox[220.775 296.159 227.934 303.318]/O/Layout>>
-   endobj
-   4738 0 obj
-   <</BBox[228.809 309.909 393.079 311.159]/O/Layout>>
-   endobj
-   4739 0 obj
-   <</BBox[220.775 310.159 227.934 317.318]/O/Layout>>
-   endobj
-   4740 0 obj
-   <</BBox[228.809 323.909 393.079 325.159]/O/Layout>>
-   endobj
-   4741 0 obj
-   <</BBox[220.775 324.159 227.934 331.318]/O/Layout>>
-   endobj
-   4742 0 obj
-   <</BBox[228.809 337.909 393.079 339.159]/O/Layout>>
-   endobj
-   4743 0 obj
-   <</BBox[220.775 338.159 227.934 345.318]/O/Layout>>
-   endobj
-   4744 0 obj
-   <</BBox[228.809 351.909 393.079 353.159]/O/Layout>>
-   endobj
-   4745 0 obj
-   <</BBox[220.775 352.159 227.934 359.318]/O/Layout>>
-   endobj
-   4746 0 obj
-   <</BBox[228.809 365.909 393.079 367.159]/O/Layout>>
-   endobj
-   4747 0 obj
-   <</BBox[220.775 366.159 227.934 373.318]/O/Layout>>
-   endobj
-   4748 0 obj
-   <</BBox[228.809 379.909 393.079 381.159]/O/Layout>>
-   endobj
-   4749 0 obj
-   <</BBox[220.775 380.159 227.934 387.318]/O/Layout>>
-   endobj
-   4750 0 obj
-   <</BBox[415.935 323.742 580.204 324.992]/O/Layout>>
-   endobj
-   4751 0 obj
-   <</BBox[407.9 323.992 415.06 331.151]/O/Layout>>
-   endobj
-   4752 0 obj
-   <</BBox[415.935 337.742 580.204 338.992]/O/Layout>>
-   endobj
-   4753 0 obj
-   <</BBox[407.9 337.992 415.06 345.151]/O/Layout>>
-   endobj
-   4754 0 obj
-   <</BBox[415.935 351.742 580.204 352.992]/O/Layout>>
-   endobj
-   4755 0 obj
-   <</BBox[407.9 351.992 415.06 359.151]/O/Layout>>
-   endobj
-   4756 0 obj
-   <</BBox[415.935 365.742 580.204 366.992]/O/Layout>>
-   endobj
-   4757 0 obj
-   <</BBox[407.9 365.992 415.06 373.151]/O/Layout>>
-   endobj
-   4758 0 obj
-   <</BBox[415.935 379.742 580.204 380.992]/O/Layout>>
-   endobj
-   4759 0 obj
-   <</BBox[407.9 379.992 415.06 387.151]/O/Layout>>
-   endobj
-   4760 0 obj
-   <</BBox[415.935 393.742 580.204 394.992]/O/Layout>>
-   endobj
-   4761 0 obj
-   <</BBox[407.9 393.992 415.06 401.151]/O/Layout>>
-   endobj
-   4762 0 obj
-   <</BBox[415.935 407.742 580.204 408.992]/O/Layout>>
-   endobj
-   4763 0 obj
-   <</BBox[407.9 407.992 415.06 415.151]/O/Layout>>
-   endobj
-   4764 0 obj
-   <</BBox[415.935 421.742 580.204 422.992]/O/Layout>>
-   endobj
-   4765 0 obj
-   <</BBox[407.9 421.992 415.06 429.151]/O/Layout>>
-   endobj
-   4766 0 obj
-   <</BBox[415.935 435.742 580.204 436.992]/O/Layout>>
-   endobj
-   4767 0 obj
-   <</BBox[407.9 435.992 415.06 443.151]/O/Layout>>
-   endobj
-   4768 0 obj
-   <</BBox[39.8095 267.763 204.079 269.013]/O/Layout>>
-   endobj
-   4769 0 obj
-   <</BBox[31.7753 268.013 38.9344 275.171]/O/Layout>>
-   endobj
-   4770 0 obj
-   <</BBox[39.8095 281.763 204.079 283.013]/O/Layout>>
-   endobj
-   4771 0 obj
-   <</BBox[31.7753 282.013 38.9344 289.171]/O/Layout>>
-   endobj
-   4772 0 obj
-   <</BBox[39.8095 295.763 204.079 297.013]/O/Layout>>
-   endobj
-   4773 0 obj
-   <</BBox[31.7753 296.013 38.9344 303.171]/O/Layout>>
-   endobj
-   4774 0 obj
-   <</BBox[39.8095 309.763 204.079 311.013]/O/Layout>>
-   endobj
-   4775 0 obj
-   <</BBox[31.7753 310.013 38.9344 317.171]/O/Layout>>
-   endobj
-   4776 0 obj
-   <</BBox[39.8095 323.763 204.079 325.013]/O/Layout>>
-   endobj
-   4777 0 obj
-   <</BBox[31.7753 324.013 38.9344 331.171]/O/Layout>>
-   endobj
-   4778 0 obj
-   <</BBox[39.8095 337.763 204.079 339.013]/O/Layout>>
-   endobj
-   4779 0 obj
-   <</BBox[31.7753 338.013 38.9344 345.171]/O/Layout>>
-   endobj
-   4780 0 obj
-   <</BBox[39.8095 351.763 204.079 353.013]/O/Layout>>
-   endobj
-   4781 0 obj
-   <</BBox[31.7753 352.013 38.9344 359.171]/O/Layout>>
-   endobj
-   4782 0 obj
-   <</BBox[39.8095 365.763 204.079 367.013]/O/Layout>>
-   endobj
-   4783 0 obj
-   <</BBox[31.7753 366.013 38.9344 373.171]/O/Layout>>
-   endobj
-   4784 0 obj
-   <</BBox[39.8095 379.763 204.079 381.013]/O/Layout>>
-   endobj
-   4785 0 obj
-   <</BBox[31.7753 380.013 38.9344 387.171]/O/Layout>>
-   endobj
-   4786 0 obj
-   <</BBox[39.8095 393.763 204.079 395.013]/O/Layout>>
-   endobj
-   4787 0 obj
-   <</BBox[31.7753 394.013 38.9344 401.171]/O/Layout>>
-   endobj
-   4788 0 obj
-   <</BBox[39.8095 407.763 204.079 409.013]/O/Layout>>
-   endobj
-   4789 0 obj
-   <</BBox[31.7753 408.013 38.9344 415.171]/O/Layout>>
-   endobj
-   4790 0 obj
-   <</BBox[39.8095 421.763 204.079 423.013]/O/Layout>>
-   endobj
-   4791 0 obj
-   <</BBox[31.7753 422.013 38.9344 429.171]/O/Layout>>
-   endobj
-   4792 0 obj
-   <</BBox[39.8095 435.763 204.079 437.013]/O/Layout>>
-   endobj
-   4793 0 obj
-   <</BBox[31.7753 436.013 38.9344 443.171]/O/Layout>>
-   endobj
-   4794 0 obj
-   <</LineHeight 6.5/O/Layout>>
-   endobj
-   4795 0 obj
-   <</EndIndent 4.0/LineHeight 7.0/O/Layout/StartIndent 4.0>>
-   endobj
-   4796 0 obj
-   <</BBox[31.4003 508.82 204.025 510.07]/O/Layout>>
-   endobj
-   4797 0 obj
-   <</BBox[31.4003 522.82 204.025 524.07]/O/Layout>>
-   endobj
-   4798 0 obj
-   <</BBox[31.4003 536.82 204.025 538.07]/O/Layout>>
-   endobj
-   4799 0 obj
-   <</BBox[31.4003 550.82 204.025 552.07]/O/Layout>>
-   endobj
-   4800 0 obj
-   <</BBox[31.4003 564.82 204.025 566.07]/O/Layout>>
-   endobj
-   4801 0 obj
-   <</BBox[31.4003 578.82 204.025 580.07]/O/Layout>>
-   endobj
-   4802 0 obj
-   <</BBox[31.4003 592.82 204.025 594.07]/O/Layout>>
-   endobj
-   4803 0 obj
-   <</BBox[31.4003 606.82 204.025 608.07]/O/Layout>>
-   endobj
-   4804 0 obj
-   <</BBox[228.809 437.495 393.079 438.745]/O/Layout>>
-   endobj
-   4805 0 obj
-   <</BBox[220.775 437.745 227.934 444.903]/O/Layout>>
-   endobj
-   4806 0 obj
-   <</BBox[228.809 451.495 393.079 452.745]/O/Layout>>
-   endobj
-   4807 0 obj
-   <</BBox[220.775 451.745 227.934 458.903]/O/Layout>>
-   endobj
-   4808 0 obj
-   <</BBox[228.809 465.495 393.079 466.745]/O/Layout>>
-   endobj
-   4809 0 obj
-   <</BBox[220.775 465.745 227.934 472.903]/O/Layout>>
-   endobj
-   4810 0 obj
-   <</BBox[228.809 479.495 393.079 480.745]/O/Layout>>
-   endobj
-   4811 0 obj
-   <</BBox[220.775 479.745 227.934 486.903]/O/Layout>>
-   endobj
-   4812 0 obj
-   <</BBox[228.809 493.495 393.079 494.745]/O/Layout>>
-   endobj
-   4813 0 obj
-   <</BBox[220.775 493.745 227.934 500.903]/O/Layout>>
-   endobj
-   4814 0 obj
-   <</BBox[228.809 507.495 393.079 508.745]/O/Layout>>
-   endobj
-   4815 0 obj
-   <</BBox[220.775 507.745 227.934 514.903]/O/Layout>>
-   endobj
-   4816 0 obj
-   <</BBox[228.809 521.495 393.079 522.745]/O/Layout>>
-   endobj
-   4817 0 obj
-   <</BBox[220.775 521.745 227.934 528.903]/O/Layout>>
-   endobj
-   4818 0 obj
-   <</BBox[228.809 535.495 393.079 536.745]/O/Layout>>
-   endobj
-   4819 0 obj
-   <</BBox[220.775 535.745 227.934 542.903]/O/Layout>>
-   endobj
-   4820 0 obj
-   <</BBox[228.809 549.495 393.079 550.745]/O/Layout>>
-   endobj
-   4821 0 obj
-   <</BBox[220.775 549.745 227.934 556.903]/O/Layout>>
-   endobj
-   4822 0 obj
-   <</BBox[228.809 563.495 393.079 564.745]/O/Layout>>
-   endobj
-   4823 0 obj
-   <</BBox[220.775 563.745 227.934 570.903]/O/Layout>>
-   endobj
-   4824 0 obj
-   <</BBox[228.809 577.495 393.079 578.745]/O/Layout>>
-   endobj
-   4825 0 obj
-   <</BBox[220.775 577.745 227.934 584.903]/O/Layout>>
-   endobj
-   4826 0 obj
-   <</BBox[228.809 591.495 393.079 592.745]/O/Layout>>
-   endobj
-   4827 0 obj
-   <</BBox[220.775 591.745 227.934 598.903]/O/Layout>>
-   endobj
-   4828 0 obj
-   <</BBox[228.809 605.495 393.079 606.745]/O/Layout>>
-   endobj
-   4829 0 obj
-   <</BBox[220.775 605.745 227.934 612.903]/O/Layout>>
-   endobj
-   4830 0 obj
-   <</BBox[415.935 493.495 580.204 494.745]/O/Layout>>
-   endobj
-   4831 0 obj
-   <</BBox[407.9 493.745 415.06 500.903]/O/Layout>>
-   endobj
-   4832 0 obj
-   <</BBox[415.935 507.495 580.204 508.745]/O/Layout>>
-   endobj
-   4833 0 obj
-   <</BBox[407.9 507.745 415.06 514.903]/O/Layout>>
-   endobj
-   4834 0 obj
-   <</BBox[415.935 521.495 580.204 522.745]/O/Layout>>
-   endobj
-   4835 0 obj
-   <</BBox[407.9 521.745 415.06 528.903]/O/Layout>>
-   endobj
-   4836 0 obj
-   <</BBox[415.935 535.495 580.204 536.745]/O/Layout>>
-   endobj
-   4837 0 obj
-   <</BBox[407.9 535.745 415.06 542.903]/O/Layout>>
-   endobj
-   4838 0 obj
-   <</BBox[415.935 549.495 580.204 550.745]/O/Layout>>
-   endobj
-   4839 0 obj
-   <</BBox[407.9 549.745 415.06 556.903]/O/Layout>>
-   endobj
-   4840 0 obj
-   <</BBox[415.935 563.495 580.204 564.745]/O/Layout>>
-   endobj
-   4841 0 obj
-   <</BBox[407.9 563.745 415.06 570.903]/O/Layout>>
-   endobj
-   4842 0 obj
-   <</BBox[415.935 577.495 580.204 578.745]/O/Layout>>
-   endobj
-   4843 0 obj
-   <</BBox[407.9 577.745 415.06 584.903]/O/Layout>>
-   endobj
-   4844 0 obj
-   <</BBox[415.935 591.495 580.204 592.745]/O/Layout>>
-   endobj
-   4845 0 obj
-   <</BBox[407.9 591.745 415.06 598.903]/O/Layout>>
-   endobj
-   4846 0 obj
-   <</BBox[415.935 605.495 580.204 606.745]/O/Layout>>
-   endobj
-   4847 0 obj
-   <</BBox[407.9 605.745 415.06 612.903]/O/Layout>>
-   endobj
-   4848 0 obj
-   <</BBox[181.91 747.47 233.259 771.37]/O/Layout/Placement/Block>>
-   endobj
-   4849 0 obj
-   <</LineHeight 5.0/O/Layout/TextAlign/Center>>
-   endobj
-   4850 0 obj
-   <</LineHeight 5.5/O/Layout>>
-   endobj
-   4882 0 obj
-   <</DecodeParms<</Columns 5/Predictor 12>>/Filter/FlateDecode/ID[<B98C2D7474E949FABB196E54C923BC02><E2703A70FA574E81942D38CA18CC6457>]/Info 2119 0 R/Length 1464/Root 2121 0 R/Size 4883/Type/XRef/W[1 3 1]>>stream
-   h��_hE�gv�.�%��L�$��)�т��ڊ�
-   �Rb���/"�H_��E� �`�AT��""�V�V�yj+R�Zk�Xk�&�o��wcv��v3w��/�����wf;73���'�"*,K$.++�ڄ%��3�Rb�������<�����d2�L&����wIˏh,�w(���q�|�%�|Iz��<�/���%}?XjٿJ�W��.S*W+Y���3��S)��4BQfŬ:�=��d2�L&��,��7'iuV�~cG�+~��ES�\#��l�ߛH��<���L�j~����f4 �bv�4���d2�L&��d2W��F�a�����7�k�}#"�2�9X��Z��pN��F��B?Bg2gӎF̴v�"b��Jg�D�Ӟ8Q�)�t�E��e.com/xap/1.0/sType/ResourceEvent#"
-               xmlns:dc="http://purl.org/dc/elements/1.1/"
-               xmlns:pdf="http://ns.adobe.com/pdf/1.3/"
-               xmlns:adhocwf="http://ns.adobe.com/AcrobatAdhocWorkflow/1.0/">
-            <xmp:CreateDate>2014-05-30T12:27:31-07:00</xmp:CreateDate>
-            <xmp:MetadataDate>2014-06-25T17:30:39-07:00</xmp:MetadataDate>
-            <xmp:ModifyDate>2014-06-25T17:30:39-07:00</xmp:ModifyDate>
-            <xmp:CreatorTool>Adobe InDesign CS6 (Macintosh)</xmp:CreatorTool>
-            <xmpMM:InstanceID>uuid:d6b4b943-35c0-a441-8084-b22062a1723b</xmpMM:InstanceID>
-            <xmpMM:OriginalDocumentID>xmp.did:FC7F11740720681192B0F8D908500C1B</xmpMM:OriginalDocumentID>
-            <xmpMM:DocumentID>xmp.id:EAE5C8DD7E2068118A6DF981E5AA36FA</xmpMM:DocumentID>
-            <xmpMM:RenditionClass>proof:pdf</xmpMM:RenditionClass>
-            <xmpMM:DerivedFrom rdf:parseType="Resource">
-               <stRef:instanceID>xmp.iid:E9E5C8DD7E2068118A6DF981E5AA36FA</stRef:instanceID>
-               <stRef:documentID>xmp.did:34F04C6E5D2068118A6DF981E5AA36FA</stRef:documentID>
-               <stRef:originalDocumentID>xmp.did:FC7F11740720681192B0F8D908500C1B</stRef:originalDocumentID>
-               <stRef:renditionClass>default</stRef:renditionClass>
-            </xmpMM:DerivedFrom>
-            <xmpMM:History>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>converted</stEvt:action>
-                     <stEvt:parameters>from application/x-indesign to application/pdf</stEvt:parameters>
-                     <stEvt:softwareAgent>Adobe InDesign CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                     <stEvt:when>2014-05-30T12:27:31-07:00</stEvt:when>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpMM:History>
-            <dc:format>application/pdf</dc:format>
-            <pdf:Producer>Adobe PDF Library 10.0.1</pdf:Producer>
-            <pdf:Trapped>False</pdf:Trapped>
-            <adhocwf:state>1</adhocwf:state>
-            <adhocwf:version>1.1</adhocwf:version>
-         </rdf:Description>
-      </rdf:RDF>
-   </x:xmpmeta>
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                              
-   <?xpacket end="w"?>
-   endstream
-   endobj
-   4883 0 obj
-   [2958 0 R 2959 0 R 2960 0 R 2961 0 R 2962 0 R 2963 0 R 2964 0 R 2965 0 R 2966 0 R 2967 0 R 2968 0 R 2969 0 R 2970 0 R 2971 0 R 2972 0 R 2974 0 R 2975 0 R 2977 0 R 2978 0 R 2980 0 R 2981 0 R 2982 0 R 2983 0 R 2985 0 R 2987 0 R 2989 0 R 2990 0 R 2992 0 R 2994 0 R 2996 0 R 2997 0 R 2998 0 R 2999 0 R 3000 0 R 3001 0 R 3002 0 R 3003 0 R 3004 0 R 3005 0 R 3006 0 R 3007 0 R 3008 0 R 3023 0 R 3024 0 R 3025 0 R 3009 0 R 3010 0 R 3027 0 R 3028 0 R 3032 0 R 3033 0 R 3011 0 R 3013 0 R 3015 0 R 3017 0 R 3019 0 R 3021 0 R 3026 0 R 3029 0 R 3030 0 R 3031 0 R 3034 0 R 3036 0 R 3037 0 R 3038 0 R 3039 0 R 3040 0 R 3041 0 R 3042 0 R 3043 0 R 3044 0 R 3046 0 R 3048 0 R 3050 0 R 3052 0 R 3054 0 R 3056 0 R 3058 0 R 3060 0 R 3062 0 R 3064 0 R 3066 0 R 3068 0 R 3070 0 R 3072 0 R 3074 0 R 3076 0 R 3078 0 R 3080 0 R 2973 0 R 2976 0 R 2979 0 R 3035 0 R 3081 0 R 3082 0 R 3083 0 R 3084 0 R 3085 0 R 3086 0 R 3087 0 R 3088 0 R 3089 0 R 3090 0 R 3091 0 R 3092 0 R 3093 0 R]
-   endobj
-   4884 0 obj
-   <</Filter/FlateDecode/First 7/Length 149/N 1/Type/ObjStm>>stream
-   h�L�A�0om rdf:parseType="Resource">
-               <stRef:instanceID>xmp.iid:E9E5C8DD7E2068118A6DF981E5AA36FA</stRef:instanceID>
-               <stRef:documentID>xmp.did:34F04C6E5D2068118A6DF981E5AA36FA</stRef:documentID>
-               <stRef:originalDocumentID>xmp.did:FC7F11740720681192B0F8D908500C1B</stRef:originalDocumentID>
-               <stRef:renditionClass>default</stRef:renditionClass>
-            </xmpMM:DerivedFrom>
-            <xmpMM:History>
-               <rdf:Seq>
-                  <rdf:li rdf:parseType="Resource">
-                     <stEvt:action>converted</stEvt:action>
-                     <stEvt:parameters>from application/x-indesign to application/pdf</stEvt:parameters>
-                     <stEvt:softwareAgent>Adobe InDesign CS6 (Macintosh)</stEvt:softwareAgent>
-                     <stEvt:changed>/</stEvt:changed>
-                     <stEvt:when>2014-05-30T12:27:31-07:00</stEvt:when>
-                  </rdf:li>
-               </rdf:Seq>
-            </xmpMM:History>
-            <dc:format>application/pdf</dc:format>
-            <pdf:Producer>Adobe PDF Library 10.0.1</pdf:Producer>
-            <pdf:Trapped>False</pdf:Trapped>
-            <adhocwf:state>1</adhocwf:state>
-            <adhocwf:version>1.1</adhocwf:version>
-         </rdf:Description>
-      </rdf:RDF>
-   </x:xmpmeta>
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                                                                                                      
-                              
-   <?xpacket end="w"?>
-   endstream
-   endobj
-   4888 0 obj
-   <</Filter/FlateDecode/First 7/Length 150/N 1/Type/ObjStm>>stream
-   h�L�M�0<FCC968E0E64244589ADE1F583CF11437>]/Index[348 1 2119 1 3023 3 3027 3 3032 2 3035 1 4888 3]/Info 2119 0 R/Length 48/Prev 382201/Root 2121 0 R/Size 4891/Type/XRef/W[1 3 1]>>stream
-   h�bbd�6����m#�d`$���z�������q@�idget /T (Speed) /Type /Annot /V (7,5m) /AP << /N 4901 0 R>> /M (D:20240531232334)>>
-   endobj
-   2971 0 obj
-   << /DV 3288 0 R /F 4 /FT /Tx /Ff 8392704 /MK <<>> /P 2956 0 R /Rect [418.72 602.88 571.54 651.48] /Subtype /Widget /T (PersonalityTraits ) /Type /Annot /V (ha sempre un asso nella manica in situazioni scomode\n\n) /AP << /N 4902 0 R>> /M (D:20240531232334)>>
-   endobj
-   2972 0 obj
-   << /DV 3287 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [46.48 592.47 67.72 605.28] /Subtype /Widget /T (STRmod) /Type /Annot /V (+1) /AP << /N 4903 0 R>> /M (D:20240531232334)>>
-   endobj
-   2973 0 obj
-   << /DV 3286 0 R /F 4 /FT /Tx /Ff 12582912 /MK <<>> /P 2956 0 R /Rect [290.92 584.52 380.2 595.32] /Subtype /Widget /T (HPMax) /Type /Annot /V (13) /AP << /N 4928 0 R>> /M (D:20240531232334)>>
-   endobj
-   2975 0 obj
-   << /DV 3284 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [36.82 540.27 77.8 565.8] /Subtype /Widget /T (DEX) /Type /Annot /V (12) /AP << /N 4904 0 R>> /M (D:20240531232334)>>
-   endobj
-   2977 0 obj
-   << /DV 3282 0 R /F 4 /FT /Tx /Ff 8392704 /MK <<>> /P 2956 0 R /Rect [418.72 547.8 571.54 582.36] /Subtype /Widget /T (Ideals) /Type /Annot /V (��Ff 8388608 /MK <<>> /P 2956 0 R /Rect [328 384.72 388.84 398.76] /Subtype /Widget /T (Wpn1 Damage) /Type /Annot /V (1D10 PERF) /AP << /N 4917 0 R>> /M (D:20240531232334)>>
-   endobj
-   3026 0 obj
-   << /DV 3218 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [46.48 377.19 67.72 390] /Subtype /Widget /T (INTmod) /Type /Annot /V (+1) /AP << /N 4921 0 R>> /M (D:20240531232334)>>
-   endobj
-   3027 0 obj
-   << /DV 3216 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Rect [223.96 364.56 285.52 378.6] /Subtype /Widget /T (Wpn Name 2) /Type /Annot /V (PISTOLA_2) /AP << /N 4919 0 R>> /M (D:20240531232334)>>
-   endobj
-   3029 0 obj
-   << /DV 3212 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Rect [328 364.56 388.84 378.6] /Subtype /Widget /T (Wpn2 Damage ) /Type /Annot /V (1D10 PERF) /AP << /N 4922 0 R>> /M (D:20240531232334)>>
-   endobj
-   3031 0 obj
-   << /DV 3210 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [36.82 325.71 77.8 351.24] /Subtype /Widget /T (WIS) /Type /Annot /V (10) /AP << /N 4923 0 R>> /M (D:20240531232334)>>
-   endobj
-   3032 0 obj
-   << /DV 3208 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Rect [223.96 343.68 285.52 357.72] /Subtype /Widget /T (Wpn Name 3) /Type /Annot /V (MOSKETTO) /AP << /N 4920 0 R>> /M (D:20240531232334)>>
-   endobj
-   3034 0 obj
-   << /DV 3205 0 R /F 4 /FT /Tx /Ff 12582912 /MK <<>> /P 2956 0 R /Q 1 /Rect [112 434.59 126.4 443.22] /Subtype /Widget /T (Arcana) /Type /Annot /V (3) /AP << /N 4924 0 R>> /M (D:20240531232334)>>
-   endobj
-   3035 0 obj
-   << /DV 3203 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Rect [328 343.68 388.84 357.72] /Subtype /Widget /T (Wpn3 Damage ) /Type /Annot /V (1D12 PERF) /AP << /N 4929 0 R>> /M (D:20240531232334)>>
-   endobj
-   3036 0 obj
-   << /DV 3202 0 R /F 4 /FT /Tx /Ff 12582912 /MK <<>> /P 2956 0 R /Q 1 /Rect [112 313.06 126.4 321.69] /Subtype /Widget /T (Perception ) /Type /Annot /V (2) /AP << /N 4925 0 R>> /M (D:20240531232334)>>
-   endobj
-   3037 0 obj
-   << /DV 3201 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [46.48 305.91 67.72 318.72] /Subtype /Widget /T (WISmod) /Type /Annot /V (+0) /AP << /N 4926 0 R>> /M (D:20240531232334)>>
-   endobj
-   3038 0 obj
-   << /DV 3200 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [36.82 254.43 77.8 279.96] /Subtype /Widget /T (CHA) /Type /Annot /V (9) /AP << /N 4927 0 R>> /M (D:20240531232334)>>
-   endobj
-   3082 0 obj
-   << /DV 3138 0 R /F 4 /FT /Tx /Ff 8388608 /MK <<>> /P 2956 0 R /Q 1 /Rect [46.48 234.63 67.72 247.44] /Subtype /Widget /T (CHamod) /Type /Annot /V (+0) /AP << /N 4930 0 R>> /M (D:20240531232334)>>
-   endobj
-   3083 0 obj
-   << /DV 3137 0 R /F 4 /FT /Tx /Ff 12582912 /MK <<>> /P 2956 0 R /Q 1 /Rect [112 232.06 126.4 240.69] /Subtype /Widget /T (Survival) /Type /Annot /V (2) /AP << /N 4931 0 R>> /M (D:20240531232334)>>
-   endobj
-   3085 0 obj
-   << /DV 3135 0 R /F 4 /FT /Tx /Ff 12582912 /MK <<>> /P 2956 0 R /Q 1 /Rect [32.29 184.28 53.53 200.84] /Subtype /Widget /T (Passive) /Type /Annot /V (12) /AP << /N 4932 0 R>> /M (D:20240531232334)>>
-   endobj
-   3087 0 obj
-   << /DV 3133 0 R /F 4 /FT /Tx /Ff 8392704 /MK <<>> /P 2956 0 R /Rect [34.24 35.88 199.84 164.81] /Subtype /Widget /T (ProficienciesLang) /Type /Annot /V (��es and Traits) /Type /Annot /V (�� 0 173.18 20.88] /Length 90>> stream
-   /Tx BMC q BT /Helv 13.98 Tf 0 g 1 0 0 1 0 0 Tm 22.9 5.89 Td (MAMANGA \(MAMA\)) Tj ET Q EMC
-   endstream
-   endobj
-   4895 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 106.84 15.66] /Length 91>> stream
-   /Tx BMC q BT /Helv 10.11 Tf 0 g 1 0 0 1 0 0 Tm 2 4.54 Td (_______KOOPA________) Tj ET Q EMC
-   endstream
-   endobj
-   4896 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 90 15.66] /Length 89>> stream
-   /Tx BMC q BT /Helv 10.11 Tf 0 g 1 0 0 1 0 0 Tm 2 4.54 Td (_______C/N _______) Tj ET Q EMC
-   endstream
-   endobj
-   4897 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 10.8 7.1 Td (12) Tj ET Q EMC
-   endstream
-   endobj
-   4898 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 16.56] /Length 76>> stream
-   /Tx BMC q BT /Helv 10.78 Tf 0 g 1 0 0 1 0 0 Tm 4.48 4.77 Td (+2) Tj ET Q EMC
-   endstream
-   endobj
-   4899 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 27.36 25.92] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.71 Tf 0 g 1 0 0 1 0 0 Tm 3.83 7.2 Td (14) Tj ET Q EMC
-   endstream
-   endobj
-   4900 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 36 33.12] /Length 76>> stream
-   /Tx BMC q BT /Helv 23.05 Tf 0 g 1 0 0 1 0 0 Tm 4.86 9.07 Td (+1) Tj ET Q EMC
-   endstream
-   endobj
-   4901 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 36 33.12] /Length 79>> stream
-   /Tx BMC q BT /Helv 23.05 Tf 0 g 1 0 0 1 0 0 Tm -7.62 9.07 Td (7,5m) Tj ET Q EMC
-   endstream
-   endobj
-   4902 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 152.82 48.6] /Length 145>> stream
-   /Tx BMC q BT /Helv 11.5 Tf 0 g 1 0 0 1 0 48.6 Tm 2 -12.51 Td (ha sempre un asso nella ) Tj
-   0 -15.53 Td (manica in situazioni scomode) Tj ET Q EMC
-   endstream
-   endobj
-   4903 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+1) Tj ET Q EMC
-   endstream
-   endobj
-   4904 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 10.8 7.1 Td (12) Tj ET Q EMC
-   endstream
-   endobj
-   4905 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 152.82 34.56] /Length 170>> stream
-   /Tx BMC q BT /Helv 8.03 Tf 0 g 1 0 0 1 0 34.56 Tm 2 -9.04 Td (desidera la libert� per se stesso e i suoi ) Tj
-   0 -10.85 Td (amici, tutti gli altri vaffanculo.) Tj ET Q EMC
-   endstream
-   endobj
-   4906 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+1) Tj ET Q EMC
-   endstream
-   endobj
-   4907 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 152.82 34.56] /Length 137>> stream
-   /Tx BMC q BT /Helv 12.05 Tf 0 g 1 0 0 1 0 34.56 Tm 2 -13.06 Td (scoprire la verit� sui viaggi ) Tj
-   0 -16.28 Td (dimensionali) Tj ET Q EMC
-   endstream
-   endobj
-   4908 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 10.8 7.1 Td (11) Tj ET Q EMC
-   endstream
-   endobj
-   4909 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+0) Tj ET Q EMC
-   endstream
-   endobj
-   4910 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 63.36 20.88] /Length 78>> stream
-   /Tx BMC q BT /Helv 13.98 Tf 0 g 1 0 0 1 0 0 Tm 18.86 5.89 Td (1D8) Tj ET Q EMC
-   endstream
-   endobj
-   4911 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 152.82 34.56] /Length 177>> stream
-   /Tx BMC q BT /Helv 8.03 Tf 0 g 1 0 0 1 0 34.56 Tm 2 -9.04 Td (� terrorizzato dal buio,) Tj
-   0 -10.85 Td (eccessivamente audace) Tj
-   0 -10.85 Td (� zucchero dipendente) Tj ET Q EMC
-   endstream
-   endobj
-   4912 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 10.8 7.1 Td (12) Tj ET Q EMC
-   endstream
-   endobj
-   4913 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (3) Tj ET Q EMC
-   endstream
-   endobj
-   4914 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (3) Tj ET Q EMC
-   endstream
-   endobj
-   4915 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (3) Tj ET Q EMC
-   endstream
-   endobj
-   4916 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 61.56 14.04] /Length 79>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (PISTOLA_1) Tj ET Q EMC
-   endstream
-   endobj
-   4917 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 60.84 14.04] /Length 79>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (1D10 PERF) Tj ET Q EMC
-   endstream
-   endobj
-   4918 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (2) Tj ET Q EMC
-   endstream
-   endobj
-   4919 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 61.56 14.04] /Length 79>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (PISTOLA_2) Tj ET Q EMC
-   endstream
-   endobj
-   4920 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 61.56 14.04] /Length 78>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (MOSKETTO) Tj ET Q EMC
-   endstream
-   endobj
-   4921 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+1) Tj ET Q EMC
-   endstream
-   endobj
-   4922 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 60.84 14.04] /Length 79>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (1D10 PERF) Tj ET Q EMC
-   endstream
-   endobj
-   4923 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 10.8 7.1 Td (10) Tj ET Q EMC
-   endstream
-   endobj
-   4924 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (3) Tj ET Q EMC
-   endstream
-   endobj
-   4925 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (2) Tj ET Q EMC
-   endstream
-   endobj
-   4926 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+0) Tj ET Q EMC
-   endstream
-   endobj
-   4927 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 40.98 25.53] /Length 75>> stream
-   /Tx BMC q BT /Helv 17.43 Tf 0 g 1 0 0 1 0 0 Tm 15.65 7.1 Td (9) Tj ET Q EMC
-   endstream
-   endobj
-   4928 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 89.28 10.8] /Length 72>> stream
-   /Tx BMC q BT /Helv 6.51 Tf 0 g 1 0 0 1 0 0 Tm 2 3.28 Td (13) Tj ET Q EMC
-   endstream
-   endobj
-   4929 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 60.84 14.04] /Length 79>> stream
-   /Tx BMC q BT /Helv 8.91 Tf 0 g 1 0 0 1 0 0 Tm 2 4.12 Td (1D12 PERF) Tj ET Q EMC
-   endstream
-   endobj
-   4930 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 12.81] /Length 71>> stream
-   /Tx BMC q BT /Helv 8 Tf 0 g 1 0 0 1 0 0 Tm 6.06 3.8 Td (+0) Tj ET Q EMC
-   endstream
-   endobj
-   4931 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 14.4 8.63] /Length 74>> stream
-   /Tx BMC q BT /Helv 4.91 Tf 0 g 1 0 0 1 0 0 Tm 5.84 2.72 Td (2) Tj ET Q EMC
-   endstream
-   endobj
-   4932 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 21.24 16.56] /Length 76>> stream
-   /Tx BMC q BT /Helv 10.78 Tf 0 g 1 0 0 1 0 0 Tm 4.63 4.77 Td (12) Tj ET Q EMC
-   endstream
-   endobj
-   4933 0 obj
-   << /Subtype /Form /Resources << /Font << /Helv 870 0 R>>>> /BBox [0 0 165.6 128.93] /Filter /FlateDecode /Length 198>> stream
-   x�����@��bnH�nE�Q�����wsij������cxD��z����|�Lf@OD�7D��R���#�>N`U�u� �&CP�

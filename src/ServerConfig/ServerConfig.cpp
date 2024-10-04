@@ -33,9 +33,9 @@ void ServerConfig::CheckServerConfig()
 
 const Location* ServerConfig::FindMatchingLocation(const std::string& requestPath) const
 {
+	Logger::Log("Finding matching location for path: " + requestPath);
 	const Location* bestMatch = NULL;
 	size_t bestMatchLength = 0;
-	Logger::Log("Finding matching location for path: " + requestPath);
 
 	if (locations.empty())
 	{

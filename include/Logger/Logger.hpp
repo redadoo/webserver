@@ -10,6 +10,7 @@
 #include <vector>
 #include <stdint.h>
 #include <Server.hpp>
+#include <cstring>
 
 /// @brief The Logger class provides static logging functionality for applications,
 /// allowing messages, warnings, errors, and exceptions to be recorded in a log file.
@@ -17,6 +18,7 @@ class Logger
 {
 private:
 	static bool				isEnable;
+	static bool				isHttpMessageEnable;
 	static std::ofstream 	logFile;
 	static std::string 		logFileName;
 
@@ -71,6 +73,8 @@ public:
 	/// @brief Logs an error message to the log file.
 	/// @param message The error message to log.
 	static void LogError(const std::string &message);
+
+	static void LogErrno();
 
 	/// @brief Logs an exception's details to the log file as an error.
 	/// @param ex The exception to log.

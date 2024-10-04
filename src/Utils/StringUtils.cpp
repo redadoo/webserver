@@ -24,6 +24,13 @@ std::string StringUtils::ToString(unsigned long long n)
 	return ss.str();
 }
 
+std::string StringUtils::ToString(long long n)
+{
+	std::stringstream ss;
+	ss << n;
+	return ss.str();
+}
+
 std::string StringUtils::ToString(off_t n)
 {
 	std::stringstream ss;
@@ -48,6 +55,25 @@ int StringUtils::StrintToInt(const std::string& str)
 	return number;
 }
 
+long long StringUtils::StringToLongLong(const std::string& str)
+{
+	Logger::LogWarning("sto convertendo");
+	long long number;
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (!isdigit(str[i]))
+			throw std::invalid_argument("Invalid string to convert to unsigned long long");
+	}
+
+	Logger::LogWarning("streammmm");
+	std::stringstream ss(str);
+	Logger::LogWarning("fatta streammmm");
+	ss >> number;
+	Logger::LogWarning("fatta streammmm convvvvv");
+	return number;
+}
+
 unsigned long long StringUtils::StringToUnsignedLongLong(const std::string& str)
 {
 	unsigned long long number;
@@ -63,11 +89,11 @@ unsigned long long StringUtils::StringToUnsignedLongLong(const std::string& str)
 	return number;
 }
 
-size_t StringUtils::StringToSizeT(const std::string& str)
+size_t StringUtils::StringTouint16_t(const std::string& str)
 {
-	size_t number;
+	uint16_t number;
 
-	for (size_t i = 0; i < str.size(); i++)
+	for (uint16_t i = 0; i < str.size(); i++)
 	{
 		if (!isdigit(str[i]))
 			throw std::invalid_argument("Invalid string to convert to size_t");
@@ -89,22 +115,44 @@ std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 	return tokens;
 }
 
-std::vector<std::string> StringUtils::Split(const std::string &str, const std::string &delim)
+std::vector<std::string> StringUtils::Split(const std::string& s, const std::string &delimiter)
 {
-	std::vector<std::string> tokens;
-	size_t start = 0;
-	size_t end = str.find(delim);
+	size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+	std::string token;
+	std::vector<std::string> res;
 
-	while (end != std::string::npos) {
-		tokens.push_back(str.substr(start, end - start));
-		start = end + delim.length();
-		end = str.find(delim, start);
+	while ((pos_end = s.find(delimiter, pos_start)) != std::string::npos) {
+		token = s.substr (pos_start, pos_end - pos_start);
+		pos_start = pos_end + delim_len;
+		res.push_back (token);
 	}
 
-	// Add the last token
-	tokens.push_back(str.substr(start));
+	res.push_back (s.substr (pos_start));
+	return res;
+}
 
-	return tokens;
+std::vector<std::string> StringUtils::SplitHeader(std::string &request) 
+{
+	std::vector<std::string> result;
+    size_t startBody = request.find("\r\n\r\n");
+    // size_t endHeaderPos = 0;
+
+	size_t lineStart = 0;
+
+	while (lineStart < startBody) 
+	{
+		size_t pos = request.find("\r\n", lineStart);
+		if (pos != std::string::npos) 
+		{
+			result.push_back(request.substr(lineStart, pos - lineStart));
+			lineStart = pos + 2;
+			// endHeaderPos = lineStart + (pos - lineStart);
+		}
+	}
+
+	// request.erase(0, );
+
+    return result;
 }
 
 bool StringUtils::IsAllDigit(const std::string &str)
@@ -152,11 +200,6 @@ std::pair<std::string, std::string> StringUtils::SplitPathAndQuery(const std::st
 std::string StringUtils::ExtractFileContent(const std::string& part)
 {
 	size_t headerEnd = part.find("Content-Type:");
-	// if (headerEnd == std::string::npos)
-	// {
-	// 	Logger::LogError("Failed to find Content-Type header in multipart data");
-	// 	return "";
-	// }
 
 	size_t contentStart = part.find("\n", headerEnd);
 	if (contentStart == std::string::npos)
@@ -164,13 +207,9 @@ std::string StringUtils::ExtractFileContent(const std::string& part)
 		Logger::LogError("Failed to find start of content in multipart data");
 		return "";
 	}
-
 	contentStart += 1;
-
-	std::string content = part.substr(contentStart);
-
-	content.erase(0, content.find_first_not_of("\t\r\n"));
-
+	std::string content = part.substr(contentStart - 1);
+	Logger::Log("Extracted content:\n" + content);
 	return content;
 }
 
@@ -229,7 +268,6 @@ std::vector<std::string> StringUtils::SplitMultipartData(const std::string& data
 		}
 
 		std::string part = data.substr(startPos, endPos - startPos);
-		part = StringUtils::Trim(part);
 		if (!part.empty())
 		{
 			parts.push_back(part);
@@ -255,17 +293,17 @@ std::string StringUtils::GetScriptPath(const std::string& path)
 
 char **StringUtils::GetMatrix(const std::map<std::string, std::string>& map)
 {
-    size_t i = 0;
-    char** matrix = new char*[map.size() + 1]; 
+	size_t i = 0;
+	char** matrix = new char*[map.size() + 1]; 
 
-    std::map<std::string, std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it)
-    {
-        std::string envStr = it->first + "=" + it->second;
-        matrix[i] = new char[envStr.length() + 1]; // Allocate space for the string
-        std::strcpy(matrix[i], envStr.c_str());    // Copy the string into the matrix
-        ++i;
-    }
-    matrix[i] = NULL; // Null terminate the array of strings
-    return matrix;
+	std::map<std::string, std::string>::const_iterator it;
+	for (it = map.begin(); it != map.end(); ++it)
+	{
+		std::string envStr = it->first + "=" + it->second;
+		matrix[i] = new char[envStr.length() + 1]; // Allocate space for the string
+		std::strcpy(matrix[i], envStr.c_str());    // Copy the string into the matrix
+		++i;
+	}
+	matrix[i] = NULL; // Null terminate the array of strings
+	return matrix;
 }

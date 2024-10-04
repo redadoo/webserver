@@ -6,6 +6,7 @@
 #include <map>
 #include <HttpMessage.hpp>
 #include <HttpResponse.hpp>
+#include <Server.hpp>
 
 class Cgi
 {
@@ -15,10 +16,10 @@ class Cgi
 		std::map<std::string, std::string> env;
 
 		void SetEnv(HttpMessage& request, const std::string& serverName, int serverPort);
-		std::string ExecuteCgi();
+		std::string ExecuteCgi(Server& server, const Client& client);
 	public:
 		Cgi(const std::string& interpreterPath, const std::string& scriptPath);
-		HttpResponse ProcessCgiRequest(HttpMessage& request, const std::string& serverName, int serverPort);
+		HttpResponse ProcessCgiRequest(Server& server, const Client& client, HttpMessage& request, const std::string& serverName, int serverPort);
 
 };
 

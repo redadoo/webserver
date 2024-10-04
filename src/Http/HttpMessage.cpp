@@ -2,7 +2,7 @@
 #include <Logger.hpp>
 #include <WebServerException.hpp>
 #include <StringUtils.hpp>
-
+#include <algorithm>
 // CaseInsensitiveCompare
 
 bool CaseInsensitiveCompare::char_compare(char ac, char bc)
@@ -44,69 +44,167 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 // public function
 
-void HttpMessage::ParseMessage(const std::string& messageChunk)
+void HttpMessage::ParseHeaders(std::string &header_part)
 {
-	std::istringstream 			messageChunkStream(messageChunk);
-	std::vector<std::string> 	messageLines = StringUtils::Split(messageChunk,"\r\n");
-	bool 						isBody = false;
+	size_t start = 0;
+	size_t end = header_part.find("\r\n");
+	Logger::LogWarning("find attiva windows");
 
-	ParseStartLine(messageLines[0]);
+	if (end == std::string::npos) 
+		throw std::invalid_argument(" Invalid header format");
 
-	for (size_t i = 1; i < messageLines.size(); i++)
+	// Parse request line (first line)
+	std::string request_line = header_part.substr(start, end - start);
+	Logger::LogWarning("find sub dio porco attiva windows");
+
+	Logger::LogWarning("inizio find parse start line");
+	ParseStartLine(request_line);
+	Logger::LogWarning("fine find parse start line");
+
+	// Parse headers
+	Logger::LogWarning("inizio add cose ");
+	start = end + 2; // Skip "\r\n"
+	Logger::LogWarning("fine add cose ");
+
+	while ((end = header_part.find("\r\n", start)) != std::string::npos) 
 	{
-		if (messageLines[i].empty())
-			isBody = true;
+		Logger::LogWarning("wedy");
+		std::string header_line = header_part.substr(start, end - start);
+		Logger::LogWarning("wedy sub");
 
-		if (!isBody)
-		{
-			size_t pos = messageLines[i].find(": ");
-			if (pos != std::string::npos)
-			{
-				std::string key = messageLines[i].substr(0, pos + 1);
-				std::string value = messageLines[i].substr(pos + 2);
-				header.insert(std::make_pair(key, value));
-			}
-		}
-		else
-		{
-			if (messageLines[i] != "\n")
-				body += messageLines[i] + "\n";
-			else
-				body += messageLines[i];
-		}
+		size_t delimiter = header_line.find(':');
+		Logger::LogWarning("sono stanco");
+
+        if (delimiter == std::string::npos) 
+			throw std::invalid_argument(" Invalid header line (no colon) ");
+
+        std::string header_name = header_line.substr(0, delimiter + 2);
+		Logger::LogWarning("sono stanco sub2");
+        std::string header_value = header_line.substr(delimiter + 2); // Skip ": "
+		Logger::LogWarning("sono stanco sub3");
+        header[header_name] = header_value;
+		Logger::LogWarning("aggiungere cose basa");
+		start = end + 2; // Skip "\r\n"
+		Logger::LogWarning("finito aggiungere cose basa");
 	}
+}
 
+void HttpMessage::ParseMessage(std::string &chunk)
+{
+	if (!isHeaderComplete) 
+	{
+		size_t header_end = chunk.find("\r\n\r\n");
+		if (header_end != std::string::npos) 
+		{
+			// Headers and part of body in this chunk
+			std::string header_part = chunk.substr(0, header_end);
+			std::string tmp = chunk.substr(header_end + 4);
+			
+			if (tmp[0] != 0) 
+				body = tmp;
+			
+			ParseHeaders(header_part); 
+			isHeaderComplete = true;
+		} 
+		else 
+		{
+			incomplete_header_buffer += chunk;
+		}
+	} 
+	else
+	{
+		body += chunk;
+	}
 }
 
 std::string HttpMessage::ToString() const
 {
 	std::string msg = "";
-
 	msg.append(startLine.ToString());
-
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
 	{
 		msg.append(it->first);
-		msg.append(" ");
 		msg.append(it->second);
 		msg.append("\n");
 	}
-
 	msg.append(body);
-	msg.append("\n");
-
 	return msg;
 }
 
-size_t HttpMessage::size() const
+unsigned long long HttpMessage::GetContentLength() const
 {
-	return (startLine.size() + header.size() + body.size());
+	long long res;
+	Logger::LogWarning("sono etrnato");
+	std::string value;
+
+	try	 {
+		Logger::LogWarning("controllo value");
+		value = header.at("Content-Length: ");
+		Logger::LogWarning("value trovata");
+	}
+	catch(const std::exception& e) 	{
+		Logger::LogWarning("eccezzasdasdsadsad");
+		value = "0";
+		Logger::LogWarning("dio nasone");
+	}
+	Logger::LogWarning("ritorno longgggg");
+	res = StringUtils::StringToLongLong(value);
+	Logger::LogWarning("fine ritorno longgggg");
+	if(res < 0)
+	{
+		Logger::LogWarning(" ritorno longgggg negativo");
+		return 0;
+	}
+	Logger::LogWarning(" ritorno longgggg positivo");
+	return res;
+}
+
+bool HttpMessage::IsMessageComplete() const
+{
+	unsigned long long contentLength = GetContentLength(); 
+
+	if (contentLength == 0)
+		return header.size() > 0;
+
+	return body.size() > contentLength;
+}
+
+long long HttpMessage::size() const
+{
+	int headerSize = 0;
+
+	if (header.size() > 0)
+	{
+		for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
+			headerSize += it->first.size() + it->second.size() + 1;
+	}
+	
+	if (startLine.size() > 0)
+		return (startLine.size() + headerSize + body.size());
+	
+	return (startLine.size() + headerSize + body.size());	
 }
 
 std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 {
-	os << msg.ToString();
+	os << "[Start Header]\n";
+	os << msg.startLine.ToString();
+	for (Header::const_iterator it = msg.header.begin(); it != msg.header.end(); ++it)
+		os << it->first << it->second << "\n";
+	os << "[End Header]\n";
+
+	if (msg.body.size() > 0)
+		os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
+		
 	return (os);
+}
+
+StartLine::StartLine()
+{
+	this->httpMethod = "";
+	this->path = "";
+	this->httpVersion = "";
+	this->isInit = false;
 }
 
 std::string StartLine::ToString() const
@@ -120,5 +218,5 @@ std::string StartLine::ToString() const
 	startLine.append(this->httpVersion);
 	startLine.append("\n");
 
-    return startLine;
+	return startLine;
 }

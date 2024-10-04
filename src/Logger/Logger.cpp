@@ -5,6 +5,7 @@
 std::ofstream Logger::logFile;
 std::string Logger::logFileName;
 bool Logger::isEnable;
+bool Logger::isHttpMessageEnable;
 //private function
 
 std::string Logger::CurrentDateTime()
@@ -17,6 +18,7 @@ std::string Logger::CurrentDateTime()
 	std::stringstream ss;
 	ss << (1900 + ltm->tm_year) << "-" << (1
 		+ ltm->tm_mon) << "-" << ltm->tm_mday << " " << (ltm->tm_hour) << ":" << (ltm->tm_min) << ":" << (ltm->tm_sec);
+	if(ltm->tm_sec < 10)  ss << " ";
 	return (ss.str());
 }
 
@@ -33,6 +35,7 @@ void Logger::WriteCurrentDataTime()
 void Logger::Init(const std::string &fileName)
 {
 	isEnable = true;
+	isHttpMessageEnable = true;
 	logFileName = fileName;
 	DeleteLog();
 	logFile.open(logFileName.c_str(), std::ios::app);
@@ -58,7 +61,7 @@ void Logger::ClientLog(const Server& server, const Client &client, const char *m
 	{
 		WriteCurrentDataTime();
 		
-		if (logFile.is_open())
+		if (logFile.is_open() && !client.clientConfig.ip.empty() && client.clientConfig.port.port > 0 && !server.serverConfig.host.empty() && server.serverConfig.serverPort.port > 0)
 		{
 			logFile << "Client " << client.clientConfig.ip << client.clientConfig.port << " " << msg << 
 			" by the socket: " << server.serverConfig.host << ":" << server.serverConfig.serverPort.port << std::endl;
@@ -70,7 +73,7 @@ void Logger::ClientLog(const Server& server, const Client &client, const char *m
 
 void Logger::RequestLog(const Server &server, const Client &client, const HttpMessage &request)
 {
-	if(isEnable)
+	if(isEnable && isHttpMessageEnable)
 	{
 		WriteCurrentDataTime();
 
@@ -88,7 +91,7 @@ void Logger::RequestLog(const Server &server, const Client &client, const HttpMe
 
 void Logger::RequestLog(const Server &server, const Client &client, const std::string &request)
 {
-	if(isEnable)
+	if(isEnable && isHttpMessageEnable)
 	{
 		WriteCurrentDataTime();
 
@@ -105,7 +108,7 @@ void Logger::RequestLog(const Server &server, const Client &client, const std::s
 
 void Logger::ResponseLog(const Server &server, const Client &client, const char* httpResponse)
 {
-	if (isEnable)
+	if (isEnable && isHttpMessageEnable)
 	{
 		if (logFile.is_open())
 		{
@@ -146,6 +149,11 @@ void Logger::LogError(const std::string &message)
 void Logger::LogException(const std::exception &ex)
 {
 	LogError(std::string("Exception: ") + ex.what());
+}
+
+void Logger::LogErrno()
+{
+	LogError(std::string("errno: ") + std::strerror(errno));
 }
 
 void Logger::Shutdown()

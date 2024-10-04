@@ -32,6 +32,8 @@ namespace StringUtils
 	/// @return A string representation of the number.
 	std::string ToString(unsigned long long n);
 
+	std::string ToString(long long n);
+
 	/// @brief Converts an off_t to a string.
 	/// @param n The number to convert.
 	/// @return A string representation of the number.
@@ -44,8 +46,10 @@ namespace StringUtils
 
 	unsigned long long StringToUnsignedLongLong(const std::string& str);
 
-	size_t StringToSizeT(const std::string& str);
+	size_t StringTouint16_t(const std::string& str);
 
+	long long StringToLongLong(const std::string& str);
+	
 	/// @brief Splits a string into substrings based on a delimiter.
 	/// @param str The string to split.
 	/// @param delim The delimiter character.
@@ -58,6 +62,8 @@ namespace StringUtils
 	/// @return A vector of substrings.
 	std::vector<std::string> Split(const std::string& str, const std::string& delim);
 
+	std::vector<std::string> SplitHeader(std::string& request);
+	
 	/// @brief Checks if a string contains only digit characters.
 	/// @param str The string to check.
 	/// @return True if all characters in the string are digits, false otherwise.
@@ -109,6 +115,8 @@ namespace StringUtils
 	/// @return A dynamically allocated array of C-strings. Caller must free the memory.
 	char **GetMatrix(const std::map<std::string,std::string>& map);
 
+	bool	ContainsHeader(std::string& str);
+	
 } // namespace StringUtils
 
 #endif

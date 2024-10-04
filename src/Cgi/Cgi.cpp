@@ -36,7 +36,7 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 			env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
 }
 
-std::string Cgi::ExecuteCgi()
+std::string Cgi::ExecuteCgi(Server& server, const Client& client)
 {
 	if (!FileUtils::CheckFileExistence(interpreterPath.c_str()))
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::InternalServerError);
@@ -45,11 +45,12 @@ std::string Cgi::ExecuteCgi()
 	if (pipe(pipefd) == -1)
 		throw std::runtime_error("Error creating pipe for CGI execution");
 
+	Logger::LogWarning("strano");
 	pid_t pid = fork();
 	if (pid == -1)
 		throw std::runtime_error("Error forking process for CGI execution");
 
-	if (pid == 0)
+    if (pid == 0) 
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
@@ -59,36 +60,67 @@ std::string Cgi::ExecuteCgi()
 		char **new_env = StringUtils::GetMatrix(env);
 		execve(interpreterPath.c_str(), matrix, new_env);
 		exit(EXIT_FAILURE);
-	}
-	else
+    } 
+	else if (pid > 0) {
+        int status;
+        const int timeout_seconds = 5;  // Timeout limit in seconds
+        const int sleep_interval_ms = 100;  // Check every 100 milliseconds
+
+        // Calculate how many iterations correspond to the timeout period
+        int max_iterations = (timeout_seconds * 1000) / sleep_interval_ms;
+
+        for (int i = 0; i < max_iterations; ++i) {
+            pid_t result = waitpid(pid, &status, WNOHANG);
+
+            if (result == -1) 
+			{
+                std::cerr << "Error waiting for child process!\n";
+                break;
+            } 
+			else if (result > 0) 
+			{
+                // Child has exited
+                if (WIFEXITED(status)) 
+				{
+					close(pipefd[1]);
+
+					std::string output;
+					char buffer[4096];
+					ssize_t bytesRead;
+					while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0)
+						output.append(buffer, bytesRead);
+
+					close(pipefd[0]);
+					return output;
+
+                } else if (WIFSIGNALED(status)) 
+				{
+                    std::cout << "Child process was killed by signal: " << WTERMSIG(status) << std::endl;
+                }
+                break;
+            }
+
+            usleep(sleep_interval_ms * 1000);
+        }
+
+        kill(pid, SIGKILL);
+        waitpid(pid, &status, 0);
+		server.SendErrorResponse(client,HttpStatusCode::LoopDetected);
+    } 
+	else 
 	{
-		close(pipefd[1]);
-
-		std::string output;
-		char buffer[4096];
-		ssize_t bytesRead;
-		while ((bytesRead = read(pipefd[0], buffer, sizeof(buffer))) > 0)
-			output.append(buffer, bytesRead);
-
-		close(pipefd[0]);
-
-		int status;
-		waitpid(pid, &status, 0);
-
-		if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-			return output;
-		else
-			throw std::runtime_error("Error executing CGI script");
-	}
+        std::cerr << "Failed to fork!\n";
+    }
+	return "";
 }
 
-HttpResponse Cgi::ProcessCgiRequest(HttpMessage& request, const std::string& serverName, int serverPort)
+HttpResponse Cgi::ProcessCgiRequest(Server& server,  const Client& client, HttpMessage& request, const std::string& serverName, int serverPort)
 {
 	SetEnv(request, serverName, serverPort);
 
 	try
 	{
-		std::istringstream cgiStream(ExecuteCgi());
+		std::istringstream cgiStream(ExecuteCgi(server, client));
 		HttpResponse response;
 		std::string line;
 		bool headersDone = false;

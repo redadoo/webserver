@@ -126,12 +126,15 @@ namespace HttpStatusCode
             case TooManyRequests:     return "429 Too Many Requests";
 
             // 5xx Server Error
-            case InternalServerError: return "500 Internal Server Error";
-            case NotImplemented:      return "501 Not Implemented";
-            case BadGateway:          return "502 Bad Gateway";
-            case ServiceUnavailable:  return "503 Service Unavailable";
-            case GatewayTimeout:      return "504 Gateway Timeout";
-            case HTTPVersionNotSupported: return "505 HTTP Version Not Supported";
+            case InternalServerError: 		return "500 Internal Server Error";
+            case NotImplemented:      		return "501 Not Implemented";
+            case BadGateway:          		return "502 Bad Gateway";
+            case ServiceUnavailable:  		return "503 Service Unavailable";
+            case GatewayTimeout:      		return "504 Gateway Timeout";
+            case HTTPVersionNotSupported: 	return "505 HTTP Version Not Supported";
+            case VariantAlsoNegotiates: 	return "506 Variant Also Negotiates";
+            case InsufficientStorage: 	return "507 Insufficient Storage";
+            case LoopDetected: 				return "508 Loop Detected";
 
             default:                  return "500 Internal Server Error";
         }

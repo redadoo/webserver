@@ -6,7 +6,7 @@ extern  HandleSignal::SignalState signalState;
 
 void HandleSignal::HandleSigstp(int sig)
 {
-    if (sig == SIGINT || sig == SIGTSTP || sig == SIGTSTP)
+    if (sig == SIGINT || sig == SIGTSTP || sig == SIGQUIT)
         signalState.signCaught = true;
 }
 

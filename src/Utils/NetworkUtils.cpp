@@ -61,15 +61,7 @@ bool NetworkUtils::IsDomain(const std::string& str)
 
 bool NetworkUtils::SetNonBlocking(int fd)
 {
-	int flags = fcntl(fd, F_GETFL, 0);
-	if (flags == -1)
-	{
-		Logger::LogError("Failed to get file descriptor flags" + std::string(strerror(errno)));
-		return false;
-	}
-
-	flags |= O_NONBLOCK;
-	int result = fcntl(fd, F_SETFL, flags);
+	int result = fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK);
 	if (result == -1)
 	{
 		Logger::LogError("Failed to set file descriptor flags" + std::string(strerror(errno)));

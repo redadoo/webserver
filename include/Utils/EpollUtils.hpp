@@ -1,5 +1,5 @@
-#ifndef EPOLLUTILS
-# define EPOLLUTILS
+#ifndef EPOLLUTILS_HPP
+# define EPOLLUTILS_HPP
 
 #include <sys/epoll.h>
 #include <arpa/inet.h>

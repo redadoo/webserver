@@ -3,128 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Cool Dashboard</title>
     <style>
-        /* CSS Styles */
-
-        /* Reset some basic styles */
-        * {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
+            backdrop-filter: blur(10px);
         }
 
-        nav ul {
-            list-style-type: none;
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #6c63ff;
+            font-size: 24px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .badge-container img {
+            margin: 10px 15px;
+        }
+
+        .drop-down {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .drop-down button {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .drop-down button:hover {
+            background-color: #524cdd;
+        }
+
+        .drop-down-content {
+            margin-top: 15px;
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .drop-down-content.active {
+            display: block;
+        }
+
+        ul {
+            list-style: none;
             padding: 0;
         }
 
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
+        ul li {
+            margin: 10px 0;
+            font-size: 18px;
         }
 
-        nav ul li a {
-            color: white;
+        .link {
+            color: #6c63ff;
             text-decoration: none;
             font-weight: bold;
         }
 
-        section {
-            flex: 1;
-            padding: 20px;
-            text-align: center;
+        .link:hover {
+            text-decoration: underline;
         }
 
-        section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .button-container {
+            margin-top: 30px;
         }
 
-        section p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-button {
+        .button {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
+            padding: 15px 25px;
+            margin: 15px;
+            font-size: 18px;
             color: white;
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
             text-decoration: none;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
         }
 
-        .cta-button:hover {
-            background-color: #45a049;
+        .button:hover {
+            background-color: #524cdd;
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+            transform: translateY(-3px);
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+        .button:active {
+            transform: translateY(0);
+            box-shadow: none;
         }
 
-        footer p {
-            margin: 0;
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>42 WebServer</h1>
 
-    <!-- Main Section -->
-    <section>
-        <h1>Homepage</h1>
-        <p>This is the homepage of my awesome website. Here you can find various services and information about what we offer.</p>
-        <a href="#!" class="cta-button" id="cta-button">Click Me</a>
-    </section>
+        <div class="badge-container">
+            <img src="https://img.shields.io/github/repo-size/redadoo/webserver" alt="GitHub repo size">
+            <img src="https://img.shields.io/github/contributors/redadoo/webserver" alt="GitHub contributors">
+            <img src="https://img.shields.io/github/stars/redadoo/webserver?style=social" alt="GitHub stars">
+            <img src="https://img.shields.io/github/forks/redadoo/webserver?style=social" alt="GitHub forks">
+        </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 My Website | All rights reserved</p>
-    </footer>
+        <div class="drop-down">
+            <button onclick="toggleDropDown()">Show Project Details</button>
+            <div class="drop-down-content" id="dropdown">
+                <h2 id="about">About</h2>
+                <p>The aim of the project is to develop an HTTP web server from scratch that is compatible with C++98.</p>
+                <p>This project is part of the common core of 42 and was done in collaboration with 
+                    <a class="link" href="https://github.com/Fborroto" target="_blank">@Fborroto</a> and 
+                    <a class="link" href="https://github.com/ffursini" target="_blank">@ffursini</a>.
+                </p>
 
-    <!-- JavaScript -->
+                <h2 id="resources">Ressources</h2>
+                <ul>
+                    <li><a class="link" href="http://nginx.org/en/docs/http/request_processing.html" target="_blank">How nginx processes a request</a></li>
+                    <li><a class="link" href="http://nginx.org/en/docs/http/server_names.html" target="_blank">How nginx server names work</a></li>
+                    <li><a class="link" href="http://nginx.org/en/docs/beginners_guide.html" target="_blank">How nginx syntax works</a></li>
+                    <li><a class="link" href="https://nima101.github.io/io_multiplexing" target="_blank">I/O Multiplexing (select vs. poll vs. epoll/kqueue)</a></li>
+                    <li><a class="link" href="https://stackoverflow.com/questions/66916835/c-confused-by-epoll-and-socket-fd-on-linux-systems-and-async-threads" target="_blank">How to handle socket file asynchronously with epoll</a></li>
+                    <li><a class="link" href="https://mecha-mind.medium.com/a-non-threaded-chat-server-in-c-53dadab8e8f3" target="_blank">Building a multi-client chat server with select and epoll</a></li>
+                    <li><a class="link" href="https://stackoverflow.com/questions/3229860/what-is-the-meaning-of-so-reuseaddr-setsockopt-option-linux" target="_blank">What is the meaning of SO_REUSEADDR</a></li>
+                    <li><a class="link" href="https://stackoverflow.com/questions/46987302/epoll-does-it-silently-remove-fds" target="_blank">Epoll: does it silently remove fds?</a></li>
+                    <li><a class="link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages" target="_blank">HTTP Messages</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="button" onclick="navigateToUpload()">Go to Upload Page</button>
+            <button class="button" onclick="navigateToPython()">Go to Python Page</button>
+            <button class="button" onclick="navigateToDelete()">Go to Delete Page</button>
+            <button class="button" onclick="backToHomepage()">Back to Homepage</button>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 Your Cool Web App
+        </div>
+    </div>
+
     <script>
-        document.getElementById("cta-button").addEventListener("click", function() {
-            alert("Thank you for clicking!");
-        });
+        function toggleDropDown() {
+            var dropdownContent = document.getElementById("dropdown");
+            dropdownContent.classList.toggle("active");
+        }
+
+        function backToHomepage() {
+            window.location.href = '/'; // Assuming the homepage is served at the root path
+        }
+
+        function navigateToPython() {
+            window.location.href = '/python';
+        }
+
+        function navigateToUpload() {
+            window.location.href = '/upload/upload.html';
+        }
+
+        function navigateToDelete() {
+            window.location.href = '/delete';
+        }
     </script>
 
 </body>

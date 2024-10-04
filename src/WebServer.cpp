@@ -15,7 +15,9 @@ WebServer::WebServer() {}
 
 WebServer::~WebServer()
 {
+	Logger::Log("Closing WebServer ...");
 	CleanUpAll();
+	Logger::Log("all resources released and Web Server closed successfully");
 }
 
 //public function
@@ -90,6 +92,7 @@ void WebServer::CheckSockets(int epollRet)
 			}
 			else if (EpollUtils::EpollCheckEventError(events[i].events))
 			{
+				Logger::LogWarning("close connection for epoll event error");
 				servers[y].CloseClientConnection(fd);
 				break ;
 			}
@@ -103,9 +106,12 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 {
 	try
 	{
-		server.ReadClientResponse(client);
+		server.ReadClientRequest(client);
+		Logger::LogWarning("dio wowoowowow");
 		server.ProcessRequest(client, 0);
+		Logger::LogWarning("dio fifififififi");
 		server.SendResponse(client);
+		Logger::LogWarning("dio 12321s das dsad sa das dsa dsa");
 	}
 	catch(const WebServerException::HttpStatusCodeException& e) {
 		server.SendErrorResponse(client, e.code);
@@ -113,8 +119,9 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 	catch (const std::exception &e) {
 		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
 	}
-
+	Logger::LogWarning("sono pazzo dsa");
 	server.CloseClientConnection(client.clientFd);
+	Logger::LogWarning("dsa notte");
 }
 
 void WebServer::CheckServerPort()

@@ -46,6 +46,8 @@ std::string HttpResponse::GetCustomErrorPage(const ServerConfig& config) const
 HttpResponse::HttpResponse() : code(HttpStatusCode::OK)
 {
 	startLine.httpVersion = "HTTP/1.1";
+	isHeaderComplete = false;
+	body = "";
 }
 
 void HttpResponse::SetUploadBody()
@@ -87,18 +89,17 @@ void HttpResponse::SetErrorBody(const ServerConfig& config)
 
 void HttpResponse::SetContentType(const std::string& contentType)
 {
-	header["Content-Type"] = contentType;
+	header["Content-Type: "] = contentType;
 }
 
 void HttpResponse::SetContentLength()
 {
-	header["Content-Length"] = StringUtils::ToString(static_cast<int>(body.length()));
+	header["Content-Length: "] = StringUtils::ToString(static_cast<int>(body.length()));
 }
 
 std::string HttpResponse::ToString() const
 {
 	std::stringstream ss;
-
 
 	ss << startLine.httpVersion << " " << HttpStatusCode::ReasonPhrase(code) << "\r\n";
 

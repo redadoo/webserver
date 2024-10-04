@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <Cgi.hpp>
 #include <stdexcept>
+#include <string>
+#include <stdint.h>
 
 //constructor
 
@@ -107,7 +109,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		}
 	}
 
-	std::string boundary = StringUtils::GetBoundary(client.request.header["Content-Type:"]);
+	std::string boundary = StringUtils::GetBoundary(client.request.header["Content-Type: "]);
 	Logger::Log("Extracted boundary: " + boundary);
 	std::vector<std::string> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
 	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");
@@ -116,9 +118,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 	{
 		Logger::Log("Processing multipart data part " + StringUtils::ToString(i + 1) + " of " + StringUtils::ToString(parts.size()));
 		std::string filename = StringUtils::ExtractFilename(parts[i]);
-		Logger::Log("Extracted filename: " + filename);
 		std::string content = StringUtils::ExtractFileContent(parts[i]);
-		Logger::Log("Extracted content: " + content);
 		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.length()));
 
 		if (!filename.empty() && !content.empty())
@@ -168,7 +168,7 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 		std::string name = entry->d_name;
 		if (name != "." && name != "..")
 		{
-			std::string host = client.request.header["Host:"];
+			std::string host = client.request.header["Host: "];
 			std::string nameWithSlash = name + (FileUtils::IsDirectory((path + name).c_str()) ? "/" : "");
 			std::string fullPath = "<a href=\"http://" + host + "/" + displayPath + nameWithSlash + "\">" + nameWithSlash + "</a>";
 
@@ -192,7 +192,7 @@ void Server::HandleDirectoryListing(const std::string& path, Client& client)
 
 	response.SetStatusCode(HttpStatusCode::OK);
 	response.SetBody(directoryContent);
-	response.header["Content-Type"] = "text/html";
+	response.header["Content-Type: "] = "text/html";
 }
 
 void Server::HandleDirectoryRequest(const std::string& path)
@@ -242,23 +242,15 @@ void Server::SendResponse(const Client& client)
 	size_t totalBytesSent = 0;
 	size_t totalLength = responseStr.length();
 
-	Logger::ResponseLog(*this,client,responseStr.c_str());
+	// Logger::ResponseLog(*this,client,responseStr.c_str());
 	Logger::Log("Attempting to send response of " + StringUtils::ToString(totalLength) + " bytes");
 
 	while (totalBytesSent < totalLength)
 	{
 		ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
-
 		if (bytesSent <= 0)
 		{
-			if (bytesSent == 0)
-			{
-
-			}
-			else if (bytesSent == -1)
-			{
-				
-			}
+			Logger::LogErrno();
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
@@ -273,7 +265,7 @@ void Server::SendResponse(const Client& client)
 void Server::SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount)
 {
 	response.SetStatusCode(redirect.code);
-	response.header["Location"] = redirect.path;
+	response.header["Location: "] = redirect.path;
 	client.request.startLine.path = redirect.path;
 	ProcessRequest(client, redirectCount + 1);
 }
@@ -309,6 +301,13 @@ void Server::InitSocket(int epollFd)
 	ret = listen(this->serverFd, 10);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("listen() failed ", errno);
+
+	// if (!NetworkUtils::SetNonBlocking(this->serverFd))
+	// {
+	// 	Logger::LogWarning("Cannot set client socket to non-blocking mode");
+	// 	close(this->serverFd);
+	// 	throw WebServerException::ExceptionErrno("SetNonBlocking() failed ", errno);
+	// }
 
 	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLOUT | EPOLLET);
 
@@ -370,64 +369,30 @@ int Server::AcceptClient(int fd, int epollFd)
 	return (0);
 }
 
-void Server::ReadClientResponse(Client &client)
+void Server::ReadClientRequest(Client &client)
 {
-	const unsigned long long maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	char	buffer[MAX_RESPONSE_SIZE];
-	std::string fullRequest;
-	ssize_t	recvRet;
-	size_t	totalReceived = 0;
-	size_t	contentLength = 0;
-	bool	headersComplete = false;
+	typedef unsigned long long Ulong;
+	const Ulong 		maxSize = serverConfig.clientMaxBody.ConvertToBytes();
+	int16_t				recvRet;
 
-	while (true)
+	while (client.request.IsMessageComplete() == false)
 	{
-		recvRet = recv(client.clientFd, buffer, sizeof(buffer) - 1, 0);
-		Logger::Log(StringUtils::ToString(recvRet));
-		if (recvRet <= 0)
+		std::string buffer(MAX_RESPONSE_CHUNK_SIZE, '\0');
+		recvRet = recv(client.clientFd, &buffer[0], MAX_RESPONSE_CHUNK_SIZE, 0);
+
+		if (recvRet < 0)
 		{
-			if (recvRet == 0)
-				Logger::ClientLog(*this, client, " has been disconnected ");
-			else if (recvRet == -1)
-			{
-				this->CloseClientConnection(client);
-				Logger::LogError("Failed to receive data from client");
-			}
-			return;
+			Logger::LogErrno();
+			Logger::LogWarning("recv return is smaller than 0");
+			return (this->CloseClientConnection(client));
 		}
 
-		buffer[recvRet] = '\0';
-		fullRequest += buffer;
-		totalReceived += recvRet;
-
-		if (totalReceived > maxBodySize)
+		if (client.request.body.size() > maxSize)
 			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 
-		if (!headersComplete)
-		{
-			size_t headerEnd = fullRequest.find("\r\n\r\n");
-			if (headerEnd != std::string::npos)
-			{
-				headersComplete = true;
-				size_t contentLengthPos = fullRequest.find("Content-Length: ");
-				if (contentLengthPos != std::string::npos)
-				{
-					size_t endPos = fullRequest.find("\r\n", contentLengthPos);
-					std::string contentLengthStr = fullRequest.substr(contentLengthPos + 16, endPos - (contentLengthPos + 16));
-					contentLength = StringUtils::StringToSizeT(contentLengthStr);
-				}
-			}
-		}
-
-		if (headersComplete && totalReceived >= contentLength)
-			break;
+		client.request.ParseMessage(buffer);
 	}
-
-	if (!fullRequest.empty())
-	{
-		client.request.ParseMessage(fullRequest);
-		Logger::RequestLog(*this, client, client.request);
-	}
+	Logger::RequestLog(*this, client, client.request);
 }
 
 void Server::ProcessRequest(Client& client, int redirectCount = 0)
@@ -469,7 +434,7 @@ void Server::HandleCgiRequest(Client& client, const std::string& requestedPath, 
 
 	try
 	{
-		response = cgi.ProcessCgiRequest(client.request, serverConfig.host, serverConfig.serverPort.port);
+		response = cgi.ProcessCgiRequest(*this, client,  client.request, serverConfig.host, serverConfig.serverPort.port);
 		Logger::Log("CGI script executed successfully");
 	}
 	catch (const std::exception& ex)
@@ -503,30 +468,30 @@ void Server::CloseClientConnection(const Client &client)
 	if (clients.find(client.clientFd) != clients.end())
 	{
 		close(client.clientFd);
-		this->clients.erase(client.clientFd);
 		Logger::ClientLog(*this, client, "has been disconnected ");
+		this->clients.erase(client.clientFd);
 	}
 }
 
 void Server::CloseClientConnection(int clientFd)
 {
 	if (clientFd <= 0)
-    {
-        Logger::LogError("Attempted to close invalid client file descriptor: " + StringUtils::ToString(clientFd));
-        return;
-    }
+	{
+		Logger::LogError("Attempted to close invalid client file descriptor: " + StringUtils::ToString(clientFd));
+		return;
+	}
 
-    std::map<int, Client>::iterator it = clients.find(clientFd);
-    if (it != clients.end())
-    {
-        Logger::Log("Closing connection for client " + StringUtils::ToString(clientFd));
-        close(clientFd);
-        clients.erase(it);
-    }
-    else
-    {
-        Logger::Log("Attempted to close connection for non-existent client " + StringUtils::ToString(clientFd));
-    }
+	std::map<int, Client>::iterator it = clients.find(clientFd);
+	if (it != clients.end())
+	{
+		Logger::Log("Closing connection for client " + StringUtils::ToString(clientFd));
+		close(clientFd);
+		clients.erase(it);
+	}
+	else
+	{
+		Logger::Log("Attempted to close connection for non-existent client " + StringUtils::ToString(clientFd));
+	}
 }
 
 std::ostream &operator<<(std::ostream &os, const Server &sr)
