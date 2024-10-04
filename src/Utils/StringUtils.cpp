@@ -57,7 +57,6 @@ int StringUtils::StrintToInt(const std::string& str)
 
 long long StringUtils::StringToLongLong(const std::string& str)
 {
-	Logger::LogWarning("sto convertendo");
 	long long number;
 
 	for (size_t i = 0; i < str.size(); i++)
@@ -66,11 +65,8 @@ long long StringUtils::StringToLongLong(const std::string& str)
 			throw std::invalid_argument("Invalid string to convert to unsigned long long");
 	}
 
-	Logger::LogWarning("streammmm");
 	std::stringstream ss(str);
-	Logger::LogWarning("fatta streammmm");
 	ss >> number;
-	Logger::LogWarning("fatta streammmm convvvvv");
 	return number;
 }
 

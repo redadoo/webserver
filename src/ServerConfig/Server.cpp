@@ -244,7 +244,6 @@ void Server::SendResponse(const Client& client)
 
 	// Logger::ResponseLog(*this,client,responseStr.c_str());
 	Logger::Log("Attempting to send response of " + StringUtils::ToString(totalLength) + " bytes");
-
 	while (totalBytesSent < totalLength)
 	{
 		ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
@@ -254,10 +253,8 @@ void Server::SendResponse(const Client& client)
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
-
 		totalBytesSent += bytesSent;
 	}
-
 	Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
 
 }
@@ -342,9 +339,15 @@ int Server::AcceptClient(int fd, int epollFd)
 	clientFd = accept(fd, (struct sockaddr *)&addr, &addrLen);
 	if (clientFd < 0)
 	{
-		if (errno == EAGAIN)
-			return (0);
 		Logger::LogWarning("error on accept(): ");
+		Logger::LogErrno();
+		return (-1);
+	}
+
+	if (FileUtils::CheckFd(clientFd) < 0)
+	{
+		Logger::LogWarning("file descriptor invalid");
+		Logger::LogErrno();
 		return (-1);
 	}
 
@@ -372,26 +375,29 @@ int Server::AcceptClient(int fd, int epollFd)
 void Server::ReadClientRequest(Client &client)
 {
 	typedef unsigned long long Ulong;
-	const Ulong 		maxSize = serverConfig.clientMaxBody.ConvertToBytes();
+	const Ulong 		maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
 	int16_t				recvRet;
 
+	Logger::Log("read client mess");
 	while (client.request.IsMessageComplete() == false)
 	{
 		std::string buffer(MAX_RESPONSE_CHUNK_SIZE, '\0');
 		recvRet = recv(client.clientFd, &buffer[0], MAX_RESPONSE_CHUNK_SIZE, 0);
-
+		Logger::Log(StringUtils::ToString(recvRet));
 		if (recvRet < 0)
 		{
 			Logger::LogErrno();
 			Logger::LogWarning("recv return is smaller than 0");
+			Logger::Log(buffer);
 			return (this->CloseClientConnection(client));
 		}
 
-		if (client.request.body.size() > maxSize)
+		if (client.request.body.size() > maxBodySize)
 			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 
 		client.request.ParseMessage(buffer);
 	}
+	Logger::Log("finish read client mess");
 	Logger::RequestLog(*this, client, client.request);
 }
 

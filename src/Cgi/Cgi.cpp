@@ -45,7 +45,6 @@ std::string Cgi::ExecuteCgi(Server& server, const Client& client)
 	if (pipe(pipefd) == -1)
 		throw std::runtime_error("Error creating pipe for CGI execution");
 
-	Logger::LogWarning("strano");
 	pid_t pid = fork();
 	if (pid == -1)
 		throw std::runtime_error("Error forking process for CGI execution");

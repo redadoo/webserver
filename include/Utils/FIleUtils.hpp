@@ -31,6 +31,7 @@ namespace FileUtils
     /// @return The MIME content type as a string. Returns `"text/html"` for `.html` and `.htm` extensions, and `"text/plain"` for other extensions.
 	std::string GetContentType(const std::string& fileName);
 
+    int CheckFd(int fd);
 } // namespace FIleUtils
 
 #endif

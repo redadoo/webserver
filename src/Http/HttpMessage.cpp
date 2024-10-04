@@ -48,44 +48,30 @@ void HttpMessage::ParseHeaders(std::string &header_part)
 {
 	size_t start = 0;
 	size_t end = header_part.find("\r\n");
-	Logger::LogWarning("find attiva windows");
 
 	if (end == std::string::npos) 
 		throw std::invalid_argument(" Invalid header format");
 
 	// Parse request line (first line)
 	std::string request_line = header_part.substr(start, end - start);
-	Logger::LogWarning("find sub dio porco attiva windows");
 
-	Logger::LogWarning("inizio find parse start line");
 	ParseStartLine(request_line);
-	Logger::LogWarning("fine find parse start line");
 
-	// Parse headers
-	Logger::LogWarning("inizio add cose ");
 	start = end + 2; // Skip "\r\n"
-	Logger::LogWarning("fine add cose ");
 
 	while ((end = header_part.find("\r\n", start)) != std::string::npos) 
 	{
-		Logger::LogWarning("wedy");
 		std::string header_line = header_part.substr(start, end - start);
-		Logger::LogWarning("wedy sub");
 
 		size_t delimiter = header_line.find(':');
-		Logger::LogWarning("sono stanco");
 
         if (delimiter == std::string::npos) 
 			throw std::invalid_argument(" Invalid header line (no colon) ");
 
         std::string header_name = header_line.substr(0, delimiter + 2);
-		Logger::LogWarning("sono stanco sub2");
         std::string header_value = header_line.substr(delimiter + 2); // Skip ": "
-		Logger::LogWarning("sono stanco sub3");
         header[header_name] = header_value;
-		Logger::LogWarning("aggiungere cose basa");
 		start = end + 2; // Skip "\r\n"
-		Logger::LogWarning("finito aggiungere cose basa");
 	}
 }
 
@@ -134,28 +120,16 @@ std::string HttpMessage::ToString() const
 unsigned long long HttpMessage::GetContentLength() const
 {
 	long long res;
-	Logger::LogWarning("sono etrnato");
 	std::string value;
 
 	try	 {
-		Logger::LogWarning("controllo value");
 		value = header.at("Content-Length: ");
-		Logger::LogWarning("value trovata");
 	}
 	catch(const std::exception& e) 	{
-		Logger::LogWarning("eccezzasdasdsadsad");
 		value = "0";
-		Logger::LogWarning("dio nasone");
 	}
-	Logger::LogWarning("ritorno longgggg");
 	res = StringUtils::StringToLongLong(value);
-	Logger::LogWarning("fine ritorno longgggg");
-	if(res < 0)
-	{
-		Logger::LogWarning(" ritorno longgggg negativo");
-		return 0;
-	}
-	Logger::LogWarning(" ritorno longgggg positivo");
+	if(res < 0) return 0;
 	return res;
 }
 

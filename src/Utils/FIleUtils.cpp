@@ -4,6 +4,8 @@
 #include <sys/stat.h>
 #include <algorithm>
 #include <iostream>
+#include <fcntl.h>
+#include <Logger.hpp>
 
 bool FileUtils::CheckFileExistence(const char *fileName)
 {
@@ -50,3 +52,8 @@ std::string FileUtils::GetContentType(const std::string &fileName)
 	return "text/plain";
 }
 
+int FileUtils::CheckFd(int fd)
+{
+	if (fcntl(fd, F_GETFD) < 0) return -1;
+	return 0;
+}
