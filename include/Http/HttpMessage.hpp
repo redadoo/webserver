@@ -37,9 +37,9 @@ private:
     std::string incomplete_header_buffer;
 
 public:
-	StartLine 	startLine;
-	Header      header;
-	std::string body;
+	StartLine 	            startLine;
+	Header                  header;
+    std::vector<uint8_t>    body;
     bool        isHeaderComplete;
 
     void ParseHeaders(std::string &chunk);

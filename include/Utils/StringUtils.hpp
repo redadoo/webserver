@@ -103,7 +103,7 @@ namespace StringUtils
 	/// @param data The complete multipart/form-data content.
 	/// @param boundary The boundary string used to delimit the different parts of the multipart data.
 	/// @return A vector of strings, each containing an individual part of the multipart data. Empty parts are skipped.
-	std::vector<std::string> SplitMultipartData(const std::string& data, const std::string& boundary);
+	std::vector<std::string> SplitMultipartData(const std::vector<uint8_t>& data, const std::string& boundary);
 
 	/// @brief Extracts the script path from a URL by removing any query string that follows the `?` character.
 	/// @param path The full URL path which may include a query string.

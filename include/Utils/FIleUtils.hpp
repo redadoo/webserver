@@ -20,6 +20,8 @@ namespace FileUtils
     /// @return A string containing the file content. Returns an empty string if the file cannot be opened.
 	std::string ReadFile(const std::string& fileName);
 
+    std::vector<uint8_t> ReadFile(const std::string &fileName);
+
     /// @brief Writes the specified content to a file.
     /// @param fileName The path to the file where the content will be written.
     /// @param content The content to be written to the file.

@@ -219,7 +219,7 @@ void Server::HandleDirectoryRequest(const std::string& path)
 void Server::HandleFileRequest(const std::string& path)
 {
 	Logger::Log("File found: " + path);
-	std::string fileContent = FileUtils::ReadFile(path);
+	std::vector<uint8_t> fileContent = FileUtils::ReadFile(path);
 	Logger::Log("File content length: " + StringUtils::ToString(static_cast<int>(fileContent.length())) + " bytes");
 
 	response.SetStatusCode(HttpStatusCode::OK);

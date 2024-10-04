@@ -240,7 +240,7 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 	return "";
 }
 
-std::vector<std::string> StringUtils::SplitMultipartData(const std::string& data, const std::string& boundary)
+std::vector<std::string> StringUtils::SplitMultipartData(const std::vector<uint8_t>& data, const std::string& boundary)
 {
 	std::vector<std::string> parts;
 	std::string delimiter = "--" + boundary;

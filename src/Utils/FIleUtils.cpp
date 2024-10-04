@@ -32,6 +32,17 @@ std::string FileUtils::ReadFile(const std::string &fileName)
 	return buffer.str();
 }
 
+std::vector<uint8_t> FileUtils::ReadFile(const std::string &fileName)
+{
+	std::ifstream file(fileName.c_str());
+	if (!file.is_open())
+		return "";
+
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	return buffer.str();
+}
+
 bool FileUtils::WriteFile(const std::string &fileName, const std::string &content)
 {
 	std::ofstream file(fileName.c_str());
