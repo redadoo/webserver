@@ -25,15 +25,18 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 	if (!pathInfo.second.empty())
 		env["QUERY_STRING"] = pathInfo.second;
 
-	env["CONTENT_LENGTH"] = StringUtils::ToString(request.body.length());
+	env["CONTENT_LENGTH"] = StringUtils::ToString(request.body.size());
 
 	std::string boundary = StringUtils::GetBoundary(request.header["Content-Type:"]);
-	std::vector<std::string> parts = StringUtils::SplitMultipartData(request.body, boundary);
+	std::vector<Body> parts = StringUtils::SplitMultipartData(request.body, boundary);
 	env["CONTENT_TYPE"] = request.header["Content-Type:"];
 
 	env["CONTENT_SIZE"] = StringUtils::ToString(parts.size());
 	for (std::vector<std::string>::size_type i = 0; i < parts.size(); ++i)
-			env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
+	{
+		//TODO
+		// env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
+	}
 }
 
 std::string Cgi::ExecuteCgi(Server& server, const Client& client)
@@ -151,7 +154,8 @@ HttpResponse Cgi::ProcessCgiRequest(Server& server,  const Client& client, HttpM
 		{
 			int statusCode = StringUtils::StrintToInt(statusIt->second.substr(0, 3));
 			response.SetStatusCode(static_cast<HttpStatusCode::Code>(statusCode));
-			response.header.erase("Status:");
+			// response.header.erase("Status:");
+			//TODO
 		}
 		else
 			response.SetStatusCode(HttpStatusCode::OK);

@@ -47,7 +47,8 @@ HttpResponse::HttpResponse() : code(HttpStatusCode::OK)
 {
 	startLine.httpVersion = "HTTP/1.1";
 	isHeaderComplete = false;
-	body = "";
+	// body = "";
+	//TODO
 }
 
 void HttpResponse::SetUploadBody()
@@ -60,6 +61,12 @@ void HttpResponse::SetStatusCode(HttpStatusCode::Code statusCode)
 {
 	code = statusCode;
 	startLine.httpMethod = HttpStatusCode::ReasonPhrase(statusCode);
+}
+
+void HttpResponse::SetBody(const Ustring& body)
+{
+	this->body = body;
+	SetContentLength();
 }
 
 void HttpResponse::SetBody(const std::string& body)
@@ -94,7 +101,7 @@ void HttpResponse::SetContentType(const std::string& contentType)
 
 void HttpResponse::SetContentLength()
 {
-	header["Content-Length: "] = StringUtils::ToString(static_cast<int>(body.length()));
+	header["Content-Length: "] = StringUtils::ToString(static_cast<int>(body.size()));
 }
 
 std::string HttpResponse::ToString() const

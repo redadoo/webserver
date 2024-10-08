@@ -127,29 +127,29 @@ std::vector<std::string> StringUtils::Split(const std::string& s, const std::str
 	return res;
 }
 
-std::vector<std::string> StringUtils::SplitHeader(std::string &request) 
-{
-	std::vector<std::string> result;
-    size_t startBody = request.find("\r\n\r\n");
-    // size_t endHeaderPos = 0;
+// std::vector<std::string> StringUtils::SplitHeader(std::string &request) 
+// {
+// 	std::vector<std::string> result;
+//     size_t startBody = request.find("\r\n\r\n");
+//     // size_t endHeaderPos = 0;
 
-	size_t lineStart = 0;
+// 	size_t lineStart = 0;
 
-	while (lineStart < startBody) 
-	{
-		size_t pos = request.find("\r\n", lineStart);
-		if (pos != std::string::npos) 
-		{
-			result.push_back(request.substr(lineStart, pos - lineStart));
-			lineStart = pos + 2;
-			// endHeaderPos = lineStart + (pos - lineStart);
-		}
-	}
+// 	while (lineStart < startBody) 
+// 	{
+// 		size_t pos = request.find("\r\n", lineStart);
+// 		if (pos != std::string::npos) 
+// 		{
+// 			result.push_back(request.substr(lineStart, pos - lineStart));
+// 			lineStart = pos + 2;
+// 			// endHeaderPos = lineStart + (pos - lineStart);
+// 		}
+// 	}
 
-	// request.erase(0, );
+// 	// request.erase(0, );
 
-    return result;
-}
+//     return result;
+// }
 
 bool StringUtils::IsAllDigit(const std::string &str)
 {
@@ -240,44 +240,60 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 	return "";
 }
 
-std::vector<std::string> StringUtils::SplitMultipartData(const std::vector<uint8_t>& data, const std::string& boundary)
+std::vector<Body> StringUtils::SplitMultipartData(const Body& body, const std::string& boundary)
 {
 	std::vector<std::string> parts;
 	std::string delimiter = "--" + boundary;
 	std::string endDelimiter = delimiter + "--";
 
 	size_t pos = 0;
+	
+	(void)body;
+	(void)pos;
 	while (true)
 	{
-		size_t startPos = data.find(delimiter, pos);
+		// TODO
+		// size_t startPos = data.find(delimiter, pos);
+		size_t startPos = 0;
+
 		if (startPos == std::string::npos)
 			break;
 
 		startPos += delimiter.length();
 
-		size_t endPos = data.find(delimiter, startPos);
+		// TODO
+		// size_t endPos = data.find(delimiter, startPos);
+		size_t endPos =  0;
 		if (endPos == std::string::npos)
 		{
-			endPos = data.find(endDelimiter, startPos);
+			// TODO
+			endPos = 0;
+			// endPos = data.find(endDelimiter, startPos);
 			if (endPos == std::string::npos)
-				endPos = data.length();
+			{
+				// endPos = data.length();
+				endPos = 0;
+			}
 		}
 
-		std::string part = data.substr(startPos, endPos - startPos);
+		// std::string part = data.substr(startPos, endPos - startPos);
+		std::string part = std::string();
 		if (!part.empty())
 		{
 			parts.push_back(part);
 			Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
 		}
 
-		if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
+		// if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
+		if (false)
 			break;
 
 		pos = endPos;
 	}
 
 	Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
-	return parts;
+	// return parts;
+	return std::vector<Body>();
 }
 
 std::string StringUtils::GetScriptPath(const std::string& path)

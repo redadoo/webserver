@@ -88,7 +88,7 @@ void Server::HandleGetRequest(Client& client, const Location* location)
 		HandleFileRequest(filePath);
 
 	response.SetContentLength();
-	LogResponseHeaders();
+	Logger::ResponseHeaderLog(response.header);
 }
 
 void Server::HandleUploadRequest(Client& client, const Location* location)
@@ -111,15 +111,17 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 
 	std::string boundary = StringUtils::GetBoundary(client.request.header["Content-Type: "]);
 	Logger::Log("Extracted boundary: " + boundary);
-	std::vector<std::string> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
+	std::vector<Body> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
 	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");
 
 	for (size_t i = 0; i < parts.size(); ++i)
 	{
 		Logger::Log("Processing multipart data part " + StringUtils::ToString(i + 1) + " of " + StringUtils::ToString(parts.size()));
-		std::string filename = StringUtils::ExtractFilename(parts[i]);
-		std::string content = StringUtils::ExtractFileContent(parts[i]);
-		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.length()));
+		
+		std::string filename = parts[i].GetFileName();
+		Ustring content = parts[i].GetFileContent();
+
+		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.size()));
 
 		if (!filename.empty() && !content.empty())
 		{
@@ -219,21 +221,12 @@ void Server::HandleDirectoryRequest(const std::string& path)
 void Server::HandleFileRequest(const std::string& path)
 {
 	Logger::Log("File found: " + path);
-	std::vector<uint8_t> fileContent = FileUtils::ReadFile(path);
-	Logger::Log("File content length: " + StringUtils::ToString(static_cast<int>(fileContent.length())) + " bytes");
+	Ustring fileContent = FileUtils::ReadBinaryFile(path);
+	Logger::Log("File content length: " + StringUtils::ToString(static_cast<int>(fileContent.size())) + " bytes");
 
 	response.SetStatusCode(HttpStatusCode::OK);
 	response.body = fileContent;
 	response.SetContentType(FileUtils::GetContentType(path));
-}
-
-void Server::LogResponseHeaders()
-{
-	Logger::Log("Response headers:");
-	for (Header::const_iterator it = response.header.begin(); it != response.header.end(); ++it)
-	{
-		Logger::Log("  " + it->first + ": " + it->second);
-	}
 }
 
 void Server::SendResponse(const Client& client)
@@ -379,16 +372,15 @@ void Server::ReadClientRequest(Client &client)
 	int16_t				recvRet;
 
 	Logger::Log("read client mess");
+	
 	while (client.request.IsMessageComplete() == false)
 	{
-		std::string buffer(MAX_RESPONSE_CHUNK_SIZE, '\0');
-		recvRet = recv(client.clientFd, &buffer[0], MAX_RESPONSE_CHUNK_SIZE, 0);
+		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
+		recvRet = recv(client.clientFd, buffer.data(), buffer.size(), 0);
 		Logger::Log(StringUtils::ToString(recvRet));
 		if (recvRet < 0)
 		{
 			Logger::LogErrno();
-			Logger::LogWarning("recv return is smaller than 0");
-			Logger::Log(buffer);
 			return (this->CloseClientConnection(client));
 		}
 
@@ -397,6 +389,7 @@ void Server::ReadClientRequest(Client &client)
 
 		client.request.ParseMessage(buffer);
 	}
+
 	Logger::Log("finish read client mess");
 	Logger::RequestLog(*this, client, client.request);
 }

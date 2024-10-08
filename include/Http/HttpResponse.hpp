@@ -33,6 +33,10 @@ class HttpResponse : public HttpMessage
 
 		/// @brief Sets the body of the HTTP response and updates the content length header accordingly.
 		/// @param body The content to be set as the body of the response.
+		void SetBody(const Ustring& body);
+
+		/// @brief Sets the body of the HTTP response and updates the content length header accordingly.
+		/// @param body The content to be set as the body of the response.
 		void SetBody(const std::string& body);
 
 		/// @brief Sets the `Content-Type` header for the HTTP response.

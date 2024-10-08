@@ -32,23 +32,47 @@ std::string FileUtils::ReadFile(const std::string &fileName)
 	return buffer.str();
 }
 
-std::vector<uint8_t> FileUtils::ReadFile(const std::string &fileName)
+Ustring FileUtils::ReadBinaryFile(const std::string &fileName)
 {
-	std::ifstream file(fileName.c_str());
-	if (!file.is_open())
-		return "";
+    // Open file in binary mode
+    std::ifstream instream(fileName.c_str(), std::ios::in | std::ios::binary);
+    
+    // Check if the file opened successfully
+    if (!instream.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + fileName);
+    }
 
-	std::stringstream buffer;
-	buffer << file.rdbuf();
-	return buffer.str();
+    // Seek to the end of the file to determine the file size
+    instream.seekg(0, std::ios::end);
+    std::streampos fileSize = instream.tellg();
+    instream.seekg(0, std::ios::beg);
+
+    // Check for valid file size
+    if (fileSize <= 0)
+    {
+        throw std::runtime_error("Invalid file size: " + fileName);
+    }
+
+    // Resize the vector to fit the file content
+    std::vector<uint8_t> data(static_cast<size_t>(fileSize));
+
+    // Read file content into the vector
+    instream.read(reinterpret_cast<char*>(&data[0]), fileSize);
+    
+    // Close the file
+    instream.close();
+
+    // Return a Ustring object constructed from the binary data
+    return Ustring(std::string(data.begin(), data.end()));
 }
 
-bool FileUtils::WriteFile(const std::string &fileName, const std::string &content)
+bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content)
 {
-	std::ofstream file(fileName.c_str());
+	std::ofstream file(fileName.c_str(), std::ios::out | std::ios::binary /* | std::ios::app */);
 	if (!file.is_open())
 		return false;
-	file << content;
+    file.write(reinterpret_cast<const char*>(content.get_content().data()), content.size());	
 	file.close();
 	return true;
 }

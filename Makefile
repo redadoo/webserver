@@ -33,23 +33,24 @@ LIBHTTP 			= 	include/Http
 
 # Specify source files
 FILES       		= 	main WebServer ServerConfig/Server Parsing/Parser Parsing/Lexer \
-						Utils/StringUtils Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
+						Utils/StringUtils Utils/Ustring Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
 						Client/Client Utils/EpollUtils Logger/Logger ServerConfig/ServerConfig ServerConfig/Port \
-						ServerConfig/ClientBodySize ServerConfig/Location ServerConfig/CodePath Http/HttpMessage Http/HttpResponse \
-						Cgi/Cgi
+						ServerConfig/ClientBodySize ServerConfig/Location ServerConfig/CodePath Http/HttpMessage \
+						Http/HttpResponse Cgi/Cgi Http/Body Http/Header Http/StartLine
 
 SRC         		= 	$(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
 
 # Specify header files
-HEADER      		= 	$(LIBDIR)/WebServer.hpp $(LIBSERVER)/Server.hpp  $(LIBUTILS)/FIleUtils.hpp \
+HEADER      		= 	$(LIBDIR)/WebServer.hpp $(LIBSERVER)/Server.hpp  $(LIBUTILS)/FIleUtils.hpp $(LIBUTILS)/Ustring.hpp \
 						$(LIBCONFIGANALYSIS)/Parser.hpp $(LIBCONFIGANALYSIS)/Lexer.hpp  \
 						$(LIBEXCEPTION)/WebServerException.hpp $(LIBLOGGER)/Logger.hpp $(LIBSIGNAL)/HandleSignal.hpp \
 						$(LIBCLIENT)/Client.hpp $(LIBUTILS)/EpollUtils.hpp $(LIBSERVER)/ServerConfig.hpp \
 						$(LIBSERVER)/ClientBodySize.hpp $(LIBSERVER)/CodePath.hpp $(LIBSERVER)/Location.hpp \
 						$(LIBUTILS)/NetworkUtils.hpp $(LIBUTILS)/StringUtils.hpp $(LIBSERVER)/Port.hpp \
 						$(LIBCLIENT)/ClientConfig.hpp $(LIBHTTP)/HttpStatusCode.hpp $(LIBHTTP)/HttpMessage.hpp \
-						$(LIBHTTP)/HttpResponse.hpp $(LIBCGI)/Cgi.hpp
+						$(LIBHTTP)/HttpResponse.hpp $(LIBHTTP)/Body.hpp  $(LIBHTTP)/Header.hpp  $(LIBHTTP)/StartLine.hpp  \
+						$(LIBCGI)/Cgi.hpp
 
 #include the lib/ directory for header files
 INC         		= 	-I$(LIBDIR) -I$(LIBSERVER) -I$(LIBCLIENT) -I$(LIBLOGGER) -I$(LIBSIGNAL) -I$(LIBCONFIGANALYSIS) -I$(LIBEXCEPTION) -I$(LIBUTILS) -I$(LIBHTTP) -I$(LIBCGI)

@@ -121,6 +121,17 @@ void Logger::ResponseLog(const Server &server, const Client &client, const char*
 	}
 }
 
+void Logger::ResponseHeaderLog(const Header& header)
+{
+	(void)header;
+	Logger::Log("Response headers:");
+	
+	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
+	{
+		Logger::Log("  " + it->first + ": " + it->second);
+	}
+}
+
 void Logger::ServerLog(const Server &server, const std::string &msg)
 {
 	if (isEnable)

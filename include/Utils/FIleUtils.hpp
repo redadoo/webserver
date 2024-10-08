@@ -2,6 +2,9 @@
 # define FILEUTILS_HPP
 
 #include <string>
+#include <vector>
+#include <stdint.h>
+#include <Ustring.hpp>
 
 namespace FileUtils
 {
@@ -20,7 +23,9 @@ namespace FileUtils
     /// @return A string containing the file content. Returns an empty string if the file cannot be opened.
 	std::string ReadFile(const std::string& fileName);
 
-    std::vector<uint8_t> ReadFile(const std::string &fileName);
+    /// @brief 
+    /// @param fileName 
+    Ustring ReadBinaryFile(const std::string &fileName);
 
     /// @brief Writes the specified content to a file.
     /// @param fileName The path to the file where the content will be written.
@@ -28,12 +33,15 @@ namespace FileUtils
     /// @return `true` if the file was successfully opened and the content was written; `false` otherwise.
 	bool WriteFile(const std::string& fileName, const std::string& content);
 
+	bool WriteFile(const std::string& fileName, const Ustring& content);
+
     /// @brief Determines the MIME content type based on the file extension.
     /// @param fileName The name of the file whose content type is to be determined.
     /// @return The MIME content type as a string. Returns `"text/html"` for `.html` and `.htm` extensions, and `"text/plain"` for other extensions.
 	std::string GetContentType(const std::string& fileName);
 
     int CheckFd(int fd);
+    
 } // namespace FIleUtils
 
 #endif

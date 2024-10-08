@@ -1,34 +1,9 @@
 #ifndef HTTPMESSAGE_HPP
 # define HTTPMESSAGE_HPP
 
-#include <map>
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <stdint.h>
-
-/// @brief Structure for the start line of an HTTP message
-struct StartLine
-{
-	std::string					httpMethod;
-	std::string					httpVersion;
-	std::string					path;
-	bool 						isInit;
-
-    StartLine();
-	size_t size() const {return httpMethod.size() + httpVersion.size() + path.size();}
-    std::string ToString() const;
-};
-
-/// @brief Functor for case-insensitive comparison of strings
-struct CaseInsensitiveCompare {
-	bool operator()(const std::string& a, const std::string& b) const;
-	static bool char_compare(char ac, char bc);
-};
-
-/// @brief Header map with case-insensitive key comparison
-typedef std::map<std::string, std::string, CaseInsensitiveCompare> Header;
+#include <Body.hpp>
+#include <Header.hpp>
+#include <StartLine.hpp>
 
 // Class for managing HTTP messages
 class HttpMessage
@@ -37,16 +12,16 @@ private:
     std::string incomplete_header_buffer;
 
 public:
-	StartLine 	            startLine;
-	Header                  header;
-    std::vector<uint8_t>    body;
+	StartLine 	startLine;
+	Header      header;
+    Body        body;
     bool        isHeaderComplete;
 
-    void ParseHeaders(std::string &chunk);
+    void ParseHeaders(Ustring& chunk);
 
 	/// @brief Parses the HTTP message from a string chunk.
     /// @param messageChunk The chunk of the HTTP message to parse.
-    void ParseMessage(std::string &chunk);
+    void ParseMessage(Ustring& chunk);
 
     /// @brief Returns the size of the HTTP message.
     /// @return Size of the HTTP message.
@@ -70,7 +45,7 @@ private:
 
    	/// @brief Parses the start line of the HTTP message.
     /// @param str The start line string to parse.
-    void ParseStartLine(const std::string& str);
+    void ParseStartLine(const Ustring& str);
 };
 
 #endif

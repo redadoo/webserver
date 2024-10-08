@@ -9,6 +9,7 @@
 #include <sstream>
 #include <sys/types.h>
 #include <map>
+#include <Body.hpp>
 
 namespace StringUtils
 {
@@ -32,6 +33,9 @@ namespace StringUtils
 	/// @return A string representation of the number.
 	std::string ToString(unsigned long long n);
 
+	/// @brief Converts an long long to a string.
+	/// @param n The number to convert.
+	/// @return A string representation of the number.
 	std::string ToString(long long n);
 
 	/// @brief Converts an off_t to a string.
@@ -44,10 +48,19 @@ namespace StringUtils
 	/// @return A int representation of the string.
 	int StrintToInt(const std::string& str);
 
+	/// @brief Converts an string to unsigned long long.
+	/// @param str The string to convert.
+	/// @return A unsigned long long representation of the string.
 	unsigned long long StringToUnsignedLongLong(const std::string& str);
 
+	/// @brief Converts an string to size_t.
+	/// @param str The string to convert.
+	/// @return A size_t representation of the string.
 	size_t StringTouint16_t(const std::string& str);
 
+	/// @brief Converts an string to long long.
+	/// @param str The string to convert.
+	/// @return A long long representation of the string.
 	long long StringToLongLong(const std::string& str);
 	
 	/// @brief Splits a string into substrings based on a delimiter.
@@ -62,8 +75,6 @@ namespace StringUtils
 	/// @return A vector of substrings.
 	std::vector<std::string> Split(const std::string& str, const std::string& delim);
 
-	std::vector<std::string> SplitHeader(std::string& request);
-	
 	/// @brief Checks if a string contains only digit characters.
 	/// @param str The string to check.
 	/// @return True if all characters in the string are digits, false otherwise.
@@ -103,7 +114,7 @@ namespace StringUtils
 	/// @param data The complete multipart/form-data content.
 	/// @param boundary The boundary string used to delimit the different parts of the multipart data.
 	/// @return A vector of strings, each containing an individual part of the multipart data. Empty parts are skipped.
-	std::vector<std::string> SplitMultipartData(const std::vector<uint8_t>& data, const std::string& boundary);
+	std::vector<Body> SplitMultipartData(const Body& body, const std::string& boundary);
 
 	/// @brief Extracts the script path from a URL by removing any query string that follows the `?` character.
 	/// @param path The full URL path which may include a query string.
@@ -115,8 +126,6 @@ namespace StringUtils
 	/// @return A dynamically allocated array of C-strings. Caller must free the memory.
 	char **GetMatrix(const std::map<std::string,std::string>& map);
 
-	bool	ContainsHeader(std::string& str);
-	
 } // namespace StringUtils
 
 #endif

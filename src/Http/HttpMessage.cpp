@@ -20,9 +20,9 @@ bool CaseInsensitiveCompare::operator()(const std::string &a, const std::string 
 
 // private function
 
-void HttpMessage::ParseStartLine(const std::string &str)
+void HttpMessage::ParseStartLine(const Ustring &str)
 {
-	std::istringstream lineStream(str);
+	std::istringstream lineStream(str.toString());
 	lineStream >> startLine.httpMethod >> startLine.path >> startLine.httpVersion;
 
 	if(startLine.httpMethod != "GET" && startLine.httpMethod != "POST" && startLine.httpMethod != "DELETE")
@@ -44,62 +44,66 @@ void HttpMessage::ParseStartLine(const std::string &str)
 
 // public function
 
-void HttpMessage::ParseHeaders(std::string &header_part)
+void HttpMessage::ParseHeaders(Ustring& chunk)
 {
 	size_t start = 0;
-	size_t end = header_part.find("\r\n");
+	size_t end = chunk.find("\r\n");
 
 	if (end == std::string::npos) 
 		throw std::invalid_argument(" Invalid header format");
 
 	// Parse request line (first line)
-	std::string request_line = header_part.substr(start, end - start);
+	Ustring request_line = chunk.substr(start, end - start);
 
 	ParseStartLine(request_line);
 
 	start = end + 2; // Skip "\r\n"
 
-	while ((end = header_part.find("\r\n", start)) != std::string::npos) 
+	while ((end = chunk.find("\r\n", start)) != std::string::npos) 
 	{
-		std::string header_line = header_part.substr(start, end - start);
+		Ustring header_line = chunk.substr(start, end - start);
 
-		size_t delimiter = header_line.find(':');
+		size_t delimiter = header_line.find(":");
 
         if (delimiter == std::string::npos) 
 			throw std::invalid_argument(" Invalid header line (no colon) ");
 
-        std::string header_name = header_line.substr(0, delimiter + 2);
-        std::string header_value = header_line.substr(delimiter + 2); // Skip ": "
+        std::string header_name = header_line.substr(0, delimiter + 2).toString();
+        std::string header_value = header_line.substr(delimiter + 2).toString(); // Skip ": "
         header[header_name] = header_value;
 		start = end + 2; // Skip "\r\n"
 	}
 }
 
-void HttpMessage::ParseMessage(std::string &chunk)
+void HttpMessage::ParseMessage(Ustring& chunk)
 {
 	if (!isHeaderComplete) 
 	{
+		chunk.find("\r\n\r\n");
 		size_t header_end = chunk.find("\r\n\r\n");
 		if (header_end != std::string::npos) 
 		{
 			// Headers and part of body in this chunk
-			std::string header_part = chunk.substr(0, header_end);
-			std::string tmp = chunk.substr(header_end + 4);
+			Ustring header_part = chunk.substr(0,header_end);
+			Ustring tmp = chunk.substr(header_end + 4);
 			
 			if (tmp[0] != 0) 
+			{
 				body = tmp;
+			}
 			
 			ParseHeaders(header_part); 
 			isHeaderComplete = true;
 		} 
 		else 
 		{
-			incomplete_header_buffer += chunk;
+			incomplete_header_buffer += chunk.toString();
 		}
 	} 
 	else
 	{
-		body += chunk;
+		// TODO
+		// body += chunk;
 	}
 }
 
@@ -113,7 +117,8 @@ std::string HttpMessage::ToString() const
 		msg.append(it->second);
 		msg.append("\n");
 	}
-	msg.append(body);
+	// TODO
+	// msg.append(body);
 	return msg;
 }
 
@@ -167,8 +172,9 @@ std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 		os << it->first << it->second << "\n";
 	os << "[End Header]\n";
 
-	if (msg.body.size() > 0)
-		os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
+	//TODO 
+	// if (msg.body.size() > 0)
+	// 	os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
 		
 	return (os);
 }
