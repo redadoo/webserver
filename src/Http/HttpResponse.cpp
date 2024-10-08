@@ -47,8 +47,7 @@ HttpResponse::HttpResponse() : code(HttpStatusCode::OK)
 {
 	startLine.httpVersion = "HTTP/1.1";
 	isHeaderComplete = false;
-	// body = "";
-	//TODO
+	body = "";
 }
 
 void HttpResponse::SetUploadBody()

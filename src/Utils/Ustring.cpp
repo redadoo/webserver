@@ -33,7 +33,7 @@ const uint8_t& Ustring::operator[](size_t index) const
     return content[index];
 }
 
-size_t Ustring::find(const std::string &substr, size_t pos)
+size_t Ustring::find(const std::string &substr, size_t pos) const
 {
     if (substr.empty() || substr.size() > size()) 
     {
@@ -61,7 +61,7 @@ size_t Ustring::find(const std::string &substr, size_t pos)
     return std::string::npos; 
 }
 
-Ustring Ustring::substr(size_t pos, size_t len)
+Ustring Ustring::substr(size_t pos, size_t len) const
 {
     if (pos >= size()) 
     {
@@ -80,7 +80,7 @@ Ustring Ustring::substr(size_t pos, size_t len)
     return result;
 }
 
-Ustring Ustring::substr(size_t startPos) 
+Ustring Ustring::substr(size_t startPos) const
 {
     if (startPos >= size()) 
     {

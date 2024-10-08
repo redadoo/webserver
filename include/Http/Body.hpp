@@ -8,10 +8,9 @@
 
 class Body
 {
-	private:
+	public:
 		Ustring    content;
 
-	public:
 	    Body& operator=(const Ustring& body);
 	    Body& operator=(const std::string& body);
 	    friend std::ostream& operator<<(std::ostream& os, const Body& msg);

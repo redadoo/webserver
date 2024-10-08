@@ -367,17 +367,18 @@ int Server::AcceptClient(int fd, int epollFd)
 
 void Server::ReadClientRequest(Client &client)
 {
-	typedef unsigned long long Ulong;
-	const Ulong 		maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	int16_t				recvRet;
+	const unsigned long long 	maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
+	int16_t						recvRet;
 
-	Logger::Log("read client mess");
+	Logger::Log("read client message");
 	
 	while (client.request.IsMessageComplete() == false)
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
 		recvRet = recv(client.clientFd, buffer.data(), buffer.size(), 0);
+
 		Logger::Log(StringUtils::ToString(recvRet));
+		
 		if (recvRet < 0)
 		{
 			Logger::LogErrno();
@@ -390,7 +391,7 @@ void Server::ReadClientRequest(Client &client)
 		client.request.ParseMessage(buffer);
 	}
 
-	Logger::Log("finish read client mess");
+	Logger::Log("finish read client message");
 	Logger::RequestLog(*this, client, client.request);
 }
 

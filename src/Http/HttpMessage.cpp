@@ -102,8 +102,7 @@ void HttpMessage::ParseMessage(Ustring& chunk)
 	} 
 	else
 	{
-		// TODO
-		// body += chunk;
+		body.content += chunk;
 	}
 }
 
@@ -117,8 +116,7 @@ std::string HttpMessage::ToString() const
 		msg.append(it->second);
 		msg.append("\n");
 	}
-	// TODO
-	// msg.append(body);
+	msg.append(body.content.toString());
 	return msg;
 }
 
@@ -172,9 +170,8 @@ std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 		os << it->first << it->second << "\n";
 	os << "[End Header]\n";
 
-	//TODO 
-	// if (msg.body.size() > 0)
-	// 	os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
+	if (msg.body.size() > 0)
+	 	os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
 		
 	return (os);
 }
