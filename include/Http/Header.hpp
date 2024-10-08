@@ -11,6 +11,8 @@ struct CaseInsensitiveCompare {
 
 struct Header
 {
+	std::map<std::string, std::string, CaseInsensitiveCompare> content;
+	
 	// Typedef for iterators
 	typedef std::map<std::string, std::string, CaseInsensitiveCompare>::const_iterator const_iterator;
 	typedef std::map<std::string, std::string, CaseInsensitiveCompare>::iterator iterator;
@@ -29,7 +31,12 @@ struct Header
 	std::string at(const std::string &key) const;
 	size_t size() const;
 
-	std::map<std::string, std::string, CaseInsensitiveCompare> content;
+    void erase(const std::string& key) {
+        iterator it = content.find(key);
+        if (it != content.end()) {
+            content.erase(it);
+        }
+    }
 };
 
 #endif

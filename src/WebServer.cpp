@@ -45,6 +45,7 @@ void WebServer::StartServer()
 	int	epollRet;
 
 	Logger::Log("Entering event loop...");
+	
 	while (!needToStop)
 	{
 		needToStop = signalState.signCaught;
@@ -56,7 +57,7 @@ void WebServer::StartServer()
 		{
 			Logger::Log(std::string("I don't see any event within ")
 					+ StringUtils::ToString(TIMEOUT) + " milliseconds");
-			continue ;
+			continue;
 		}
 
 		if (epollRet == -1)
@@ -69,7 +70,6 @@ void WebServer::StartServer()
 			else
 				throw WebServerException::ExceptionErrno("epoll_wait(): ", errno);
 		}
-
 		CheckSockets(epollRet);
 	}
 }

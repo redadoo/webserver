@@ -8,18 +8,17 @@
 
 class Body
 {
-	private:
+	public:
 		Ustring    content;
 
-	public:
 	    Body& operator=(const Ustring& body);
 	    Body& operator=(const std::string& body);
 	    friend std::ostream& operator<<(std::ostream& os, const Body& msg);
 
-		std::string				GetFileName() const;
-		Ustring	GetFileContent() const;
-		std::string				GetBoundary() const;
-		size_t					size() const ;
+		std::string	GetFileName() const;
+		Ustring		GetFileContent() const;
+		std::string	GetBoundary() const;
+		size_t		size() const ;
 };
 
 #endif

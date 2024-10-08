@@ -3,6 +3,8 @@
 #include <WebServerException.hpp>
 #include <StringUtils.hpp>
 #include <algorithm>
+#include <sys/types.h>
+
 // CaseInsensitiveCompare
 
 bool CaseInsensitiveCompare::char_compare(char ac, char bc)
@@ -102,8 +104,7 @@ void HttpMessage::ParseMessage(Ustring& chunk)
 	} 
 	else
 	{
-		// TODO
-		// body += chunk;
+		body.content += chunk;
 	}
 }
 
@@ -117,8 +118,7 @@ std::string HttpMessage::ToString() const
 		msg.append(it->second);
 		msg.append("\n");
 	}
-	// TODO
-	// msg.append(body);
+	msg.append(body.content.toString());
 	return msg;
 }
 
@@ -138,12 +138,15 @@ unsigned long long HttpMessage::GetContentLength() const
 	return res;
 }
 
-bool HttpMessage::IsMessageComplete() const
+bool HttpMessage::IsMessageComplete(ssize_t recvRet) const
 {
 	unsigned long long contentLength = GetContentLength(); 
 
 	if (contentLength == 0)
 		return header.size() > 0;
+
+	if (recvRet < 4096)
+		return true;
 
 	return body.size() > contentLength;
 }
@@ -172,9 +175,8 @@ std::ostream &operator<<(std::ostream &os, const HttpMessage &msg)
 		os << it->first << it->second << "\n";
 	os << "[End Header]\n";
 
-	//TODO 
-	// if (msg.body.size() > 0)
-	// 	os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
+	if (msg.body.size() > 0)
+	 	os << "[Start Body]\n" << msg.body << "\n" << "[End Body]\n";
 		
 	return (os);
 }

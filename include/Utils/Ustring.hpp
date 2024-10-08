@@ -46,11 +46,13 @@ public:
     /// @exception std::out_of_range Thrown if the index is out of bounds.
     const uint8_t& operator[](size_t index) const;
 
+	friend std::ostream& operator<<(std::ostream& os, const Ustring& msg);
+
 	/// @brief Finds the first occurrence of a substring in the Ustring content.
 	/// @param str The Ustring object to search within.
 	/// @param substr The substring to search for.
 	/// @return The starting position of the substring if found, otherwise `std::string::npos`.
-	size_t find(const std::string &substr, size_t pos = 0);
+	size_t find(const std::string &substr, size_t pos = 0) const;
 
   	/// @brief Extracts a substring from the Ustring content.
 	/// @param vec The Ustring object to extract the substring from.
@@ -58,14 +60,14 @@ public:
 	/// @param len The length of the substring to extract.
 	/// @exception std::out_of_range Thrown if the starting position is out of range.
 	/// @return A vector of uint8_t containing the extracted substring.
-	Ustring substr(size_t pos, size_t len);
+	Ustring substr(size_t pos, size_t len) const;
 
 	/// @brief Extracts a substring from the starting position to the end of the Ustring content.
 	/// @param vec The Ustring object to extract the substring from.
 	/// @param startPos The starting position of the substring.
 	/// @exception std::out_of_range Thrown if the starting position is out of range.
 	/// @return A vector of uint8_t containing the extracted substring.
-	Ustring substr(size_t startPos);
+	Ustring substr(size_t startPos) const;
 
 	/// @brief Returns the size of the Ustring content.
 	/// @return The size (number of bytes) of the content.
@@ -95,6 +97,24 @@ public:
 
     // Converts the Ustring content back into a standard string
    	std::string toString() const { return std::string(content.begin(), content.end()); }
+
+
+    /// @brief Erases the element at the specified position.
+    /// @param pos The position of the element to erase.
+    /// @return A reference to the modified Ustring object.
+	Ustring& erase(size_t pos);
+
+    /// @brief Erases a range of elements from the content.
+    /// @param pos The starting position of the range.
+    /// @param len The number of elements to erase.
+    /// @return A reference to the modified Ustring object.
+	Ustring& erase(size_t pos, size_t len);
+
+	/// @brief Finds the first element that is not any of the characters in the given set.
+    /// @param str A string containing the set of characters to avoid.
+    /// @param pos The starting position for the search.
+    /// @return The position of the first element not in the set, or std::string::npos if not found.
+    size_t find_first_not_of(const std::string& str, size_t pos = 0) const;
 };
 
 #endif

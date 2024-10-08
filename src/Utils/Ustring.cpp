@@ -33,7 +33,7 @@ const uint8_t& Ustring::operator[](size_t index) const
     return content[index];
 }
 
-size_t Ustring::find(const std::string &substr, size_t pos)
+size_t Ustring::find(const std::string &substr, size_t pos) const
 {
     if (substr.empty() || substr.size() > size()) 
     {
@@ -61,7 +61,7 @@ size_t Ustring::find(const std::string &substr, size_t pos)
     return std::string::npos; 
 }
 
-Ustring Ustring::substr(size_t pos, size_t len)
+Ustring Ustring::substr(size_t pos, size_t len) const
 {
     if (pos >= size()) 
     {
@@ -80,7 +80,7 @@ Ustring Ustring::substr(size_t pos, size_t len)
     return result;
 }
 
-Ustring Ustring::substr(size_t startPos) 
+Ustring Ustring::substr(size_t startPos) const
 {
     if (startPos >= size()) 
     {
@@ -96,4 +96,48 @@ Ustring Ustring::substr(size_t startPos)
     }
 
     return result;
+}
+
+Ustring &Ustring::erase(size_t pos)
+{
+    if (pos >= content.size()) 
+    {
+        throw std::out_of_range("Position out of range");
+    }
+    content.erase(content.begin() + pos);
+    return *this;
+}
+
+Ustring &Ustring::erase(size_t pos, size_t len)
+{
+    if (pos >= content.size() || pos + len > content.size()) 
+    {
+        throw std::out_of_range("Range out of bounds");
+    }
+    content.erase(content.begin() + pos, content.begin() + pos + len);
+    return *this;
+}
+
+size_t Ustring::find_first_not_of(const std::string &str, size_t pos) const
+{
+    if (pos >= content.size()) 
+        return std::string::npos;
+
+    for (size_t i = pos; i < content.size(); ++i) 
+    {
+        if (str.find(content[i]) == std::string::npos) 
+        {
+            return i;
+        }
+    }
+
+    return std::string::npos;
+}
+
+std::ostream &operator<<(std::ostream &os, const Ustring &msg)
+{
+    for (size_t i = 0; i < msg.content.size(); i++)
+        os << msg.content[i];
+
+    return os;    
 }

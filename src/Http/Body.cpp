@@ -16,12 +16,33 @@ Body &Body::operator=(const std::string &body)
 
 std::string Body::GetFileName() const
 {
-    return std::string();
+	size_t filenamePos = content.find("filename=\"");
+	if (filenamePos != std::string::npos)
+	{
+		size_t filenameStart = filenamePos + 10;
+		size_t filenameEnd = content.find("\"", filenameStart);
+		if (filenameEnd != std::string::npos)
+		{
+			std::string filename = content.substr(filenameStart, filenameEnd - filenameStart).toString();
+			Logger::Log("Extracted filename: " + filename);
+			return filename;
+		}
+	}
+	Logger::LogError("Failed to extract filename from multipart data part");
+	return "";
 }
 
 std::string Body::GetBoundary() const
 {
-    return std::string();
+	size_t boundaryPos = content.find("boundary=");
+	if (boundaryPos != std::string::npos)
+	{
+		std::string boundary = content.substr(boundaryPos + 9).toString();
+		if (!boundary.empty() && boundary[0] == '"' && boundary[boundary.length() - 1] == '"')
+			boundary = boundary.substr(1, boundary.length() - 2);
+		return boundary;
+	}
+	return "";
 }
 
 size_t Body::size() const
@@ -31,12 +52,34 @@ size_t Body::size() const
 
 Ustring Body::GetFileContent() const
 {
-    return this->content;
+	Ustring tmpContent = content;
+
+	size_t headerEnd = tmpContent.find("Content-Type:");
+	if (headerEnd == std::string::npos)
+	{
+		Logger::LogError("Failed to find start of content in multipart data");
+		return Ustring();
+	}
+
+	size_t contentStart = tmpContent.find("\n", headerEnd);
+	if (contentStart == std::string::npos)
+	{
+		Logger::LogError("Failed to find start of content in multipart data");
+		return Ustring();
+	}
+
+	contentStart += 1;
+
+	Ustring tmp = tmpContent.substr(contentStart);
+
+	tmp.erase(0, tmp.find_first_not_of("\t\r\n"));
+
+	return tmp;
 }
 
 std::ostream &operator<<(std::ostream &os, const Body &msg)
 {
     for (size_t i = 0; i < msg.content.size(); ++i)
-        os << static_cast<char>(msg.content[i]);
+        os << (msg.content[i]);
     return os;
 }

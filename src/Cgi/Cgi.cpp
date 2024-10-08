@@ -34,8 +34,7 @@ void Cgi::SetEnv(HttpMessage& request, const std::string& serverName, int server
 	env["CONTENT_SIZE"] = StringUtils::ToString(parts.size());
 	for (std::vector<std::string>::size_type i = 0; i < parts.size(); ++i)
 	{
-		//TODO
-		// env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i];
+		env["CONTENT_" + StringUtils::ToString(i + 1)] = parts[i].content.toString();
 	}
 }
 
@@ -154,8 +153,7 @@ HttpResponse Cgi::ProcessCgiRequest(Server& server,  const Client& client, HttpM
 		{
 			int statusCode = StringUtils::StrintToInt(statusIt->second.substr(0, 3));
 			response.SetStatusCode(static_cast<HttpStatusCode::Code>(statusCode));
-			// response.header.erase("Status:");
-			//TODO
+			response.header.erase("Status:");
 		}
 		else
 			response.SetStatusCode(HttpStatusCode::OK);

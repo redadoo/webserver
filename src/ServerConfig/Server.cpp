@@ -13,7 +13,7 @@
 #include <stdexcept>
 #include <string>
 #include <stdint.h>
-
+#include <sys/types.h>
 //constructor
 
 Server::Server() : serverConfig() {}
@@ -125,6 +125,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 
 		if (!filename.empty() && !content.empty())
 		{
+			Logger::Log(content.toString());
 			std::string uploadFilePath = uploadPath + filename;
 			if (FileUtils::WriteFile(uploadFilePath, content))
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
@@ -235,7 +236,6 @@ void Server::SendResponse(const Client& client)
 	size_t totalBytesSent = 0;
 	size_t totalLength = responseStr.length();
 
-	// Logger::ResponseLog(*this,client,responseStr.c_str());
 	Logger::Log("Attempting to send response of " + StringUtils::ToString(totalLength) + " bytes");
 	while (totalBytesSent < totalLength)
 	{
@@ -367,17 +367,18 @@ int Server::AcceptClient(int fd, int epollFd)
 
 void Server::ReadClientRequest(Client &client)
 {
-	typedef unsigned long long Ulong;
-	const Ulong 		maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
-	int16_t				recvRet;
+	const unsigned long long 	maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
+	ssize_t						recvRet;
 
-	Logger::Log("read client mess");
+	Logger::Log("read client message");
 	
-	while (client.request.IsMessageComplete() == false)
+	while (!client.request.IsMessageComplete(recvRet))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
-		recvRet = recv(client.clientFd, buffer.data(), buffer.size(), 0);
+		recvRet = recv(client.clientFd, buffer.data(), MAX_RESPONSE_CHUNK_SIZE, 0);
+
 		Logger::Log(StringUtils::ToString(recvRet));
+		
 		if (recvRet < 0)
 		{
 			Logger::LogErrno();
@@ -390,7 +391,7 @@ void Server::ReadClientRequest(Client &client)
 		client.request.ParseMessage(buffer);
 	}
 
-	Logger::Log("finish read client mess");
+	Logger::Log("finish read client message");
 	Logger::RequestLog(*this, client, client.request);
 }
 

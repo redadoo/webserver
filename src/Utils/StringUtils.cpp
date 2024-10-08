@@ -193,40 +193,6 @@ std::pair<std::string, std::string> StringUtils::SplitPathAndQuery(const std::st
 	return std::make_pair(path, "");
 }
 
-std::string StringUtils::ExtractFileContent(const std::string& part)
-{
-	size_t headerEnd = part.find("Content-Type:");
-
-	size_t contentStart = part.find("\n", headerEnd);
-	if (contentStart == std::string::npos)
-	{
-		Logger::LogError("Failed to find start of content in multipart data");
-		return "";
-	}
-	contentStart += 1;
-	std::string content = part.substr(contentStart - 1);
-	Logger::Log("Extracted content:\n" + content);
-	return content;
-}
-
-std::string StringUtils::ExtractFilename(const std::string &part)
-{
-	size_t filenamePos = part.find("filename=\"");
-	if (filenamePos != std::string::npos)
-	{
-		size_t filenameStart = filenamePos + 10;
-		size_t filenameEnd = part.find("\"", filenameStart);
-		if (filenameEnd != std::string::npos)
-		{
-			std::string filename = part.substr(filenameStart, filenameEnd - filenameStart);
-			Logger::Log("Extracted filename: " + filename);
-			return filename;
-		}
-	}
-	Logger::LogError("Failed to extract filename from multipart data part");
-	return "";
-}
-
 std::string StringUtils::GetBoundary(const std::string& contentType)
 {
 	size_t boundaryPos = contentType.find("boundary=");
@@ -242,58 +208,48 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 
 std::vector<Body> StringUtils::SplitMultipartData(const Body& body, const std::string& boundary)
 {
-	std::vector<std::string> parts;
+	std::vector<Body> parts;
 	std::string delimiter = "--" + boundary;
 	std::string endDelimiter = delimiter + "--";
 
 	size_t pos = 0;
-	
-	(void)body;
-	(void)pos;
 	while (true)
 	{
-		// TODO
-		// size_t startPos = data.find(delimiter, pos);
-		size_t startPos = 0;
+		size_t startPos = body.content.find(delimiter, pos);
 
 		if (startPos == std::string::npos)
 			break;
 
 		startPos += delimiter.length();
 
-		// TODO
-		// size_t endPos = data.find(delimiter, startPos);
-		size_t endPos =  0;
+		size_t endPos = body.content.find(delimiter, startPos);
+
 		if (endPos == std::string::npos)
 		{
-			// TODO
-			endPos = 0;
-			// endPos = data.find(endDelimiter, startPos);
+			endPos = body.content.find(endDelimiter, startPos);
 			if (endPos == std::string::npos)
 			{
-				// endPos = data.length();
-				endPos = 0;
+				endPos = body.content.size();
 			}
 		}
 
-		// std::string part = data.substr(startPos, endPos - startPos);
-		std::string part = std::string();
+		Ustring part = body.content.substr(startPos, endPos - startPos);
 		if (!part.empty())
 		{
-			parts.push_back(part);
-			Logger::Log("Found multipart data part of length: " + StringUtils::ToString(part.length()));
+			Body tmp;
+			tmp.content = part;
+			parts.push_back(tmp);
+			Logger::Log("Found multipart data part of length: " + StringUtils::ToString(tmp.content.size()));
 		}
 
-		// if (data.substr(endPos, endDelimiter.length()) == endDelimiter)
-		if (false)
+		if (body.content.substr(endPos, endDelimiter.length()).toString() == endDelimiter)
 			break;
 
 		pos = endPos;
 	}
 
 	Logger::Log("Total parts found: " + StringUtils::ToString(parts.size()));
-	// return parts;
-	return std::vector<Body>();
+	return parts;
 }
 
 std::string StringUtils::GetScriptPath(const std::string& path)
