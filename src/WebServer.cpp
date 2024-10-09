@@ -80,26 +80,26 @@ void WebServer::CheckSockets(int epollRet)
 {
 	int	fd;
 
-	for (int y = 0; y < (int)servers.size(); y++)
-	{
+    for(std::vector<Server>::iterator it = servers.begin(); it != servers.end(); it++ )
+    {
 		for (int i = 0; i < epollRet; i++)
 		{
 			fd = events[i].data.fd;
-			if (fd == servers[y].serverFd)
+			if (fd == it->serverFd)
 			{
-				if (servers[y].AcceptClient(fd, epollFd) < 0)
+				if (it->AcceptClient(fd, epollFd) < 0)
 					continue ;
 			}
 			else if (EpollUtils::EpollCheckEventError(events[i].events))
 			{
 				Logger::LogWarning("close connection for epoll event error");
-				servers[y].CloseClientConnection(fd);
+				it->CloseClientConnection(fd);
 				break ;
 			}
-			else if (servers[y].IsMyClient(fd))
-				HandleClientEvent(servers[y].GetClient(fd), servers[y]);
+			else if (it->IsMyClient(fd))
+				HandleClientEvent(it->GetClient(fd), *it);
 		}
-	}
+    }
 }
 
 void WebServer::HandleClientEvent(Client &client, Server &server)
@@ -113,8 +113,9 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 	catch(const WebServerException::HttpStatusCodeException& e) {
 		server.SendErrorResponse(client, e.code);
 	}
-	catch (const std::exception &e) {
-		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+	catch (const std::exception &e) 
+	{
+		Logger::LogError("Unexpected exception in HandleClientEvent occurred: " + std::string(e.what()));
 	}
 	server.CloseClientConnection(client.clientFd);
 }

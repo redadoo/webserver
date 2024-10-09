@@ -203,6 +203,10 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 			boundary = boundary.substr(1, boundary.length() - 2);
 		return boundary;
 	}
+	else
+	{
+		Logger::LogWarning("boundary not found");
+	}
 	return "";
 }
 
@@ -216,21 +220,17 @@ std::vector<Body> StringUtils::SplitMultipartData(const Body& body, const std::s
 	while (true)
 	{
 		size_t startPos = body.content.find(delimiter, pos);
-
 		if (startPos == std::string::npos)
 			break;
 
 		startPos += delimiter.length();
 
 		size_t endPos = body.content.find(delimiter, startPos);
-
 		if (endPos == std::string::npos)
 		{
 			endPos = body.content.find(endDelimiter, startPos);
 			if (endPos == std::string::npos)
-			{
 				endPos = body.content.size();
-			}
 		}
 
 		Ustring part = body.content.substr(startPos, endPos - startPos);

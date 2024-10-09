@@ -1,3 +1,4 @@
+#pragma once
 #ifndef WEBSERBEREXCEPTION_HPP
 # define WEBSERBEREXCEPTION_HPP
 

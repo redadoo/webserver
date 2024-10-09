@@ -1,3 +1,4 @@
+#pragma once
 #ifndef HTTPMESSAGE_HPP
 # define HTTPMESSAGE_HPP
 
@@ -33,7 +34,7 @@ public:
 
     unsigned long long GetContentLength() const;
 
-    bool IsMessageComplete(ssize_t recvRet) const;
+    bool IsMessageComplete(const unsigned long long maxBodySize,ssize_t recvRet) const;
 
     /// @brief Provides a string representation of the HTTP message.
     /// @param os Output stream to write the message to.

@@ -127,38 +127,43 @@ unsigned long long HttpMessage::GetContentLength() const
 	long long res;
 	std::string value;
 
-	try	 {
+	try	 
+	{
 		value = header.at("Content-Length: ");
 	}
-	catch(const std::exception& e) 	{
+	catch(const std::exception& e) 	
+	{
 		value = "0";
 	}
 	res = StringUtils::StringToLongLong(value);
-	if(res < 0) return 0;
+	if(res < 0)
+		return 0;
+
 	return res;
 }
 
-bool HttpMessage::IsMessageComplete(ssize_t recvRet) const
+bool HttpMessage::IsMessageComplete(const unsigned long long maxBodySize, ssize_t recvRet) const
 {
-	unsigned long long contentLength = GetContentLength(); 
+	(void)recvRet;
+	unsigned long long contentLength = GetContentLength();
 
+	if (body.size() > maxBodySize)
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
+	
 	if (contentLength == 0)
 		return header.size() > 0;
 
-	if (recvRet < 4096)
-		return true;
-
-	return body.size() > contentLength;
+	return body.size() >= contentLength;
 }
 
 long long HttpMessage::size() const
 {
-	int headerSize = 0;
+	long long headerSize = 0;
 
 	if (header.size() > 0)
 	{
 		for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
-			headerSize += it->first.size() + it->second.size() + 1;
+			headerSize += it->first.size() + it->second.size();
 	}
 	
 	if (startLine.size() > 0)

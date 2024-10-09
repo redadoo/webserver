@@ -1,3 +1,4 @@
+#pragma once
 #ifndef NETWORKUTILS_HPP
 # define NETWORKUTILS_HPP
 

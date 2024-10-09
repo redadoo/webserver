@@ -12,7 +12,7 @@
 
 NAME        		= 	webserver
 
-CC          		= 	c++ -std=c++98
+CC          		= 	g++ -std=c++98 #-ftime-report
 FLAGS       		= 	-Wall -Wextra -Werror
 RM          		= 	rm -rf
 

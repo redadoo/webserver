@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef CLIENTBODYSIZE_HPP
 # define CLIENTBODYSIZE_HPP
 

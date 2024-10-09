@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CLIENTCONFIG_HPP
 # define CLIENTCONFIG_HPP
 

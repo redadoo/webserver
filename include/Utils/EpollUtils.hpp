@@ -1,3 +1,4 @@
+#pragma once
 #ifndef EPOLLUTILS_HPP
 # define EPOLLUTILS_HPP
 

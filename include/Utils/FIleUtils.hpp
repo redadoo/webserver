@@ -1,3 +1,4 @@
+#pragma once
 #ifndef FILEUTILS_HPP
 # define FILEUTILS_HPP
 

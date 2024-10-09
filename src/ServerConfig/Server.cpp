@@ -53,6 +53,7 @@ void Server::HandlePostRequest(Client& client, const Location* location)
 		throw WebServerException::HttpStatusCodeException(HttpStatusCode::MethodNotAllowed);
 
 	std::string filePath = location->GetFilePath(client.request.startLine.path, serverConfig.serverRoot);
+
 	if (filePath[filePath.length() - 1] == '/')
 		filePath = filePath.substr(0, filePath.length() - 1);
 
@@ -113,7 +114,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 	Logger::Log("Extracted boundary: " + boundary);
 	std::vector<Body> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
 	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");
-
+		
 	for (size_t i = 0; i < parts.size(); ++i)
 	{
 		Logger::Log("Processing multipart data part " + StringUtils::ToString(i + 1) + " of " + StringUtils::ToString(parts.size()));
@@ -125,7 +126,6 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 
 		if (!filename.empty() && !content.empty())
 		{
-			Logger::Log(content.toString());
 			std::string uploadFilePath = uploadPath + filename;
 			if (FileUtils::WriteFile(uploadFilePath, content))
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
@@ -372,21 +372,16 @@ void Server::ReadClientRequest(Client &client)
 
 	Logger::Log("read client message");
 	
-	while (!client.request.IsMessageComplete(recvRet))
+	while (!client.request.IsMessageComplete(maxBodySize, recvRet))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
+		
 		recvRet = recv(client.clientFd, buffer.data(), MAX_RESPONSE_CHUNK_SIZE, 0);
-
+		
 		Logger::Log(StringUtils::ToString(recvRet));
 		
 		if (recvRet < 0)
-		{
-			Logger::LogErrno();
 			return (this->CloseClientConnection(client));
-		}
-
-		if (client.request.body.size() > maxBodySize)
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 
 		client.request.ParseMessage(buffer);
 	}
@@ -458,8 +453,9 @@ void Server::SendErrorResponse(const Client& client, HttpStatusCode::Code code)
 		response.SetErrorBody(serverConfig);
 		SendResponse(client);
 	}
-	catch (const std::invalid_argument &e) {
-		Logger::LogError("Unexpected exception occurred: " + std::string(e.what()));
+	catch (const std::invalid_argument &e) 
+	{
+		Logger::LogError("Unexpected exception in SendErrorResponse occurred: " + std::string(e.what()));
 	}
 }
 

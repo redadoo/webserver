@@ -1,5 +1,6 @@
+#pragma once
 #ifndef PORT_HPP
-#define PORT_HPP
+# define PORT_HPP
 
 #include <stdint.h>
 #include <string>

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef StartLine_HPP
 # define StartLine_HPP
 

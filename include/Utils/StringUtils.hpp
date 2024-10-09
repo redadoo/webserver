@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STRINGUTILS_HPP
 # define STRINGUTILS_HPP
 

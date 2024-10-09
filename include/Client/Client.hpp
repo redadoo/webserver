@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef Client_HPP
 # define Client_HPP
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef USTRING_HPP
 # define USTRING_HPP
 

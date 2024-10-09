@@ -35,7 +35,7 @@ void Logger::WriteCurrentDataTime()
 void Logger::Init(const std::string &fileName)
 {
 	isEnable = true;
-	isHttpMessageEnable = true;
+	isHttpMessageEnable = false;
 	logFileName = fileName;
 	DeleteLog();
 	logFile.open(logFileName.c_str(), std::ios::app);

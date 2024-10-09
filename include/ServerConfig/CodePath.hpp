@@ -1,5 +1,6 @@
+#pragma once
 #ifndef CODEPATH_HPP
-#define CODEPATH_HPP
+# define CODEPATH_HPP
 
 #include <string>
 #include <iostream> // Include this for std::ostream

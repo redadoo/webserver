@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SIGNAL_HHP
 # define SIGNAL_HHP
 
