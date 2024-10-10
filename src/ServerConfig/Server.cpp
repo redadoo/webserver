@@ -121,13 +121,12 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		
 		std::string filename = parts[i].GetFileName();
 		Ustring content = parts[i].GetFileContent();
-
 		Logger::Log("Extracted content of length: " + StringUtils::ToString(content.size()));
 
 		if (!filename.empty() && !content.empty())
 		{
 			std::string uploadFilePath = uploadPath + filename;
-			if (FileUtils::WriteFile(uploadFilePath, content, false))
+			if (FileUtils::WriteFile(uploadFilePath, content, true))
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
 			else
 			{
