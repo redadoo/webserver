@@ -370,8 +370,9 @@ void Server::ReadClientRequest(Client &client)
 	const unsigned long long 	maxBodySize = serverConfig.clientMaxBody.ConvertToBytes();
 	ssize_t						recvRet;
 
+	client.request.isBodyBinary = false;
 	Logger::Log("read client message");
-	
+
 	while (!client.request.IsMessageComplete(maxBodySize, recvRet))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);

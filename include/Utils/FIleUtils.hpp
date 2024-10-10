@@ -54,7 +54,6 @@ namespace FileUtils
 
     FileType GetFileType(const std::string& fileName);
 
-
 } // namespace FIleUtils
 
 #endif

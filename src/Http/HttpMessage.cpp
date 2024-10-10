@@ -83,18 +83,18 @@ void HttpMessage::ParseMessage(Ustring& chunk)
 	{
 		chunk.find("\r\n\r\n");
 		size_t header_end = chunk.find("\r\n\r\n");
-		if (header_end != std::string::npos) 
+		if (header_end != std::string::npos)
 		{
 			// Headers and part of body in this chunk
 			Ustring header_part = chunk.substr(0,header_end);
+			ParseHeaders(header_part); 
+
 			Ustring tmp = chunk.substr(header_end + 4);
 			
-			if (tmp[0] != 0) 
-			{
+			// if body exist
+			if (tmp[0] != 0)
 				body = tmp;
-			}
 			
-			ParseHeaders(header_part); 
 			isHeaderComplete = true;
 		} 
 		else 

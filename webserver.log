@@ -1,103 +1,167 @@
-[2024-10-10 12:46:3 ] start tokenization Configuration file ...
-[2024-10-10 12:46:3 ] tokenization finished
-[2024-10-10 12:46:3 ] start parsing token...
-[2024-10-10 12:46:3 ] signal handling started
-[2024-10-10 12:46:3 ] handled the signals successfully
-[2024-10-10 12:46:3 ] start create a new epoll instance
-[2024-10-10 12:46:3 ] init epoll instance successfully
-[2024-10-10 12:46:3 ] Creating TCP socket...
-[2024-10-10 12:46:3 ] add file descriptor to epoll instance ...
-[2024-10-10 12:46:3 ] Listening on 127.0.0.1:8080
-[2024-10-10 12:46:3 ] Creating TCP socket...
-[2024-10-10 12:46:3 ] add file descriptor to epoll instance ...
-[2024-10-10 12:46:3 ] Listening on 127.0.0.1:8081
-[2024-10-10 12:46:3 ] successfully init all servers data
-[2024-10-10 12:46:3 ] Entering event loop...
-[2024-10-10 12:46:6 ] I don't see any event within 3000 milliseconds
-[2024-10-10 12:46:9 ] I don't see any event within 3000 milliseconds
-[2024-10-10 12:46:11] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-10 12:46:11] File descriptor set to non-blocking mode
-[2024-10-10 12:46:11] Client 127.0.0.1:35380  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:11] add file descriptor to epoll instance ...
-[2024-10-10 12:46:11] read client message
-[2024-10-10 12:46:11] -1
-[2024-10-10 12:46:11] Client 127.0.0.1:35380 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:11] Finding matching location for path: 
-[2024-10-10 12:46:11] No matching location found
-[2024-10-10 12:46:11] ERROR: HTTP error occurred: 405 Method Not Allowed
-[2024-10-10 12:46:11] Using default error page for code 405 Method Not Allowed
-[2024-10-10 12:46:11] Attempting to send response of 203 bytes
-[2024-10-10 12:46:11] ERROR: errno: Bad file descriptor
-[2024-10-10 12:46:11] ERROR: Failed to send response to client
-[2024-10-10 12:46:11] Sent 0 bytes to client
-[2024-10-10 12:46:11] Attempted to close connection for non-existent client 8
-[2024-10-10 12:46:14] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-10 12:46:14] File descriptor set to non-blocking mode
-[2024-10-10 12:46:14] Client 127.0.0.1:35390  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:14] add file descriptor to epoll instance ...
-[2024-10-10 12:46:14] read client message
-[2024-10-10 12:46:14] -1
-[2024-10-10 12:46:14] Client 127.0.0.1:35390 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:14] Finding matching location for path: 
-[2024-10-10 12:46:14] No matching location found
-[2024-10-10 12:46:14] ERROR: HTTP error occurred: 405 Method Not Allowed
-[2024-10-10 12:46:14] Using default error page for code 405 Method Not Allowed
-[2024-10-10 12:46:14] Attempting to send response of 203 bytes
-[2024-10-10 12:46:14] ERROR: errno: Bad file descriptor
-[2024-10-10 12:46:14] ERROR: Failed to send response to client
-[2024-10-10 12:46:14] Sent 0 bytes to client
-[2024-10-10 12:46:14] Attempted to close connection for non-existent client 8
-[2024-10-10 12:46:14] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-10 12:46:14] File descriptor set to non-blocking mode
-[2024-10-10 12:46:14] Client 127.0.0.1:35406  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:14] add file descriptor to epoll instance ...
-[2024-10-10 12:46:14] read client message
-[2024-10-10 12:46:14] -1
-[2024-10-10 12:46:14] Client 127.0.0.1:35406 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:14] Finding matching location for path: 
-[2024-10-10 12:46:14] No matching location found
-[2024-10-10 12:46:14] ERROR: HTTP error occurred: 405 Method Not Allowed
-[2024-10-10 12:46:14] Using default error page for code 405 Method Not Allowed
-[2024-10-10 12:46:14] Attempting to send response of 203 bytes
-[2024-10-10 12:46:14] ERROR: errno: Bad file descriptor
-[2024-10-10 12:46:14] ERROR: Failed to send response to client
-[2024-10-10 12:46:14] Sent 0 bytes to client
-[2024-10-10 12:46:14] Attempted to close connection for non-existent client 8
-[2024-10-10 12:46:17] I don't see any event within 3000 milliseconds
-[2024-10-10 12:46:19] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-10 12:46:19] File descriptor set to non-blocking mode
-[2024-10-10 12:46:19] Client 127.0.0.1:36422  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:19] add file descriptor to epoll instance ...
-[2024-10-10 12:46:19] read client message
-[2024-10-10 12:46:19] -1
-[2024-10-10 12:46:19] Client 127.0.0.1:36422 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:19] Finding matching location for path: 
-[2024-10-10 12:46:19] No matching location found
-[2024-10-10 12:46:19] ERROR: HTTP error occurred: 405 Method Not Allowed
-[2024-10-10 12:46:19] Using default error page for code 405 Method Not Allowed
-[2024-10-10 12:46:19] Attempting to send response of 203 bytes
-[2024-10-10 12:46:19] ERROR: errno: Bad file descriptor
-[2024-10-10 12:46:19] ERROR: Failed to send response to client
-[2024-10-10 12:46:19] Sent 0 bytes to client
-[2024-10-10 12:46:19] Attempted to close connection for non-existent client 8
-[2024-10-10 12:46:19] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-10 12:46:19] File descriptor set to non-blocking mode
-[2024-10-10 12:46:19] Client 127.0.0.1:36432  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:19] add file descriptor to epoll instance ...
-[2024-10-10 12:46:19] read client message
-[2024-10-10 12:46:19] -1
-[2024-10-10 12:46:19] Client 127.0.0.1:36432 has been disconnected  by the socket: 127.0.0.1:8080
-[2024-10-10 12:46:19] Finding matching location for path: 
-[2024-10-10 12:46:19] No matching location found
-[2024-10-10 12:46:19] ERROR: HTTP error occurred: 405 Method Not Allowed
-[2024-10-10 12:46:19] Using default error page for code 405 Method Not Allowed
-[2024-10-10 12:46:19] Attempting to send response of 203 bytes
-[2024-10-10 12:46:19] ERROR: errno: Bad file descriptor
-[2024-10-10 12:46:19] ERROR: Failed to send response to client
-[2024-10-10 12:46:19] Sent 0 bytes to client
-[2024-10-10 12:46:19] Attempted to close connection for non-existent client 8
-[2024-10-10 12:46:22] I don't see any event within 3000 milliseconds
-[2024-10-10 12:46:25] I don't see any event within 3000 milliseconds
-[2024-10-10 12:46:27] ERROR: Something interrupted me!
-[2024-10-10 12:46:27] Closing WebServer ...
-[2024-10-10 12:46:27] all resources released and Web Server closed successfully
+[2024-10-10 15:42:21] start tokenization Configuration file ...
+[2024-10-10 15:42:21] tokenization finished
+[2024-10-10 15:42:21] start parsing token...
+[2024-10-10 15:42:21] signal handling started
+[2024-10-10 15:42:21] handled the signals successfully
+[2024-10-10 15:42:21] start create a new epoll instance
+[2024-10-10 15:42:21] init epoll instance successfully
+[2024-10-10 15:42:21] Creating TCP socket...
+[2024-10-10 15:42:21] add file descriptor to epoll instance ...
+[2024-10-10 15:42:21] Listening on 127.0.0.1:8080
+[2024-10-10 15:42:21] Creating TCP socket...
+[2024-10-10 15:42:21] add file descriptor to epoll instance ...
+[2024-10-10 15:42:21] Listening on 127.0.0.1:8081
+[2024-10-10 15:42:21] successfully init all servers data
+[2024-10-10 15:42:21] Entering event loop...
+[2024-10-10 15:42:21] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:21] File descriptor set to non-blocking mode
+[2024-10-10 15:42:21] Client 127.0.0.1:44442  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:21] add file descriptor to epoll instance ...
+[2024-10-10 15:42:21] read client message
+[2024-10-10 15:42:21] 683
+[2024-10-10 15:42:21] finish read client message
+[2024-10-10 15:42:21] Finding matching location for path: /
+[2024-10-10 15:42:21] No matching location found
+[2024-10-10 15:42:21] Requested path is a directory, looking for index file
+[2024-10-10 15:42:21] File found: web-page//index.html
+[2024-10-10 15:42:21] File content length: 7415 bytes
+[2024-10-10 15:42:21] Response headers:
+[2024-10-10 15:42:21]   Content-Length: : 7415
+[2024-10-10 15:42:21]   Content-Type: : text/html
+[2024-10-10 15:42:21] Attempting to send response of 7485 bytes
+[2024-10-10 15:42:21] Sent 7485 bytes to client
+[2024-10-10 15:42:21] Closing connection for client 7
+[2024-10-10 15:42:21] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:21] File descriptor set to non-blocking mode
+[2024-10-10 15:42:21] Client 127.0.0.1:44456  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:21] add file descriptor to epoll instance ...
+[2024-10-10 15:42:21] read client message
+[2024-10-10 15:42:21] -1
+[2024-10-10 15:42:21] Client 127.0.0.1:44456 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:21] Finding matching location for path: 
+[2024-10-10 15:42:21] No matching location found
+[2024-10-10 15:42:21] ERROR: HTTP error occurred: 405 Method Not Allowed
+[2024-10-10 15:42:21] Using default error page for code 405 Method Not Allowed
+[2024-10-10 15:42:21] Attempting to send response of 203 bytes
+[2024-10-10 15:42:21] ERROR: errno: Bad file descriptor
+[2024-10-10 15:42:21] ERROR: Failed to send response to client
+[2024-10-10 15:42:22] Sent 0 bytes to client
+[2024-10-10 15:42:22] Attempted to close connection for non-existent client 7
+[2024-10-10 15:42:23] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:23] File descriptor set to non-blocking mode
+[2024-10-10 15:42:23] Client 127.0.0.1:44464  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:23] add file descriptor to epoll instance ...
+[2024-10-10 15:42:23] read client message
+[2024-10-10 15:42:23] -1
+[2024-10-10 15:42:23] Client 127.0.0.1:44464 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:23] Finding matching location for path: 
+[2024-10-10 15:42:23] No matching location found
+[2024-10-10 15:42:23] ERROR: HTTP error occurred: 405 Method Not Allowed
+[2024-10-10 15:42:23] Using default error page for code 405 Method Not Allowed
+[2024-10-10 15:42:23] Attempting to send response of 203 bytes
+[2024-10-10 15:42:23] ERROR: errno: Bad file descriptor
+[2024-10-10 15:42:23] ERROR: Failed to send response to client
+[2024-10-10 15:42:23] Sent 0 bytes to client
+[2024-10-10 15:42:23] Attempted to close connection for non-existent client 7
+[2024-10-10 15:42:23] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:23] File descriptor set to non-blocking mode
+[2024-10-10 15:42:23] Client 127.0.0.1:44478  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:23] add file descriptor to epoll instance ...
+[2024-10-10 15:42:23] read client message
+[2024-10-10 15:42:23] -1
+[2024-10-10 15:42:23] Client 127.0.0.1:44478 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:23] Finding matching location for path: 
+[2024-10-10 15:42:23] No matching location found
+[2024-10-10 15:42:23] ERROR: HTTP error occurred: 405 Method Not Allowed
+[2024-10-10 15:42:23] Using default error page for code 405 Method Not Allowed
+[2024-10-10 15:42:23] Attempting to send response of 203 bytes
+[2024-10-10 15:42:23] ERROR: errno: Bad file descriptor
+[2024-10-10 15:42:23] ERROR: Failed to send response to client
+[2024-10-10 15:42:23] Sent 0 bytes to client
+[2024-10-10 15:42:23] Attempted to close connection for non-existent client 7
+[2024-10-10 15:42:24] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:24] File descriptor set to non-blocking mode
+[2024-10-10 15:42:24] Client 127.0.0.1:44492  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:24] add file descriptor to epoll instance ...
+[2024-10-10 15:42:24] read client message
+[2024-10-10 15:42:24] 715
+[2024-10-10 15:42:24] finish read client message
+[2024-10-10 15:42:24] Finding matching location for path: /upload/upload.html
+[2024-10-10 15:42:24] Found matching location: /upload
+[2024-10-10 15:42:24] File found: web-page/upload/upload.html
+[2024-10-10 15:42:24] File content length: 4122 bytes
+[2024-10-10 15:42:24] Response headers:
+[2024-10-10 15:42:24]   Content-Length: : 4122
+[2024-10-10 15:42:24]   Content-Type: : text/html
+[2024-10-10 15:42:24] Attempting to send response of 4192 bytes
+[2024-10-10 15:42:24] Sent 4192 bytes to client
+[2024-10-10 15:42:24] Closing connection for client 7
+[2024-10-10 15:42:27] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:28] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:28] File descriptor set to non-blocking mode
+[2024-10-10 15:42:28] Client 127.0.0.1:36664  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:28] add file descriptor to epoll instance ...
+[2024-10-10 15:42:28] A client is trying to connecting to  Socket 127.0.0.1:8080
+[2024-10-10 15:42:28] File descriptor set to non-blocking mode
+[2024-10-10 15:42:28] Client 127.0.0.1:36668  has been accepted! by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:28] add file descriptor to epoll instance ...
+[2024-10-10 15:42:28] read client message
+[2024-10-10 15:42:28] -1
+[2024-10-10 15:42:28] Client 127.0.0.1:36664 has been disconnected  by the socket: 127.0.0.1:8080
+[2024-10-10 15:42:28] Finding matching location for path: 
+[2024-10-10 15:42:28] No matching location found
+[2024-10-10 15:42:28] ERROR: HTTP error occurred: 405 Method Not Allowed
+[2024-10-10 15:42:28] Using default error page for code 405 Method Not Allowed
+[2024-10-10 15:42:28] Attempting to send response of 203 bytes
+[2024-10-10 15:42:28] ERROR: errno: Bad file descriptor
+[2024-10-10 15:42:28] ERROR: Failed to send response to client
+[2024-10-10 15:42:28] Sent 0 bytes to client
+[2024-10-10 15:42:28] Attempted to close connection for non-existent client 7
+[2024-10-10 15:42:28] read client message
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 862
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] 4096
+[2024-10-10 15:42:28] finish read client message
+[2024-10-10 15:42:28] Finding matching location for path: /upload
+[2024-10-10 15:42:28] Found matching location: /upload
+[2024-10-10 15:42:28] Extracted boundary: ----WebKitFormBoundary2Xh2CvkoBxlwuOpK
+[2024-10-10 15:42:28] Found multipart data part of length: 101498
+[2024-10-10 15:42:28] Total parts found: 1
+[2024-10-10 15:42:28] Extracted 1 multipart data parts
+[2024-10-10 15:42:28] Processing multipart data part 1 of 1
+[2024-10-10 15:42:28] Extracted filename: smallfile.txt
+[2024-10-10 15:42:28] Extracted content of length: 101397
+[2024-10-10 15:42:28] Uploaded file: smallfile.txt to web-page/upload/uploads/smallfile.txt
+[2024-10-10 15:42:28] Attempting to send response of 169 bytes
+[2024-10-10 15:42:28] Sent 169 bytes to client
+[2024-10-10 15:42:28] Closing connection for client 8
+[2024-10-10 15:42:31] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:34] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:37] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:40] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:43] I don't see any event within 3000 milliseconds
+[2024-10-10 15:42:44] ERROR: Something interrupted me!
+[2024-10-10 15:42:44] Closing WebServer ...
+[2024-10-10 15:42:44] all resources released and Web Server closed successfully

@@ -12,10 +12,15 @@ class HttpMessage
 private:
     std::string incomplete_header_buffer;
 
+   	/// @brief Parses the start line of the HTTP message.
+    /// @param str The start line string to parse.
+    void ParseStartLine(const Ustring& str);
+
 public:
 	StartLine 	startLine;
 	Header      header;
     Body        body;
+    bool        isBodyBinary;
     bool        isHeaderComplete;
 
     void ParseHeaders(Ustring& chunk);
@@ -41,12 +46,6 @@ public:
     /// @param msg HTTP message object to be written.
     /// @return The output stream with the HTTP message written.
     friend std::ostream& operator<<(std::ostream& os, const HttpMessage& msg);
-
-private:
-
-   	/// @brief Parses the start line of the HTTP message.
-    /// @param str The start line string to parse.
-    void ParseStartLine(const Ustring& str);
 };
 
 #endif
