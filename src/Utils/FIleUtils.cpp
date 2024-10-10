@@ -77,6 +77,11 @@ bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content)
 	return true;
 }
 
+std::string FileUtils::GetFileExtension(const std::string& fileName)
+{
+    return fileName.substr(fileName.find_last_of('.') + 1);
+}
+
 std::string FileUtils::GetContentType(const std::string &fileName)
 {
 	std::string extension = fileName.substr(fileName.find_last_of('.') + 1);
@@ -91,4 +96,12 @@ int FileUtils::CheckFd(int fd)
 {
 	if (fcntl(fd, F_GETFD) < 0) return -1;
 	return 0;
+}
+
+FileUtils::FileType FileUtils::GetFileType(const std::string& fileName)
+{
+    std::string fileExstension = GetFileExtension(fileName);
+    if (fileExstension == "txt")
+        return FileUtils::FileType::text;
+    return FileType::binary;
 }
