@@ -111,6 +111,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 	}
 
 	std::string boundary = StringUtils::GetBoundary(client.request.header["Content-Type: "]);
+	std::string type = StringUtils::GetFileType(client.request.body);
 	Logger::Log("Extracted boundary: " + boundary);
 	std::vector<Body> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
 	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");

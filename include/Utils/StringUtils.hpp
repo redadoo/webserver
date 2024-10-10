@@ -117,6 +117,8 @@ namespace StringUtils
 	/// @return A dynamically allocated array of C-strings. Caller must free the memory.
 	char **GetMatrix(const std::map<std::string,std::string>& map);
 
+	std::string GetFileType(const Body& body);
+
 } // namespace StringUtils
 
 #endif
