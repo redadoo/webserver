@@ -127,7 +127,7 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		if (!filename.empty() && !content.empty())
 		{
 			std::string uploadFilePath = uploadPath + filename;
-			if (FileUtils::WriteFile(uploadFilePath, content))
+			if (FileUtils::WriteFile(uploadFilePath, content, false))
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
 			else
 			{

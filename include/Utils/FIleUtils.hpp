@@ -41,7 +41,7 @@ namespace FileUtils
     /// @param fileName The path to the file where the content will be written.
     /// @param content The content to be written to the file.
     /// @return `true` if the file was successfully opened and the content was written; `false` otherwise.
-	bool WriteFile(const std::string& fileName, const Ustring& content);
+	bool WriteFile(const std::string& fileName, const Ustring& content, const bool isBinary);
 
     std::string GetFileExtension(const std::string& fileName);
 

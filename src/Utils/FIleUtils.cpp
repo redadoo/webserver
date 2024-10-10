@@ -67,12 +67,20 @@ Ustring FileUtils::ReadBinaryFile(const std::string &fileName)
     return Ustring(std::string(data.begin(), data.end()));
 }
 
-bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content, const bool isBodyBinary)
+bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content, const bool isBinary)
 {
-    if (isBodyBinary)
+    std::ios_base::openmode mode;
 
+    if (isBinary)
+    {
+        mode = std::ios::out | std::ios::binary;
+    }
+    else
+    {
+        mode = std::ios::out;        
+    }
     
-	std::ofstream file(fileName.c_str(), std::ios::out /* | std::ios::binary */ /* | std::ios::app */);
+	std::ofstream file(fileName.c_str(), mode);
 	if (!file.is_open())
 		return false;
     file.write(reinterpret_cast<const char*>(content.get_content().data()), content.size());	
