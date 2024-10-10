@@ -102,6 +102,6 @@ FileUtils::FileType FileUtils::GetFileType(const std::string& fileName)
 {
     std::string fileExstension = GetFileExtension(fileName);
     if (fileExstension == "txt")
-        return FileUtils::FileType::text;
-    return FileType::binary;
+        return FileUtils::text;
+    return FileUtils::binary;
 }
