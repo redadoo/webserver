@@ -36,7 +36,7 @@ FILES       		= 	main WebServer ServerConfig/Server Parsing/Parser Parsing/Lexer
 						Utils/StringUtils Utils/Ustring Utils/NetworkUtils Utils/FIleUtils Signal/HandleSignal \
 						Client/Client Utils/EpollUtils Logger/Logger ServerConfig/ServerConfig ServerConfig/Port \
 						ServerConfig/ClientBodySize ServerConfig/Location ServerConfig/CodePath Http/HttpMessage \
-						Http/HttpResponse Cgi/Cgi Http/Body Http/Header Http/StartLine
+						Http/HttpResponse Cgi/Cgi Http/Body Http/Header
 
 SRC         		= 	$(addprefix $(SRCDIR)/, $(FILES:=.cpp))
 OBJ         		= 	$(addprefix $(OBJDIR)/, $(FILES:=.o))
