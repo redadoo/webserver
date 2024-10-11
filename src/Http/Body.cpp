@@ -45,6 +45,30 @@ std::string Body::GetBoundary() const
 	return "";
 }
 
+bool Body::IsBinary() const
+{
+	size_t startType = content.find("Content-Type:");
+	if (startType == std::string::npos)
+	{
+		Logger::LogError("Failed to find start startType");
+		return false;
+	}
+	size_t endString = content.find("\n", startType);
+	if (endString == std::string::npos)
+	{
+		Logger::LogError("Failed to find endString");
+		return false;
+	}
+	
+	std::string type = content.substr(startType + 14,endString - (startType + 14)).toString();
+	std::cout << "type" << type << std::endl;
+
+	if (type.find("text/plain") != std::string::npos)
+		return false;
+
+	return true;
+}
+
 size_t Body::size() const
 {
     return this->content.size();

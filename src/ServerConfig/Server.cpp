@@ -14,6 +14,8 @@
 #include <string>
 #include <stdint.h>
 #include <sys/types.h>
+#include <algorithm>
+
 //constructor
 
 Server::Server() : serverConfig() {}
@@ -111,7 +113,6 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 	}
 
 	std::string boundary = StringUtils::GetBoundary(client.request.header["Content-Type: "]);
-	std::string type = StringUtils::GetFileType(client.request.body);
 	Logger::Log("Extracted boundary: " + boundary);
 	std::vector<Body> parts = StringUtils::SplitMultipartData(client.request.body, boundary);
 	Logger::Log("Extracted " + StringUtils::ToString(parts.size()) + " multipart data parts");
@@ -127,8 +128,20 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		if (!filename.empty() && !content.empty())
 		{
 			std::string uploadFilePath = uploadPath + filename;
-			if (FileUtils::WriteFile(uploadFilePath, content, true))
+
+			if (!parts[i].IsBinary())
+			{
+				content.content.erase(
+					std::remove(
+						content.content.begin(), 
+						content.content.end(), '\0'),
+						content.content.end());
+			}
+
+			if (FileUtils::WriteFile(uploadFilePath, content, parts[i].IsBinary()))
+			{
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
+			}
 			else
 			{
 				Logger::LogError("Failed to write uploaded file: " + filename);

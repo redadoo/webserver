@@ -79,7 +79,6 @@ bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content, c
     {
         mode = std::ios::out;        
     }
-    
 	std::ofstream file(fileName.c_str(), mode);
 	if (!file.is_open())
 		return false;

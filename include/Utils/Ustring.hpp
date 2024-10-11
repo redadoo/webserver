@@ -8,10 +8,10 @@
 
 class Ustring
 {
-private:
+public:
+
 	std::vector<uint8_t> content;
 
-public:
     // Default constructor
     Ustring() : content() {}
 

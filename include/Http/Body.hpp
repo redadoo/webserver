@@ -19,6 +19,7 @@ class Body
 		std::string	GetFileName() const;
 		Ustring		GetFileContent() const;
 		std::string	GetBoundary() const;
+		bool		IsBinary() const;
 		size_t		size() const ;
 };
 
