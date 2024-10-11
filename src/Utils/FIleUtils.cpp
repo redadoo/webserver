@@ -1,9 +1,6 @@
 #include <FIleUtils.hpp>
-#include <fstream>
-#include <sstream>
 #include <sys/stat.h>
 #include <algorithm>
-#include <iostream>
 #include <fcntl.h>
 #include <Logger.hpp>
 
@@ -106,12 +103,4 @@ int FileUtils::CheckFd(int fd)
 {
 	if (fcntl(fd, F_GETFD) < 0) return -1;
 	return 0;
-}
-
-FileUtils::FileType FileUtils::GetFileType(const std::string& fileName)
-{
-    std::string fileExstension = GetFileExtension(fileName);
-    if (fileExstension == "txt")
-        return FileUtils::text;
-    return FileUtils::binary;
 }

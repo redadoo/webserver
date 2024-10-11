@@ -2,8 +2,7 @@
 #ifndef CODEPATH_HPP
 # define CODEPATH_HPP
 
-#include <string>
-#include <iostream> // Include this for std::ostream
+#include <iostream>
 #include <HttpStatusCode.hpp>
 
 using namespace HttpStatusCode;

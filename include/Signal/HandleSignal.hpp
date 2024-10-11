@@ -3,7 +3,6 @@
 # define SIGNAL_HHP
 
 #include <csignal>
-#include <exception>
 
 namespace HandleSignal
 {

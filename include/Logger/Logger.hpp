@@ -2,14 +2,8 @@
 #ifndef LOGGER_HPP
 # define LOGGER_HPP
 
-#include <string>
-#include <exception>
 #include <fstream>  
-#include <ctime>
-#include <iostream>
 #include <sstream>
-#include <vector>
-#include <stdint.h>
 #include <Server.hpp>
 #include <cstring>
 

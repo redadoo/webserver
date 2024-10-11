@@ -2,12 +2,6 @@
 #ifndef STRINGUTILS_HPP
 # define STRINGUTILS_HPP
 
-#include <string>
-#include <vector>
-#include <stdint.h>
-#include <ctime>
-#include <iomanip>
-#include <sstream>
 #include <sys/types.h>
 #include <map>
 #include <Body.hpp>

@@ -2,9 +2,6 @@
 #ifndef WEBSERBEREXCEPTION_HPP
 # define WEBSERBEREXCEPTION_HPP
 
-#include <exception>
-#include <string>
-#include <cerrno>  
 #include <cstring>
 #include <stdexcept>
 #include <HttpStatusCode.hpp>

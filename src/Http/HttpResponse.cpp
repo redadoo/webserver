@@ -1,5 +1,3 @@
-#include <HttpResponse.hpp>
-#include <HttpStatusCode.hpp>
 #include <StringUtils.hpp>
 #include <FIleUtils.hpp>
 #include <Logger.hpp>
@@ -9,19 +7,19 @@ std::string HttpResponse::GetErrorBody(HttpStatusCode::Code code)
 	switch (code)
 	{
 		case HttpStatusCode::NotFound:
-            return NOT_FOUND_BODY_ERROR;
-        case HttpStatusCode::Forbidden:
-            return FORBIDDEN_BODY_ERROR;
-        case HttpStatusCode::InternalServerError:
-            return INTERNAL_SERVER_ERROR_BODY_ERROR;
+			return NOT_FOUND_BODY_ERROR;
+		case HttpStatusCode::Forbidden:
+			return FORBIDDEN_BODY_ERROR;
+		case HttpStatusCode::InternalServerError:
+			return INTERNAL_SERVER_ERROR_BODY_ERROR;
 		case HttpStatusCode::NotImplemented:
 			return NOT_IMPLEMENTED_BODY_ERROR;
 		case HttpStatusCode::BadRequest:
 			return BAD_REQUEST_BODY_ERROR;
 		case HttpStatusCode::PayloadTooLarge:
 			return PAYLOAD_TOO_LARGE_BODY_ERROR;
-        default:
-            return "<html><body><h1>Error " + HttpStatusCode::ReasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
+		default:
+			return "<html><body><h1>Error " + HttpStatusCode::ReasonPhrase(code) + "</h1><p>An error occurred while processing your request.</p></body></html>";
 	}
 }
 

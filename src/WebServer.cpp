@@ -97,7 +97,9 @@ void WebServer::CheckSockets(int epollRet)
 				break ;
 			}
 			else if (it->IsMyClient(fd))
+			{
 				HandleClientEvent(it->GetClient(fd), *it);
+			}
 		}
     }
 }
@@ -117,6 +119,7 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 	{
 		Logger::LogError("Unexpected exception in HandleClientEvent occurred: " + std::string(e.what()));
 	}
+	
 	server.CloseClientConnection(client.clientFd);
 }
 

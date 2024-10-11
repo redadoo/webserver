@@ -1,6 +1,5 @@
 #include <EpollUtils.hpp>
 #include <Logger.hpp>
-#include <Server.hpp>
 #include <StringUtils.hpp>
 #include <NetworkUtils.hpp>
 #include <FIleUtils.hpp>
@@ -8,13 +7,7 @@
 #include <dirent.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
-#include <stdlib.h>
 #include <Cgi.hpp>
-#include <stdexcept>
-#include <string>
-#include <stdint.h>
-#include <sys/types.h>
-#include <algorithm>
 
 //constructor
 
@@ -128,17 +121,13 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 		if (!filename.empty() && !content.empty())
 		{
 			std::string uploadFilePath = uploadPath + filename;
+			parts[i].Init();
+			parts[i].FindType();
 
-			if (!parts[i].IsBinary())
-			{
-				content.content.erase(
-					std::remove(
-						content.content.begin(), 
-						content.content.end(), '\0'),
-						content.content.end());
-			}
+			if (parts[i].bodyType == Plain)
+				content.erase('\0');
 
-			if (FileUtils::WriteFile(uploadFilePath, content, parts[i].IsBinary()))
+			if (FileUtils::WriteFile(uploadFilePath, content, parts[i].bodyType == Binary))
 			{
 				Logger::Log("Uploaded file: " + filename + " to " + uploadFilePath);
 			}

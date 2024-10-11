@@ -1,6 +1,4 @@
 #include <StringUtils.hpp>
-#include <sstream>
-#include <cstring>
 #include <Logger.hpp>
 
 std::string StringUtils::ToString(int n)
@@ -126,30 +124,6 @@ std::vector<std::string> StringUtils::Split(const std::string& s, const std::str
 	res.push_back (s.substr (pos_start));
 	return res;
 }
-
-// std::vector<std::string> StringUtils::SplitHeader(std::string &request) 
-// {
-// 	std::vector<std::string> result;
-//     size_t startBody = request.find("\r\n\r\n");
-//     // size_t endHeaderPos = 0;
-
-// 	size_t lineStart = 0;
-
-// 	while (lineStart < startBody) 
-// 	{
-// 		size_t pos = request.find("\r\n", lineStart);
-// 		if (pos != std::string::npos) 
-// 		{
-// 			result.push_back(request.substr(lineStart, pos - lineStart));
-// 			lineStart = pos + 2;
-// 			// endHeaderPos = lineStart + (pos - lineStart);
-// 		}
-// 	}
-
-// 	// request.erase(0, );
-
-//     return result;
-// }
 
 bool StringUtils::IsAllDigit(const std::string &str)
 {

@@ -2,7 +2,6 @@
 #ifndef CLIENTBODYSIZE_HPP
 # define CLIENTBODYSIZE_HPP
 
-#include <iostream>
 #include <string>
 
 enum Unit
@@ -17,7 +16,7 @@ enum Unit
 struct ClientBodySize
 {
 	unsigned long long	size;
-	Unit		unit;
+	Unit				unit;
 
 	ClientBodySize() : size(0), unit(BYTE) {}
 
@@ -25,6 +24,8 @@ struct ClientBodySize
     /// @param str String representation of the client body size (e.g., "1024K").
     /// @throws std::invalid_argument If the string is not a valid size or unit.
 	void InitClientBodySize(const std::string& str);
+
+
 	unsigned long long ConvertToBytes() const;
 
 	/// @brief Overloads the << operator to output the client body size.

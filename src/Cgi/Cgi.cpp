@@ -1,10 +1,6 @@
 #include <Cgi.hpp>
 #include <cstdlib>
-#include <unistd.h>
 #include <sys/wait.h>
-#include <stdexcept>
-#include <cstring>
-#include <sstream>
 #include <Logger.hpp>
 #include <StringUtils.hpp>
 #include <FIleUtils.hpp>

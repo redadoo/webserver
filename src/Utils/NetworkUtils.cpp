@@ -3,7 +3,6 @@
 #include <Logger.hpp>
 #include <fcntl.h>
 
-
 const char *NetworkUtils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)
 {
 	const char *ret;

@@ -1,5 +1,3 @@
-#include "Body.hpp"
-#include <string>
 #include <Logger.hpp>
 
 Body &Body::operator=(const Ustring &body) 
@@ -72,6 +70,18 @@ bool Body::IsBinary() const
 size_t Body::size() const
 {
     return this->content.size();
+}
+
+void Body::Init()
+{
+	bodyType = None;
+}
+
+void Body::FindType()
+{
+	if (bodyType == None)
+		bodyType = (content.find("Content-Type: text/plain") != std::string::npos) 
+			? Plain : Binary;
 }
 
 Ustring Body::GetFileContent() const

@@ -3,9 +3,6 @@
 # define PARSER_HPP
 
 #include <Server.hpp>
-#include <Location.hpp>
-#include <CodePath.hpp>
-#include <ClientBodySize.hpp>
 #include <Lexer.hpp>
 
 using namespace Lexer;

@@ -2,10 +2,7 @@
 #ifndef EPOLLUTILS_HPP
 # define EPOLLUTILS_HPP
 
-#include <sys/epoll.h>
-#include <arpa/inet.h>
 #include <netinet/tcp.h>
-#include <cstring>
 
 namespace EpollUtils
 {

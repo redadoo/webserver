@@ -1,9 +1,6 @@
-#include <HttpMessage.hpp>
 #include <Logger.hpp>
 #include <WebServerException.hpp>
 #include <StringUtils.hpp>
-#include <algorithm>
-#include <sys/types.h>
 
 // CaseInsensitiveCompare
 
@@ -81,21 +78,20 @@ void HttpMessage::ParseMessage(Ustring& chunk)
 {
 	if (!isHeaderComplete) 
 	{
-		chunk.find("\r\n\r\n");
-		size_t header_end = chunk.find("\r\n\r\n");
+		size_t header_end = chunk.find("\r\n\r\n");	
 		if (header_end != std::string::npos)
 		{
 			// Headers and part of body in this chunk
-			Ustring header_part = chunk.substr(0,header_end);
-			ParseHeaders(header_part); 
+			Ustring header_part = chunk.substr(0, header_end);
+			ParseHeaders(header_part);
+			isHeaderComplete = true;
 
 			Ustring tmp = chunk.substr(header_end + 4);
 			
 			// if body exist
 			if (tmp[0] != 0)
-				body = tmp;
+				body.content += tmp;
 			
-			isHeaderComplete = true;
 		} 
 		else 
 		{

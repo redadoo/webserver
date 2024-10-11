@@ -2,10 +2,7 @@
 #ifndef WEBSERVER_HPP
 # define WEBSERVER_HPP
 
-#include <vector>
 #include <Parser.hpp>
-#include "unistd.h"
-#include <Client.hpp>
 
 # define MAX_EVENTS 32
 # define TIMEOUT 3000

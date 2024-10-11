@@ -4,7 +4,6 @@
 
 #include <string>
 #include <arpa/inet.h>
-#include <netinet/in.h>
 
 namespace NetworkUtils
 {

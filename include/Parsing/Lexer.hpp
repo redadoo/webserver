@@ -4,7 +4,6 @@
 
 #include <string>
 #include <vector>
-#include <fstream>
 
 namespace Lexer
 {
@@ -46,9 +45,6 @@ namespace Lexer
     /// @param fileName The name of the file to tokenize.
     /// @return A vector of tokens parsed from the file.
 	std::vector<Token> GetToken(std::string fileName);
-
-
-
 }
 
 #endif

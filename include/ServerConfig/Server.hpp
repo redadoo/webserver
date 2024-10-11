@@ -2,15 +2,9 @@
 #ifndef SERVER_HPP
 # define SERVER_HPP
 
-#include <ServerConfig.hpp>
 #include <Client.hpp>
 #include <sys/epoll.h>
-#include <netinet/in.h>
-#include <map>
-#include <vector>
-#include <iostream>
 #include <HttpResponse.hpp>
-#include <unistd.h>
 
 #define MAX_RESPONSE_CHUNK_SIZE 4096
 #define MAX_REDIRECT 5
@@ -19,7 +13,6 @@
 class Server
 {
 private:
-
 	/// @brief Sends an HTTP redirect response to the client with the specified status code and redirection path, then processes the redirected request.
 	/// @param client The client to which the redirect response will be sent.
 	/// @param redirect Contains the HTTP status code and the redirection path.
@@ -70,10 +63,10 @@ private:
 	void AddClient(int clientFd, std::string ip, uint16_t port);
 
 public:
-	ServerConfig                    serverConfig;
+	ServerConfig					serverConfig;
 	HttpResponse					response;
-	std::map<int, Client>           clients;
-	int                             serverFd;
+	std::map<int, Client>			clients;
+	int								serverFd;
 
 	Server();
 
@@ -124,7 +117,7 @@ public:
 	/// @brief Sends a response to the client.
 	/// @param client Reference to the Client object.
 	void SendResponse(const Client& client);
-    /// @brief Overloads the << operator to output server configuration details.
+	/// @brief Overloads the << operator to output server configuration details.
 	/// @param os Output stream object.
 	/// @param sr Reference to the Server object.
 	/// @return Reference to the output stream object.

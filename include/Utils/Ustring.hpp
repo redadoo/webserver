@@ -111,6 +111,11 @@ public:
     /// @return A reference to the modified Ustring object.
 	Ustring& erase(size_t pos, size_t len);
 
+    /// @brief Erases a char inside content.
+    /// @param toErase The char to erase.
+    /// @return A reference to the modified Ustring object.
+	Ustring& erase(char toErase);
+
 	/// @brief Finds the first element that is not any of the characters in the given set.
     /// @param str A string containing the set of characters to avoid.
     /// @param pos The starting position for the search.

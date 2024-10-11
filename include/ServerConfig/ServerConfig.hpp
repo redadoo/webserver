@@ -2,13 +2,8 @@
 #ifndef SERVERCONFIG_HPP
 # define SERVERCONFIG_HPP
 
-#include <string>
-#include <vector>
-#include <stdint.h>
 #include <Location.hpp>
-#include <CodePath.hpp>
 #include <ClientBodySize.hpp>
-#include <iostream>
 #include <Port.hpp>
 
 /// @brief Structure holding the server's configuration settings.
@@ -21,10 +16,10 @@ struct ServerConfig
 	ClientBodySize 				clientMaxBody;
 	std::vector<CodePath> 		errorPage;
 	std::vector<Location> 		locations;
-	bool						autoIndex;
-	bool 						isInitAutoindex;
-	Port 						serverPort;
 	std::string 				socketIp;
+	Port 						serverPort;
+	bool 						isInitAutoindex;
+	bool						autoIndex;
 
 	// Default constructor
 	ServerConfig();

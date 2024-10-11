@@ -2,10 +2,6 @@
 #ifndef CGI_HPP
 # define CGI_HPP
 
-#include <string>
-#include <iostream>
-#include <map>
-#include <HttpMessage.hpp>
 #include <HttpResponse.hpp>
 #include <Server.hpp>
 

@@ -6,6 +6,7 @@
 #include <Header.hpp>
 #include <StartLine.hpp>
 #include <sys/types.h>
+
 // Class for managing HTTP messages
 class HttpMessage
 {
