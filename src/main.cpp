@@ -14,5 +14,6 @@ int main(int argc, char **argv)
 	catch(const std::exception& e) {
 		Logger::LogException(e);
 	}
+	
 	delete webServer;
 }

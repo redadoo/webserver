@@ -229,6 +229,8 @@ void Server::HandleFileRequest(const std::string& path)
 
 	response.SetStatusCode(HttpStatusCode::OK);
 	response.body = fileContent;
+	
+	// TODO CHECK GetContentType
 	response.SetContentType(FileUtils::GetContentType(path));
 }
 
@@ -366,28 +368,19 @@ void Server::ReadClientRequest(Client &client)
 	ssize_t						recvRet;
 
 	client.request.isBodyBinary = false;
-	Logger::Log("read client message with pid : ");
-
-	Logger::Log(StringUtils::ToString(client.clientFd));
-	
-	while (!client.request.IsMessageComplete(maxBodySize, recvRet))
+	while (!client.request.IsMessageComplete(maxBodySize))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
-		
 		recvRet = recv(client.clientFd, buffer.data(), MAX_RESPONSE_CHUNK_SIZE, 0);
 		
-		Logger::Log(std::string("recv return :") + StringUtils::ToString(recvRet));
-		
 		if (recvRet < 0)
-		{
-			Logger::LogErrno();
 			return (this->CloseClientConnection(client));
-		}
 
 		client.request.ParseMessage(buffer);
-	}
 
-	Logger::Log("finish read client message");
+		if (recvRet == 0)
+			break;
+	}
 	Logger::RequestLog(*this, client, client.request);
 }
 

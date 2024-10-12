@@ -138,9 +138,8 @@ unsigned long long HttpMessage::GetContentLength() const
 	return res;
 }
 
-bool HttpMessage::IsMessageComplete(const unsigned long long maxBodySize, ssize_t recvRet) const
+bool HttpMessage::IsMessageComplete(const unsigned long long maxBodySize) const
 {
-	(void)recvRet;
 	unsigned long long contentLength = GetContentLength();
 
 	if (body.size() > maxBodySize)

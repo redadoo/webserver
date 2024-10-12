@@ -21,7 +21,6 @@ void EpollUtils::EpollAdd(int epollFd, int fd, uint32_t events)
 
 void EpollUtils::EpollDelete(int epoll_fd, int fd)
 {
-
 	if (epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, NULL) < 0)
 		Logger::LogError("Failed to remove file descriptor " + StringUtils::ToString(fd) + " from epoll");
 	else

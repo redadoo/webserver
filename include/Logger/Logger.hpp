@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef LOGGER_HPP
 # define LOGGER_HPP
 
@@ -12,10 +13,10 @@
 class Logger 
 {
 private:
-	static bool				isEnable;
-	static bool				isHttpMessageEnable;
 	static std::ofstream 	logFile;
 	static std::string 		logFileName;
+	static bool				isEnable;
+	static bool				isHttpMessageEnable;
 
 	/// @brief Gets the current date and time as a formatted string.
 	/// @return A string representing the current date and time.
@@ -84,4 +85,4 @@ public:
 	static void DeleteLog();
 };
 
-#endif // LOGGER_HPP
+#endif // !LOGGER_HPP

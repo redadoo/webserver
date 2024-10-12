@@ -31,64 +31,42 @@ std::string FileUtils::ReadFile(const std::string &fileName)
 
 Ustring FileUtils::ReadBinaryFile(const std::string &fileName)
 {
-    // Open file in binary mode
-    std::ifstream instream(fileName.c_str(), std::ios::in | std::ios::binary);
-    
-    // Check if the file opened successfully
-    if (!instream.is_open())
-    {
-        throw std::runtime_error("Failed to open file: " + fileName);
-    }
+	std::ifstream instream(fileName.c_str(), std::ios::in | std::ios::binary);
+	
+	if (!instream.is_open())
+		throw std::runtime_error("Failed to open file: " + fileName);
 
-    // Seek to the end of the file to determine the file size
-    instream.seekg(0, std::ios::end);
-    std::streampos fileSize = instream.tellg();
-    instream.seekg(0, std::ios::beg);
+	instream.seekg(0, std::ios::end);
+	std::streampos fileSize = instream.tellg();
+	instream.seekg(0, std::ios::beg);
 
-    // Check for valid file size
-    if (fileSize <= 0)
-    {
-        throw std::runtime_error("Invalid file size: " + fileName);
-    }
+	if (fileSize <= 0)
+		throw std::runtime_error("Invalid file size: " + fileName);
 
-    // Resize the vector to fit the file content
-    std::vector<uint8_t> data(static_cast<size_t>(fileSize));
+	std::vector<uint8_t> data(static_cast<size_t>(fileSize));
+	instream.read(reinterpret_cast<char*>(&data[0]), fileSize);
+	instream.close();
 
-    // Read file content into the vector
-    instream.read(reinterpret_cast<char*>(&data[0]), fileSize);
-    
-    // Close the file
-    instream.close();
-
-    // Return a Ustring object constructed from the binary data
-    return Ustring(std::string(data.begin(), data.end()));
+	return Ustring(std::string(data.begin(), data.end()));
 }
 
 bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content, const bool isBinary)
 {
-    std::ios_base::openmode mode;
+	std::ios_base::openmode mode;
 
-    if (isBinary)
-    {
-        mode = std::ios::out | std::ios::binary;
-    }
-    else
-    {
-        mode = std::ios::out;        
-    }
+	if (isBinary)
+		mode = std::ios::out | std::ios::binary;
+	else
+		mode = std::ios::out;        
+
 	std::ofstream file(fileName.c_str(), mode);
 	if (!file.is_open())
 		return false;
-    file.write(reinterpret_cast<const char*>(content.get_content().data()), content.size());	
+
+	file.write(reinterpret_cast<const char*>(content.get_content().data()), content.size());	
 	file.close();
 	return true;
 }
-
-std::string FileUtils::GetFileExtension(const std::string& fileName)
-{
-    return fileName.substr(fileName.find_last_of('.') + 1);
-}
-
 std::string FileUtils::GetContentType(const std::string &fileName)
 {
 	std::string extension = fileName.substr(fileName.find_last_of('.') + 1);
@@ -101,6 +79,7 @@ std::string FileUtils::GetContentType(const std::string &fileName)
 
 int FileUtils::CheckFd(int fd)
 {
-	if (fcntl(fd, F_GETFD) < 0) return -1;
+	if (fcntl(fd, F_GETFD) < 0) 
+		return -1;
 	return 0;
 }

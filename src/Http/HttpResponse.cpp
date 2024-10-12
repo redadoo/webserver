@@ -77,7 +77,9 @@ void HttpResponse::SetErrorBody(const ServerConfig& config)
 	std::string customErrorPage = GetCustomErrorPage(config);
 	if (!customErrorPage.empty())
 	{
+		// TODO CHECK ReadFile RETURN
 		SetBody(FileUtils::ReadFile(customErrorPage));
+		// TODO CHECK GetContentType
 		SetContentType(FileUtils::GetContentType(customErrorPage));
 		Logger::Log("Using custom error page: " + customErrorPage);
 	}

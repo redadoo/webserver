@@ -1,9 +1,10 @@
+#include <WebServer.hpp>
+#include <Parser.hpp>
 #include <EpollUtils.hpp>
 #include <WebServerException.hpp>
 #include <HandleSignal.hpp>
 #include <Logger.hpp>
 #include <StringUtils.hpp>
-#include <WebServer.hpp>
 
 // global variable
 
@@ -27,7 +28,7 @@ void WebServer::InitServer(const char *configFIle)
 	Parser::ParseConfigFile(servers, configFIle);
 
 	CheckServerPort();
-	
+
 	HandleSignal::SetupSignalHandler();
 
 	epollFd = EpollUtils::EpollInit();
@@ -129,7 +130,8 @@ void WebServer::CheckServerPort()
 	{
 		for (size_t j = 0; j < servers.size(); j++)
 		{
-			if (i == j) continue;
+			if (i == j) 
+				continue;
 
 			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
 				throw std::invalid_argument("same port on different server");

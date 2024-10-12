@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef USTRING_HPP
 # define USTRING_HPP
 
@@ -123,4 +124,4 @@ public:
     size_t find_first_not_of(const std::string& str, size_t pos = 0) const;
 };
 
-#endif
+#endif //!

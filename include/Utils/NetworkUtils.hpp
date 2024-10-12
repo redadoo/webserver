@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef NETWORKUTILS_HPP
 # define NETWORKUTILS_HPP
 
@@ -9,7 +10,7 @@ namespace NetworkUtils
 {
     /// @brief Validates an IPv4 address.
     /// @param ipAddress The IP address string to validate.
-    /// @return True if the IP address is valid, false otherwise.
+    /// @return `true` if the IP address is valid, `false` otherwise.
     bool IsValidateIp(const std::string &ipAddress);
 
     /// @brief Converts an IPv4 address from binary to text form.
@@ -20,11 +21,14 @@ namespace NetworkUtils
 
     /// @brief Checks if a string is a valid domain name.
     /// @param str The string to check.
-    /// @return True if the string is a valid domain name, false otherwise.
+    /// @return `true` if the string is a valid domain name, `false` otherwise.
     bool IsDomain(const std::string& str);
 
-	bool SetNonBlocking(int fd);
+    /// @brief Sets a file descriptor to non-blocking mode.
+    /// @param fd The file descriptor to modify.
+    /// @return `true` if the operation was successful, `false` otherwise.
+	bool SetNonBlocking(const int fd);
 
 } // namespace NetworkUtils
 
-#endif
+#endif // !NETWORKUTILS_HPP

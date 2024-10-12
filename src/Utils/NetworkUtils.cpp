@@ -5,10 +5,9 @@
 
 const char *NetworkUtils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)
 {
-	const char *ret;
 	in_addr_t saddr = addr->sin_addr.s_addr;
 
-	ret = inet_ntop(AF_INET, &saddr, src_ip_buf, sizeof("xxx.xxx.xxx.xxx"));
+	const char *ret = inet_ntop(AF_INET, &saddr, src_ip_buf, INET_ADDRSTRLEN);
 	if (ret == NULL)
 		throw WebServerException::ExceptionErrno("inet_ntop(): ", errno);
 
@@ -18,50 +17,48 @@ const char *NetworkUtils::ConvertAddrNtop(sockaddr_in *addr, char *src_ip_buf)
 
 bool NetworkUtils::IsValidateIp(const std::string &ipAddress)
 {
-    struct sockaddr_in sa;
-    int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
-    return result != 0;
+	struct sockaddr_in sa;
+	int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
+	return result != 0;
 }
 
 
 bool NetworkUtils::IsDomain(const std::string& str)
 {
+	if (str.empty() 
+		|| str.length() > 253 
+		|| str[0] == '-' 
+		|| str[str.length() - 1] == '-' 
+		|| str[0] == '.' 
+		|| str[str.length() - 1] == '.')
+		return false;
+
 	int numDots = 0;
 	std::string label;
 
-	if (str[0] == '-' || str[str.size() - 1] == '-' || str[0] == '.' || str[str.size() - 1] == '.')
-		return false;
-
 	for (size_t i = 0; i < str.size(); i++)
 	{
-		if (str[i] == '.')
+		char ch = str[i];
+		if (ch == '.')
 		{
-			if (label.size() == 0 || label.size() > 63)
+			if (label.empty() || label.size() > 63 || label[0] == '-' || label[label.size() - 1] == '-')
 				return false;
-			if (label[0] == '-' || label[label.size() - 1] == '-')
-				return false;
-			label = "";
+
 			numDots++;
-		}
-		else if (str[i] == '-')
-		{
-			if (label.size() == 0 || label.size() > 63)
-				return false;
 			label = "";
 		}
 		else
-			label += str[i];
+			label += ch;
 	}
 
-	if (str.size() == 0 || str.size() > 253)
+	if (numDots == 0 || label.empty() || label.size() > 63)  // Final label check
 		return false;
 	return true;
 }
 
-bool NetworkUtils::SetNonBlocking(int fd)
+bool NetworkUtils::SetNonBlocking(const int fd)
 {
-	int result = fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK);
-	if (result == -1)
+	if (fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) | O_NONBLOCK) == -1)
 	{
 		Logger::LogError("Failed to set file descriptor flags" + std::string(strerror(errno)));
 		return false;
