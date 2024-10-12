@@ -49,11 +49,6 @@ namespace StringUtils
 	/// @return A unsigned long long representation of the string.
 	unsigned long long StringToUnsignedLongLong(const std::string& str);
 
-	/// @brief Converts an string to size_t.
-	/// @param str The string to convert.
-	/// @return A size_t representation of the string.
-	size_t StringTouint16_t(const std::string& str);
-
 	/// @brief Converts an string to long long.
 	/// @param str The string to convert.
 	/// @return A long long representation of the string.
@@ -81,11 +76,6 @@ namespace StringUtils
 	/// @return A string containing the formatted date and time in the format "dd-Mon-yyyy HH:mm". Returns "Unknown time" if the time could not be converted.
 	std::string FormatTime(time_t time);
 
-	/// @brief Removes leading and trailing whitespace characters (spaces, tabs, newlines, and carriage returns) from a string.
-	/// @param str The input string to be trimmed.
-	/// @return A string with leading and trailing whitespace removed. Returns an empty string if the input string contains only whitespace.
-	std::string Trim(const std::string& str);
-
 	/// @brief Splits a given URL path into the base path and query string components.
 	/// @param path The full URL path that may contain a query string.
 	/// @return A pair where the first element is the base path and the second element is the query string.
@@ -111,8 +101,6 @@ namespace StringUtils
 	/// @param map The map of key-value pairs.
 	/// @return A dynamically allocated array of C-strings. Caller must free the memory.
 	char **GetMatrix(const std::map<std::string,std::string>& map);
-
-	std::string GetFileType(const Body& body);
 
 } // namespace StringUtils
 
