@@ -346,13 +346,6 @@ int Server::AcceptClient(int fd, int epollFd)
 		return (-1);
 	}
 
-	if (!NetworkUtils::SetNonBlocking(clientFd))
-	{
-		Logger::LogWarning("Cannot set client socket to non-blocking mode");
-		close(clientFd);
-		return (-1);
-	}
-
 	port = ntohs(addr.sin_port);
 	ip = NetworkUtils::ConvertAddrNtop(&addr, ipBuffer);
 	if (!ip)
@@ -373,18 +366,23 @@ void Server::ReadClientRequest(Client &client)
 	ssize_t						recvRet;
 
 	client.request.isBodyBinary = false;
-	Logger::Log("read client message");
+	Logger::Log("read client message with pid : ");
 
+	Logger::Log(StringUtils::ToString(client.clientFd));
+	
 	while (!client.request.IsMessageComplete(maxBodySize, recvRet))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
 		
 		recvRet = recv(client.clientFd, buffer.data(), MAX_RESPONSE_CHUNK_SIZE, 0);
 		
-		Logger::Log(StringUtils::ToString(recvRet));
+		Logger::Log(std::string("recv return :") + StringUtils::ToString(recvRet));
 		
 		if (recvRet < 0)
+		{
+			Logger::LogErrno();
 			return (this->CloseClientConnection(client));
+		}
 
 		client.request.ParseMessage(buffer);
 	}

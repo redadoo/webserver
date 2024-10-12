@@ -6,7 +6,7 @@
 #include <sys/epoll.h>
 #include <HttpResponse.hpp>
 
-#define MAX_RESPONSE_CHUNK_SIZE 4096
+#define MAX_RESPONSE_CHUNK_SIZE 8192
 #define MAX_REDIRECT 5
 
 /// @brief Class representing server information and its operations.
