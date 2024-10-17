@@ -6,6 +6,7 @@ std::ofstream Logger::logFile;
 std::string Logger::logFileName;
 bool Logger::isEnable;
 bool Logger::isHttpMessageEnable;
+
 //private function
 
 std::string Logger::CurrentDateTime()
@@ -35,7 +36,7 @@ void Logger::WriteCurrentDataTime()
 void Logger::Init(const std::string &fileName)
 {
 	isEnable = true;
-	isHttpMessageEnable = false;
+	isHttpMessageEnable = true;
 	logFileName = fileName;
 	DeleteLog();
 	logFile.open(logFileName.c_str(), std::ios::app);
@@ -123,13 +124,10 @@ void Logger::ResponseLog(const Server &server, const Client &client, const char*
 
 void Logger::ResponseHeaderLog(const Header& header)
 {
-	(void)header;
 	Logger::Log("Response headers:");
 	
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
-	{
-		Logger::Log("  " + it->first + ": " + it->second);
-	}
+		Logger::Log(it->first + it->second);
 }
 
 void Logger::ServerLog(const Server &server, const std::string &msg)
@@ -165,6 +163,11 @@ void Logger::LogException(const std::exception &ex)
 void Logger::LogErrno()
 {
 	LogError(std::string("errno: ") + std::strerror(errno));
+}
+
+void Logger::LogErrno(const std::string& msg)
+{
+	LogError(msg + std::string("errno: ") + std::strerror(errno));
 }
 
 void Logger::Shutdown()

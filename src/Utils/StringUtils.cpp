@@ -45,8 +45,8 @@ std::string StringUtils::ToString(size_t n)
 
 int StringUtils::StrintToInt(const std::string& str)
 {
+	int number;
 	std::stringstream ss(str);
-	unsigned long long number;
 	ss >> number;
 	if (ss.fail())
 		throw std::runtime_error("Invalid string to convert to int");
@@ -56,37 +56,27 @@ int StringUtils::StrintToInt(const std::string& str)
 long long StringUtils::StringToLongLong(const std::string& str)
 {
 	long long number;
-
-	for (size_t i = 0; i < str.size(); i++)
-	{
-		if (!isdigit(str[i]))
-			throw std::invalid_argument("Invalid string to convert to unsigned long long");
-	}
-
 	std::stringstream ss(str);
 	ss >> number;
+	if (ss.fail())
+		throw std::runtime_error("Invalid string to convert to long long");
 	return number;
 }
 
 unsigned long long StringUtils::StringToUnsignedLongLong(const std::string& str)
 {
 	unsigned long long number;
-
-	for (size_t i = 0; i < str.size(); i++)
-	{
-		if (!isdigit(str[i]))
-			throw std::invalid_argument("Invalid string to convert to unsigned long long");
-	}
-
 	std::stringstream ss(str);
 	ss >> number;
+	if (ss.fail())
+		throw std::runtime_error("Invalid string to convert to unsigned long long");
 	return number;
 }
 
 std::vector<std::string> StringUtils::Split(const std::string& str, char delim)
 {
 	std::vector<std::string> tokens;
-	std::string token;
+	std::string	token;
 	std::istringstream tokenStream(str);
 
 	while (std::getline(tokenStream, token, delim))
@@ -117,7 +107,6 @@ bool StringUtils::IsAllDigit(const std::string &str)
 		if(!isdigit(str[i]))
 			return false;
 	}
-
 	return true;
 }
 
@@ -154,9 +143,8 @@ std::string StringUtils::GetBoundary(const std::string& contentType)
 		return boundary;
 	}
 	else
-	{
 		Logger::LogWarning("boundary not found");
-	}
+
 	return "";
 }
 

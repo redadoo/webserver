@@ -2,19 +2,19 @@
 #include <Logger.hpp>
 #include <cstring>
 
-extern  HandleSignal::SignalState signalState;
+extern HandleSignal::SignalState signalState;
 
 void HandleSignal::HandleSigstp(int sig)
 {
-    if (sig == SIGINT || sig == SIGTSTP || sig == SIGQUIT)
-        signalState.signCaught = true;
+	if (sig == SIGINT || sig == SIGTSTP || sig == SIGQUIT)
+		signalState.signCaught = true;
 }
 
 void HandleSignal::SetupSignalHandler()
 {
 	Logger::Log("signal handling started");
 
-    struct sigaction	sa;
+	struct sigaction	sa;
 
 	signalState.signCaught = false;
 	memset(&sa, 0, sizeof(sa));
@@ -31,9 +31,8 @@ void HandleSignal::SetupSignalHandler()
 		throw std::invalid_argument("Error: cannot handle SIGTSTP");
 
 	// Set up the sigaction to handle SIGQUIT (Ctrl + \)
-    if (sigaction(SIGQUIT, &sa, NULL) == -1)
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		throw std::invalid_argument("Error: cannot handle SIGQUIT");
 
 	Logger::Log("handled the signals successfully");
-
 }

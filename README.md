@@ -31,8 +31,10 @@ this project is part of the common core of 42 and was done in collaboration with
 
 [Building a multi-client chat server with select and epoll](https://mecha-mind.medium.com/a-non-threaded-chat-server-in-c-53dadab8e8f3)
 
-[What is the meaning of SO_REUSEADDR](https://stackoverflow.com/questions/3229860/what-is-the-meaning-of-so-reuseaddr-setsockopt-option-linux)
-
 [Epoll: does it silently remove fds](https://stackoverflow.com/questions/46987302/epoll-does-it-silently-remove-fds)
+
+[The method to epoll’s madness](https://copyconstruct.medium.com/the-method-to-epolls-madness-d9d2d6378642)
+
+[What is the meaning of SO_REUSEADDR](https://stackoverflow.com/questions/3229860/what-is-the-meaning-of-so-reuseaddr-setsockopt-option-linux)
 
 [HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages)

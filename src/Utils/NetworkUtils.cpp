@@ -25,33 +25,34 @@ bool NetworkUtils::IsValidateIp(const std::string &ipAddress)
 
 bool NetworkUtils::IsDomain(const std::string& str)
 {
-	if (str.empty() 
-		|| str.length() > 253 
-		|| str[0] == '-' 
-		|| str[str.length() - 1] == '-' 
-		|| str[0] == '.' 
-		|| str[str.length() - 1] == '.')
-		return false;
-
 	int numDots = 0;
 	std::string label;
 
+	if (str[0] == '-' || str[str.size() - 1] == '-' || str[0] == '.' || str[str.size() - 1] == '.')
+		return false;
+
 	for (size_t i = 0; i < str.size(); i++)
 	{
-		char ch = str[i];
-		if (ch == '.')
+		if (str[i] == '.')
 		{
-			if (label.empty() || label.size() > 63 || label[0] == '-' || label[label.size() - 1] == '-')
+			if (label.size() == 0 || label.size() > 63)
 				return false;
-
+			if (label[0] == '-' || label[label.size() - 1] == '-')
+				return false;
+			label = "";
 			numDots++;
+		}
+		else if (str[i] == '-')
+		{
+			if (label.size() == 0 || label.size() > 63)
+				return false;
 			label = "";
 		}
 		else
-			label += ch;
+			label += str[i];
 	}
 
-	if (numDots == 0 || label.empty() || label.size() > 63)  // Final label check
+	if (str.size() == 0 || str.size() > 253)
 		return false;
 	return true;
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef SIGNAL_HHP
 # define SIGNAL_HHP
 
@@ -22,7 +23,4 @@ namespace HandleSignal
 	
 } // namespace Signal
 
-
-
-
-#endif
+#endif //!SIGNAL_HHP

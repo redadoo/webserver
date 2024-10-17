@@ -74,6 +74,8 @@ public:
 
 	static void LogErrno();
 
+	static void LogErrno(const std::string& msg);
+
 	/// @brief Logs an exception's details to the log file as an error.
 	/// @param ex The exception to log.
 	static void LogException(const std::exception &ex);

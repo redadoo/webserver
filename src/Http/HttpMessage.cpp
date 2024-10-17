@@ -49,12 +49,14 @@ void HttpMessage::ParseHeaders(Ustring& chunk)
 	size_t end = chunk.find("\r\n");
 
 	if (end == std::string::npos) 
-		throw std::invalid_argument(" Invalid header format");
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::BadRequest);
 
 	// Parse request line (first line)
-	Ustring request_line = chunk.substr(start, end - start);
-
-	ParseStartLine(request_line);
+	if (startLine.size() == 0)
+	{
+		Ustring request_line = chunk.substr(start, end - start);
+		ParseStartLine(request_line);
+	}
 
 	start = end + 2; // Skip "\r\n"
 
@@ -65,7 +67,7 @@ void HttpMessage::ParseHeaders(Ustring& chunk)
 		size_t delimiter = header_line.find(":");
 
         if (delimiter == std::string::npos) 
-			throw std::invalid_argument(" Invalid header line (no colon) ");
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::BadRequest);
 
         std::string header_name = header_line.substr(0, delimiter + 2).toString();
         std::string header_value = header_line.substr(delimiter + 2).toString(); // Skip ": "
@@ -86,22 +88,16 @@ void HttpMessage::ParseMessage(Ustring& chunk)
 			ParseHeaders(header_part);
 			isHeaderComplete = true;
 
-			Ustring tmp = chunk.substr(header_end + 4);
-			
 			// if body exist
-			if (tmp[0] != 0)
+			Ustring tmp = chunk.substr(header_end + 4);
+			if (tmp.size() > 0 && tmp[0] != 0)
 				body.content += tmp;
-			
 		} 
 		else 
-		{
 			incomplete_header_buffer += chunk.toString();
-		}
 	} 
 	else
-	{
 		body.content += chunk;
-	}
 }
 
 std::string HttpMessage::ToString() const

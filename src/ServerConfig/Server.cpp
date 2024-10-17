@@ -125,7 +125,10 @@ void Server::HandleUploadRequest(Client& client, const Location* location)
 			parts[i].FindType();
 
 			if (parts[i].bodyType == Plain)
+			{
+				Logger::Log("the file is not binary");
 				content.erase('\0');
+			}
 
 			if (FileUtils::WriteFile(uploadFilePath, content, parts[i].bodyType == Binary))
 			{
@@ -244,9 +247,8 @@ void Server::SendResponse(const Client& client)
 	while (totalBytesSent < totalLength)
 	{
 		ssize_t bytesSent = send(client.clientFd, responseStr.c_str() + totalBytesSent, totalLength - totalBytesSent, 0);
-		if (bytesSent <= 0)
+		if (bytesSent < 0)
 		{
-			Logger::LogErrno();
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
@@ -309,7 +311,7 @@ void Server::InitSocket(int epollFd)
 		+ StringUtils::ToString(this->serverConfig.serverPort.port));
 }
 
-bool Server::IsMyClient(int clientFd)
+bool Server::IsMyClient(int clientFd) const
 {
 	if (this->clients.find(clientFd) == clients.end())
 		return false;
@@ -328,23 +330,22 @@ int Server::AcceptClient(int fd, int epollFd)
 	socklen_t			addrLen;
 	uint16_t			port;
 	const char			*ip;
-	char				ipBuffer[sizeof("xxx.xxx.xxx.xxx")];
+	char				ipBuffer[INET_ADDRSTRLEN];
 
 	Logger::ServerLog(*this, "A client is trying to connecting to ");
+
 	addrLen = sizeof(addr);
 	memset(&addr, 0, sizeof(addr));
 	clientFd = accept(fd, (struct sockaddr *)&addr, &addrLen);
 	if (clientFd < 0)
 	{
-		Logger::LogWarning("error on accept(): ");
-		Logger::LogErrno();
+		Logger::LogErrno("error on accept(): ");
 		return (-1);
 	}
 
 	if (FileUtils::CheckFd(clientFd) < 0)
 	{
-		Logger::LogWarning("file descriptor invalid");
-		Logger::LogErrno();
+		Logger::LogErrno("client have an invalid file descriptor");
 		return (-1);
 	}
 
@@ -357,8 +358,10 @@ int Server::AcceptClient(int fd, int epollFd)
 		return (-1);
 	}
 	this->AddClient(clientFd, ip, port);
+
 	Logger::ClientLog(*this, GetClient(clientFd), " has been accepted!");
 	EpollUtils::EpollAdd(epollFd, clientFd, EPOLLIN | EPOLLOUT | EPOLLET);
+	
 	return (0);
 }
 
@@ -368,19 +371,23 @@ void Server::ReadClientRequest(Client &client)
 	ssize_t						recvRet;
 
 	client.request.isBodyBinary = false;
+	Logger::Log("Attempting of read request ...");
 	while (!client.request.IsMessageComplete(maxBodySize))
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
+
 		recvRet = recv(client.clientFd, buffer.data(), MAX_RESPONSE_CHUNK_SIZE, 0);
-		
 		if (recvRet < 0)
 			return (this->CloseClientConnection(client));
-
+		if (recvRet < MAX_RESPONSE_CHUNK_SIZE)
+			buffer.content.resize(recvRet);
+			
 		client.request.ParseMessage(buffer);
 
 		if (recvRet == 0)
 			break;
 	}
+	Logger::Log("request read");
 	Logger::RequestLog(*this, client, client.request);
 }
 

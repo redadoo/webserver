@@ -104,4 +104,4 @@ namespace StringUtils
 
 } // namespace StringUtils
 
-#endif
+#endif //!STRINGUTILS_HPP

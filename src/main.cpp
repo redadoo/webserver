@@ -3,9 +3,10 @@
 
 int main(int argc, char **argv)
 {
-	const char *configFile = (argc == 2) ? argv[1] : "config/default.conf";
 	Logger::Init();
 	WebServer *webServer = new WebServer();
+
+	const char *configFile = (argc == 2) ? argv[1] : "config/default.conf";
 
 	try {
 		webServer->InitServer(configFile);

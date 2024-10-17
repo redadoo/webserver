@@ -19,10 +19,6 @@ private:
 	/// @param redirectCount The current count of redirects, used to prevent infinite redirection loops.
 	void SendRedirectResponse(Client& client, const CodePath& redirect, int redirectCount);
 
-
-	/// @brief Logs all the response headers to the server log, including both header names and their values.
-	void LogResponseHeaders();
-
 	/// @brief Handles requests for individual files by reading the file content and setting the appropriate response status and content type.
 	/// @param path The filesystem path of the file to be served.
 	void HandleFileRequest(const std::string& path);
@@ -77,7 +73,7 @@ public:
 	/// @brief Checks if a client with the given file descriptor is connected to the server.
 	/// @param clientFd File descriptor of the client to check.
 	/// @return True if the client is connected, false otherwise.
-	bool IsMyClient(int clientFd);
+	bool IsMyClient(int clientFd) const;
 
 	/// @brief Retrieves the client object associated with the given file descriptor.
 	/// @param clientFd File descriptor of the client.
@@ -104,6 +100,7 @@ public:
 	void SendErrorResponse(const Client& client, HttpStatusCode::Code code);
 
 	bool IsCgiRequest(const std::string& path, const Location* location) const;
+
 	void HandleCgiRequest(Client& client, const std::string& scriptPath, const Location* location);
 
 	/// @brief Closes the connection to a client and removes it from the server's client list.
@@ -117,6 +114,7 @@ public:
 	/// @brief Sends a response to the client.
 	/// @param client Reference to the Client object.
 	void SendResponse(const Client& client);
+
 	/// @brief Overloads the << operator to output server configuration details.
 	/// @param os Output stream object.
 	/// @param sr Reference to the Server object.

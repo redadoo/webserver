@@ -21,6 +21,7 @@ struct Location
 	bool 						uploadEnable;
 	bool 						uploadEnableFind;
 
+	//default constructor
 	Location(const std::string& _path) : path(_path), rootPath(""), isInitAutoindex(false) {}
 
 	/// @brief Determines if the given request path matches the location's path based on length and prefix criteria.

@@ -26,27 +26,22 @@ WebServer::~WebServer()
 void WebServer::InitServer(const char *configFIle)
 {
 	Parser::ParseConfigFile(servers, configFIle);
-
 	CheckServerPort();
-
 	HandleSignal::SetupSignalHandler();
-
 	epollFd = EpollUtils::EpollInit();
 
 	for (size_t i = 0; i < servers.size(); i++)
 		servers[i].InitSocket(epollFd);
 
 	needToStop = false;
-
 	Logger::Log("successfully init all servers data");
 }
 
 void WebServer::StartServer()
 {
-	int	epollRet;
-
 	Logger::Log("Entering event loop...");
-	
+
+	int	epollRet;
 	while (!needToStop)
 	{
 		needToStop = signalState.signCaught;
@@ -56,8 +51,7 @@ void WebServer::StartServer()
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
 		if (epollRet == 0)
 		{
-			Logger::Log(std::string("I don't see any event within ")
-					+ StringUtils::ToString(TIMEOUT) + " milliseconds");
+			Logger::Log(std::string("I don't see any event within ") + TIMEOUT_STRING);
 			continue;
 		}
 
@@ -71,18 +65,34 @@ void WebServer::StartServer()
 			else
 				throw WebServerException::ExceptionErrno("epoll_wait(): ", errno);
 		}
+
 		CheckSockets(epollRet);
 	}
 }
 
 // private function
 
+void WebServer::CheckServerPort()
+{
+	for (size_t i = 0; i < servers.size(); i++)
+	{
+		for (size_t j = 0; j < servers.size(); j++)
+		{
+			if (i == j) 
+				continue;
+
+			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
+				throw std::invalid_argument("same port on different server");
+		}
+	}
+}
+
 void WebServer::CheckSockets(int epollRet)
 {
 	int	fd;
 
-    for(std::vector<Server>::iterator it = servers.begin(); it != servers.end(); it++ )
-    {
+	for(std::vector<Server>::iterator it = servers.begin(); it != servers.end(); it++)
+	{
 		for (int i = 0; i < epollRet; i++)
 		{
 			fd = events[i].data.fd;
@@ -98,11 +108,9 @@ void WebServer::CheckSockets(int epollRet)
 				break ;
 			}
 			else if (it->IsMyClient(fd))
-			{
 				HandleClientEvent(it->GetClient(fd), *it);
-			}
 		}
-    }
+	}
 }
 
 void WebServer::HandleClientEvent(Client &client, Server &server)
@@ -110,33 +118,18 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 	try
 	{
 		server.ReadClientRequest(client);
+		Logger::Log("start process request");
 		server.ProcessRequest(client, 0);
 		server.SendResponse(client);
 	}
 	catch(const WebServerException::HttpStatusCodeException& e) {
 		server.SendErrorResponse(client, e.code);
 	}
-	catch (const std::exception &e) 
-	{
+	catch (const std::exception &e) {
 		Logger::LogError("Unexpected exception in HandleClientEvent occurred: " + std::string(e.what()));
 	}
 	
 	server.CloseClientConnection(client.clientFd);
-}
-
-void WebServer::CheckServerPort()
-{
-	for (size_t i = 0; i < servers.size(); i++)
-	{
-		for (size_t j = 0; j < servers.size(); j++)
-		{
-			if (i == j) 
-				continue;
-
-			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
-				throw std::invalid_argument("same port on different server");
-		}
-	}
 }
 
 void WebServer::CleanUpAll()

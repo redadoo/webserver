@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef CODEPATH_HPP
 # define CODEPATH_HPP
 
@@ -13,8 +14,13 @@ struct CodePath
 	std::string path;
 
 
+	//default constructor
 	CodePath() : code(toSet), path("") {}
+
+	// Constructor that initializes with a Code type
 	CodePath(Code _code, const std::string& _path);
+
+	// Constructor that initializes with an integer code
 	CodePath(int _code, const std::string &_path);
 
 	/// @brief Checks if the `path` attribute of `CodePath` is set (i.e., not empty).

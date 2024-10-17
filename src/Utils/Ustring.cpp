@@ -5,9 +5,7 @@
 Ustring& Ustring::operator+=(const std::string& str)
 {
 	for (size_t i = 0; i < str.size(); ++i)
-	{
 		content.push_back(static_cast<uint8_t>(str[i]));
-	}
 
 	return *this;
 }

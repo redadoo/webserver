@@ -7,9 +7,10 @@
 
 # define MAX_EVENTS 32 // Maximum number of events to be returned by epoll_wait
 # define TIMEOUT 3000 // Maximum wait time (in milliseconds) for epoll_wait
+# define TIMEOUT_STRING "3000 milliseconds" 
 
 /// @brief The WebServer class is responsible for initializing and starting multiple web servers.
-/// It manages server configurations and handles logging.
+/// It manages server configurations.
 class WebServer
 {
 public:

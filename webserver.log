@@ -1,48 +1,1409 @@
-[2024-10-12 18:10:53] start tokenization Configuration file ...
-[2024-10-12 18:10:53] tokenization finished
-[2024-10-12 18:10:53] start parsing token...
-[2024-10-12 18:10:53] signal handling started
-[2024-10-12 18:10:53] handled the signals successfully
-[2024-10-12 18:10:53] start create a new epoll instance
-[2024-10-12 18:10:53] init epoll instance successfully
-[2024-10-12 18:10:53] Creating TCP socket...
-[2024-10-12 18:10:53] add file descriptor to epoll instance ...
-[2024-10-12 18:10:53] Listening on 127.0.0.1:8080
-[2024-10-12 18:10:53] Creating TCP socket...
-[2024-10-12 18:10:53] add file descriptor to epoll instance ...
-[2024-10-12 18:10:53] Listening on 127.0.0.1:8081
-[2024-10-12 18:10:53] successfully init all servers data
-[2024-10-12 18:10:53] Entering event loop...
-[2024-10-12 18:10:53] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-12 18:10:53] Client 127.0.0.1:52156  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-12 18:10:53] add file descriptor to epoll instance ...
-[2024-10-12 18:10:53] Finding matching location for path: /
-[2024-10-12 18:10:53] No matching location found
-[2024-10-12 18:10:53] Requested path is a directory, looking for index file
-[2024-10-12 18:10:53] File found: web-page//index.html
-[2024-10-12 18:10:53] File content length: 7415 bytes
-[2024-10-12 18:10:53] Response headers:
-[2024-10-12 18:10:53]   Content-Length: : 7415
-[2024-10-12 18:10:53]   Content-Type: : text/html
-[2024-10-12 18:10:53] Attempting to send response of 7485 bytes
-[2024-10-12 18:10:53] Sent 7485 bytes to client
-[2024-10-12 18:10:53] Closing connection for client 8
-[2024-10-12 18:10:54] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-12 18:10:54] Client 127.0.0.1:52164  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-12 18:10:54] add file descriptor to epoll instance ...
-[2024-10-12 18:10:55] Finding matching location for path: /upload/upload.html
-[2024-10-12 18:10:55] Found matching location: /upload
-[2024-10-12 18:10:55] File found: web-page/upload/upload.html
-[2024-10-12 18:10:55] File content length: 4122 bytes
-[2024-10-12 18:10:55] Response headers:
-[2024-10-12 18:10:55]   Content-Length: : 4122
-[2024-10-12 18:10:55]   Content-Type: : text/html
-[2024-10-12 18:10:55] Attempting to send response of 4192 bytes
-[2024-10-12 18:10:55] Sent 4192 bytes to client
-[2024-10-12 18:10:55] Closing connection for client 8
-[2024-10-12 18:10:58] A client is trying to connecting to  Socket 127.0.0.1:8080
-[2024-10-12 18:10:58] Client 127.0.0.1:52178  has been accepted! by the socket: 127.0.0.1:8080
-[2024-10-12 18:10:58] add file descriptor to epoll instance ...
-[2024-10-12 18:11:12] Finding matching location for path: /upload
-[2024-10-12 18:11:12] Found matching location: /upload
-[2024-10-12 18:11:12] Extracted boundary: ---------------------------28348005323495990940835692487
+[2024-10-17 20:19:17] start tokenization Configuration file ...
+[2024-10-17 20:19:17] tokenization finished
+[2024-10-17 20:19:17] start parsing token...
+[2024-10-17 20:19:17] signal handling started
+[2024-10-17 20:19:17] handled the signals successfully
+[2024-10-17 20:19:17] start create a new epoll instance
+[2024-10-17 20:19:17] init epoll instance successfully
+[2024-10-17 20:19:17] Creating TCP socket...
+[2024-10-17 20:19:17] add file descriptor to epoll instance ...
+[2024-10-17 20:19:17] Listening on 127.0.0.1:8080
+[2024-10-17 20:19:17] Creating TCP socket...
+[2024-10-17 20:19:17] add file descriptor to epoll instance ...
+[2024-10-17 20:19:17] Listening on 127.0.0.1:8081
+[2024-10-17 20:19:17] successfully init all servers data
+[2024-10-17 20:19:17] Entering event loop...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52824  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52836  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52824 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 8
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52836 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 9
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52844  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52858  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52844 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 8
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52858 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 9
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52862  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52864  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52862 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 8
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52864 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 9
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52866  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52884  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52866 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 8
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:18] corra
+[2024-10-17 20:19:18] asadsadasdas
+[2024-10-17 20:19:18] pucfinenennene
+[2024-10-17 20:19:18] dsdsdsdssd
+[2024-10-17 20:19:18] request read
+[2024-10-17 20:19:18] Client 127.0.0.1:52884 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:18] start process request
+[2024-10-17 20:19:18] Finding matching location for path: /
+[2024-10-17 20:19:18] No matching location found
+[2024-10-17 20:19:18] Requested path is a directory, looking for index file
+[2024-10-17 20:19:18] File found: web-page//index.html
+[2024-10-17 20:19:18] File content length: 7415 bytes
+[2024-10-17 20:19:18] Response headers:
+[2024-10-17 20:19:18] Content-Length: 7415
+[2024-10-17 20:19:18] Content-Type: text/html
+[2024-10-17 20:19:18] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:18] Sent 7481 bytes to client
+[2024-10-17 20:19:18] Closing connection for client 9
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52900  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:18] Client 127.0.0.1:52902  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:18] add file descriptor to epoll instance ...
+[2024-10-17 20:19:18] Attempting of read request ...
+[2024-10-17 20:19:18] puc12
+[2024-10-17 20:19:18] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52900 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52902 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52910  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52920  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52910 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52920 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52926  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52942  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52926 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52942 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52948  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52950  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52948 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52950 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52962  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52976  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52962 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52976 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52982  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:52986  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52982 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:52986 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53000  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53008  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53000 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53008 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53024  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53038  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53024 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53038 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53044  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53058  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53044 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53058 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53070  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53078  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53070 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53078 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53094  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53096  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53094 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53096 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53106  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53122  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53106 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53122 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53136  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53138  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53136 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53138 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53146  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53156  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53146 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53156 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53164  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53180  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53164 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53180 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53192  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53206  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53192 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53206 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53222  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] A client is trying to connecting to  Socket 127.0.0.1:8081
+[2024-10-17 20:19:19] Client 127.0.0.1:53236  has been accepted! by the socket: 127.0.0.1:8081
+[2024-10-17 20:19:19] add file descriptor to epoll instance ...
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53222 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 8
+[2024-10-17 20:19:19] Attempting of read request ...
+[2024-10-17 20:19:19] puc12
+[2024-10-17 20:19:19] cuoir
+[2024-10-17 20:19:19] corra
+[2024-10-17 20:19:19] asadsadasdas
+[2024-10-17 20:19:19] pucfinenennene
+[2024-10-17 20:19:19] dsdsdsdssd
+[2024-10-17 20:19:19] request read
+[2024-10-17 20:19:19] Client 127.0.0.1:53236 send a request to socket 127.0.0.1:8081
+[ StartRequestBlock ] 
+[Start Header]
+GET / HTTP/1.1
+Accept-Encoding: gzip, deflate
+Accept: */*
+Host: 127.0.0.1:8081
+User-Agent: Mozilla/5.0 (pc-x86_64-linux-gnu) Siege/4.0.7
+[End Header]
+[ EndRequestBlock ]
+[2024-10-17 20:19:19] start process request
+[2024-10-17 20:19:19] Finding matching location for path: /
+[2024-10-17 20:19:19] No matching location found
+[2024-10-17 20:19:19] Requested path is a directory, looking for index file
+[2024-10-17 20:19:19] File found: web-page//index.html
+[2024-10-17 20:19:19] File content length: 7415 bytes
+[2024-10-17 20:19:19] Response headers:
+[2024-10-17 20:19:19] Content-Length: 7415
+[2024-10-17 20:19:19] Content-Type: text/html
+[2024-10-17 20:19:19] Attempting to send response of 7481 bytes
+[2024-10-17 20:19:19] Sent 7481 bytes to client
+[2024-10-17 20:19:19] Closing connection for client 9
+[2024-10-17 20:19:22] I don't see any event within 3000 milliseconds
+[2024-10-17 20:19:25] I don't see any event within 3000 milliseconds
+[2024-10-17 20:19:28] I don't see any event within 3000 milliseconds
+[2024-10-17 20:19:31] I don't see any event within 3000 milliseconds
+[2024-10-17 20:19:34] I don't see any event within 3000 milliseconds
+[2024-10-17 20:19:36] ERROR: Something interrupted me!
+[2024-10-17 20:19:36] Closing WebServer ...
+[2024-10-17 20:19:36] all resources released and Web Server closed successfully

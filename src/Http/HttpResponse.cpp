@@ -79,6 +79,7 @@ void HttpResponse::SetErrorBody(const ServerConfig& config)
 	{
 		// TODO CHECK ReadFile RETURN
 		SetBody(FileUtils::ReadFile(customErrorPage));
+
 		// TODO CHECK GetContentType
 		SetContentType(FileUtils::GetContentType(customErrorPage));
 		Logger::Log("Using custom error page: " + customErrorPage);
@@ -110,7 +111,7 @@ std::string HttpResponse::ToString() const
 	ss << startLine.httpVersion << " " << HttpStatusCode::ReasonPhrase(code) << "\r\n";
 
 	for (Header::const_iterator it = header.begin(); it != header.end(); ++it)
-		ss << it->first << ": " << it->second << "\r\n";
+		ss << it->first << it->second << "\r\n";
 
 	ss << "\r\n" << body;
 	return ss.str();
