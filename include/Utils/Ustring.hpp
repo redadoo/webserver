@@ -72,7 +72,7 @@ public:
 	Ustring substr(size_t startPos) const;
 
 	/// @brief Returns the size of the Ustring content.
-	/// @return The size (number of bytes) of the content.
+	/// @return The size of the content.
 	size_t size() const { return content.size(); }
 
    	/// @brief Checks if the Ustring content is empty.
