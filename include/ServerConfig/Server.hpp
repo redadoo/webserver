@@ -8,7 +8,7 @@
 
 #define MAX_RESPONSE_CHUNK_SIZE 8192
 #define MAX_REDIRECT 5
-
+#define MAX_PENDING_CONNECTIONS_QUEUE 1000
 /// @brief Class representing server information and its operations.
 class Server
 {

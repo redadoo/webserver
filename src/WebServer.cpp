@@ -51,6 +51,8 @@ void WebServer::StartServer()
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
 		if (epollRet == 0)
 		{
+			Logger::Log(std::string("quante sono ;") + StringUtils::ToString(servers[0].clients.size()));
+			Logger::Log(std::string("quante sono ;") + StringUtils::ToString(servers[1].clients.size()));
 			Logger::Log(TIMEOUT_STRING);
 			continue;
 		}

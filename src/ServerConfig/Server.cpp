@@ -294,18 +294,11 @@ void Server::InitSocket(int epollFd)
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("bind() failed ", errno);
 
-	ret = listen(this->serverFd, 10);
+	ret = listen(this->serverFd, MAX_PENDING_CONNECTIONS_QUEUE);
 	if (ret < 0)
 		throw WebServerException::ExceptionErrno("listen() failed ", errno);
 
-	// if (!NetworkUtils::SetNonBlocking(this->serverFd))
-	// {
-	// 	Logger::LogWarning("Cannot set client socket to non-blocking mode");
-	// 	close(this->serverFd);
-	// 	throw WebServerException::ExceptionErrno("SetNonBlocking() failed ", errno);
-	// }
-
-	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLOUT | EPOLLET);
+	EpollUtils::EpollAdd(epollFd, this->serverFd, EPOLLIN | EPOLLOUT);
 
 	Logger::Log(std::string("Listening on ") + this->serverConfig.socketIp + ":"
 		+ StringUtils::ToString(this->serverConfig.serverPort.port));
