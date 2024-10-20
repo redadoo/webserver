@@ -40,8 +40,8 @@ Ustring FileUtils::ReadBinaryFile(const std::string &fileName)
 	std::streampos fileSize = instream.tellg();
 	instream.seekg(0, std::ios::beg);
 
-	if (fileSize <= 0)
-		throw std::runtime_error("Invalid file size: " + fileName);
+	// if (fileSize <= 0)
+	// 	throw std::runtime_error("Invalid file size: " + fileName);
 
 	std::vector<uint8_t> data(static_cast<size_t>(fileSize));
 	instream.read(reinterpret_cast<char*>(&data[0]), fileSize);

@@ -51,7 +51,7 @@ void WebServer::StartServer()
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
 		if (epollRet == 0)
 		{
-			Logger::Log(std::string("I don't see any event within ") + TIMEOUT_STRING);
+			Logger::Log(TIMEOUT_STRING);
 			continue;
 		}
 
@@ -118,7 +118,6 @@ void WebServer::HandleClientEvent(Client &client, Server &server)
 	try
 	{
 		server.ReadClientRequest(client);
-		Logger::Log("start process request");
 		server.ProcessRequest(client, 0);
 		server.SendResponse(client);
 	}

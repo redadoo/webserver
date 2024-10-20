@@ -372,7 +372,7 @@ void Server::ReadClientRequest(Client &client)
 
 	client.request.isBodyBinary = false;
 	Logger::Log("Attempting of read request ...");
-	while (!client.request.IsMessageComplete(maxBodySize))
+	while (!client.request.IsMessageComplete())
 	{
 		Ustring buffer(MAX_RESPONSE_CHUNK_SIZE);
 
@@ -383,6 +383,9 @@ void Server::ReadClientRequest(Client &client)
 			buffer.content.resize(recvRet);
 			
 		client.request.ParseMessage(buffer);
+
+		if (client.request.body.size() >= maxBodySize)
+			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 
 		if (recvRet == 0)
 			break;

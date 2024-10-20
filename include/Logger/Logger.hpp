@@ -33,6 +33,8 @@ public:
 	/// @param message The message to log.
 	static void Log(const std::string &message);
 
+	static void Log(const char *message);
+
 	/// @brief Logs a client-specific message to the log file.
 	/// @param server The server handling the client.
 	/// @param client The client instance associated with the log.

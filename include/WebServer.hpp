@@ -5,9 +5,9 @@
 
 #include <Server.hpp>
 
-# define MAX_EVENTS 32 // Maximum number of events to be returned by epoll_wait
+# define MAX_EVENTS 64 // Maximum number of events to be returned by epoll_wait
 # define TIMEOUT 3000 // Maximum wait time (in milliseconds) for epoll_wait
-# define TIMEOUT_STRING "3000 milliseconds" 
+# define TIMEOUT_STRING "I don't see any event within 3000 milliseconds" 
 
 /// @brief The WebServer class is responsible for initializing and starting multiple web servers.
 /// It manages server configurations.
@@ -30,7 +30,7 @@ public:
 
 private:
 	std::vector<Server>		servers;
-	struct epoll_event      events[32];
+	struct epoll_event      events[MAX_EVENTS];
 	int						epollFd;
 	bool					needToStop;
 

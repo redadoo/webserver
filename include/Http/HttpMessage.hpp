@@ -40,7 +40,7 @@ public:
 
     unsigned long long GetContentLength() const;
 
-    bool IsMessageComplete(const unsigned long long maxBodySize) const;
+    bool IsMessageComplete() const;
 
     /// @brief Provides a string representation of the HTTP message.
     /// @param os Output stream to write the message to.

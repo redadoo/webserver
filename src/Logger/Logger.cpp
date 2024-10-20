@@ -37,14 +37,29 @@ void Logger::Init(const std::string &fileName)
 {
 	isEnable = true;
 	isHttpMessageEnable = true;
-	logFileName = fileName;
-	DeleteLog();
-	logFile.open(logFileName.c_str(), std::ios::app);
-	if (!logFile.is_open())
-		throw std::runtime_error("Unable to open log file: " + logFileName);
+	if (isEnable)
+	{
+		logFileName = fileName;
+		DeleteLog();
+		logFile.open(logFileName.c_str(), std::ios::app);
+		if (!logFile.is_open())
+			throw std::runtime_error("Unable to open log file: " + logFileName);
+	}
 }
 
 void Logger::Log(const std::string &message)
+{
+	if(isEnable)
+	{
+		WriteCurrentDataTime();
+		if (logFile.is_open())
+			logFile << message << std::endl;
+		else
+			std::cerr << "Log file is not open." << std::endl;
+	}
+}
+
+void Logger::Log(const char *message)
 {
 	if(isEnable)
 	{

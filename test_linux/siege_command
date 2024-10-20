@@ -1,1 +1,1 @@
-siege -b -c1 -r10000 -f test_siege.txt
+siege -b -t 30s http://127.0.0.1:8080/

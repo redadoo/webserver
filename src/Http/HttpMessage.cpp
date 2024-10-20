@@ -134,12 +134,9 @@ unsigned long long HttpMessage::GetContentLength() const
 	return res;
 }
 
-bool HttpMessage::IsMessageComplete(const unsigned long long maxBodySize) const
+bool HttpMessage::IsMessageComplete() const
 {
 	unsigned long long contentLength = GetContentLength();
-
-	if (body.size() > maxBodySize)
-		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
 	
 	if (contentLength == 0)
 		return header.size() > 0;
