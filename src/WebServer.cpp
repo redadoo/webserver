@@ -84,7 +84,24 @@ void WebServer::CheckServerPort()
 				continue;
 
 			if(servers[i].serverConfig.serverPort == servers[j].serverConfig.serverPort)
-				throw std::invalid_argument("same port on different server");
+			{
+				int same_names = 0;
+
+				for (size_t x = 0; x < servers[i].serverConfig.serverNames.size(); x++)
+				{
+					for (size_t y = 0; y < servers[j].serverConfig.serverNames.size(); y++)
+					{
+						if (x == y) 
+							continue;
+
+						if (servers[i].serverConfig.serverNames[x] == servers[i].serverConfig.serverNames[y])
+							same_names++;
+					}
+				}
+
+				if (same_names >= (int)servers[i].serverConfig.serverNames.size())
+					throw std::invalid_argument("two server with the same port and host name");
+			}
 		}
 	}
 }
