@@ -67,6 +67,7 @@ bool FileUtils::WriteFile(const std::string &fileName, const Ustring &content, c
 	file.close();
 	return true;
 }
+
 std::string FileUtils::GetContentType(const std::string &fileName)
 {
 	std::string extension = fileName.substr(fileName.find_last_of('.') + 1);

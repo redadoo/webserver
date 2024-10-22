@@ -85,6 +85,9 @@ leaks: re
 leaks_with_args: re
 	@valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all --log-file=leaks.txt ./$(NAME)
 
+multiple_server: re
+	./$(NAME) config/multipleServer.conf
+
 clean:
 	@$(RM) $(OBJDIR)
 

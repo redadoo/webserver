@@ -63,7 +63,8 @@ public:
 	HttpResponse					response;
 	std::map<int, Client>			clients;
 	int								serverFd;
-
+	bool							isDefault;
+	
 	Server();
 
 	/// @brief Initializes the server socket and binds it to the specified address and port.

@@ -31,7 +31,10 @@ void WebServer::InitServer(const char *configFIle)
 	epollFd = EpollUtils::EpollInit();
 
 	for (size_t i = 0; i < servers.size(); i++)
-		servers[i].InitSocket(epollFd);
+	{
+		if(servers[i].isDefault)
+			servers[i].InitSocket(epollFd);
+	}
 
 	needToStop = false;
 	Logger::Log("successfully init all servers data");
@@ -51,8 +54,6 @@ void WebServer::StartServer()
 		epollRet = epoll_wait(epollFd, events, MAX_EVENTS, TIMEOUT);
 		if (epollRet == 0)
 		{
-			Logger::Log(std::string("quante sono ;") + StringUtils::ToString(servers[0].clients.size()));
-			Logger::Log(std::string("quante sono ;") + StringUtils::ToString(servers[1].clients.size()));
 			Logger::Log(TIMEOUT_STRING);
 			continue;
 		}

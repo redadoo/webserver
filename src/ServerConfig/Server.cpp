@@ -252,6 +252,10 @@ void Server::SendResponse(const Client& client)
 			Logger::LogError("Failed to send response to client");
 			break;
 		}
+		
+		if (bytesSent == 0)
+			break;
+
 		totalBytesSent += bytesSent;
 	}
 	Logger::Log("Sent " + StringUtils::ToString(static_cast<int>(totalBytesSent)) + " bytes to client");
@@ -374,15 +378,15 @@ void Server::ReadClientRequest(Client &client)
 			return (this->CloseClientConnection(client));
 		if (recvRet < MAX_RESPONSE_CHUNK_SIZE)
 			buffer.content.resize(recvRet);
-			
-		client.request.ParseMessage(buffer);
-
-		if (client.request.body.size() >= maxBodySize)
-			throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
-
 		if (recvRet == 0)
 			break;
+			
+		client.request.ParseMessage(buffer);
 	}
+
+	if (client.request.body.size() >= maxBodySize)
+		throw WebServerException::HttpStatusCodeException(HttpStatusCode::PayloadTooLarge);
+	
 	Logger::Log("request read");
 	Logger::RequestLog(*this, client, client.request);
 }

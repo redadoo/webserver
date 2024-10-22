@@ -33,6 +33,20 @@ void Parser::ParseConfigFile(std::vector<Server> &servers, const char *fileConf)
 				FillServer(tokens[i], server);
 				i++;
 			}
+			if (servers.size() == 0)
+				server.isDefault = true;
+			else
+			{
+				server.isDefault = true;
+				for (size_t j = 0; j < servers.size(); j++)
+				{
+					if (servers[j].serverConfig.serverPort == server.serverConfig.serverPort)
+					{
+						server.isDefault = false;
+					}
+				}
+				
+			}
 			servers.push_back(server);
 		}
 	}

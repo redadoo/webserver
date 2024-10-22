@@ -3,4 +3,24 @@
 siege -b -t 30s http://127.0.0.1:8080/
 
 #curl body max size test
-curl -X POST -H "Content-Type: plain/text" --data "BODY IS HERE write something shorter or longer than body limit"
+curl -X POST 127.0.0.1:8080/upload -H "Content-Type: plain/text" --data "BODY IS HERE write something shorter or longer than body limit"
+
+#curl send more file
+curl -X POST <URL> \
+  -F "file1=@/home/edoardo/42/webserver/FilesToUpload/password.txt" \                              
+  -F "file2=@/home/edoardo/42/webserver/FilesToUpload/sample_1920×1280.jpeg" \
+  -H "Content-Type: multipart/form-data"
+
+# UNKNOWN requests should not result in a crash.
+curl -X PUT 127.0.0.1:8080
+curl -X TEST 127.0.0.1:8080
+
+#delete file
+curl -X DELETE 127.0.0.1:8080/upload/uploads/password.txt
+
+#get file
+curl -O 127.0.0.1:8080/upload/uploads/sample_1920×1280.jpeg
+
+#test cgi
+curl -X GET 127.0.0.1:8080/python/cgi.py?EDOARDO=LUCA
+curl -X POST 127.0.0.1:8080/python/cgi.py -H "Content-Type: plain/text" --data "BODY" 
