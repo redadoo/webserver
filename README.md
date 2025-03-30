@@ -17,6 +17,29 @@ The aim of the project is to develop an HTTP web server from scratch that is com
 
 this project is part of the common core of 42 and was done in collaboration with @[Fborroto](https://github.com/Fborroto) and @[ffursini](https://github.com/ffursini).
 
+## Usage
+
+1. Clone this repository:
+
+   ```sh
+   git clone https://github.com/redadoo/webserver.git
+   ```
+2. Navigate into the project directory:
+   ```sh
+   cd webserver/
+   ```
+3. Build and start the Docker containers:
+   ```sh
+   make run
+   ```
+4. Visit site on:
+   [site](http://127.0.0.1:8080/)
+
+5. test webserver with command like :
+   ```sh
+   siege -b -t 30s http://127.0.0.1:8080/
+   ```
+
 ## ressources
 
 [How nginx processes a request](http://nginx.org/en/docs/http/request_processing.html)
