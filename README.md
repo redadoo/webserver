@@ -13,9 +13,7 @@
 
 ## About
 
-The aim of the project is to develop an HTTP web server from scratch that is compatible with C++98.
-
-this project is part of the common core of 42 and was done in collaboration with @[Fborroto](https://github.com/Fborroto) and @[ffursini](https://github.com/ffursini).
+This project involves developing a simple HTTP web server from scratch in C++, compatible with the C++98 standard. The server is designed to handle HTTP requests, manage multiple client connections, and serve static web pages, utilizing efficient I/O mechanisms such as `select`, `poll`, and `epoll` for asynchronous processing. Additionally, the server implements a logging system that records all events, providing valuable insights into its operations. This project is part of the core curriculum at 42 and was created in collaboration with [@Fborroto](https://github.com/Fborroto) and [@ffursini](https://github.com/ffursini).
 
 ## Usage
 
